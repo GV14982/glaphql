@@ -1,0 +1,346 @@
+---
+version: 1.1.5
+title: test schema parsed
+file: ./test/parser/document_test.gleam
+test_name: parse_document_test
+---
+Ok(TypeSystemDocument([
+  TypeSystemDefinitionNode(SchemaDefinitionNode(
+    None,
+    None,
+    [
+      RootOperationTypeDefinition(
+        Subscription,
+        NamedTypeNode(NameNode(
+          "Subscription",
+          #(
+            Position(16, 21),
+            Position(27, 21),
+          ),
+        )),
+        #(
+          Position(2, 21),
+          Position(27, 21),
+        ),
+      ),
+      RootOperationTypeDefinition(
+        Mutation,
+        NamedTypeNode(NameNode(
+          "Mutation",
+          #(
+            Position(12, 20),
+            Position(19, 20),
+          ),
+        )),
+        #(
+          Position(2, 20),
+          Position(19, 20),
+        ),
+      ),
+      RootOperationTypeDefinition(
+        Query,
+        NamedTypeNode(NameNode(
+          "Query",
+          #(
+            Position(9, 19),
+            Position(13, 19),
+          ),
+        )),
+        #(
+          Position(2, 19),
+          Position(13, 19),
+        ),
+      ),
+    ],
+    #(Position(1, 18), Position(1, 22)),
+  )),
+  TypeSystemDefinitionNode(TypeDefinitionNode(ObjectTypeDefinitionNode(
+    None,
+    NameNode(
+      "Subscription",
+      #(
+        Position(6, 14),
+        Position(17, 14),
+      ),
+    ),
+    None,
+    None,
+    Some([
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "test",
+          #(
+            Position(2, 15),
+            Position(5, 15),
+          ),
+        ),
+        Some([
+          InputValueDefinitionNode(
+            None,
+            NameNode(
+              "id",
+              #(
+                Position(7, 15),
+                Position(8, 15),
+              ),
+            ),
+            NonNullTypeNode(
+              NamedTypeNode(NameNode(
+                "ID",
+                #(
+                  Position(11, 15),
+                  Position(12, 15),
+                ),
+              )),
+              #(
+                Position(11, 15),
+                Position(13, 15),
+              ),
+            ),
+            None,
+            None,
+            #(
+              Position(7, 15),
+              Position(14, 15),
+            ),
+          ),
+        ]),
+        NullableTypeNode(
+          NamedTypeNode(NameNode(
+            "Test",
+            #(
+              Position(17, 15),
+              Position(20, 15),
+            ),
+          )),
+          #(
+            Position(17, 15),
+            Position(20, 15),
+          ),
+        ),
+        None,
+        #(
+          Position(2, 15),
+          Position(1, 16),
+        ),
+      ),
+    ]),
+    #(Position(1, 14), Position(1, 16)),
+  ))),
+  TypeSystemDefinitionNode(TypeDefinitionNode(ObjectTypeDefinitionNode(
+    None,
+    NameNode(
+      "Mutation",
+      #(
+        Position(6, 10),
+        Position(13, 10),
+      ),
+    ),
+    None,
+    None,
+    Some([
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "test",
+          #(
+            Position(2, 11),
+            Position(5, 11),
+          ),
+        ),
+        Some([
+          InputValueDefinitionNode(
+            None,
+            NameNode(
+              "val",
+              #(
+                Position(7, 11),
+                Position(9, 11),
+              ),
+            ),
+            NonNullTypeNode(
+              NamedTypeNode(NameNode(
+                "String",
+                #(
+                  Position(12, 11),
+                  Position(17, 11),
+                ),
+              )),
+              #(
+                Position(12, 11),
+                Position(18, 11),
+              ),
+            ),
+            None,
+            None,
+            #(
+              Position(7, 11),
+              Position(19, 11),
+            ),
+          ),
+        ]),
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "Test",
+            #(
+              Position(22, 11),
+              Position(25, 11),
+            ),
+          )),
+          #(
+            Position(22, 11),
+            Position(26, 11),
+          ),
+        ),
+        None,
+        #(
+          Position(2, 11),
+          Position(1, 12),
+        ),
+      ),
+    ]),
+    #(Position(1, 10), Position(1, 12)),
+  ))),
+  TypeSystemDefinitionNode(TypeDefinitionNode(ObjectTypeDefinitionNode(
+    None,
+    NameNode(
+      "Query",
+      #(Position(6, 6), Position(10, 6)),
+    ),
+    None,
+    None,
+    Some([
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "test",
+          #(
+            Position(2, 7),
+            Position(5, 7),
+          ),
+        ),
+        Some([
+          InputValueDefinitionNode(
+            None,
+            NameNode(
+              "id",
+              #(
+                Position(7, 7),
+                Position(8, 7),
+              ),
+            ),
+            NonNullTypeNode(
+              NamedTypeNode(NameNode(
+                "ID",
+                #(
+                  Position(11, 7),
+                  Position(12, 7),
+                ),
+              )),
+              #(
+                Position(11, 7),
+                Position(13, 7),
+              ),
+            ),
+            None,
+            None,
+            #(
+              Position(7, 7),
+              Position(14, 7),
+            ),
+          ),
+        ]),
+        NullableTypeNode(
+          NamedTypeNode(NameNode(
+            "Test",
+            #(
+              Position(17, 7),
+              Position(20, 7),
+            ),
+          )),
+          #(
+            Position(17, 7),
+            Position(20, 7),
+          ),
+        ),
+        None,
+        #(
+          Position(2, 7),
+          Position(1, 8),
+        ),
+      ),
+    ]),
+    #(Position(1, 6), Position(1, 8)),
+  ))),
+  TypeSystemDefinitionNode(TypeDefinitionNode(ObjectTypeDefinitionNode(
+    None,
+    NameNode(
+      "Test",
+      #(Position(6, 1), Position(9, 1)),
+    ),
+    None,
+    None,
+    Some([
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "id",
+          #(
+            Position(2, 2),
+            Position(3, 2),
+          ),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "ID",
+            #(
+              Position(6, 2),
+              Position(7, 2),
+            ),
+          )),
+          #(
+            Position(6, 2),
+            Position(8, 2),
+          ),
+        ),
+        None,
+        #(
+          Position(2, 2),
+          Position(4, 3),
+        ),
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "val",
+          #(
+            Position(2, 3),
+            Position(4, 3),
+          ),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "String",
+            #(
+              Position(7, 3),
+              Position(12, 3),
+            ),
+          )),
+          #(
+            Position(7, 3),
+            Position(13, 3),
+          ),
+        ),
+        None,
+        #(
+          Position(2, 3),
+          Position(1, 4),
+        ),
+      ),
+    ]),
+    #(Position(1, 1), Position(1, 4)),
+  ))),
+]))

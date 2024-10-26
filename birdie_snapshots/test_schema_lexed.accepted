@@ -1,0 +1,295 @@
+---
+version: 1.1.5
+title: test schema lexed
+file: ./test/lexer/lexer_test.gleam
+test_name: schema_lex_test
+---
+Ok([
+  #(
+    Name("type"),
+    #(Position(1, 1), Position(4, 1)),
+  ),
+  #(
+    Name("Test"),
+    #(Position(6, 1), Position(9, 1)),
+  ),
+  OpenBrace(#(
+    Position(11, 1),
+    Position(11, 1),
+  )),
+  #(
+    Name("id"),
+    #(Position(2, 2), Position(3, 2)),
+  ),
+  Colon(#(
+    Position(4, 2),
+    Position(4, 2),
+  )),
+  #(
+    Name("ID"),
+    #(Position(6, 2), Position(7, 2)),
+  ),
+  Bang(#(Position(8, 2), Position(8, 2))),
+  #(
+    Name("val"),
+    #(Position(2, 3), Position(4, 3)),
+  ),
+  Colon(#(
+    Position(5, 3),
+    Position(5, 3),
+  )),
+  #(
+    Name("String"),
+    #(Position(7, 3), Position(12, 3)),
+  ),
+  Bang(#(
+    Position(13, 3),
+    Position(13, 3),
+  )),
+  CloseBrace(#(
+    Position(1, 4),
+    Position(1, 4),
+  )),
+  #(
+    Name("type"),
+    #(Position(1, 6), Position(4, 6)),
+  ),
+  #(
+    Name("Query"),
+    #(Position(6, 6), Position(10, 6)),
+  ),
+  OpenBrace(#(
+    Position(12, 6),
+    Position(12, 6),
+  )),
+  #(
+    Name("test"),
+    #(Position(2, 7), Position(5, 7)),
+  ),
+  OpenParen(#(
+    Position(6, 7),
+    Position(6, 7),
+  )),
+  #(
+    Name("id"),
+    #(Position(7, 7), Position(8, 7)),
+  ),
+  Colon(#(
+    Position(9, 7),
+    Position(9, 7),
+  )),
+  #(
+    Name("ID"),
+    #(Position(11, 7), Position(12, 7)),
+  ),
+  Bang(#(
+    Position(13, 7),
+    Position(13, 7),
+  )),
+  CloseParen(#(
+    Position(14, 7),
+    Position(14, 7),
+  )),
+  Colon(#(
+    Position(15, 7),
+    Position(15, 7),
+  )),
+  #(
+    Name("Test"),
+    #(Position(17, 7), Position(20, 7)),
+  ),
+  CloseBrace(#(
+    Position(1, 8),
+    Position(1, 8),
+  )),
+  #(
+    Name("type"),
+    #(Position(1, 10), Position(4, 10)),
+  ),
+  #(
+    Name("Mutation"),
+    #(Position(6, 10), Position(13, 10)),
+  ),
+  OpenBrace(#(
+    Position(15, 10),
+    Position(15, 10),
+  )),
+  #(
+    Name("test"),
+    #(Position(2, 11), Position(5, 11)),
+  ),
+  OpenParen(#(
+    Position(6, 11),
+    Position(6, 11),
+  )),
+  #(
+    Name("val"),
+    #(Position(7, 11), Position(9, 11)),
+  ),
+  Colon(#(
+    Position(10, 11),
+    Position(10, 11),
+  )),
+  #(
+    Name("String"),
+    #(
+      Position(12, 11),
+      Position(17, 11),
+    ),
+  ),
+  Bang(#(
+    Position(18, 11),
+    Position(18, 11),
+  )),
+  CloseParen(#(
+    Position(19, 11),
+    Position(19, 11),
+  )),
+  Colon(#(
+    Position(20, 11),
+    Position(20, 11),
+  )),
+  #(
+    Name("Test"),
+    #(
+      Position(22, 11),
+      Position(25, 11),
+    ),
+  ),
+  Bang(#(
+    Position(26, 11),
+    Position(26, 11),
+  )),
+  CloseBrace(#(
+    Position(1, 12),
+    Position(1, 12),
+  )),
+  #(
+    Name("type"),
+    #(Position(1, 14), Position(4, 14)),
+  ),
+  #(
+    Name("Subscription"),
+    #(Position(6, 14), Position(17, 14)),
+  ),
+  OpenBrace(#(
+    Position(19, 14),
+    Position(19, 14),
+  )),
+  #(
+    Name("test"),
+    #(Position(2, 15), Position(5, 15)),
+  ),
+  OpenParen(#(
+    Position(6, 15),
+    Position(6, 15),
+  )),
+  #(
+    Name("id"),
+    #(Position(7, 15), Position(8, 15)),
+  ),
+  Colon(#(
+    Position(9, 15),
+    Position(9, 15),
+  )),
+  #(
+    Name("ID"),
+    #(
+      Position(11, 15),
+      Position(12, 15),
+    ),
+  ),
+  Bang(#(
+    Position(13, 15),
+    Position(13, 15),
+  )),
+  CloseParen(#(
+    Position(14, 15),
+    Position(14, 15),
+  )),
+  Colon(#(
+    Position(15, 15),
+    Position(15, 15),
+  )),
+  #(
+    Name("Test"),
+    #(
+      Position(17, 15),
+      Position(20, 15),
+    ),
+  ),
+  CloseBrace(#(
+    Position(1, 16),
+    Position(1, 16),
+  )),
+  #(
+    Name("schema"),
+    #(Position(1, 18), Position(6, 18)),
+  ),
+  OpenBrace(#(
+    Position(8, 18),
+    Position(8, 18),
+  )),
+  #(
+    Name("query"),
+    #(Position(2, 19), Position(6, 19)),
+  ),
+  Colon(#(
+    Position(7, 19),
+    Position(7, 19),
+  )),
+  #(
+    Name("Query"),
+    #(Position(9, 19), Position(13, 19)),
+  ),
+  Bang(#(
+    Position(14, 19),
+    Position(14, 19),
+  )),
+  #(
+    Name("mutation"),
+    #(Position(2, 20), Position(9, 20)),
+  ),
+  Colon(#(
+    Position(10, 20),
+    Position(10, 20),
+  )),
+  #(
+    Name("Mutation"),
+    #(
+      Position(12, 20),
+      Position(19, 20),
+    ),
+  ),
+  Bang(#(
+    Position(20, 20),
+    Position(20, 20),
+  )),
+  #(
+    Name("subscription"),
+    #(Position(2, 21), Position(13, 21)),
+  ),
+  Colon(#(
+    Position(14, 21),
+    Position(14, 21),
+  )),
+  #(
+    Name("Subscription"),
+    #(
+      Position(16, 21),
+      Position(27, 21),
+    ),
+  ),
+  Bang(#(
+    Position(28, 21),
+    Position(28, 21),
+  )),
+  CloseBrace(#(
+    Position(1, 22),
+    Position(1, 22),
+  )),
+  Eof(#(
+    Position(2, 22),
+    Position(2, 22),
+  )),
+])

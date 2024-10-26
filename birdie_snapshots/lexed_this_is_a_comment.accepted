@@ -1,0 +1,11 @@
+---
+version: 1.1.5
+title: lexed_# This is a comment
+---
+Ok(#(
+  #(
+    Comment(" This is a comment"),
+    #(Position(1, 1), Position(20, 1)),
+  ),
+  Lexer("", Position(20, 1)),
+))

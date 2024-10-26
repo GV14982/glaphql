@@ -1,0 +1,22 @@
+type Test {
+	id: ID!
+	val: String!
+}
+
+type Query {
+	test(id: ID!): Test
+}
+
+type Mutation {
+	test(val: String!): Test!
+}
+
+type Subscription {
+	test(id: ID!): Test
+}
+
+schema {
+	query: Query!
+	mutation: Mutation!
+	subscription: Subscription!
+}

@@ -1,0 +1,20 @@
+query GetTest($id: ID!) {
+	test(id: $id) {
+		id
+		val
+	}
+}
+
+mutation NewTest($val: String!) {
+	test(val: $val) {
+		id
+		val
+	}
+}
+
+subscription GetTest($id: ID!) {
+	test(id: $id) {
+		id
+		val
+	}
+}

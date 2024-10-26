@@ -1,0 +1,389 @@
+---
+version: 1.1.5
+title: test operations parsed
+file: ./test/parser/document_test.gleam
+test_name: parse_executable_document_test
+---
+Ok(ExecutableDocumentNode([
+  OperationDefinitionNode(SubscriptionOperationNode(
+    NameNode(
+      "GetTest",
+      #(
+        Position(14, 15),
+        Position(20, 15),
+      ),
+    ),
+    Some([
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "id",
+            #(
+              Position(23, 15),
+              Position(24, 15),
+            ),
+          ),
+          #(
+            Position(22, 15),
+            Position(23, 15),
+          ),
+        ),
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "ID",
+            #(
+              Position(27, 15),
+              Position(28, 15),
+            ),
+          )),
+          #(
+            Position(27, 15),
+            Position(29, 15),
+          ),
+        ),
+        None,
+        None,
+        #(
+          Position(22, 15),
+          Position(30, 15),
+        ),
+      ),
+    ]),
+    None,
+    SelectionSetNode(
+      [
+        FieldNode(
+          None,
+          NameNode(
+            "test",
+            #(
+              Position(2, 16),
+              Position(5, 16),
+            ),
+          ),
+          Some([
+            ArgumentNode(
+              NameNode(
+                "id",
+                #(
+                  Position(7, 16),
+                  Position(8, 16),
+                ),
+              ),
+              Variable(VariableNode(
+                NameNode(
+                  "id",
+                  #(
+                    Position(12, 16),
+                    Position(13, 16),
+                  ),
+                ),
+                #(
+                  Position(11, 16),
+                  Position(13, 16),
+                ),
+              )),
+              #(
+                Position(7, 16),
+                Position(13, 16),
+              ),
+            ),
+          ]),
+          None,
+          Some(SelectionSetNode(
+            [
+              FieldNode(
+                Some(NameNode(
+                  "id",
+                  #(
+                    Position(3, 17),
+                    Position(4, 17),
+                  ),
+                )),
+                NameNode(
+                  "val",
+                  #(
+                    Position(3, 18),
+                    Position(5, 18),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(3, 17),
+                  Position(2, 19),
+                ),
+              ),
+            ],
+            #(
+              Position(16, 16),
+              Position(2, 19),
+            ),
+          )),
+          #(
+            Position(2, 16),
+            Position(2, 19),
+          ),
+        ),
+      ],
+      #(
+        Position(32, 15),
+        Position(1, 20),
+      ),
+    ),
+    #(Position(14, 15), Position(1, 20)),
+  )),
+  OperationDefinitionNode(MutationOperationNode(
+    NameNode(
+      "NewTest",
+      #(
+        Position(10, 8),
+        Position(16, 8),
+      ),
+    ),
+    Some([
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "val",
+            #(
+              Position(19, 8),
+              Position(21, 8),
+            ),
+          ),
+          #(
+            Position(18, 8),
+            Position(19, 8),
+          ),
+        ),
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "String",
+            #(
+              Position(24, 8),
+              Position(29, 8),
+            ),
+          )),
+          #(
+            Position(24, 8),
+            Position(30, 8),
+          ),
+        ),
+        None,
+        None,
+        #(
+          Position(18, 8),
+          Position(31, 8),
+        ),
+      ),
+    ]),
+    None,
+    SelectionSetNode(
+      [
+        FieldNode(
+          None,
+          NameNode(
+            "test",
+            #(
+              Position(2, 9),
+              Position(5, 9),
+            ),
+          ),
+          Some([
+            ArgumentNode(
+              NameNode(
+                "val",
+                #(
+                  Position(7, 9),
+                  Position(9, 9),
+                ),
+              ),
+              Variable(VariableNode(
+                NameNode(
+                  "val",
+                  #(
+                    Position(13, 9),
+                    Position(15, 9),
+                  ),
+                ),
+                #(
+                  Position(12, 9),
+                  Position(15, 9),
+                ),
+              )),
+              #(
+                Position(7, 9),
+                Position(15, 9),
+              ),
+            ),
+          ]),
+          None,
+          Some(SelectionSetNode(
+            [
+              FieldNode(
+                Some(NameNode(
+                  "id",
+                  #(
+                    Position(3, 10),
+                    Position(4, 10),
+                  ),
+                )),
+                NameNode(
+                  "val",
+                  #(
+                    Position(3, 11),
+                    Position(5, 11),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(3, 10),
+                  Position(2, 12),
+                ),
+              ),
+            ],
+            #(
+              Position(18, 9),
+              Position(2, 12),
+            ),
+          )),
+          #(
+            Position(2, 9),
+            Position(2, 12),
+          ),
+        ),
+      ],
+      #(
+        Position(33, 8),
+        Position(1, 13),
+      ),
+    ),
+    #(Position(10, 8), Position(1, 13)),
+  )),
+  OperationDefinitionNode(QueryOperationNode(
+    Some(NameNode(
+      "GetTest",
+      #(Position(7, 1), Position(13, 1)),
+    )),
+    Some([
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "id",
+            #(
+              Position(16, 1),
+              Position(17, 1),
+            ),
+          ),
+          #(
+            Position(15, 1),
+            Position(16, 1),
+          ),
+        ),
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "ID",
+            #(
+              Position(20, 1),
+              Position(21, 1),
+            ),
+          )),
+          #(
+            Position(20, 1),
+            Position(22, 1),
+          ),
+        ),
+        None,
+        None,
+        #(
+          Position(15, 1),
+          Position(23, 1),
+        ),
+      ),
+    ]),
+    None,
+    SelectionSetNode(
+      [
+        FieldNode(
+          None,
+          NameNode(
+            "test",
+            #(
+              Position(2, 2),
+              Position(5, 2),
+            ),
+          ),
+          Some([
+            ArgumentNode(
+              NameNode(
+                "id",
+                #(
+                  Position(7, 2),
+                  Position(8, 2),
+                ),
+              ),
+              Variable(VariableNode(
+                NameNode(
+                  "id",
+                  #(
+                    Position(12, 2),
+                    Position(13, 2),
+                  ),
+                ),
+                #(
+                  Position(11, 2),
+                  Position(13, 2),
+                ),
+              )),
+              #(
+                Position(7, 2),
+                Position(13, 2),
+              ),
+            ),
+          ]),
+          None,
+          Some(SelectionSetNode(
+            [
+              FieldNode(
+                Some(NameNode(
+                  "id",
+                  #(
+                    Position(3, 3),
+                    Position(4, 3),
+                  ),
+                )),
+                NameNode(
+                  "val",
+                  #(
+                    Position(3, 4),
+                    Position(5, 4),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(3, 3),
+                  Position(2, 5),
+                ),
+              ),
+            ],
+            #(
+              Position(16, 2),
+              Position(2, 5),
+            ),
+          )),
+          #(
+            Position(2, 2),
+            Position(2, 5),
+          ),
+        ),
+      ],
+      #(Position(25, 1), Position(1, 6)),
+    ),
+    #(Position(7, 1), Position(1, 6)),
+  )),
+]))
