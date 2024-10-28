@@ -22,7 +22,7 @@ pub fn parse_named_type_list(
     [#(token_kind.Name(name), pos), #(kind, _), ..tokens] if kind == separator -> {
       parse_named_type_list(
         tokens,
-        list.append(members, [node.NamedTypeNode(node.NameNode(name, pos))]),
+        [node.NamedTypeNode(node.NameNode(name, pos)), ..members],
         kind,
         error,
       )
@@ -31,7 +31,8 @@ pub fn parse_named_type_list(
       Ok(#(
         #(
           option.Some(
-            list.append(members, [node.NamedTypeNode(node.NameNode(name, pos))]),
+            [node.NamedTypeNode(node.NameNode(name, pos)), ..members]
+            |> list.reverse,
           ),
           pos.1,
         ),
@@ -43,7 +44,7 @@ pub fn parse_named_type_list(
         #(
           case members {
             [] -> option.None
-            val -> option.Some(val)
+            val -> option.Some(val |> list.reverse)
           },
           pos.1,
         ),

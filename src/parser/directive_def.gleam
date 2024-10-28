@@ -8,6 +8,7 @@ import lexer/token_kind
 import parser/const_arg_def
 import parser/node
 
+@internal
 pub fn parse_directive_def(
   tokens: List(token.Token),
   description: option.Option(node.DescriptionNode),
@@ -54,6 +55,7 @@ pub fn parse_directive_def(
   }
 }
 
+@internal
 pub fn parse_directive_locations(
   tokens: List(token.Token),
   locations: List(node.DirectiveLocationNode),
@@ -64,16 +66,17 @@ pub fn parse_directive_locations(
   case tokens {
     [#(token_kind.Name(name), location), #(token_kind.Pipe, _), ..tokens] -> {
       use value <- result.try(parse_directive_location(name))
-      parse_directive_locations(
-        tokens,
-        list.append(locations, [node.DirectiveLocationNode(value:, location:)]),
-      )
+      parse_directive_locations(tokens, [
+        node.DirectiveLocationNode(value:, location:),
+        ..locations
+      ])
     }
     [#(token_kind.Name(name), location), ..tokens] -> {
       use value <- result.try(parse_directive_location(name))
       Ok(#(
         #(
-          list.append(locations, [node.DirectiveLocationNode(value:, location:)]),
+          [node.DirectiveLocationNode(value:, location:), ..locations]
+            |> list.reverse,
           location.1,
         ),
         tokens,
@@ -83,6 +86,7 @@ pub fn parse_directive_locations(
   }
 }
 
+@internal
 pub fn parse_directive_location(
   name: String,
 ) -> Result(node.DirectiveLocation, errors.ParseError) {

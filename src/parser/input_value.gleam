@@ -50,12 +50,12 @@ pub fn parse_input_value_def_list(
 ) {
   case tokens {
     [#(kind, end), ..tokens] if kind == closing_token ->
-      Ok(#(#(defs, end.1), tokens))
+      Ok(#(#(defs |> list.reverse, end.1), tokens))
     tokens -> {
       use #(input_value_def, tokens) <- result.try(parse_input_value(tokens))
       parse_input_value_def_list(
         tokens,
-        list.append(defs, [input_value_def]),
+        [input_value_def, ..defs],
         closing_token,
       )
     }

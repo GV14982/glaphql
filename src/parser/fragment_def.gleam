@@ -7,6 +7,7 @@ import parser/directive
 import parser/node
 import parser/selection
 
+@internal
 pub fn parse_fragment_def(
   tokens: List(token.Token),
   start: position.Position,

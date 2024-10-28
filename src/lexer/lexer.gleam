@@ -9,6 +9,7 @@ import lexer/predicates
 import lexer/token.{type Token}
 import lexer/token_kind.{type TokenKind}
 
+@internal
 pub type Lexer {
   Lexer(input: String, pos: Position)
 }
@@ -30,6 +31,7 @@ pub type NumberType {
   Float
 }
 
+@internal
 pub fn lex(input: String) -> LexResult {
   let init_lexer = Lexer(input, position.new())
   lex_until_error(init_lexer, [])
@@ -173,7 +175,8 @@ pub fn get_next_token(lexer: Lexer) -> TokenResult {
   }
 }
 
-fn handle_name_or_number(lexer: Lexer) -> TokenResult {
+@internal
+pub fn handle_name_or_number(lexer: Lexer) -> TokenResult {
   use #(head, tail) <- result.try(
     pop_grapheme(lexer.input)
     |> result.try_recover(fn(_) { Ok(#("", "")) }),

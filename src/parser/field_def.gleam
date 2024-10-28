@@ -21,7 +21,7 @@ pub fn parse_field_definitions(
 ) {
   case tokens {
     [#(token_kind.CloseBrace, end), ..rest] ->
-      Ok(#(#(option.Some(defs), end.1), rest))
+      Ok(#(#(option.Some(defs |> list.reverse), end.1), rest))
     tokens -> {
       use #(desc, tokens) <- result.try(parse_optional_description(tokens))
       case tokens {
@@ -32,7 +32,7 @@ pub fn parse_field_definitions(
             desc,
             pos.0,
           ))
-          parse_field_definitions(tokens, list.append(defs, [field_def]))
+          parse_field_definitions(tokens, [field_def, ..defs])
         }
         _ -> Error(errors.InvalidFieldDefinition)
       }

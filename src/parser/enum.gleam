@@ -82,7 +82,8 @@ pub fn parse_enum_def(
   }
 }
 
-fn parse_optional_enum_members_def(
+@internal
+pub fn parse_optional_enum_members_def(
   tokens: List(token.Token),
 ) -> Result(
   node.NodeWithTokenList(
@@ -106,6 +107,7 @@ fn parse_optional_enum_members_def(
   }
 }
 
+@internal
 pub fn parse_enum_members_def(
   tokens: List(token.Token),
 ) -> Result(
@@ -125,6 +127,7 @@ pub fn parse_enum_members_def(
   }
 }
 
+@internal
 pub fn parse_enum_member_list(
   tokens: List(token.Token),
   members: List(node.EnumValueDefinitionNode),
@@ -147,10 +150,10 @@ pub fn parse_enum_member_list(
           directives:,
           location: #(location.0, end),
         )
-      parse_enum_member_list(tokens, list.append(members, [enum]))
+      parse_enum_member_list(tokens, [enum, ..members])
     }
     [#(token_kind.CloseBracket, end), ..tokens] ->
-      Ok(#(#(members, end.1), tokens))
+      Ok(#(#(members |> list.reverse, end.1), tokens))
     _ -> Error(errors.InvalidEnumMember)
   }
 }

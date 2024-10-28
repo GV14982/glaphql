@@ -19,8 +19,7 @@ pub fn parse_optional_directive_list(
 ) {
   use #(opt_val, tokens) <- result.try(parse_optional_directive(tokens))
   case opt_val {
-    Some(val) ->
-      parse_optional_directive_list(tokens, list.append(directives, [val]))
+    Some(val) -> parse_optional_directive_list(tokens, [val, ..directives])
     None -> {
       // TODO: This should be passed in as the end positing of the prev character to handle defaults
       use pos <- result.try(
@@ -30,7 +29,7 @@ pub fn parse_optional_directive_list(
       )
       case directives {
         [] -> Ok(#(#(None, pos), tokens))
-        _ -> Ok(#(#(Some(directives), pos), tokens))
+        _ -> Ok(#(#(Some(directives |> list.reverse), pos), tokens))
       }
     }
   }
