@@ -7,6 +7,7 @@ import parser/definition
 import parser/description
 import parser/node
 
+@internal
 pub fn parse_schema_document(
   tokens: List(token.Token),
   defs: List(node.TypeSystemDefinitionOrExtensionNode),
@@ -26,6 +27,7 @@ pub fn parse_schema_document(
   }
 }
 
+@internal
 pub fn parse_operations_document(
   tokens: List(token.Token),
   defs: List(node.ExecutableDefinitionNode),

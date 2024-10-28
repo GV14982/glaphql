@@ -43,19 +43,17 @@ fn parse_const_arg_def_list(
         node.ConstObjectNode(values: _, location:) -> location
         node.ConstListNode(values: _, location:) -> location
       }
-      parse_const_arg_def_list(
-        rest,
-        list.append(args, [
-          node.ConstArgumentNode(
-            name: node.NameNode(value: name, location: start),
-            value:,
-            location: #(start.0, location.1),
-          ),
-        ]),
-      )
+      parse_const_arg_def_list(rest, [
+        node.ConstArgumentNode(
+          name: node.NameNode(value: name, location: start),
+          value:,
+          location: #(start.0, location.1),
+        ),
+        ..args
+      ])
     }
     [#(token_kind.CloseParen, pos), ..rest] ->
-      Ok(#(#(option.Some(args), pos.1), rest))
+      Ok(#(#(option.Some(args |> list.reverse), pos.1), rest))
     _ -> Error(errors.InvalidConstArgument)
   }
 }

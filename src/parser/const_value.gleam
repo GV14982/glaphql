@@ -72,10 +72,11 @@ fn parse_const_list_value(
   ParseError,
 ) {
   case tokens {
-    [#(token_kind.CloseBracket, pos), ..rest] -> Ok(#(#(values, pos.1), rest))
+    [#(token_kind.CloseBracket, pos), ..rest] ->
+      Ok(#(#(values |> list.reverse, pos.1), rest))
     tokens -> {
       use #(value, rest) <- result.try(parse_const_value(tokens))
-      parse_const_list_value(rest, list.append(values, [value]))
+      parse_const_list_value(rest, [value, ..values])
     }
   }
 }
@@ -101,10 +102,11 @@ fn parse_const_object_value(
   ParseError,
 ) {
   case tokens {
-    [#(token_kind.CloseBrace, pos), ..rest] -> Ok(#(#(values, pos.1), rest))
+    [#(token_kind.CloseBrace, pos), ..rest] ->
+      Ok(#(#(values |> list.reverse, pos.1), rest))
     tokens -> {
       use #(value, rest) <- result.try(parse_const_object_field(tokens))
-      parse_const_object_value(rest, list.append(values, [value]))
+      parse_const_object_value(rest, [value, ..values])
     }
   }
 }
