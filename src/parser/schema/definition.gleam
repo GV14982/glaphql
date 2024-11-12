@@ -4,88 +4,18 @@ import gleam/result
 import lexer/position
 import lexer/token
 import lexer/token_kind
-import parser/description.{parse_optional_description}
-import parser/directive_def
-import parser/enum
-import parser/fragment_def
-import parser/input_def
-import parser/interface
 import parser/node
-import parser/object_def
-import parser/operation
-import parser/scalar
-import parser/schema_def
-import parser/union
+import parser/schema/directive_def
+import parser/schema/enum
+import parser/schema/input_def
+import parser/schema/interface
+import parser/schema/object_def
+import parser/schema/scalar
+import parser/schema/schema_def
+import parser/schema/union
 
 @internal
-pub fn parse_def(
-  tokens: List(token.Token),
-) -> Result(node.NodeWithTokenList(node.DefinitionNode), errors.ParseError) {
-  use #(description, tokens) <- result.try(parse_optional_description(tokens))
-  case tokens {
-    [#(token_kind.Name(val), _), ..] -> {
-      // Schema defs/exts
-      case val {
-        "schema"
-        | "directive"
-        | "type"
-        | "enum"
-        | "scalar"
-        | "interface"
-        | "union"
-        | "input"
-        | "extends" -> {
-          use #(def, tokens) <- result.try(parse_type_system(
-            tokens,
-            description,
-          ))
-          Ok(#(node.TypeSystemNode(def), tokens))
-        }
-        // Executable defs
-        "query" | "mutation" | "query" | "fragment" -> {
-          case description {
-            option.None -> {
-              use #(exec, tokens) <- result.try(parse_executable(tokens))
-              Ok(#(node.ExecutableDefinitionNode(exec), tokens))
-            }
-            option.Some(_) -> Error(errors.InvalidExecutableDef)
-          }
-        }
-        _ -> Error(errors.InvalidDefinition)
-      }
-    }
-    _ -> Error(errors.InvalidDefinition)
-  }
-}
-
-@internal
-pub fn parse_executable(
-  tokens: List(token.Token),
-) -> Result(
-  node.NodeWithTokenList(node.ExecutableDefinitionNode),
-  errors.ParseError,
-) {
-  case tokens {
-    [#(token_kind.Name(val), #(start, _)), ..tokens] -> {
-      case val {
-        "query" | "mutation" | "subscription" -> {
-          use #(operation, tokens) <- result.try(operation.parse_operation_def(
-            tokens,
-            val,
-          ))
-          Ok(#(node.OperationDefinitionNode(operation), tokens))
-        }
-        // Fragment
-        "fragment" -> fragment_def.parse_fragment_def(tokens, start)
-        _ -> Error(errors.InvalidExecutableDef)
-      }
-    }
-    _ -> Error(errors.InvalidExecutableDef)
-  }
-}
-
-@internal
-pub fn parse_type_system(
+pub fn parse(
   tokens: List(token.Token),
   description: option.Option(node.DescriptionNode),
 ) -> Result(

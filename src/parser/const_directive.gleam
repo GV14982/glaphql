@@ -1,27 +1,27 @@
-import errors.{type ParseError}
+import errors
 import gleam/list
-import gleam/option.{type Option, None, Some}
+import gleam/option
 import gleam/pair
 import gleam/result
 import lexer/position
-import lexer/token.{type Token}
+import lexer/token
 import lexer/token_kind
-import parser/const_arg_def.{parse_optional_const_arg_defs}
+import parser/const_arg_def
 import parser/node
 
 @internal
 pub fn parse_optional_const_directive_list(
-  tokens: List(Token),
+  tokens: List(token.Token),
   directives: List(node.ConstDirectiveNode),
 ) -> Result(
   node.NodeWithTokenList(#(node.ConstDirectives, position.Position)),
-  ParseError,
+  errors.ParseError,
 ) {
   use #(opt_val, tokens) <- result.try(parse_optional_const_directive(tokens))
   case opt_val {
-    Some(val) ->
+    option.Some(val) ->
       parse_optional_const_directive_list(tokens, [val, ..directives])
-    None -> {
+    option.None -> {
       // TODO: This should be passed in as the end positing of the prev character to handle defaults
       use pos <- result.try(
         list.first(tokens)
@@ -29,8 +29,8 @@ pub fn parse_optional_const_directive_list(
         |> result.map(fn(tkn) { tkn |> pair.second |> pair.second }),
       )
       case directives {
-        [] -> Ok(#(#(None, pos), tokens))
-        _ -> Ok(#(#(Some(directives |> list.reverse), pos), tokens))
+        [] -> Ok(#(#(option.None, pos), tokens))
+        _ -> Ok(#(#(option.Some(directives |> list.reverse), pos), tokens))
       }
     }
   }
@@ -38,15 +38,18 @@ pub fn parse_optional_const_directive_list(
 
 @internal
 pub fn parse_optional_const_directive(
-  tokens: List(Token),
-) -> Result(node.NodeWithTokenList(Option(node.ConstDirectiveNode)), ParseError) {
+  tokens: List(token.Token),
+) -> Result(
+  node.NodeWithTokenList(option.Option(node.ConstDirectiveNode)),
+  errors.ParseError,
+) {
   case tokens {
     [#(token_kind.At, start), #(token_kind.Name(name), name_loc), ..tokens] -> {
       use #(#(arguments, end), tokens) <- result.try(
-        parse_optional_const_arg_defs(tokens),
+        const_arg_def.parse_optional_const_arg_defs(tokens),
       )
       Ok(#(
-        Some(
+        option.Some(
           node.ConstDirectiveNode(
             name: node.NameNode(value: name, location: name_loc),
             arguments:,
@@ -56,6 +59,6 @@ pub fn parse_optional_const_directive(
         tokens,
       ))
     }
-    _ -> Ok(#(None, tokens))
+    _ -> Ok(#(option.None, tokens))
   }
 }

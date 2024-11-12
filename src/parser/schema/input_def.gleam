@@ -5,8 +5,8 @@ import lexer/position
 import lexer/token
 import lexer/token_kind
 import parser/const_directive
-import parser/input_value
 import parser/node
+import parser/schema/input_value_def
 
 @internal
 pub fn parse_input_ext(
@@ -19,7 +19,7 @@ pub fn parse_input_ext(
         const_directive.parse_optional_const_directive_list(tokens, []),
       )
       use #(#(fields, end), tokens) <- result.try(
-        input_value.parse_optional_input_value_def_list(
+        input_value_def.parse_optional_input_value_def_list(
           tokens,
           token_kind.OpenBrace,
           token_kind.CloseBrace,
@@ -69,7 +69,7 @@ pub fn parse_input_def(
         const_directive.parse_optional_const_directive_list(tokens, []),
       )
       use #(#(fields, end), tokens) <- result.try(
-        input_value.parse_optional_input_value_def_list(
+        input_value_def.parse_optional_input_value_def_list(
           tokens,
           token_kind.OpenBrace,
           token_kind.CloseBrace,

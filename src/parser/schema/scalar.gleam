@@ -4,7 +4,7 @@ import gleam/result
 import lexer/position
 import lexer/token
 import lexer/token_kind
-import parser/const_directive.{parse_optional_const_directive_list}
+import parser/const_directive
 import parser/node
 
 @internal
@@ -15,7 +15,7 @@ pub fn parse_scalar_ext(
   case tokens {
     [#(token_kind.Name(name), pos), ..rest] -> {
       use #(#(directives, end), rest) <- result.try(
-        parse_optional_const_directive_list(rest, []),
+        const_directive.parse_optional_const_directive_list(rest, []),
       )
       case directives {
         option.None -> Error(errors.InvalidScalarExtension)
@@ -43,7 +43,7 @@ pub fn parse_scalar_def(
   case tokens {
     [#(token_kind.Name(name), pos), ..rest] -> {
       use #(#(directives, end), rest) <- result.try(
-        parse_optional_const_directive_list(rest, []),
+        const_directive.parse_optional_const_directive_list(rest, []),
       )
       Ok(#(
         node.ScalarTypeDefinitionNode(

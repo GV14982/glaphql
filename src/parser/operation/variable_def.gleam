@@ -5,7 +5,7 @@ import gleam/result
 import lexer/token
 import lexer/token_kind
 import parser/const_directive
-import parser/input_value
+import parser/default_value
 import parser/node
 import parser/type_node as tn
 
@@ -46,9 +46,9 @@ pub fn parse_variable_definition_list(
       let variable_node =
         node.VariableNode(name:, location: #(start, location.0))
       use #(type_node, tokens) <- result.try(tn.parse_type_node(tokens))
-      use #(default_value, tokens) <- result.try(
-        input_value.parse_optional_default_value(tokens),
-      )
+      use #(default_value, tokens) <- result.try(default_value.parse_optional(
+        tokens,
+      ))
       use #(#(directives, end), tokens) <- result.try(
         const_directive.parse_optional_const_directive_list(tokens, []),
       )

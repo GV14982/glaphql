@@ -1,29 +1,27 @@
-import errors.{
-  type LexError, InvalidCharacter, InvalidNumber, UnterminatedString,
-}
+import errors
 import gleam/list
 import gleam/result
-import gleam/string.{pop_grapheme}
-import lexer/position.{type Position, inc_col_by, inc_row}
+import gleam/string
+import lexer/position
 import lexer/predicates
-import lexer/token.{type Token}
-import lexer/token_kind.{type TokenKind}
+import lexer/token
+import lexer/token_kind
 
 @internal
 pub type Lexer {
-  Lexer(input: String, pos: Position)
+  Lexer(input: String, pos: position.Position)
 }
 
 @internal
 pub type LexResult =
-  Result(List(Token), LexError)
+  Result(List(token.Token), errors.LexError)
 
 @internal
 pub type TokenResult =
-  Result(#(Token, Lexer), LexError)
+  Result(#(token.Token, Lexer), errors.LexError)
 
 type AccumulatedVal(a) =
-  #(String, a, Position)
+  #(String, a, position.Position)
 
 @internal
 pub type NumberType {
@@ -38,7 +36,7 @@ pub fn lex(input: String) -> LexResult {
 }
 
 @internal
-pub fn lex_until_error(lexer: Lexer, tokens: List(Token)) -> LexResult {
+pub fn lex_until_error(lexer: Lexer, tokens: List(token.Token)) -> LexResult {
   let token_result = get_next_token(lexer)
   case token_result {
     Ok(#(token, lexer)) ->
@@ -50,7 +48,7 @@ pub fn lex_until_error(lexer: Lexer, tokens: List(Token)) -> LexResult {
   }
 }
 
-fn result_with_token(token: Token, lexer: Lexer) -> TokenResult {
+fn result_with_token(token: token.Token, lexer: Lexer) -> TokenResult {
   Ok(#(token, lexer))
 }
 
@@ -64,91 +62,91 @@ pub fn lookahead(lexer: Lexer) -> TokenResult {
 pub fn get_next_token(lexer: Lexer) -> TokenResult {
   case lexer.input {
     " " <> tail | "\t" <> tail | "," <> tail ->
-      get_next_token(Lexer(tail, inc_col_by(lexer.pos, 1)))
+      get_next_token(Lexer(tail, position.inc_col_by(lexer.pos, 1)))
     "\n" <> tail | "\r" <> tail | "\r\n" <> tail ->
-      get_next_token(Lexer(tail, inc_row(lexer.pos)))
+      get_next_token(Lexer(tail, position.inc_row(lexer.pos)))
     "#" <> tail -> {
       let #(rest, comment, pos) =
-        consume_comment(tail, "", inc_col_by(lexer.pos, 1))
+        consume_comment(tail, "", position.inc_col_by(lexer.pos, 1))
       result_with_token(
         #(token_kind.Comment(comment), #(lexer.pos, pos)),
-        Lexer(rest, inc_col_by(pos, 1)),
+        Lexer(rest, position.inc_col_by(pos, 1)),
       )
     }
     "!" <> tail ->
       result_with_token(
         #(token_kind.Bang, #(lexer.pos, lexer.pos)),
-        Lexer(tail, inc_col_by(lexer.pos, 1)),
+        Lexer(tail, position.inc_col_by(lexer.pos, 1)),
       )
     "?" <> tail ->
       result_with_token(
         #(token_kind.Question, #(lexer.pos, lexer.pos)),
-        Lexer(tail, inc_col_by(lexer.pos, 1)),
+        Lexer(tail, position.inc_col_by(lexer.pos, 1)),
       )
     "$" <> tail ->
       result_with_token(
         #(token_kind.Dollar, #(lexer.pos, lexer.pos)),
-        Lexer(tail, inc_col_by(lexer.pos, 1)),
+        Lexer(tail, position.inc_col_by(lexer.pos, 1)),
       )
     "&" <> tail ->
       result_with_token(
         #(token_kind.Amp, #(lexer.pos, lexer.pos)),
-        Lexer(tail, inc_col_by(lexer.pos, 1)),
+        Lexer(tail, position.inc_col_by(lexer.pos, 1)),
       )
     ":" <> tail ->
       result_with_token(
         #(token_kind.Colon, #(lexer.pos, lexer.pos)),
-        Lexer(tail, inc_col_by(lexer.pos, 1)),
+        Lexer(tail, position.inc_col_by(lexer.pos, 1)),
       )
     "=" <> tail ->
       result_with_token(
         #(token_kind.Equal, #(lexer.pos, lexer.pos)),
-        Lexer(tail, inc_col_by(lexer.pos, 1)),
+        Lexer(tail, position.inc_col_by(lexer.pos, 1)),
       )
     "@" <> tail ->
       result_with_token(
         #(token_kind.At, #(lexer.pos, lexer.pos)),
-        Lexer(tail, inc_col_by(lexer.pos, 1)),
+        Lexer(tail, position.inc_col_by(lexer.pos, 1)),
       )
     "|" <> tail ->
       result_with_token(
         #(token_kind.Pipe, #(lexer.pos, lexer.pos)),
-        Lexer(tail, inc_col_by(lexer.pos, 1)),
+        Lexer(tail, position.inc_col_by(lexer.pos, 1)),
       )
     "(" <> tail ->
       result_with_token(
         #(token_kind.OpenParen, #(lexer.pos, lexer.pos)),
-        Lexer(tail, inc_col_by(lexer.pos, 1)),
+        Lexer(tail, position.inc_col_by(lexer.pos, 1)),
       )
     ")" <> tail ->
       result_with_token(
         #(token_kind.CloseParen, #(lexer.pos, lexer.pos)),
-        Lexer(tail, inc_col_by(lexer.pos, 1)),
+        Lexer(tail, position.inc_col_by(lexer.pos, 1)),
       )
     "[" <> tail ->
       result_with_token(
         #(token_kind.OpenBracket, #(lexer.pos, lexer.pos)),
-        Lexer(tail, inc_col_by(lexer.pos, 1)),
+        Lexer(tail, position.inc_col_by(lexer.pos, 1)),
       )
     "]" <> tail ->
       result_with_token(
         #(token_kind.CloseBracket, #(lexer.pos, lexer.pos)),
-        Lexer(tail, inc_col_by(lexer.pos, 1)),
+        Lexer(tail, position.inc_col_by(lexer.pos, 1)),
       )
     "{" <> tail ->
       result_with_token(
         #(token_kind.OpenBrace, #(lexer.pos, lexer.pos)),
-        Lexer(tail, inc_col_by(lexer.pos, 1)),
+        Lexer(tail, position.inc_col_by(lexer.pos, 1)),
       )
     "}" <> tail ->
       result_with_token(
         #(token_kind.CloseBrace, #(lexer.pos, lexer.pos)),
-        Lexer(tail, inc_col_by(lexer.pos, 1)),
+        Lexer(tail, position.inc_col_by(lexer.pos, 1)),
       )
     "..." <> tail ->
       result_with_token(
-        #(token_kind.Spread, #(lexer.pos, inc_col_by(lexer.pos, 2))),
-        Lexer(tail, inc_col_by(lexer.pos, 3)),
+        #(token_kind.Spread, #(lexer.pos, position.inc_col_by(lexer.pos, 2))),
+        Lexer(tail, position.inc_col_by(lexer.pos, 3)),
       )
     "\"\"\"" <> tail -> {
       use #(rest, val, end) <- result.try(consume_block_string(
@@ -158,14 +156,14 @@ pub fn get_next_token(lexer: Lexer) -> TokenResult {
       ))
       result_with_token(
         #(token_kind.String(val), #(lexer.pos, end)),
-        Lexer(rest, inc_col_by(end, 1)),
+        Lexer(rest, position.inc_col_by(end, 1)),
       )
     }
     "\"" <> tail -> {
       use #(rest, val, end) <- result.try(consume_string(tail, "", lexer.pos))
       result_with_token(
         #(token_kind.String(val), #(lexer.pos, end)),
-        Lexer(rest, inc_col_by(end, 1)),
+        Lexer(rest, position.inc_col_by(end, 1)),
       )
     }
     "" -> {
@@ -178,7 +176,7 @@ pub fn get_next_token(lexer: Lexer) -> TokenResult {
 @internal
 pub fn handle_name_or_number(lexer: Lexer) -> TokenResult {
   use #(head, tail) <- result.try(
-    pop_grapheme(lexer.input)
+    string.pop_grapheme(lexer.input)
     |> result.try_recover(fn(_) { Ok(#("", "")) }),
   )
   let is_number_start = predicates.is_non_zero_digit(head) || head == "-"
@@ -192,7 +190,7 @@ pub fn handle_name_or_number(lexer: Lexer) -> TokenResult {
       ))
       result_with_token(
         #(number_type_to_token_kind(number_type, val), #(lexer.pos, end)),
-        Lexer(rest, inc_col_by(end, 1)),
+        Lexer(rest, position.inc_col_by(end, 1)),
       )
     }
     False -> {
@@ -206,11 +204,11 @@ pub fn handle_name_or_number(lexer: Lexer) -> TokenResult {
           ))
           result_with_token(
             #(token_kind.Name(val), #(lexer.pos, end)),
-            Lexer(rest, inc_col_by(end, 1)),
+            Lexer(rest, position.inc_col_by(end, 1)),
           )
         }
         False -> {
-          Error(InvalidCharacter(head, lexer.pos))
+          Error(errors.InvalidCharacter(head, lexer.pos))
         }
       }
     }
@@ -221,7 +219,7 @@ pub fn handle_name_or_number(lexer: Lexer) -> TokenResult {
 pub fn consume_comment(
   input: String,
   comment: String,
-  pos: Position,
+  pos: position.Position,
 ) -> AccumulatedVal(String) {
   case input {
     "\n" <> rest | "\r" <> rest | "\r\n" <> rest -> #(
@@ -230,9 +228,9 @@ pub fn consume_comment(
       position.inc_row(pos),
     )
     _ ->
-      case pop_grapheme(input) {
+      case string.pop_grapheme(input) {
         Ok(#(head, tail)) ->
-          consume_comment(tail, comment <> head, inc_col_by(pos, 1))
+          consume_comment(tail, comment <> head, position.inc_col_by(pos, 1))
         Error(_) -> #(input, comment, pos)
       }
   }
@@ -242,15 +240,15 @@ pub fn consume_comment(
 pub fn consume_name(
   input: String,
   val: String,
-  pos: Position,
-) -> Result(AccumulatedVal(String), LexError) {
+  pos: position.Position,
+) -> Result(AccumulatedVal(String), errors.LexError) {
   case input {
     _ ->
-      case pop_grapheme(input) {
+      case string.pop_grapheme(input) {
         Ok(#(head, tail)) -> {
           let is_name_continue = predicates.is_alphanumeric(head) || head == "_"
           case is_name_continue {
-            True -> consume_name(tail, val <> head, inc_col_by(pos, 1))
+            True -> consume_name(tail, val <> head, position.inc_col_by(pos, 1))
             False -> Ok(#(input, val, pos))
           }
         }
@@ -263,17 +261,17 @@ pub fn consume_name(
 pub fn consume_string(
   input: String,
   val: String,
-  pos: Position,
-) -> Result(AccumulatedVal(String), LexError) {
+  pos: position.Position,
+) -> Result(AccumulatedVal(String), errors.LexError) {
   case input {
-    "\"" <> tail -> Ok(#(tail, val, inc_col_by(pos, 1)))
+    "\"" <> tail -> Ok(#(tail, val, position.inc_col_by(pos, 1)))
     "\n" <> _tail | "\r" <> _tail | "\r\n" <> _tail ->
-      Error(UnterminatedString(val, pos))
+      Error(errors.UnterminatedString(val, pos))
     _ ->
-      case pop_grapheme(input) {
+      case string.pop_grapheme(input) {
         Ok(#(head, tail)) ->
-          consume_string(tail, val <> head, inc_col_by(pos, 1))
-        Error(_) -> Error(UnterminatedString(val, pos))
+          consume_string(tail, val <> head, position.inc_col_by(pos, 1))
+        Error(_) -> Error(errors.UnterminatedString(val, pos))
       }
   }
 }
@@ -282,18 +280,21 @@ pub fn consume_string(
 pub fn consume_block_string(
   input: String,
   val: String,
-  pos: Position,
-) -> Result(AccumulatedVal(String), LexError) {
+  pos: position.Position,
+) -> Result(AccumulatedVal(String), errors.LexError) {
   case input {
-    "\"\"\"" <> tail -> Ok(#(tail, val, inc_col_by(pos, 3)))
-    "\n" <> tail -> consume_block_string(tail, val <> "\n", inc_row(pos))
-    "\r" <> tail -> consume_block_string(tail, val <> "\r", inc_row(pos))
-    "\r\n" <> tail -> consume_block_string(tail, val <> "\r\n", inc_row(pos))
+    "\"\"\"" <> tail -> Ok(#(tail, val, position.inc_col_by(pos, 3)))
+    "\n" <> tail ->
+      consume_block_string(tail, val <> "\n", position.inc_row(pos))
+    "\r" <> tail ->
+      consume_block_string(tail, val <> "\r", position.inc_row(pos))
+    "\r\n" <> tail ->
+      consume_block_string(tail, val <> "\r\n", position.inc_row(pos))
     _ ->
-      case pop_grapheme(input) {
+      case string.pop_grapheme(input) {
         Ok(#(head, tail)) ->
-          consume_block_string(tail, val <> head, inc_col_by(pos, 1))
-        Error(_) -> Error(UnterminatedString(val, pos))
+          consume_block_string(tail, val <> head, position.inc_col_by(pos, 1))
+        Error(_) -> Error(errors.UnterminatedString(val, pos))
       }
   }
 }
@@ -302,20 +303,25 @@ pub fn consume_block_string(
 pub fn consume_number(
   input: String,
   val: String,
-  pos: Position,
+  pos: position.Position,
   number_type: NumberType,
-) -> Result(AccumulatedVal(#(String, NumberType)), LexError) {
-  case pop_grapheme(input) {
+) -> Result(AccumulatedVal(#(String, NumberType)), errors.LexError) {
+  case string.pop_grapheme(input) {
     Ok(#(head, tail)) -> {
       case head {
         "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ->
-          consume_number(tail, val <> head, inc_col_by(pos, 1), number_type)
+          consume_number(
+            tail,
+            val <> head,
+            position.inc_col_by(pos, 1),
+            number_type,
+          )
         "." | "e" ->
-          consume_number(tail, val <> head, inc_col_by(pos, 1), Float)
+          consume_number(tail, val <> head, position.inc_col_by(pos, 1), Float)
         _ -> {
           let is_name_start = predicates.is_name_start(head)
           case is_name_start {
-            True -> Error(InvalidNumber(val <> head, pos))
+            True -> Error(errors.InvalidNumber(val <> head, pos))
             False -> Ok(#(input, #(val, number_type), pos))
           }
         }
@@ -329,7 +335,7 @@ pub fn consume_number(
 pub fn number_type_to_token_kind(
   number_type: NumberType,
   val: String,
-) -> TokenKind {
+) -> token_kind.TokenKind {
   case number_type {
     Integer -> token_kind.Int(val)
     Float -> token_kind.Float(val)

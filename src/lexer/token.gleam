@@ -1,5 +1,5 @@
-import lexer/position.{type Offset}
-import lexer/token_kind.{type TokenKind}
+import lexer/position
+import lexer/token_kind
 
 pub type Token =
-  #(TokenKind, Offset)
+  #(token_kind.TokenKind, position.Offset)

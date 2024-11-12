@@ -5,9 +5,9 @@ import gleam/result
 import lexer/position
 import lexer/token
 import lexer/token_kind
-import parser/const_directive.{parse_optional_const_directive_list}
-import parser/description.{parse_optional_description}
+import parser/const_directive
 import parser/node
+import parser/schema/description
 
 @internal
 pub fn parse_enum_ext(
@@ -17,7 +17,7 @@ pub fn parse_enum_ext(
   case tokens {
     [#(token_kind.Name(name), location), ..tokens] -> {
       use #(#(directives, _), tokens) <- result.try(
-        parse_optional_const_directive_list(tokens, []),
+        const_directive.parse_optional_const_directive_list(tokens, []),
       )
       use #(#(members, end), tokens) <- result.try(
         parse_optional_enum_members_def(tokens),
@@ -62,7 +62,7 @@ pub fn parse_enum_def(
   case tokens {
     [#(token_kind.Name(name), location), ..tokens] -> {
       use #(#(directives, _), tokens) <- result.try(
-        parse_optional_const_directive_list(tokens, []),
+        const_directive.parse_optional_const_directive_list(tokens, []),
       )
       use #(#(members, end), tokens) <- result.try(parse_enum_members_def(
         tokens,
@@ -137,11 +137,13 @@ pub fn parse_enum_member_list(
   ),
   errors.ParseError,
 ) {
-  use #(description, tokens) <- result.try(parse_optional_description(tokens))
+  use #(description, tokens) <- result.try(
+    description.parse_optional_description(tokens),
+  )
   case tokens {
     [#(token_kind.Name(value), location), ..tokens] -> {
       use #(#(directives, end), tokens) <- result.try(
-        parse_optional_const_directive_list(tokens, []),
+        const_directive.parse_optional_const_directive_list(tokens, []),
       )
       let enum =
         node.EnumValueDefinitionNode(

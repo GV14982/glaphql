@@ -5,7 +5,7 @@ import gleam/result
 import lexer/position
 import lexer/token
 import lexer/token_kind
-import parser/const_value.{parse_const_value}
+import parser/const_value
 import parser/node
 
 @internal
@@ -37,7 +37,7 @@ fn parse_const_arg_def_list(
 ) {
   case tokens {
     [#(token_kind.Name(name), start), #(token_kind.Colon, _), ..rest] -> {
-      use #(value, rest) <- result.try(parse_const_value(rest))
+      use #(value, rest) <- result.try(const_value.parse_const_value(rest))
       let location = case value {
         node.ConstValueNode(node) -> node.location
         node.ConstObjectNode(values: _, location:) -> location

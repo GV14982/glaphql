@@ -1,26 +1,27 @@
-import errors.{type ParseError}
+import errors
 import gleam/list
-import gleam/option.{type Option, None, Some}
+import gleam/option
 import gleam/pair
 import gleam/result
 import lexer/position
-import lexer/token.{type Token}
+import lexer/token
 import lexer/token_kind
-import parser/arg.{parse_optional_args}
+import parser/arg
 import parser/node
 
 @internal
 pub fn parse_optional_directive_list(
-  tokens: List(Token),
+  tokens: List(token.Token),
   directives: List(node.DirectiveNode),
 ) -> Result(
   node.NodeWithTokenList(#(node.Directives, position.Position)),
-  ParseError,
+  errors.ParseError,
 ) {
   use #(opt_val, tokens) <- result.try(parse_optional_directive(tokens))
   case opt_val {
-    Some(val) -> parse_optional_directive_list(tokens, [val, ..directives])
-    None -> {
+    option.Some(val) ->
+      parse_optional_directive_list(tokens, [val, ..directives])
+    option.None -> {
       // TODO: This should be passed in as the end positing of the prev character to handle defaults
       use pos <- result.try(
         list.first(tokens)
@@ -28,8 +29,8 @@ pub fn parse_optional_directive_list(
         |> result.map(fn(tkn) { tkn |> pair.second |> pair.second }),
       )
       case directives {
-        [] -> Ok(#(#(None, pos), tokens))
-        _ -> Ok(#(#(Some(directives |> list.reverse), pos), tokens))
+        [] -> Ok(#(#(option.None, pos), tokens))
+        _ -> Ok(#(#(option.Some(directives |> list.reverse), pos), tokens))
       }
     }
   }
@@ -37,20 +38,23 @@ pub fn parse_optional_directive_list(
 
 @internal
 pub fn parse_optional_directive(
-  tokens: List(Token),
-) -> Result(node.NodeWithTokenList(Option(node.DirectiveNode)), ParseError) {
+  tokens: List(token.Token),
+) -> Result(
+  node.NodeWithTokenList(option.Option(node.DirectiveNode)),
+  errors.ParseError,
+) {
   case tokens {
     [
       #(token_kind.At, #(start, _)),
       #(token_kind.Name(value), location),
       ..tokens
     ] -> {
-      use #(#(arguments, end), tokens) <- result.try(parse_optional_args(
+      use #(#(arguments, end), tokens) <- result.try(arg.parse_optional_args(
         tokens,
         start,
       ))
       Ok(#(
-        Some(
+        option.Some(
           node.DirectiveNode(
             name: node.NameNode(value:, location:),
             arguments:,
@@ -60,6 +64,6 @@ pub fn parse_optional_directive(
         tokens,
       ))
     }
-    _ -> Ok(#(None, tokens))
+    _ -> Ok(#(option.None, tokens))
   }
 }

@@ -6,8 +6,8 @@ import lexer/token
 import lexer/token_kind
 import parser/directive
 import parser/node
-import parser/selection
-import parser/variable
+import parser/operation/selection_set
+import parser/operation/variable_def
 
 @internal
 pub fn parse_operation_def(
@@ -37,7 +37,7 @@ pub fn parse_unnamed_query(
   errors.ParseError,
 ) {
   use #(#(selection_set, end), tokens) <- result.try(
-    selection.parse_selection_set(tokens),
+    selection_set.parse_selection_set(tokens),
   )
   Ok(#(
     node.QueryOperationNode(
@@ -62,13 +62,13 @@ pub fn parse_named_operation(
   errors.ParseError,
 ) {
   use #(variable_definitions, tokens) <- result.try(
-    variable.parse_optional_variable_definitions(tokens),
+    variable_def.parse_optional_variable_definitions(tokens),
   )
   use #(#(directives, _), tokens) <- result.try(
     directive.parse_optional_directive_list(tokens, []),
   )
   use #(#(selection_set, end), tokens) <- result.try(
-    selection.parse_selection_set(tokens),
+    selection_set.parse_selection_set(tokens),
   )
   let location = #(start, end)
   case operation_type {

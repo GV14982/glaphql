@@ -1,11 +1,11 @@
 import errors
-import gleam/option.{type Option}
+import gleam/option
 import gleam/result
 import lexer/position
 import lexer/token
 import lexer/token_kind
-import parser/const_directive.{parse_optional_const_directive_list}
-import parser/named_type.{parse_named_type_list}
+import parser/const_directive
+import parser/named_type
 import parser/node
 
 @internal
@@ -16,14 +16,16 @@ pub fn parse_union_ext(
   case tokens {
     [#(token_kind.Name(value), pos), ..rest] -> {
       use #(#(directives, _), rest) <- result.try(
-        parse_optional_const_directive_list(rest, []),
+        const_directive.parse_optional_const_directive_list(rest, []),
       )
-      use #(#(members, end), rest) <- result.try(parse_named_type_list(
-        rest,
-        [],
-        token_kind.Pipe,
-        errors.InvalidUnionDefinition,
-      ))
+      use #(#(members, end), rest) <- result.try(
+        named_type.parse_named_type_list(
+          rest,
+          [],
+          token_kind.Pipe,
+          errors.InvalidUnionDefinition,
+        ),
+      )
       case directives, members {
         directives, option.Some(members) ->
           Ok(#(
@@ -56,20 +58,22 @@ pub fn parse_union_ext(
 @internal
 pub fn parse_union_def(
   tokens: List(token.Token),
-  description: Option(node.DescriptionNode),
+  description: option.Option(node.DescriptionNode),
   start: position.Position,
 ) -> Result(node.NodeWithTokenList(node.TypeDefinitionNode), errors.ParseError) {
   case tokens {
     [#(token_kind.Name(value), pos), ..rest] -> {
       use #(#(directives, _), rest) <- result.try(
-        parse_optional_const_directive_list(rest, []),
+        const_directive.parse_optional_const_directive_list(rest, []),
       )
-      use #(#(members, end), rest) <- result.try(parse_named_type_list(
-        rest,
-        [],
-        token_kind.Pipe,
-        errors.InvalidUnionDefinition,
-      ))
+      use #(#(members, end), rest) <- result.try(
+        named_type.parse_named_type_list(
+          rest,
+          [],
+          token_kind.Pipe,
+          errors.InvalidUnionDefinition,
+        ),
+      )
       Ok(#(
         node.UnionTypeDefinitionNode(
           description:,

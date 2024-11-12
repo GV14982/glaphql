@@ -5,11 +5,11 @@ import gleam/result
 import lexer/position
 import lexer/token
 import lexer/token_kind
-import parser/const_directive.{parse_optional_const_directive_list}
-import parser/const_value.{parse_const_value}
-import parser/description.{parse_optional_description}
+import parser/const_directive
+import parser/default_value
 import parser/node
-import parser/type_node.{parse_type_node}
+import parser/schema/description
+import parser/type_node
 
 @internal
 pub fn parse_optional_input_value_def_list(
@@ -69,15 +69,17 @@ pub fn parse_input_value(
   node.NodeWithTokenList(node.InputValueDefinitionNode),
   errors.ParseError,
 ) {
-  use #(desc, tokens) <- result.try(parse_optional_description(tokens))
+  use #(desc, tokens) <- result.try(description.parse_optional_description(
+    tokens,
+  ))
   case tokens {
     [#(token_kind.Name(name), start), #(token_kind.Colon, _), ..tokens] -> {
-      use #(type_node, tokens) <- result.try(parse_type_node(tokens))
-      use #(default_value, tokens) <- result.try(parse_optional_default_value(
+      use #(type_node, tokens) <- result.try(type_node.parse_type_node(tokens))
+      use #(default_value, tokens) <- result.try(default_value.parse_optional(
         tokens,
       ))
       use #(#(directives, end), tokens) <- result.try(
-        parse_optional_const_directive_list(tokens, []),
+        const_directive.parse_optional_const_directive_list(tokens, []),
       )
       Ok(#(
         node.InputValueDefinitionNode(
@@ -92,21 +94,5 @@ pub fn parse_input_value(
       ))
     }
     _ -> Error(errors.InvalidInputValueDefinition)
-  }
-}
-
-@internal
-pub fn parse_optional_default_value(
-  tokens: List(token.Token),
-) -> Result(
-  node.NodeWithTokenList(option.Option(node.ConstValueNode)),
-  errors.ParseError,
-) {
-  case tokens {
-    [#(token_kind.Equal, _), ..tokens] -> {
-      use #(value, tokens) <- result.try(parse_const_value(tokens))
-      Ok(#(option.Some(value), tokens))
-    }
-    _ -> Ok(#(option.None, tokens))
   }
 }

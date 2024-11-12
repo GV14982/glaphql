@@ -1,17 +1,17 @@
-import errors.{type ParseError}
+import errors
 import gleam/float
 import gleam/int
 import gleam/list
 import gleam/result
 import lexer/position
-import lexer/token.{type Token}
+import lexer/token
 import lexer/token_kind
 import parser/node
 
 @internal
 pub fn parse_const_value(
-  tokens: List(Token),
-) -> Result(node.NodeWithTokenList(node.ConstValueNode), ParseError) {
+  tokens: List(token.Token),
+) -> Result(node.NodeWithTokenList(node.ConstValueNode), errors.ParseError) {
   case tokens {
     [#(token_kind.OpenBracket, start), ..rest] -> {
       use #(#(values, end), rest) <- result.try(
@@ -34,8 +34,8 @@ pub fn parse_const_value(
 
 @internal
 pub fn parse_const(
-  tokens: List(Token),
-) -> Result(node.NodeWithTokenList(node.ConstNode), ParseError) {
+  tokens: List(token.Token),
+) -> Result(node.NodeWithTokenList(node.ConstNode), errors.ParseError) {
   case tokens {
     [#(token_kind.Name(value), location), ..tokens]
       if value == "true" || value == "false"
@@ -65,11 +65,11 @@ pub fn parse_const(
 }
 
 fn parse_const_list_value(
-  tokens: List(Token),
+  tokens: List(token.Token),
   values: List(node.ConstValueNode),
 ) -> Result(
   node.NodeWithTokenList(#(List(node.ConstValueNode), position.Position)),
-  ParseError,
+  errors.ParseError,
 ) {
   case tokens {
     [#(token_kind.CloseBracket, pos), ..rest] ->
@@ -82,8 +82,11 @@ fn parse_const_list_value(
 }
 
 fn parse_const_object_field(
-  tokens: List(Token),
-) -> Result(node.NodeWithTokenList(node.ConstObjectFieldNode), ParseError) {
+  tokens: List(token.Token),
+) -> Result(
+  node.NodeWithTokenList(node.ConstObjectFieldNode),
+  errors.ParseError,
+) {
   case tokens {
     [#(token_kind.Name(name), start), #(token_kind.Colon, _), ..rest] -> {
       use #(value, rest) <- result.try(parse_const_value(rest))
@@ -95,11 +98,11 @@ fn parse_const_object_field(
 }
 
 fn parse_const_object_value(
-  tokens: List(Token),
+  tokens: List(token.Token),
   values: List(node.ConstObjectFieldNode),
 ) -> Result(
   node.NodeWithTokenList(#(List(node.ConstObjectFieldNode), position.Position)),
-  ParseError,
+  errors.ParseError,
 ) {
   case tokens {
     [#(token_kind.CloseBrace, pos), ..rest] ->

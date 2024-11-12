@@ -5,7 +5,7 @@ import lexer/token
 import lexer/token_kind
 import parser/directive
 import parser/node
-import parser/selection
+import parser/operation/selection_set
 
 @internal
 pub fn parse_fragment_def(
@@ -32,7 +32,7 @@ pub fn parse_fragment_def(
         directive.parse_optional_directive_list(tokens, []),
       )
       use #(#(selection_set, end), tokens) <- result.try(
-        selection.parse_selection_set(tokens),
+        selection_set.parse_selection_set(tokens),
       )
       let fragment =
         node.FragmentDefinitionNode(

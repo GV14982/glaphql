@@ -1,9 +1,9 @@
-import lexer/position.{type Position}
+import lexer/position
 
 pub type LexError {
-  InvalidCharacter(val: String, pos: Position)
-  InvalidNumber(val: String, pos: Position)
-  UnterminatedString(val: String, pos: Position)
+  InvalidCharacter(val: String, pos: position.Position)
+  InvalidNumber(val: String, pos: position.Position)
+  UnterminatedString(val: String, pos: position.Position)
 }
 
 pub type ParseError {

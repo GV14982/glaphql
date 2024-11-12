@@ -1,40 +1,34 @@
-import gleam/option.{type Option}
-import lexer/position.{type Offset}
-import lexer/token.{type Token}
+import gleam/option
+import lexer/position
+import lexer/token
 
 pub type NodeWithTokenList(a) =
-  #(a, List(Token))
+  #(a, List(token.Token))
 
 pub type Directives =
-  Option(List(DirectiveNode))
+  option.Option(List(DirectiveNode))
 
 pub type ConstDirectives =
-  Option(List(ConstDirectiveNode))
+  option.Option(List(ConstDirectiveNode))
 
 pub type ConstArguments =
-  Option(List(ConstArgumentNode))
+  option.Option(List(ConstArgumentNode))
 
 pub type Arguments =
-  Option(List(ArgumentNode))
+  option.Option(List(ArgumentNode))
 
 pub type FieldDefinitions =
-  Option(List(FieldDefinitionNode))
+  option.Option(List(FieldDefinitionNode))
 
 pub type OptionalDescription =
-  Option(DescriptionNode)
+  option.Option(DescriptionNode)
 
 pub type OptionalNamedTypeList =
-  Option(List(NamedTypeNode))
+  option.Option(List(NamedTypeNode))
 
 pub type DocumentNode {
-  Document(definitions: List(DefinitionNode))
   ExecutableDocumentNode(definitions: List(ExecutableDefinitionNode))
   TypeSystemDocument(definitions: List(TypeSystemDefinitionOrExtensionNode))
-}
-
-pub type DefinitionNode {
-  ExecutableDefinitionNode(ExecutableDefinitionNode)
-  TypeSystemNode(TypeSystemDefinitionOrExtensionNode)
 }
 
 pub type ExecutableDefinitionNode {
@@ -44,7 +38,7 @@ pub type ExecutableDefinitionNode {
     type_condition: NamedTypeNode,
     directives: Directives,
     selection_set: SelectionSetNode,
-    location: Offset,
+    location: position.Offset,
   )
 }
 
@@ -55,47 +49,51 @@ pub type TypeSystemDefinitionOrExtensionNode {
 
 pub type OperationDefinitionNode {
   QueryOperationNode(
-    name: Option(NameNode),
-    variable_definitions: Option(List(VariableDefinitionNode)),
+    name: option.Option(NameNode),
+    variable_definitions: option.Option(List(VariableDefinitionNode)),
     directives: Directives,
     selection_set: SelectionSetNode,
-    location: Offset,
+    location: position.Offset,
   )
   MutationOperationNode(
     name: NameNode,
-    variable_definitions: Option(List(VariableDefinitionNode)),
+    variable_definitions: option.Option(List(VariableDefinitionNode)),
     directives: Directives,
     selection_set: SelectionSetNode,
-    location: Offset,
+    location: position.Offset,
   )
   SubscriptionOperationNode(
     name: NameNode,
-    variable_definitions: Option(List(VariableDefinitionNode)),
+    variable_definitions: option.Option(List(VariableDefinitionNode)),
     directives: Directives,
     selection_set: SelectionSetNode,
-    location: Offset,
+    location: position.Offset,
   )
 }
 
 pub type SelectionSetNode {
-  SelectionSetNode(selections: List(SelectionNode), location: Offset)
+  SelectionSetNode(selections: List(SelectionNode), location: position.Offset)
 }
 
 pub type SelectionNode {
   FieldNode(
-    alias: Option(NameNode),
+    alias: option.Option(NameNode),
     name: NameNode,
-    arguments: Option(List(ArgumentNode)),
+    arguments: option.Option(List(ArgumentNode)),
     directives: Directives,
-    selection_set: Option(SelectionSetNode),
-    location: Offset,
+    selection_set: option.Option(SelectionSetNode),
+    location: position.Offset,
   )
-  FragmentSpreadNode(name: NameNode, directives: Directives, location: Offset)
+  FragmentSpreadNode(
+    name: NameNode,
+    directives: Directives,
+    location: position.Offset,
+  )
   InlineFragmentNode(
-    type_condition: Option(NamedTypeNode),
+    type_condition: option.Option(NamedTypeNode),
     directives: Directives,
     selection_set: SelectionSetNode,
-    location: Offset,
+    location: position.Offset,
   )
 }
 
@@ -106,19 +104,19 @@ pub type NullabilityAssertionNode {
 
 pub type NonListNullabilityAssertionNode {
   NonNullAssertionNode(
-    nullability_assertion: Option(ListNullabilityOperatorNode),
-    location: Offset,
+    nullability_assertion: option.Option(ListNullabilityOperatorNode),
+    location: position.Offset,
   )
   ErrorBoundaryNode(
-    nullability_assertion: Option(ListNullabilityOperatorNode),
-    location: Offset,
+    nullability_assertion: option.Option(ListNullabilityOperatorNode),
+    location: position.Offset,
   )
 }
 
 pub type ListNullabilityOperatorNode {
   ListNullabilityOperatorNode(
     nullability_assertion: NullabilityAssertionNode,
-    location: Offset,
+    location: position.Offset,
   )
 }
 
@@ -132,21 +130,21 @@ pub type VariableDefinitionNode {
   VariableDefinitionNode(
     variable_node: VariableNode,
     type_node: TypeNode,
-    default_value: Option(ConstValueNode),
+    default_value: option.Option(ConstValueNode),
     directives: ConstDirectives,
-    location: Offset,
+    location: position.Offset,
   )
 }
 
 pub type VariableNode {
-  VariableNode(name: NameNode, location: Offset)
+  VariableNode(name: NameNode, location: position.Offset)
 }
 
 pub type TypeNode {
-  NullableTypeNode(type_node: NamedTypeNode, location: Offset)
-  NonNullTypeNode(type_node: NamedTypeNode, location: Offset)
-  NullableListTypeNode(type_node: TypeNode, location: Offset)
-  NonNullListTypeNode(type_node: TypeNode, location: Offset)
+  NullableTypeNode(type_node: NamedTypeNode, location: position.Offset)
+  NonNullTypeNode(type_node: NamedTypeNode, location: position.Offset)
+  NullableListTypeNode(type_node: TypeNode, location: position.Offset)
+  NonNullListTypeNode(type_node: TypeNode, location: position.Offset)
 }
 
 pub type NamedTypeNode {
@@ -155,48 +153,52 @@ pub type NamedTypeNode {
 
 pub type ConstValueNode {
   ConstValueNode(node: ConstNode)
-  ConstObjectNode(values: List(ConstObjectFieldNode), location: Offset)
-  ConstListNode(values: List(ConstValueNode), location: Offset)
+  ConstObjectNode(values: List(ConstObjectFieldNode), location: position.Offset)
+  ConstListNode(values: List(ConstValueNode), location: position.Offset)
 }
 
 pub type ValueNode {
   Variable(node: VariableNode)
   ValueNode(node: ConstNode)
-  ListNode(values: List(ValueNode), location: Offset)
-  ObjectNode(values: List(ObjectFieldNode), location: Offset)
+  ListNode(values: List(ValueNode), location: position.Offset)
+  ObjectNode(values: List(ObjectFieldNode), location: position.Offset)
 }
 
 pub type ConstNode {
-  IntValueNode(location: Offset, value: Int)
-  FloatValueNode(location: Offset, value: Float)
-  StringValueNode(location: Offset, value: String)
-  BooleanValueNode(location: Offset, value: Bool)
-  NullValueNode(location: Offset)
-  EnumValueNode(location: Offset, value: String)
+  IntValueNode(location: position.Offset, value: Int)
+  FloatValueNode(location: position.Offset, value: Float)
+  StringValueNode(location: position.Offset, value: String)
+  BooleanValueNode(location: position.Offset, value: Bool)
+  NullValueNode(location: position.Offset)
+  EnumValueNode(location: position.Offset, value: String)
 }
 
 pub type ConstDirectiveNode {
   ConstDirectiveNode(
     name: NameNode,
     arguments: ConstArguments,
-    location: Offset,
+    location: position.Offset,
   )
 }
 
 pub type DirectiveNode {
-  DirectiveNode(name: NameNode, arguments: Arguments, location: Offset)
+  DirectiveNode(name: NameNode, arguments: Arguments, location: position.Offset)
 }
 
 pub type ConstArgumentNode {
-  ConstArgumentNode(name: NameNode, value: ConstValueNode, location: Offset)
+  ConstArgumentNode(
+    name: NameNode,
+    value: ConstValueNode,
+    location: position.Offset,
+  )
 }
 
 pub type ArgumentNode {
-  ArgumentNode(name: NameNode, value: ValueNode, location: Offset)
+  ArgumentNode(name: NameNode, value: ValueNode, location: position.Offset)
 }
 
 pub type ObjectFieldNode {
-  ObjectFieldNode(name: NameNode, value: ValueNode, location: Offset)
+  ObjectFieldNode(name: NameNode, value: ValueNode, location: position.Offset)
 }
 
 pub type ConstObjectFieldNode {
@@ -204,14 +206,14 @@ pub type ConstObjectFieldNode {
 }
 
 pub type NameNode {
-  NameNode(value: String, location: Offset)
+  NameNode(value: String, location: position.Offset)
 }
 
 pub type RootOperationTypeDefinition {
   RootOperationTypeDefinition(
     operation: OperationType,
     named_type: NamedTypeNode,
-    location: Offset,
+    location: position.Offset,
   )
 }
 
@@ -220,7 +222,7 @@ pub type TypeSystemDefinitionNode {
     description: OptionalDescription,
     directives: ConstDirectives,
     operation_types: List(RootOperationTypeDefinition),
-    location: Offset,
+    location: position.Offset,
   )
   TypeDefinitionNode(node: TypeDefinitionNode)
   DirectiveDefinitionNode(
@@ -229,12 +231,12 @@ pub type TypeSystemDefinitionNode {
     arguments: ConstArguments,
     repeatable: Bool,
     locations: List(DirectiveLocationNode),
-    location: Offset,
+    location: position.Offset,
   )
 }
 
 pub type DirectiveLocationNode {
-  DirectiveLocationNode(value: DirectiveLocation, location: Offset)
+  DirectiveLocationNode(value: DirectiveLocation, location: position.Offset)
 }
 
 pub type DirectiveLocation {
@@ -269,7 +271,7 @@ pub type TypeSystemDirectiveLocation {
 
 // TODO: Don't use a dedicated node for this... Find out how to pull the StringValueNode into the type level
 pub type DescriptionNode {
-  DescriptionNode(value: String, location: Offset)
+  DescriptionNode(value: String, location: position.Offset)
 }
 
 pub type TypeDefinitionNode {
@@ -277,7 +279,7 @@ pub type TypeDefinitionNode {
     description: OptionalDescription,
     name: NameNode,
     directives: ConstDirectives,
-    location: Offset,
+    location: position.Offset,
   )
   ObjectTypeDefinitionNode(
     description: OptionalDescription,
@@ -285,7 +287,7 @@ pub type TypeDefinitionNode {
     interfaces: OptionalNamedTypeList,
     directives: ConstDirectives,
     fields: FieldDefinitions,
-    location: Offset,
+    location: position.Offset,
   )
   InterfaceTypeDefinitionNode(
     description: OptionalDescription,
@@ -293,28 +295,28 @@ pub type TypeDefinitionNode {
     interfaces: OptionalNamedTypeList,
     directives: ConstDirectives,
     fields: FieldDefinitions,
-    location: Offset,
+    location: position.Offset,
   )
   UnionTypeDefinitionNode(
     description: OptionalDescription,
     name: NameNode,
     directives: ConstDirectives,
     members: OptionalNamedTypeList,
-    location: Offset,
+    location: position.Offset,
   )
   EnumTypeDefinitionNode(
     description: OptionalDescription,
     name: NameNode,
     directives: ConstDirectives,
-    location: Offset,
+    location: position.Offset,
     members: List(EnumValueDefinitionNode),
   )
   InputObjectTypeDefinitionNode(
     description: OptionalDescription,
     name: NameNode,
     directives: ConstDirectives,
-    fields: Option(List(InputValueDefinitionNode)),
-    location: Offset,
+    fields: option.Option(List(InputValueDefinitionNode)),
+    location: position.Offset,
   )
 }
 
@@ -322,10 +324,10 @@ pub type FieldDefinitionNode {
   FieldDefinitionNode(
     description: OptionalDescription,
     name: NameNode,
-    arguments: Option(List(InputValueDefinitionNode)),
+    arguments: option.Option(List(InputValueDefinitionNode)),
     type_node: TypeNode,
     directives: ConstDirectives,
-    location: Offset,
+    location: position.Offset,
   )
 }
 
@@ -334,9 +336,9 @@ pub type InputValueDefinitionNode {
     description: OptionalDescription,
     name: NameNode,
     type_node: TypeNode,
-    default_value: Option(ConstValueNode),
+    default_value: option.Option(ConstValueNode),
     directives: ConstDirectives,
-    location: Offset,
+    location: position.Offset,
   )
 }
 
@@ -345,15 +347,15 @@ pub type EnumValueDefinitionNode {
     description: OptionalDescription,
     name: NameNode,
     directives: ConstDirectives,
-    location: Offset,
+    location: position.Offset,
   )
 }
 
 pub type TypeSystemExtensionNode {
   SchemaExtensionNode(
     directives: ConstDirectives,
-    operation_types: Option(List(RootOperationTypeDefinition)),
-    location: Offset,
+    operation_types: option.Option(List(RootOperationTypeDefinition)),
+    location: position.Offset,
   )
   TypeExtensionNode(node: TypeExtensionNode)
 }
@@ -364,18 +366,18 @@ pub type ObjectTypeExtension {
     interfaces: OptionalNamedTypeList,
     directives: ConstDirectives,
     fields: List(FieldDefinitionNode),
-    location: Offset,
+    location: position.Offset,
   )
   ObjectTypeExtensionWithDirectives(
     name: NameNode,
     interfaces: OptionalNamedTypeList,
     directives: List(ConstDirectiveNode),
-    location: Offset,
+    location: position.Offset,
   )
   ObjectTypeExtensionWithInterfaces(
     name: NameNode,
     interfaces: List(NamedTypeNode),
-    location: Offset,
+    location: position.Offset,
   )
 }
 
@@ -383,13 +385,13 @@ pub type EnumTypeExtensionNode {
   EnumTypeExtensionWithMembers(
     name: NameNode,
     directives: ConstDirectives,
-    location: Offset,
+    location: position.Offset,
     members: List(EnumValueDefinitionNode),
   )
   EnumTypeExtensionWithoutMembers(
     name: NameNode,
     directives: List(ConstDirectiveNode),
-    location: Offset,
+    location: position.Offset,
   )
 }
 
@@ -399,18 +401,18 @@ pub type InterfaceTypeExtensionNode {
     interfaces: OptionalNamedTypeList,
     directives: ConstDirectives,
     fields: List(FieldDefinitionNode),
-    location: Offset,
+    location: position.Offset,
   )
   InterfaceTypeExtensionWithDirectivesNode(
     name: NameNode,
     interfaces: OptionalNamedTypeList,
     directives: List(ConstDirectiveNode),
-    location: Offset,
+    location: position.Offset,
   )
   InterfaceTypeExtensionWithImplementsNode(
     name: NameNode,
     interfaces: List(NamedTypeNode),
-    location: Offset,
+    location: position.Offset,
   )
 }
 
@@ -419,12 +421,12 @@ pub type UnionTypeExtensionNode {
     name: NameNode,
     directives: ConstDirectives,
     members: List(NamedTypeNode),
-    location: Offset,
+    location: position.Offset,
   )
   UnionTypeExtensionWithDirectives(
     name: NameNode,
     directives: List(ConstDirectiveNode),
-    location: Offset,
+    location: position.Offset,
   )
 }
 
@@ -433,12 +435,12 @@ pub type InputObjectTypeExtensionNode {
     name: NameNode,
     directives: ConstDirectives,
     fields: List(InputValueDefinitionNode),
-    location: Offset,
+    location: position.Offset,
   )
   InputObjectTypeExtensionWithDirectivesNode(
     name: NameNode,
     directives: List(ConstDirectiveNode),
-    location: Offset,
+    location: position.Offset,
   )
 }
 
@@ -446,7 +448,7 @@ pub type TypeExtensionNode {
   ScalarTypeExtensionNode(
     name: NameNode,
     directives: List(ConstDirectiveNode),
-    location: Offset,
+    location: position.Offset,
   )
   ObjectTypeExtensionNode(node: ObjectTypeExtension)
   InterfaceTypeExtensionNode(node: InterfaceTypeExtensionNode)
