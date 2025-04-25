@@ -5,8 +5,8 @@ import gleam/result
 import lexer/position
 import lexer/token
 import lexer/token_kind
-import parser/const_arg_def
 import parser/node
+import parser/schema/input_value_def
 
 @internal
 pub fn parse_directive_def(
@@ -18,33 +18,33 @@ pub fn parse_directive_def(
   errors.ParseError,
 ) {
   case tokens {
-    [
-      #(token_kind.Name("directive"), _),
-      #(token_kind.At, _),
-      #(token_kind.Name(value), location),
-      ..tokens
-    ] -> {
+    [#(token_kind.At, _), #(token_kind.Name(value), location), ..tokens] -> {
       use #(#(arguments, _), tokens) <- result.try(
-        const_arg_def.parse_optional_const_arg_defs(tokens),
+        input_value_def.parse_optional_input_value_def_list(
+          tokens,
+          token_kind.OpenParen,
+          token_kind.CloseParen,
+        ),
       )
       let #(repeatable, tokens) = case tokens {
         [#(token_kind.Name("repeatable"), _), ..tokens] -> #(True, tokens)
         tokens -> #(False, tokens)
       }
       case tokens {
-        [#(token_kind.Name("on"), _), ..tokens] -> {
+        [#(token_kind.Name("on"), _), #(token_kind.Pipe, _), ..tokens]
+        | [#(token_kind.Name("on"), _), ..tokens] -> {
           use #(#(locations, end), tokens) <- result.try(
             parse_directive_locations(tokens, []),
           )
           Ok(#(
-            node.DirectiveDefinitionNode(
+            node.DirectiveDefinitionNode(node.DirectiveDefinition(
               name: node.NameNode(value:, location:),
               location: #(start, end),
               description:,
               arguments:,
               locations:,
               repeatable:,
-            ),
+            )),
             tokens,
           ))
         }

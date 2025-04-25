@@ -26,9 +26,12 @@ pub type OptionalDescription =
 pub type OptionalNamedTypeList =
   option.Option(List(NamedTypeNode))
 
-pub type DocumentNode {
-  ExecutableDocumentNode(definitions: List(ExecutableDefinitionNode))
-  TypeSystemDocument(definitions: List(TypeSystemDefinitionOrExtensionNode))
+pub type InputValueDefinitions =
+  option.Option(List(InputValueDefinitionNode))
+
+pub type Document {
+  OperationDocument(definitions: List(ExecutableDefinitionNode))
+  SchemaDocument(definitions: List(TypeSystemDefinitionOrExtensionNode))
 }
 
 pub type ExecutableDefinitionNode {
@@ -211,27 +214,35 @@ pub type NameNode {
 
 pub type RootOperationTypeDefinition {
   RootOperationTypeDefinition(
+    location: position.Offset,
     operation: OperationType,
     named_type: NamedTypeNode,
-    location: position.Offset,
   )
 }
 
 pub type TypeSystemDefinitionNode {
-  SchemaDefinitionNode(
+  TypeDefinitionNode(node: TypeDefinitionNode)
+  SchemaDefinitionNode(node: SchemaDefinition)
+  DirectiveDefinitionNode(node: DirectiveDefinition)
+}
+
+pub type SchemaDefinition {
+  SchemaDefinition(
     description: OptionalDescription,
+    location: position.Offset,
     directives: ConstDirectives,
     operation_types: List(RootOperationTypeDefinition),
-    location: position.Offset,
   )
-  TypeDefinitionNode(node: TypeDefinitionNode)
-  DirectiveDefinitionNode(
+}
+
+pub type DirectiveDefinition {
+  DirectiveDefinition(
     description: OptionalDescription,
     name: NameNode,
-    arguments: ConstArguments,
+    location: position.Offset,
+    arguments: InputValueDefinitions,
     repeatable: Bool,
     locations: List(DirectiveLocationNode),
-    location: position.Offset,
   )
 }
 
@@ -269,53 +280,76 @@ pub type TypeSystemDirectiveLocation {
   InputFieldDefinitionDirective
 }
 
-// TODO: Don't use a dedicated node for this... Find out how to pull the StringValueNode into the type level
 pub type DescriptionNode {
   DescriptionNode(value: String, location: position.Offset)
 }
 
 pub type TypeDefinitionNode {
-  ScalarTypeDefinitionNode(
+  ScalarTypeDefinitionNode(node: ScalarTypeDefinition)
+  ObjectTypeDefinitionNode(node: ObjectTypeDefinition)
+  InterfaceTypeDefinitionNode(node: InterfaceTypeDefinition)
+  UnionTypeDefinitionNode(node: UnionTypeDefinition)
+  EnumTypeDefinitionNode(node: EnumTypeDefinition)
+  InputTypeDefinitionNode(node: InputTypeDefinition)
+}
+
+pub type ScalarTypeDefinition {
+  ScalarTypeDefinition(
     description: OptionalDescription,
     name: NameNode,
-    directives: ConstDirectives,
     location: position.Offset,
+    directives: ConstDirectives,
   )
-  ObjectTypeDefinitionNode(
+}
+
+pub type ObjectTypeDefinition {
+  ObjectTypeDefinition(
     description: OptionalDescription,
     name: NameNode,
+    location: position.Offset,
+    directives: ConstDirectives,
     interfaces: OptionalNamedTypeList,
-    directives: ConstDirectives,
     fields: FieldDefinitions,
-    location: position.Offset,
   )
-  InterfaceTypeDefinitionNode(
+}
+
+pub type InterfaceTypeDefinition {
+  InterfaceTypeDefinition(
     description: OptionalDescription,
     name: NameNode,
+    location: position.Offset,
+    directives: ConstDirectives,
     interfaces: OptionalNamedTypeList,
-    directives: ConstDirectives,
     fields: FieldDefinitions,
-    location: position.Offset,
   )
-  UnionTypeDefinitionNode(
+}
+
+pub type UnionTypeDefinition {
+  UnionTypeDefinition(
     description: OptionalDescription,
     name: NameNode,
+    location: position.Offset,
     directives: ConstDirectives,
     members: OptionalNamedTypeList,
-    location: position.Offset,
   )
-  EnumTypeDefinitionNode(
+}
+
+pub type EnumTypeDefinition {
+  EnumTypeDefinition(
+    description: OptionalDescription,
+    name: NameNode,
+    location: position.Offset,
+    directives: ConstDirectives,
+    members: option.Option(List(EnumValueDefinitionNode)),
+  )
+}
+
+pub type InputTypeDefinition {
+  InputTypeDefinition(
     description: OptionalDescription,
     name: NameNode,
     directives: ConstDirectives,
-    location: position.Offset,
-    members: List(EnumValueDefinitionNode),
-  )
-  InputObjectTypeDefinitionNode(
-    description: OptionalDescription,
-    name: NameNode,
-    directives: ConstDirectives,
-    fields: option.Option(List(InputValueDefinitionNode)),
+    fields: InputValueDefinitions,
     location: position.Offset,
   )
 }
@@ -324,10 +358,10 @@ pub type FieldDefinitionNode {
   FieldDefinitionNode(
     description: OptionalDescription,
     name: NameNode,
-    arguments: option.Option(List(InputValueDefinitionNode)),
-    type_node: TypeNode,
-    directives: ConstDirectives,
     location: position.Offset,
+    directives: ConstDirectives,
+    type_node: TypeNode,
+    arguments: InputValueDefinitions,
   )
 }
 
@@ -335,10 +369,10 @@ pub type InputValueDefinitionNode {
   InputValueDefinitionNode(
     description: OptionalDescription,
     name: NameNode,
+    location: position.Offset,
+    directives: ConstDirectives,
     type_node: TypeNode,
     default_value: option.Option(ConstValueNode),
-    directives: ConstDirectives,
-    location: position.Offset,
   )
 }
 
@@ -346,113 +380,121 @@ pub type EnumValueDefinitionNode {
   EnumValueDefinitionNode(
     description: OptionalDescription,
     name: NameNode,
-    directives: ConstDirectives,
     location: position.Offset,
+    directives: ConstDirectives,
   )
 }
 
 pub type TypeSystemExtensionNode {
-  SchemaExtensionNode(
+  SchemaExtensionNode(node: SchemaExtension)
+  TypeExtensionNode(node: TypeExtensionNode)
+}
+
+pub type SchemaExtension {
+  SchemaExtension(
+    location: position.Offset,
     directives: ConstDirectives,
     operation_types: option.Option(List(RootOperationTypeDefinition)),
-    location: position.Offset,
   )
-  TypeExtensionNode(node: TypeExtensionNode)
 }
 
 pub type ObjectTypeExtension {
   ObjectTypeExtensionWithFields(
     name: NameNode,
+    location: position.Offset,
     interfaces: OptionalNamedTypeList,
     directives: ConstDirectives,
     fields: List(FieldDefinitionNode),
-    location: position.Offset,
   )
   ObjectTypeExtensionWithDirectives(
     name: NameNode,
+    location: position.Offset,
     interfaces: OptionalNamedTypeList,
     directives: List(ConstDirectiveNode),
-    location: position.Offset,
   )
   ObjectTypeExtensionWithInterfaces(
     name: NameNode,
-    interfaces: List(NamedTypeNode),
     location: position.Offset,
+    interfaces: List(NamedTypeNode),
   )
 }
 
-pub type EnumTypeExtensionNode {
+pub type EnumTypeExtension {
   EnumTypeExtensionWithMembers(
     name: NameNode,
-    directives: ConstDirectives,
     location: position.Offset,
+    directives: ConstDirectives,
     members: List(EnumValueDefinitionNode),
   )
   EnumTypeExtensionWithoutMembers(
     name: NameNode,
-    directives: List(ConstDirectiveNode),
     location: position.Offset,
+    directives: List(ConstDirectiveNode),
   )
 }
 
-pub type InterfaceTypeExtensionNode {
+pub type InterfaceTypeExtension {
   InterfaceTypeExtensionWithFieldsNode(
     name: NameNode,
+    location: position.Offset,
     interfaces: OptionalNamedTypeList,
     directives: ConstDirectives,
     fields: List(FieldDefinitionNode),
-    location: position.Offset,
   )
   InterfaceTypeExtensionWithDirectivesNode(
     name: NameNode,
+    location: position.Offset,
     interfaces: OptionalNamedTypeList,
     directives: List(ConstDirectiveNode),
-    location: position.Offset,
   )
   InterfaceTypeExtensionWithImplementsNode(
     name: NameNode,
-    interfaces: List(NamedTypeNode),
     location: position.Offset,
+    interfaces: List(NamedTypeNode),
   )
 }
 
-pub type UnionTypeExtensionNode {
+pub type UnionTypeExtension {
   UnionTypeExtensionWithMembers(
     name: NameNode,
+    location: position.Offset,
     directives: ConstDirectives,
     members: List(NamedTypeNode),
-    location: position.Offset,
   )
   UnionTypeExtensionWithDirectives(
     name: NameNode,
-    directives: List(ConstDirectiveNode),
     location: position.Offset,
+    directives: List(ConstDirectiveNode),
   )
 }
 
-pub type InputObjectTypeExtensionNode {
-  InputObjectTypeExtensionWithFieldsNode(
+pub type InputTypeExtension {
+  InputTypeExtensionWithFields(
     name: NameNode,
+    location: position.Offset,
     directives: ConstDirectives,
     fields: List(InputValueDefinitionNode),
-    location: position.Offset,
   )
-  InputObjectTypeExtensionWithDirectivesNode(
+  InputTypeExtensionWithDirectives(
     name: NameNode,
-    directives: List(ConstDirectiveNode),
     location: position.Offset,
+    directives: List(ConstDirectiveNode),
+  )
+}
+
+pub type ScalarTypeExtension {
+  ScalarTypeExtension(
+    name: NameNode,
+    location: position.Offset,
+    directives: List(ConstDirectiveNode),
   )
 }
 
 pub type TypeExtensionNode {
-  ScalarTypeExtensionNode(
-    name: NameNode,
-    directives: List(ConstDirectiveNode),
-    location: position.Offset,
-  )
+  ScalarTypeExtensionNode(node: ScalarTypeExtension)
   ObjectTypeExtensionNode(node: ObjectTypeExtension)
-  InterfaceTypeExtensionNode(node: InterfaceTypeExtensionNode)
-  UnionTypeExtensionNode(node: UnionTypeExtensionNode)
-  EnumTypeExtensionNode(node: EnumTypeExtensionNode)
-  InputObjectTypeExtensionNode(node: InputObjectTypeExtensionNode)
+  InterfaceTypeExtensionNode(node: InterfaceTypeExtension)
+  UnionTypeExtensionNode(node: UnionTypeExtension)
+  EnumTypeExtensionNode(node: EnumTypeExtension)
+  InputObjectTypeExtensionNode(node: InputTypeExtension)
 }

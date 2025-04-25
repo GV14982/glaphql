@@ -61,17 +61,27 @@ pub fn lookahead(lexer: Lexer) -> TokenResult {
 @internal
 pub fn get_next_token(lexer: Lexer) -> TokenResult {
   case lexer.input {
+    "\u{FEFF}" <> tail ->
+      get_next_token(Lexer(tail, position.inc_col_by(lexer.pos, 2)))
     " " <> tail | "\t" <> tail | "," <> tail ->
       get_next_token(Lexer(tail, position.inc_col_by(lexer.pos, 1)))
-    "\n" <> tail | "\r" <> tail | "\r\n" <> tail ->
+    "\r\n" <> tail | "\n" <> tail | "\r" <> tail ->
       get_next_token(Lexer(tail, position.inc_row(lexer.pos)))
     "#" <> tail -> {
       let #(rest, comment, pos) =
         consume_comment(tail, "", position.inc_col_by(lexer.pos, 1))
-      result_with_token(
-        #(token_kind.Comment(comment), #(lexer.pos, pos)),
-        Lexer(rest, position.inc_col_by(pos, 1)),
-      )
+      case rest {
+        "" ->
+          result_with_token(
+            #(token_kind.Comment(comment), #(lexer.pos, pos)),
+            Lexer(rest, pos |> position.inc_col_by(1)),
+          )
+        _ ->
+          result_with_token(
+            #(token_kind.Comment(comment), #(lexer.pos, pos)),
+            Lexer(rest, pos |> position.inc_row),
+          )
+      }
     }
     "!" <> tail ->
       result_with_token(
@@ -222,11 +232,7 @@ pub fn consume_comment(
   pos: position.Position,
 ) -> AccumulatedVal(String) {
   case input {
-    "\n" <> rest | "\r" <> rest | "\r\n" <> rest -> #(
-      rest,
-      comment,
-      position.inc_row(pos),
-    )
+    "\n" <> rest | "\r" <> rest | "\r\n" <> rest -> #(rest, comment, pos)
     _ ->
       case string.pop_grapheme(input) {
         Ok(#(head, tail)) ->
@@ -264,6 +270,15 @@ pub fn consume_string(
   pos: position.Position,
 ) -> Result(AccumulatedVal(String), errors.LexError) {
   case input {
+    "\\\"" <> tail ->
+      consume_string(tail, val <> "\"", position.inc_col_by(pos, 2))
+    "\\" <> tail -> {
+      case string.pop_grapheme(tail) {
+        Ok(#(head, tail)) ->
+          consume_string(tail, val <> "\\" <> head, position.inc_col_by(pos, 2))
+        Error(_) -> Error(errors.UnterminatedString(val, pos))
+      }
+    }
     "\"" <> tail -> Ok(#(tail, val, position.inc_col_by(pos, 1)))
     "\n" <> _tail | "\r" <> _tail | "\r\n" <> _tail ->
       Error(errors.UnterminatedString(val, pos))
@@ -283,6 +298,19 @@ pub fn consume_block_string(
   pos: position.Position,
 ) -> Result(AccumulatedVal(String), errors.LexError) {
   case input {
+    "\\\"" <> tail ->
+      consume_block_string(tail, val <> "\"", position.inc_col_by(pos, 2))
+    "\\" <> tail -> {
+      case string.pop_grapheme(tail) {
+        Ok(#(head, tail)) ->
+          consume_block_string(
+            tail,
+            val <> "\\" <> head,
+            position.inc_col_by(pos, 2),
+          )
+        Error(_) -> Error(errors.UnterminatedString(val, pos))
+      }
+    }
     "\"\"\"" <> tail -> Ok(#(tail, val, position.inc_col_by(pos, 3)))
     "\n" <> tail ->
       consume_block_string(tail, val <> "\n", position.inc_row(pos))

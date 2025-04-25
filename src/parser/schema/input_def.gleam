@@ -23,14 +23,13 @@ pub fn parse_input_ext(
           tokens,
           token_kind.OpenBrace,
           token_kind.CloseBrace,
-          start,
         ),
       )
       case directives, fields {
         directives, option.Some(fields) ->
           Ok(#(
             node.InputObjectTypeExtensionNode(
-              node.InputObjectTypeExtensionWithFieldsNode(
+              node.InputTypeExtensionWithFields(
                 name: node.NameNode(value:, location:),
                 directives:,
                 fields:,
@@ -42,7 +41,7 @@ pub fn parse_input_ext(
         option.Some(directives), option.None ->
           Ok(#(
             node.InputObjectTypeExtensionNode(
-              node.InputObjectTypeExtensionWithDirectivesNode(
+              node.InputTypeExtensionWithDirectives(
                 name: node.NameNode(value:, location:),
                 directives:,
                 location: #(start, end),
@@ -73,16 +72,17 @@ pub fn parse_input_def(
           tokens,
           token_kind.OpenBrace,
           token_kind.CloseBrace,
-          start,
         ),
       )
       Ok(#(
-        node.InputObjectTypeDefinitionNode(
-          name: node.NameNode(value:, location:),
-          description:,
-          directives:,
-          fields:,
-          location: #(start, end),
+        node.InputTypeDefinitionNode(
+          node.InputTypeDefinition(
+            name: node.NameNode(value:, location:),
+            description:,
+            directives:,
+            fields:,
+            location: #(start, end),
+          ),
         ),
         tokens,
       ))

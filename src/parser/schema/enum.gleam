@@ -8,6 +8,7 @@ import lexer/token_kind
 import parser/const_directive
 import parser/node
 import parser/schema/description
+import parser/util
 
 @internal
 pub fn parse_enum_ext(
@@ -64,16 +65,18 @@ pub fn parse_enum_def(
       use #(#(directives, _), tokens) <- result.try(
         const_directive.parse_optional_const_directive_list(tokens, []),
       )
-      use #(#(members, end), tokens) <- result.try(parse_enum_members_def(
-        tokens,
-      ))
+      use #(#(members, end), tokens) <- result.try(
+        parse_optional_enum_members_def(tokens),
+      )
       Ok(#(
         node.EnumTypeDefinitionNode(
-          name: node.NameNode(value: name, location:),
-          description:,
-          directives:,
-          members:,
-          location: #(start, end),
+          node.EnumTypeDefinition(
+            name: node.NameNode(value: name, location:),
+            description:,
+            directives:,
+            members:,
+            location: #(start, end),
+          ),
         ),
         tokens,
       ))
@@ -91,20 +94,12 @@ pub fn parse_optional_enum_members_def(
   ),
   errors.ParseError,
 ) {
-  case tokens {
-    [#(tkn, #(_, end)), ..] ->
-      case tkn {
-        token_kind.OpenBrace ->
-          parse_enum_members_def(tokens)
-          |> result.map(fn(res) {
-            let #(#(members, end), tokens) = res
-            #(#(option.Some(members), end), tokens)
-          })
-          |> result.lazy_or(fn() { Ok(#(#(option.None, end), tokens)) })
-        _ -> Ok(#(#(option.None, end), tokens))
-      }
-    _ -> Error(errors.InvalidEnumDefinition)
-  }
+  util.parse_between_optional(
+    token_kind.OpenBrace,
+    token_kind.CloseBrace,
+    tokens,
+    parse_enum_member,
+  )
 }
 
 @internal
@@ -116,15 +111,13 @@ pub fn parse_enum_members_def(
   ),
   errors.ParseError,
 ) {
-  case tokens {
-    [#(token_kind.OpenBrace, _), ..tokens] -> {
-      use #(#(members, end), tokens) <- result.try(
-        parse_enum_member_list(tokens, []),
-      )
-      Ok(#(#(members, end), tokens))
-    }
-    _ -> Error(errors.InvalidEnumDefinition)
-  }
+  util.parse_between(
+    token_kind.OpenBrace,
+    token_kind.CloseBrace,
+    tokens,
+    errors.InvalidEnumDefinition,
+    parse_enum_member,
+  )
 }
 
 @internal
@@ -156,6 +149,35 @@ pub fn parse_enum_member_list(
     }
     [#(token_kind.CloseBracket, end), ..tokens] ->
       Ok(#(#(members |> list.reverse, end.1), tokens))
+    _ -> Error(errors.InvalidEnumMember)
+  }
+}
+
+@internal
+pub fn parse_enum_member(
+  tokens: List(token.Token),
+) -> Result(
+  node.NodeWithTokenList(node.EnumValueDefinitionNode),
+  errors.ParseError,
+) {
+  use #(description, tokens) <- result.try(
+    description.parse_optional_description(tokens),
+  )
+  case tokens {
+    [#(token_kind.Name(value), location), ..tokens] -> {
+      use #(#(directives, end), tokens) <- result.try(
+        const_directive.parse_optional_const_directive_list(tokens, []),
+      )
+      Ok(#(
+        node.EnumValueDefinitionNode(
+          name: node.NameNode(value:, location:),
+          description:,
+          directives:,
+          location: #(location.0, end),
+        ),
+        tokens,
+      ))
+    }
     _ -> Error(errors.InvalidEnumMember)
   }
 }

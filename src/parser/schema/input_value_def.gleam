@@ -1,5 +1,4 @@
 import errors
-import gleam/list
 import gleam/option
 import gleam/result
 import lexer/position
@@ -10,56 +9,40 @@ import parser/default_value
 import parser/node
 import parser/schema/description
 import parser/type_node
+import parser/util
 
 @internal
 pub fn parse_optional_input_value_def_list(
   tokens: List(token.Token),
-  open_token: token_kind.TokenKind,
-  close_token: token_kind.TokenKind,
-  start: position.Position,
+  start: token_kind.TokenKind,
+  end: token_kind.TokenKind,
 ) -> Result(
   node.NodeWithTokenList(
     #(option.Option(List(node.InputValueDefinitionNode)), position.Position),
   ),
   errors.ParseError,
 ) {
-  case tokens {
-    [#(kind, _), ..tokens] if kind == open_token -> {
-      use #(#(input_val_defs, end), tokens) <- result.try(
-        parse_input_value_def_list(tokens, [], close_token),
-      )
-      case input_val_defs {
-        [] -> Error(errors.InvalidInputValueList)
-        defs -> Ok(#(#(option.Some(defs), end), tokens))
-      }
-    }
-    _ -> Ok(#(#(option.None, start), tokens))
-  }
+  util.parse_between_optional(start, end, tokens, parse_input_value)
 }
 
 @internal
 pub fn parse_input_value_def_list(
   tokens: List(token.Token),
-  defs: List(node.InputValueDefinitionNode),
-  closing_token: token_kind.TokenKind,
+  start: token_kind.TokenKind,
+  end: token_kind.TokenKind,
 ) -> Result(
   node.NodeWithTokenList(
     #(List(node.InputValueDefinitionNode), position.Position),
   ),
   errors.ParseError,
 ) {
-  case tokens {
-    [#(kind, end), ..tokens] if kind == closing_token ->
-      Ok(#(#(defs |> list.reverse, end.1), tokens))
-    tokens -> {
-      use #(input_value_def, tokens) <- result.try(parse_input_value(tokens))
-      parse_input_value_def_list(
-        tokens,
-        [input_value_def, ..defs],
-        closing_token,
-      )
-    }
-  }
+  util.parse_between(
+    start,
+    end,
+    tokens,
+    errors.InvalidInputTypeDefinition,
+    parse_input_value,
+  )
 }
 
 @internal

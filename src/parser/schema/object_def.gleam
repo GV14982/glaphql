@@ -5,9 +5,9 @@ import lexer/position
 import lexer/token
 import lexer/token_kind
 import parser/const_directive
-import parser/named_type
 import parser/node
 import parser/schema/field_def
+import parser/schema/interface
 
 @internal
 pub fn parse_object_ext(
@@ -15,25 +15,15 @@ pub fn parse_object_ext(
   start: position.Position,
 ) -> Result(node.NodeWithTokenList(node.TypeExtensionNode), errors.ParseError) {
   case tokens {
-    [
-      #(token_kind.Name(value), location),
-      #(token_kind.Name("implements"), _),
-      ..tokens
-    ]
-    | [#(token_kind.Name(value), location), ..tokens] -> {
+    [#(token_kind.Name(value), location), ..tokens] -> {
       use #(#(interfaces, _), tokens) <- result.try(
-        named_type.parse_named_type_list(
-          tokens,
-          [],
-          token_kind.Amp,
-          errors.InvalidImplementsList,
-        ),
+        interface.parse_optional_interface_implementations(tokens, location.0),
       )
       use #(#(directives, _), tokens) <- result.try(
         const_directive.parse_optional_const_directive_list(tokens, []),
       )
       use #(#(fields, end), tokens) <- result.try(
-        field_def.parse_field_definitions(tokens, []),
+        field_def.parse_optional_field_definitions(tokens),
       )
       let ext_node_result = case interfaces, directives, fields {
         interfaces, directives, option.Some(fields) ->
@@ -83,34 +73,26 @@ pub fn parse_object_def(
   start: position.Position,
 ) -> Result(node.NodeWithTokenList(node.TypeDefinitionNode), errors.ParseError) {
   case tokens {
-    [
-      #(token_kind.Name(value), location),
-      #(token_kind.Name("implements"), _),
-      ..tokens
-    ]
-    | [#(token_kind.Name(value), location), ..tokens] -> {
+    [#(token_kind.Name(value), location), ..tokens] -> {
       use #(#(interfaces, _), tokens) <- result.try(
-        named_type.parse_named_type_list(
-          tokens,
-          [],
-          token_kind.Amp,
-          errors.InvalidImplementsList,
-        ),
+        interface.parse_optional_interface_implementations(tokens, location.0),
       )
       use #(#(directives, _), tokens) <- result.try(
         const_directive.parse_optional_const_directive_list(tokens, []),
       )
       use #(#(fields, end), tokens) <- result.try(
-        field_def.parse_field_definitions(tokens, []),
+        field_def.parse_optional_field_definitions(tokens),
       )
       Ok(#(
         node.ObjectTypeDefinitionNode(
-          name: node.NameNode(value:, location:),
-          description:,
-          directives:,
-          fields:,
-          interfaces:,
-          location: #(start, end),
+          node.ObjectTypeDefinition(
+            name: node.NameNode(value:, location:),
+            description:,
+            directives:,
+            fields:,
+            interfaces:,
+            location: #(start, end),
+          ),
         ),
         tokens,
       ))

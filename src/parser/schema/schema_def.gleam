@@ -26,9 +26,11 @@ pub fn parse_schema_extension(
       )
       Ok(#(
         node.SchemaExtensionNode(
-          directives:,
-          operation_types: option.Some(operation_types),
-          location: #(start, end),
+          node.SchemaExtension(
+            directives:,
+            operation_types: option.Some(operation_types),
+            location: #(start, end),
+          ),
         ),
         tokens,
       ))
@@ -36,9 +38,11 @@ pub fn parse_schema_extension(
     tokens -> {
       Ok(#(
         node.SchemaExtensionNode(
-          directives:,
-          operation_types: option.None,
-          location: #(start, end),
+          node.SchemaExtension(
+            directives:,
+            operation_types: option.None,
+            location: #(start, end),
+          ),
         ),
         tokens,
       ))
@@ -65,10 +69,12 @@ pub fn parse_schema_definition(
       )
       Ok(#(
         node.SchemaDefinitionNode(
-          description:,
-          directives:,
-          operation_types:,
-          location: #(start, end),
+          node.SchemaDefinition(
+            description:,
+            directives:,
+            operation_types:,
+            location: #(start, end),
+          ),
         ),
         tokens,
       ))
@@ -93,15 +99,8 @@ fn parse_root_operation_def_list(
       #(token_kind.Name(op_string), #(start, _)),
       #(token_kind.Colon, _),
       #(token_kind.Name(value), location),
-      #(token_kind.Bang, _),
       ..tokens
-    ]
-    | [
-        #(token_kind.Name(op_string), #(start, _)),
-        #(token_kind.Colon, _),
-        #(token_kind.Name(value), location),
-        ..tokens
-      ] -> {
+    ] -> {
       use operation <- result.try(case op_string {
         "query" -> Ok(node.Query)
         "mutation" -> Ok(node.Mutation)

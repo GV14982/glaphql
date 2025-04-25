@@ -1,21 +1,17 @@
 import birdie
-import gleam/result
-import gleam/string
+import gleeunit/should
 import lexer/lexer
 import parser/schema/document
 import pprint
 import simplifile
 
 pub fn parse_schema_document_test() {
-  use schema <- result.try(
-    simplifile.read("test.schema.graphql")
-    |> result.map(string.trim)
-    |> result.map_error(fn(_e) { Nil }),
-  )
-  use lexed <- result.try(lexer.lex(schema) |> result.map_error(fn(_e) { Nil }))
-  let parsed = document.parse_schema_document(lexed, [])
-  parsed
+  simplifile.read("test.schema.graphql")
+  |> should.be_ok
+  |> lexer.lex
+  |> should.be_ok
+  |> document.parse_schema_document([])
+  |> should.be_ok
   |> pprint.format
   |> birdie.snap(title: "test schema parsed")
-  Ok(Nil)
 }

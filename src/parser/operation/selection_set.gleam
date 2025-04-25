@@ -21,6 +21,7 @@ pub fn parse_field_name(
   case tokens {
     [
       #(token_kind.Name(alias), alias_loc),
+      #(token_kind.Colon, _),
       #(token_kind.Name(value), location),
       ..tokens
     ] ->

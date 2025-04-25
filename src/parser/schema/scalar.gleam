@@ -22,9 +22,11 @@ pub fn parse_scalar_ext(
         option.Some(directives) ->
           Ok(#(
             node.ScalarTypeExtensionNode(
-              name: node.NameNode(value: name, location: pos),
-              directives: directives,
-              location: #(start, end),
+              node.ScalarTypeExtension(
+                name: node.NameNode(value: name, location: pos),
+                directives: directives,
+                location: #(start, end),
+              ),
             ),
             rest,
           ))
@@ -47,10 +49,12 @@ pub fn parse_scalar_def(
       )
       Ok(#(
         node.ScalarTypeDefinitionNode(
-          description:,
-          name: node.NameNode(value: name, location: pos),
-          directives: directives,
-          location: #(start, end),
+          node.ScalarTypeDefinition(
+            description:,
+            name: node.NameNode(value: name, location: pos),
+            directives: directives,
+            location: #(start, end),
+          ),
         ),
         rest,
       ))

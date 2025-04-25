@@ -1,5 +1,4 @@
 import errors
-import gleam/list
 import gleam/option
 import gleam/result
 import lexer/position
@@ -10,64 +9,56 @@ import parser/node
 import parser/schema/description
 import parser/schema/input_value_def
 import parser/type_node
+import parser/util
 
 @internal
-pub fn parse_field_definitions(
+pub fn parse_optional_field_definitions(
   tokens: List(token.Token),
-  defs: List(node.FieldDefinitionNode),
 ) -> Result(
   node.NodeWithTokenList(#(node.FieldDefinitions, position.Position)),
   errors.ParseError,
 ) {
-  case tokens {
-    [#(token_kind.CloseBrace, end), ..rest] ->
-      Ok(#(#(option.Some(defs |> list.reverse), end.1), rest))
-    tokens -> {
-      use #(description, tokens) <- result.try(
-        description.parse_optional_description(tokens),
-      )
-      case tokens {
-        [#(token_kind.Name(name), pos), ..tokens] -> {
-          use #(field_def, tokens) <- result.try(parse_field_definition(
-            node.NameNode(value: name, location: pos),
-            tokens,
-            description,
-            pos.0,
-          ))
-          parse_field_definitions(tokens, [field_def, ..defs])
-        }
-        _ -> Error(errors.InvalidFieldDefinition)
-      }
-    }
-  }
+  util.parse_between_optional(
+    token_kind.OpenBrace,
+    token_kind.CloseBrace,
+    tokens,
+    parse_field_definition,
+  )
 }
 
 @internal
 pub fn parse_field_definition(
-  name: node.NameNode,
   tokens: List(token.Token),
-  desc: node.OptionalDescription,
-  start: position.Position,
 ) -> Result(node.NodeWithTokenList(node.FieldDefinitionNode), errors.ParseError) {
-  use #(#(arguments, _), tokens) <- result.try(
-    input_value_def.parse_optional_input_value_def_list(
-      tokens,
-      token_kind.OpenParen,
-      token_kind.CloseParen,
-      start,
-    ),
+  use #(description, tokens) <- result.try(
+    description.parse_optional_description(tokens),
   )
   case tokens {
-    [#(token_kind.Colon, _), ..tokens] -> {
+    [#(token_kind.Name(name), pos), ..tokens] -> {
+      let start =
+        description
+        |> option.map(fn(o) { o.location.0 })
+        |> option.unwrap(pos.0)
+      use #(#(arguments, _), tokens) <- result.try(
+        input_value_def.parse_optional_input_value_def_list(
+          tokens,
+          token_kind.OpenParen,
+          token_kind.CloseParen,
+        ),
+      )
+      use tokens <- result.try(
+        tokens
+        |> util.expect_next(token_kind.Colon, errors.InvalidFieldDefinition),
+      )
       use #(type_node, tokens) <- result.try(type_node.parse_type_node(tokens))
       use #(#(directives, end), tokens) <- result.try(
         const_directive.parse_optional_const_directive_list(tokens, []),
       )
       Ok(#(
         node.FieldDefinitionNode(
-          description: desc,
+          description:,
           arguments:,
-          name:,
+          name: node.NameNode(value: name, location: pos),
           type_node:,
           directives:,
           location: #(start, end),

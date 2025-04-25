@@ -39,7 +39,7 @@ pub fn parse(
       ))
       Ok(#(node.TypeSystemDefinitionNode(node: directive), tokens))
     }
-    [#(token_kind.Name("extends"), #(start, _)), ..tokens] -> {
+    [#(token_kind.Name("extend"), #(start, _)), ..tokens] -> {
       case tokens {
         [#(token_kind.Name(val), _), ..tokens] -> {
           case val {

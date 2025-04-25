@@ -1,288 +1,837 @@
 ---
-version: 1.1.5
+version: 1.2.5
 title: test operations lexed
 file: ./test/lexer/lexer_test.gleam
 test_name: operations_lex_test
 ---
-Ok([
+[
   #(
     Name("query"),
     #(Position(1, 1), Position(5, 1)),
   ),
   #(
-    Name("GetTest"),
-    #(Position(7, 1), Position(13, 1)),
+    Name("queryName"),
+    #(Position(7, 1), Position(15, 1)),
   ),
   OpenParen(#(
-    Position(14, 1),
-    Position(14, 1),
+    Position(16, 1),
+    Position(16, 1),
   )),
   Dollar(#(
-    Position(15, 1),
-    Position(15, 1),
+    Position(17, 1),
+    Position(17, 1),
   )),
   #(
-    Name("id"),
-    #(Position(16, 1), Position(17, 1)),
+    Name("foo"),
+    #(Position(18, 1), Position(20, 1)),
   ),
   Colon(#(
-    Position(18, 1),
-    Position(18, 1),
+    Position(21, 1),
+    Position(21, 1),
   )),
   #(
-    Name("ID"),
-    #(Position(20, 1), Position(21, 1)),
+    Name("ComplexType"),
+    #(Position(23, 1), Position(33, 1)),
   ),
-  Bang(#(
-    Position(22, 1),
-    Position(22, 1),
-  )),
-  CloseParen(#(
-    Position(23, 1),
-    Position(23, 1),
-  )),
-  OpenBrace(#(
-    Position(25, 1),
-    Position(25, 1),
+  Dollar(#(
+    Position(36, 1),
+    Position(36, 1),
   )),
   #(
-    Name("test"),
-    #(Position(2, 2), Position(5, 2)),
+    Name("site"),
+    #(Position(37, 1), Position(40, 1)),
+  ),
+  Colon(#(
+    Position(41, 1),
+    Position(41, 1),
+  )),
+  #(
+    Name("Site"),
+    #(Position(43, 1), Position(46, 1)),
+  ),
+  Equal(#(
+    Position(48, 1),
+    Position(48, 1),
+  )),
+  #(
+    Name("MOBILE"),
+    #(Position(50, 1), Position(55, 1)),
+  ),
+  CloseParen(#(
+    Position(56, 1),
+    Position(56, 1),
+  )),
+  At(#(Position(58, 1), Position(58, 1))),
+  #(
+    Name("onQuery"),
+    #(Position(59, 1), Position(65, 1)),
+  ),
+  OpenBrace(#(
+    Position(67, 1),
+    Position(67, 1),
+  )),
+  #(
+    Name("whoever123is"),
+    #(Position(3, 2), Position(14, 2)),
+  ),
+  Colon(#(
+    Position(15, 2),
+    Position(15, 2),
+  )),
+  #(
+    Name("node"),
+    #(Position(17, 2), Position(20, 2)),
   ),
   OpenParen(#(
-    Position(6, 2),
-    Position(6, 2),
+    Position(21, 2),
+    Position(21, 2),
   )),
   #(
     Name("id"),
-    #(Position(7, 2), Position(8, 2)),
+    #(Position(22, 2), Position(23, 2)),
   ),
   Colon(#(
-    Position(9, 2),
-    Position(9, 2),
+    Position(24, 2),
+    Position(24, 2),
   )),
-  Dollar(#(
-    Position(11, 2),
-    Position(11, 2),
+  OpenBracket(#(
+    Position(26, 2),
+    Position(26, 2),
   )),
   #(
-    Name("id"),
-    #(Position(12, 2), Position(13, 2)),
+    Int("123"),
+    #(Position(27, 2), Position(29, 2)),
   ),
+  #(
+    Int("456"),
+    #(Position(32, 2), Position(34, 2)),
+  ),
+  CloseBracket(#(
+    Position(35, 2),
+    Position(35, 2),
+  )),
   CloseParen(#(
-    Position(14, 2),
-    Position(14, 2),
+    Position(36, 2),
+    Position(36, 2),
   )),
   OpenBrace(#(
-    Position(16, 2),
-    Position(16, 2),
+    Position(38, 2),
+    Position(38, 2),
   )),
   #(
     Name("id"),
-    #(Position(3, 3), Position(4, 3)),
+    #(Position(5, 3), Position(6, 3)),
+  ),
+  Spread(#(
+    Position(5, 4),
+    Position(7, 4),
+  )),
+  #(
+    Name("on"),
+    #(Position(9, 4), Position(10, 4)),
   ),
   #(
-    Name("val"),
-    #(Position(3, 4), Position(5, 4)),
+    Name("User"),
+    #(Position(12, 4), Position(15, 4)),
+  ),
+  At(#(Position(17, 4), Position(17, 4))),
+  #(
+    Name("onInlineFragment"),
+    #(Position(18, 4), Position(33, 4)),
+  ),
+  OpenBrace(#(
+    Position(35, 4),
+    Position(35, 4),
+  )),
+  #(
+    Name("field2"),
+    #(Position(7, 5), Position(12, 5)),
+  ),
+  OpenBrace(#(
+    Position(14, 5),
+    Position(14, 5),
+  )),
+  #(
+    Name("id"),
+    #(Position(9, 6), Position(10, 6)),
+  ),
+  #(
+    Name("alias"),
+    #(Position(9, 7), Position(13, 7)),
+  ),
+  Colon(#(
+    Position(14, 7),
+    Position(14, 7),
+  )),
+  #(
+    Name("field1"),
+    #(Position(16, 7), Position(21, 7)),
+  ),
+  OpenParen(#(
+    Position(22, 7),
+    Position(22, 7),
+  )),
+  #(
+    Name("first"),
+    #(Position(23, 7), Position(27, 7)),
+  ),
+  Colon(#(
+    Position(28, 7),
+    Position(28, 7),
+  )),
+  #(
+    Int("10"),
+    #(Position(30, 7), Position(31, 7)),
+  ),
+  #(
+    Name("after"),
+    #(Position(34, 7), Position(38, 7)),
+  ),
+  Colon(#(
+    Position(39, 7),
+    Position(39, 7),
+  )),
+  Dollar(#(
+    Position(41, 7),
+    Position(41, 7),
+  )),
+  #(
+    Name("foo"),
+    #(Position(42, 7), Position(44, 7)),
+  ),
+  CloseParen(#(
+    Position(45, 7),
+    Position(45, 7),
+  )),
+  At(#(Position(47, 7), Position(47, 7))),
+  #(
+    Name("include"),
+    #(Position(48, 7), Position(54, 7)),
+  ),
+  OpenParen(#(
+    Position(55, 7),
+    Position(55, 7),
+  )),
+  #(
+    Name("if"),
+    #(Position(56, 7), Position(57, 7)),
+  ),
+  Colon(#(
+    Position(58, 7),
+    Position(58, 7),
+  )),
+  Dollar(#(
+    Position(60, 7),
+    Position(60, 7),
+  )),
+  #(
+    Name("foo"),
+    #(Position(61, 7), Position(63, 7)),
+  ),
+  CloseParen(#(
+    Position(64, 7),
+    Position(64, 7),
+  )),
+  OpenBrace(#(
+    Position(66, 7),
+    Position(66, 7),
+  )),
+  #(
+    Name("id"),
+    #(Position(11, 8), Position(12, 8)),
+  ),
+  Spread(#(
+    Position(11, 9),
+    Position(13, 9),
+  )),
+  #(
+    Name("frag"),
+    #(Position(14, 9), Position(17, 9)),
+  ),
+  At(#(Position(19, 9), Position(19, 9))),
+  #(
+    Name("onFragmentSpread"),
+    #(Position(20, 9), Position(35, 9)),
   ),
   CloseBrace(#(
-    Position(2, 5),
-    Position(2, 5),
+    Position(9, 10),
+    Position(9, 10),
   )),
   CloseBrace(#(
-    Position(1, 6),
-    Position(1, 6),
+    Position(7, 11),
+    Position(7, 11),
+  )),
+  CloseBrace(#(
+    Position(5, 12),
+    Position(5, 12),
+  )),
+  Spread(#(
+    Position(5, 13),
+    Position(7, 13),
+  )),
+  At(#(Position(9, 13), Position(9, 13))),
+  #(
+    Name("skip"),
+    #(
+      Position(10, 13),
+      Position(13, 13),
+    ),
+  ),
+  OpenParen(#(
+    Position(14, 13),
+    Position(14, 13),
+  )),
+  #(
+    Name("unless"),
+    #(
+      Position(15, 13),
+      Position(20, 13),
+    ),
+  ),
+  Colon(#(
+    Position(21, 13),
+    Position(21, 13),
+  )),
+  Dollar(#(
+    Position(23, 13),
+    Position(23, 13),
+  )),
+  #(
+    Name("foo"),
+    #(
+      Position(24, 13),
+      Position(26, 13),
+    ),
+  ),
+  CloseParen(#(
+    Position(27, 13),
+    Position(27, 13),
+  )),
+  OpenBrace(#(
+    Position(29, 13),
+    Position(29, 13),
+  )),
+  #(
+    Name("id"),
+    #(Position(7, 14), Position(8, 14)),
+  ),
+  CloseBrace(#(
+    Position(5, 15),
+    Position(5, 15),
+  )),
+  Spread(#(
+    Position(5, 16),
+    Position(7, 16),
+  )),
+  OpenBrace(#(
+    Position(9, 16),
+    Position(9, 16),
+  )),
+  #(
+    Name("id"),
+    #(Position(7, 17), Position(8, 17)),
+  ),
+  CloseBrace(#(
+    Position(5, 18),
+    Position(5, 18),
+  )),
+  CloseBrace(#(
+    Position(3, 19),
+    Position(3, 19),
+  )),
+  CloseBrace(#(
+    Position(1, 20),
+    Position(1, 20),
   )),
   #(
     Name("mutation"),
-    #(Position(1, 8), Position(8, 8)),
+    #(Position(1, 22), Position(8, 22)),
   ),
   #(
-    Name("NewTest"),
-    #(Position(10, 8), Position(16, 8)),
+    Name("likeStory"),
+    #(
+      Position(10, 22),
+      Position(18, 22),
+    ),
+  ),
+  At(#(
+    Position(20, 22),
+    Position(20, 22),
+  )),
+  #(
+    Name("onMutation"),
+    #(
+      Position(21, 22),
+      Position(30, 22),
+    ),
+  ),
+  OpenBrace(#(
+    Position(32, 22),
+    Position(32, 22),
+  )),
+  #(
+    Name("like"),
+    #(Position(3, 23), Position(6, 23)),
   ),
   OpenParen(#(
-    Position(17, 8),
-    Position(17, 8),
-  )),
-  Dollar(#(
-    Position(18, 8),
-    Position(18, 8),
+    Position(7, 23),
+    Position(7, 23),
   )),
   #(
-    Name("val"),
-    #(Position(19, 8), Position(21, 8)),
+    Name("story"),
+    #(Position(8, 23), Position(12, 23)),
   ),
   Colon(#(
-    Position(22, 8),
-    Position(22, 8),
+    Position(13, 23),
+    Position(13, 23),
   )),
   #(
-    Name("String"),
-    #(Position(24, 8), Position(29, 8)),
-  ),
-  Bang(#(
-    Position(30, 8),
-    Position(30, 8),
-  )),
-  CloseParen(#(
-    Position(31, 8),
-    Position(31, 8),
-  )),
-  OpenBrace(#(
-    Position(33, 8),
-    Position(33, 8),
-  )),
-  #(
-    Name("test"),
-    #(Position(2, 9), Position(5, 9)),
-  ),
-  OpenParen(#(
-    Position(6, 9),
-    Position(6, 9),
-  )),
-  #(
-    Name("val"),
-    #(Position(7, 9), Position(9, 9)),
-  ),
-  Colon(#(
-    Position(10, 9),
-    Position(10, 9),
-  )),
-  Dollar(#(
-    Position(12, 9),
-    Position(12, 9),
-  )),
-  #(
-    Name("val"),
-    #(Position(13, 9), Position(15, 9)),
+    Int("123"),
+    #(
+      Position(15, 23),
+      Position(17, 23),
+    ),
   ),
   CloseParen(#(
-    Position(16, 9),
-    Position(16, 9),
+    Position(18, 23),
+    Position(18, 23),
   )),
+  At(#(
+    Position(20, 23),
+    Position(20, 23),
+  )),
+  #(
+    Name("onField"),
+    #(
+      Position(21, 23),
+      Position(27, 23),
+    ),
+  ),
   OpenBrace(#(
-    Position(18, 9),
-    Position(18, 9),
+    Position(29, 23),
+    Position(29, 23),
+  )),
+  #(
+    Name("story"),
+    #(Position(5, 24), Position(9, 24)),
+  ),
+  OpenBrace(#(
+    Position(11, 24),
+    Position(11, 24),
   )),
   #(
     Name("id"),
-    #(Position(3, 10), Position(4, 10)),
+    #(Position(7, 25), Position(8, 25)),
   ),
+  At(#(
+    Position(10, 25),
+    Position(10, 25),
+  )),
   #(
-    Name("val"),
-    #(Position(3, 11), Position(5, 11)),
+    Name("onField"),
+    #(
+      Position(11, 25),
+      Position(17, 25),
+    ),
   ),
   CloseBrace(#(
-    Position(2, 12),
-    Position(2, 12),
+    Position(5, 26),
+    Position(5, 26),
   )),
   CloseBrace(#(
-    Position(1, 13),
-    Position(1, 13),
+    Position(3, 27),
+    Position(3, 27),
+  )),
+  CloseBrace(#(
+    Position(1, 28),
+    Position(1, 28),
   )),
   #(
     Name("subscription"),
-    #(Position(1, 15), Position(12, 15)),
+    #(Position(1, 30), Position(12, 30)),
   ),
   #(
-    Name("GetTest"),
+    Name("StoryLikeSubscription"),
     #(
-      Position(14, 15),
-      Position(20, 15),
+      Position(14, 30),
+      Position(34, 30),
     ),
   ),
   OpenParen(#(
-    Position(21, 15),
-    Position(21, 15),
+    Position(35, 30),
+    Position(35, 30),
   )),
   Dollar(#(
-    Position(22, 15),
-    Position(22, 15),
+    Position(3, 31),
+    Position(3, 31),
   )),
   #(
-    Name("id"),
-    #(
-      Position(23, 15),
-      Position(24, 15),
-    ),
+    Name("input"),
+    #(Position(4, 31), Position(8, 31)),
   ),
   Colon(#(
-    Position(25, 15),
-    Position(25, 15),
+    Position(9, 31),
+    Position(9, 31),
   )),
   #(
-    Name("ID"),
+    Name("StoryLikeSubscribeInput"),
     #(
-      Position(27, 15),
-      Position(28, 15),
+      Position(11, 31),
+      Position(33, 31),
     ),
   ),
-  Bang(#(
-    Position(29, 15),
-    Position(29, 15),
-  )),
-  CloseParen(#(
-    Position(30, 15),
-    Position(30, 15),
-  )),
-  OpenBrace(#(
-    Position(32, 15),
-    Position(32, 15),
+  At(#(
+    Position(35, 31),
+    Position(35, 31),
   )),
   #(
-    Name("test"),
-    #(Position(2, 16), Position(5, 16)),
+    Name("onVariableDefinition"),
+    #(
+      Position(36, 31),
+      Position(55, 31),
+    ),
+  ),
+  CloseParen(#(
+    Position(1, 32),
+    Position(1, 32),
+  )),
+  At(#(Position(3, 33), Position(3, 33))),
+  #(
+    Name("onSubscription"),
+    #(Position(4, 33), Position(17, 33)),
+  ),
+  OpenBrace(#(
+    Position(19, 33),
+    Position(19, 33),
+  )),
+  #(
+    Name("storyLikeSubscribe"),
+    #(Position(3, 34), Position(20, 34)),
   ),
   OpenParen(#(
-    Position(6, 16),
-    Position(6, 16),
+    Position(21, 34),
+    Position(21, 34),
   )),
   #(
-    Name("id"),
-    #(Position(7, 16), Position(8, 16)),
+    Name("input"),
+    #(
+      Position(22, 34),
+      Position(26, 34),
+    ),
   ),
   Colon(#(
-    Position(9, 16),
-    Position(9, 16),
+    Position(27, 34),
+    Position(27, 34),
   )),
   Dollar(#(
-    Position(11, 16),
-    Position(11, 16),
+    Position(29, 34),
+    Position(29, 34),
   )),
   #(
-    Name("id"),
+    Name("input"),
     #(
-      Position(12, 16),
-      Position(13, 16),
+      Position(30, 34),
+      Position(34, 34),
     ),
   ),
   CloseParen(#(
-    Position(14, 16),
-    Position(14, 16),
+    Position(35, 34),
+    Position(35, 34),
   )),
   OpenBrace(#(
-    Position(16, 16),
-    Position(16, 16),
+    Position(37, 34),
+    Position(37, 34),
   )),
   #(
-    Name("id"),
-    #(Position(3, 17), Position(4, 17)),
+    Name("story"),
+    #(Position(5, 35), Position(9, 35)),
   ),
+  OpenBrace(#(
+    Position(11, 35),
+    Position(11, 35),
+  )),
   #(
-    Name("val"),
-    #(Position(3, 18), Position(5, 18)),
+    Name("likers"),
+    #(Position(7, 36), Position(12, 36)),
+  ),
+  OpenBrace(#(
+    Position(14, 36),
+    Position(14, 36),
+  )),
+  #(
+    Name("count"),
+    #(Position(9, 37), Position(13, 37)),
   ),
   CloseBrace(#(
-    Position(2, 19),
-    Position(2, 19),
+    Position(7, 38),
+    Position(7, 38),
+  )),
+  #(
+    Name("likeSentence"),
+    #(Position(7, 39), Position(18, 39)),
+  ),
+  OpenBrace(#(
+    Position(20, 39),
+    Position(20, 39),
+  )),
+  #(
+    Name("text"),
+    #(Position(9, 40), Position(12, 40)),
+  ),
+  CloseBrace(#(
+    Position(7, 41),
+    Position(7, 41),
   )),
   CloseBrace(#(
-    Position(1, 20),
-    Position(1, 20),
+    Position(5, 42),
+    Position(5, 42),
+  )),
+  CloseBrace(#(
+    Position(3, 43),
+    Position(3, 43),
+  )),
+  CloseBrace(#(
+    Position(1, 44),
+    Position(1, 44),
+  )),
+  #(
+    Name("fragment"),
+    #(Position(1, 46), Position(8, 46)),
+  ),
+  #(
+    Name("frag"),
+    #(
+      Position(10, 46),
+      Position(13, 46),
+    ),
+  ),
+  #(
+    Name("on"),
+    #(
+      Position(15, 46),
+      Position(16, 46),
+    ),
+  ),
+  #(
+    Name("Friend"),
+    #(
+      Position(18, 46),
+      Position(23, 46),
+    ),
+  ),
+  At(#(
+    Position(25, 46),
+    Position(25, 46),
+  )),
+  #(
+    Name("onFragmentDefinition"),
+    #(
+      Position(26, 46),
+      Position(45, 46),
+    ),
+  ),
+  OpenBrace(#(
+    Position(47, 46),
+    Position(47, 46),
+  )),
+  #(
+    Name("foo"),
+    #(Position(3, 47), Position(5, 47)),
+  ),
+  OpenParen(#(
+    Position(6, 47),
+    Position(6, 47),
+  )),
+  #(
+    Name("size"),
+    #(Position(5, 48), Position(8, 48)),
+  ),
+  Colon(#(
+    Position(9, 48),
+    Position(9, 48),
+  )),
+  Dollar(#(
+    Position(11, 48),
+    Position(11, 48),
+  )),
+  #(
+    Name("size"),
+    #(
+      Position(12, 48),
+      Position(15, 48),
+    ),
+  ),
+  #(
+    Name("bar"),
+    #(Position(5, 49), Position(7, 49)),
+  ),
+  Colon(#(
+    Position(8, 49),
+    Position(8, 49),
+  )),
+  Dollar(#(
+    Position(10, 49),
+    Position(10, 49),
+  )),
+  #(
+    Name("b"),
+    #(
+      Position(11, 49),
+      Position(11, 49),
+    ),
+  ),
+  #(
+    Name("obj"),
+    #(Position(5, 50), Position(7, 50)),
+  ),
+  Colon(#(
+    Position(8, 50),
+    Position(8, 50),
+  )),
+  OpenBrace(#(
+    Position(10, 50),
+    Position(10, 50),
+  )),
+  #(
+    Name("key"),
+    #(Position(7, 51), Position(9, 51)),
+  ),
+  Colon(#(
+    Position(10, 51),
+    Position(10, 51),
+  )),
+  #(
+    String("value"),
+    #(
+      Position(12, 51),
+      Position(18, 51),
+    ),
+  ),
+  #(
+    Name("block"),
+    #(Position(7, 52), Position(11, 52)),
+  ),
+  Colon(#(
+    Position(12, 52),
+    Position(12, 52),
+  )),
+  #(
+    String("
+      block string uses """
+      "),
+    #(
+      Position(14, 52),
+      Position(10, 54),
+    ),
+  ),
+  CloseBrace(#(
+    Position(5, 55),
+    Position(5, 55),
+  )),
+  CloseParen(#(
+    Position(3, 56),
+    Position(3, 56),
+  )),
+  CloseBrace(#(
+    Position(1, 57),
+    Position(1, 57),
+  )),
+  OpenBrace(#(
+    Position(1, 59),
+    Position(1, 59),
+  )),
+  #(
+    Name("unnamed"),
+    #(Position(3, 60), Position(9, 60)),
+  ),
+  OpenParen(#(
+    Position(10, 60),
+    Position(10, 60),
+  )),
+  #(
+    Name("truthy"),
+    #(
+      Position(11, 60),
+      Position(16, 60),
+    ),
+  ),
+  Colon(#(
+    Position(17, 60),
+    Position(17, 60),
+  )),
+  #(
+    Name("true"),
+    #(
+      Position(19, 60),
+      Position(22, 60),
+    ),
+  ),
+  #(
+    Name("falsy"),
+    #(
+      Position(25, 60),
+      Position(29, 60),
+    ),
+  ),
+  Colon(#(
+    Position(30, 60),
+    Position(30, 60),
+  )),
+  #(
+    Name("false"),
+    #(
+      Position(32, 60),
+      Position(36, 60),
+    ),
+  ),
+  #(
+    Name("nullish"),
+    #(
+      Position(39, 60),
+      Position(45, 60),
+    ),
+  ),
+  Colon(#(
+    Position(46, 60),
+    Position(46, 60),
+  )),
+  #(
+    Name("null"),
+    #(
+      Position(48, 60),
+      Position(51, 60),
+    ),
+  ),
+  CloseParen(#(
+    Position(52, 60),
+    Position(52, 60),
+  )),
+  #(
+    Name("query"),
+    #(Position(3, 61), Position(7, 61)),
+  ),
+  CloseBrace(#(
+    Position(1, 62),
+    Position(1, 62),
+  )),
+  #(
+    Name("query"),
+    #(Position(1, 64), Position(5, 64)),
+  ),
+  OpenBrace(#(
+    Position(7, 64),
+    Position(7, 64),
+  )),
+  #(
+    Name("__typename"),
+    #(Position(3, 65), Position(12, 65)),
+  ),
+  CloseBrace(#(
+    Position(1, 66),
+    Position(1, 66),
   )),
   Eof(#(
-    Position(2, 20),
-    Position(2, 20),
+    Position(1, 67),
+    Position(1, 67),
   )),
-])
+]

@@ -1,4 +1,5 @@
 import lexer/position
+import parser/node
 
 pub type LexError {
   InvalidCharacter(val: String, pos: position.Position)
@@ -56,4 +57,43 @@ pub type ParseError {
 
 pub fn map_lex_to_parse_error(err: LexError) -> ParseError {
   LexError(err)
+}
+
+pub type SchemaValidationError {
+  MissingQueryType
+  NameCollision(name: String)
+  MissingType(name: String)
+  InvalidRootOperationType
+  InvalidArgument(error: ArgumentValidationError)
+  InvalidConstValueUsage(error: ConstValueValidationError)
+  InvalidScalarType
+  InvalidObjectType
+  InvalidInputType
+  InvalidInterfaceType
+  InvalidUnionType
+  InvalidEnumType
+  InvalidInterfaceImplementation
+  InvalidUnionMember
+  InvalidDirective(error: DirectiveValidationError)
+  InvalidInputField
+}
+
+pub type ConstValueValidationError {
+  InvalidEnumValue(value: String)
+  NullValueForNonNullType
+}
+
+pub type ArgumentValidationError {
+  UndefinedArgument(name: String)
+}
+
+pub type ScalarValidationError
+
+pub type DirectiveValidationError {
+  DuplicateNonRepeatable(directive_name: String)
+  DirectiveNotSupportedAtLocation(
+    directive_name: String,
+    location: node.DirectiveLocation,
+  )
+  DirectiveNotDefined(directive_name: String)
 }

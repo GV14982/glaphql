@@ -14,6 +14,13 @@ pub fn parse_executable(
   errors.ParseError,
 ) {
   case tokens {
+    [#(token_kind.OpenBrace, _), ..] -> {
+      use #(operation, tokens) <- result.try(operation_def.parse_operation_def(
+        tokens,
+        "query",
+      ))
+      Ok(#(node.OperationDefinitionNode(operation), tokens))
+    }
     [#(token_kind.Name(val), #(start, _)), ..tokens] -> {
       case val {
         "query" | "mutation" | "subscription" -> {
