@@ -9,6 +9,9 @@ import schema/merge
 import schema/type_system
 import schema/types
 import validate/schema as validate
+import validate/schema/directive
+import validate/schema/interface
+import validate/schema/union
 
 @internal
 pub fn from_types(
@@ -85,12 +88,11 @@ pub fn from_types(
           repeatable:,
           location: _,
         )) -> {
-          arguments
-          |> type_system.map_input_values
           option.Some(types.DirectiveDef(
             name: name,
             description: description |> option.map(fn(d) { d.value }),
-            args: dict.new(),
+            args: arguments
+              |> type_system.map_input_values,
             locations: locations |> list.map(fn(l) { l.value }),
             repeatable:,
           ))
@@ -116,21 +118,17 @@ pub fn from_types(
   // Check interface impls
   use _ <- result.try(
     objects
-    |> dict.to_list
-    |> list.map(fn(val) {
-      let #(_, obj) = val
-      case obj {
-        types.ObjectTypeDef(types.ExecutableObjectTypeDef(
-          description: _,
-          directives: _,
-          fields: _,
-          name: _,
-          interfaces: interface_names,
-        )) -> validate.check_interface_impls(interface_names, interfaces)
-        // We should never get here because `objects` should only have object type defs in it
-        _ -> Ok(Nil)
-      }
-    })
+    |> dict.merge(interfaces)
+    |> dict.values
+    |> list.map(interface.check_interface_implementations(_, interfaces))
+    |> result.all
+    |> result.map_error(errors.InvalidInterfaceImplementation),
+  )
+  use _ <- result.try(
+    unions
+    |> dict.values
+    |> list.filter_map(is_executable_union)
+    |> list.map(union.check_union_members(_, objects))
     |> result.all,
   )
   let type_map =
@@ -140,5 +138,120 @@ pub fn from_types(
     |> dict.merge(inputs)
     |> dict.merge(interfaces)
     |> dict.merge(unions)
+
+  let directive_validation_result =
+    type_map
+    |> dict.values
+    |> list.map(fn(type_def) {
+      case type_def {
+        types.EnumTypeDef(def) -> {
+          use _ <- result.try(directive.validate_directives(
+            def.directives,
+            node.TypeSystemDirectiveLocation(node.EnumDirective),
+            directive_defs,
+            type_map,
+          ))
+          def.members
+          |> list.map(fn(member) {
+            directive.validate_directives(
+              member.directives,
+              node.TypeSystemDirectiveLocation(node.EnumValueDirective),
+              directive_defs,
+              type_map,
+            )
+          })
+          |> result.all
+          |> result.map(fn(_) { Nil })
+        }
+        types.InputTypeDef(def) -> {
+          use _ <- result.try(directive.validate_directives(
+            def.directives,
+            node.TypeSystemDirectiveLocation(node.InputObjectDirective),
+            directive_defs,
+            type_map,
+          ))
+          def.fields
+          |> dict.values
+          |> list.map(fn(field) {
+            directive.validate_directives(
+              field.directives,
+              node.TypeSystemDirectiveLocation(
+                node.InputFieldDefinitionDirective,
+              ),
+              directive_defs,
+              type_map,
+            )
+          })
+          |> result.all
+          |> result.map(fn(_) { Nil })
+        }
+        types.InterfaceTypeDef(def) -> {
+          use _ <- result.try(directive.validate_directives(
+            def.directives,
+            node.TypeSystemDirectiveLocation(node.InterfaceDirective),
+            directive_defs,
+            type_map,
+          ))
+          def.fields
+          |> dict.values
+          |> list.map(fn(field) {
+            directive.validate_directives(
+              field.directives,
+              node.TypeSystemDirectiveLocation(node.FieldDefinitionDirective),
+              directive_defs,
+              type_map,
+            )
+          })
+          |> result.all
+          |> result.map(fn(_) { Nil })
+        }
+        types.ObjectTypeDef(def) -> {
+          use _ <- result.try(directive.validate_directives(
+            def.directives,
+            node.TypeSystemDirectiveLocation(node.ObjectDirective),
+            directive_defs,
+            type_map,
+          ))
+          def.fields
+          |> dict.values
+          |> list.map(fn(field) {
+            directive.validate_directives(
+              field.directives,
+              node.TypeSystemDirectiveLocation(node.FieldDefinitionDirective),
+              directive_defs,
+              type_map,
+            )
+          })
+          |> result.all
+          |> result.map(fn(_) { Nil })
+        }
+        types.ScalarTypeDef(def) ->
+          directive.validate_directives(
+            def.directives,
+            node.TypeSystemDirectiveLocation(node.ScalarDirective),
+            directive_defs,
+            type_map,
+          )
+        types.UnionTypeDef(def) ->
+          directive.validate_directives(
+            def.directives,
+            node.TypeSystemDirectiveLocation(node.UnionDirective),
+            directive_defs,
+            type_map,
+          )
+      }
+    })
+    |> result.all
+  use _ <- result.try(directive_validation_result)
+
   Ok(types.ExecutableSchema(..executable_schema, directive_defs:, type_map:))
+}
+
+fn is_executable_union(
+  type_def: types.ExecutableTypeDef,
+) -> Result(types.ExecutableUnionTypeDef, Nil) {
+  case type_def {
+    types.UnionTypeDef(def) -> Ok(def)
+    _ -> Error(Nil)
+  }
 }

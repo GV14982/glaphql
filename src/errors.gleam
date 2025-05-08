@@ -1,5 +1,6 @@
 import lexer/position
 import parser/node
+import schema/types
 
 pub type LexError {
   InvalidCharacter(val: String, pos: position.Position)
@@ -72,10 +73,30 @@ pub type SchemaValidationError {
   InvalidInterfaceType
   InvalidUnionType
   InvalidEnumType
-  InvalidInterfaceImplementation
-  InvalidUnionMember
+  InvalidInterfaceImplementation(error: InterfaceImplementationValidationError)
+  InvalidUnionMember(error: UnionMemberValidationError)
   InvalidDirective(error: DirectiveValidationError)
   InvalidInputField
+}
+
+pub type InterfaceImplementationValidationError {
+  NonUniqueInterfaceList(name: String)
+  UndefinedInterface(name: String)
+  ImplementsNonInterface(name: String)
+  CyclicInterfaceReference(name: String)
+  IncompleteInterfaceImplementation(name: String)
+  MissingFields(name: String, fields: List(String))
+  IncorrectFieldType(
+    name: String,
+    field: String,
+    expected_type: types.ExecutableType,
+    found_type: types.ExecutableType,
+  )
+}
+
+pub type UnionMemberValidationError {
+  UndefinedMember(name: String, member: String)
+  NonObjectMember(name: String, member: String)
 }
 
 pub type ConstValueValidationError {

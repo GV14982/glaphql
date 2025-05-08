@@ -1,27 +1,357 @@
 ---
-version: 1.2.5
+version: 1.2.6
 title: test schema parsed
 file: ./test/parser/schema/document_test.gleam
 test_name: parse_schema_document_test
 ---
 SchemaDocument([
+  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
+    None,
+    NameNode(
+      "oneOf",
+      #(
+        Position(12, 215),
+        Position(16, 215),
+      ),
+    ),
+    #(
+      Position(1, 215),
+      Position(32, 215),
+    ),
+    None,
+    False,
+    [
+      DirectiveLocationNode(
+        TypeSystemDirectiveLocation(InputObjectDirective),
+        #(
+          Position(21, 215),
+          Position(32, 215),
+        ),
+      ),
+    ],
+  ))),
+  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
+    None,
+    NameNode(
+      "onEnumValue",
+      #(
+        Position(12, 214),
+        Position(22, 214),
+      ),
+    ),
+    #(
+      Position(1, 214),
+      Position(36, 214),
+    ),
+    None,
+    False,
+    [
+      DirectiveLocationNode(
+        TypeSystemDirectiveLocation(EnumValueDirective),
+        #(
+          Position(27, 214),
+          Position(36, 214),
+        ),
+      ),
+    ],
+  ))),
+  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
+    None,
+    NameNode(
+      "onEnum",
+      #(
+        Position(12, 213),
+        Position(17, 213),
+      ),
+    ),
+    #(
+      Position(1, 213),
+      Position(25, 213),
+    ),
+    None,
+    False,
+    [
+      DirectiveLocationNode(
+        TypeSystemDirectiveLocation(EnumDirective),
+        #(
+          Position(22, 213),
+          Position(25, 213),
+        ),
+      ),
+    ],
+  ))),
+  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
+    None,
+    NameNode(
+      "onArgumentDefinition",
+      #(
+        Position(12, 212),
+        Position(31, 212),
+      ),
+    ),
+    #(
+      Position(1, 212),
+      Position(54, 212),
+    ),
+    None,
+    False,
+    [
+      DirectiveLocationNode(
+        TypeSystemDirectiveLocation(ArgumentDefinitionDirective),
+        #(
+          Position(36, 212),
+          Position(54, 212),
+        ),
+      ),
+    ],
+  ))),
+  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
+    None,
+    NameNode(
+      "onInputFieldDefinition",
+      #(
+        Position(12, 211),
+        Position(33, 211),
+      ),
+    ),
+    #(
+      Position(1, 211),
+      Position(59, 211),
+    ),
+    None,
+    False,
+    [
+      DirectiveLocationNode(
+        TypeSystemDirectiveLocation(InputFieldDefinitionDirective),
+        #(
+          Position(38, 211),
+          Position(59, 211),
+        ),
+      ),
+    ],
+  ))),
+  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
+    None,
+    NameNode(
+      "onField",
+      #(
+        Position(12, 210),
+        Position(18, 210),
+      ),
+    ),
+    #(
+      Position(1, 210),
+      Position(38, 210),
+    ),
+    None,
+    False,
+    [
+      DirectiveLocationNode(
+        TypeSystemDirectiveLocation(FieldDefinitionDirective),
+        #(
+          Position(23, 210),
+          Position(38, 210),
+        ),
+      ),
+    ],
+  ))),
+  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
+    None,
+    NameNode(
+      "onInputObject",
+      #(
+        Position(12, 209),
+        Position(24, 209),
+      ),
+    ),
+    #(
+      Position(1, 209),
+      Position(40, 209),
+    ),
+    None,
+    False,
+    [
+      DirectiveLocationNode(
+        TypeSystemDirectiveLocation(InputObjectDirective),
+        #(
+          Position(29, 209),
+          Position(40, 209),
+        ),
+      ),
+    ],
+  ))),
+  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
+    None,
+    NameNode(
+      "onObject",
+      #(
+        Position(12, 208),
+        Position(19, 208),
+      ),
+    ),
+    #(
+      Position(1, 208),
+      Position(43, 208),
+    ),
+    Some([
+      InputValueDefinitionNode(
+        None,
+        NameNode(
+          "arg",
+          #(
+            Position(21, 208),
+            Position(23, 208),
+          ),
+        ),
+        #(
+          Position(21, 208),
+          Position(33, 208),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "String",
+            #(
+              Position(26, 208),
+              Position(31, 208),
+            ),
+          )),
+          #(
+            Position(26, 208),
+            Position(32, 208),
+          ),
+        ),
+        None,
+      ),
+    ]),
+    False,
+    [
+      DirectiveLocationNode(
+        TypeSystemDirectiveLocation(ObjectDirective),
+        #(
+          Position(38, 208),
+          Position(43, 208),
+        ),
+      ),
+    ],
+  ))),
+  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
+    None,
+    NameNode(
+      "onType",
+      #(
+        Position(12, 207),
+        Position(17, 207),
+      ),
+    ),
+    #(
+      Position(1, 207),
+      Position(27, 207),
+    ),
+    None,
+    False,
+    [
+      DirectiveLocationNode(
+        TypeSystemDirectiveLocation(ObjectDirective),
+        #(
+          Position(22, 207),
+          Position(27, 207),
+        ),
+      ),
+    ],
+  ))),
+  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
+    None,
+    NameNode(
+      "onInterface",
+      #(
+        Position(12, 206),
+        Position(22, 206),
+      ),
+    ),
+    #(
+      Position(1, 206),
+      Position(35, 206),
+    ),
+    None,
+    False,
+    [
+      DirectiveLocationNode(
+        TypeSystemDirectiveLocation(InterfaceDirective),
+        #(
+          Position(27, 206),
+          Position(35, 206),
+        ),
+      ),
+    ],
+  ))),
+  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
+    None,
+    NameNode(
+      "onScalar",
+      #(
+        Position(12, 205),
+        Position(19, 205),
+      ),
+    ),
+    #(
+      Position(1, 205),
+      Position(29, 205),
+    ),
+    None,
+    False,
+    [
+      DirectiveLocationNode(
+        TypeSystemDirectiveLocation(ScalarDirective),
+        #(
+          Position(24, 205),
+          Position(29, 205),
+        ),
+      ),
+    ],
+  ))),
+  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
+    None,
+    NameNode(
+      "onUnion",
+      #(
+        Position(12, 204),
+        Position(18, 204),
+      ),
+    ),
+    #(
+      Position(1, 204),
+      Position(27, 204),
+    ),
+    None,
+    False,
+    [
+      DirectiveLocationNode(
+        TypeSystemDirectiveLocation(UnionDirective),
+        #(
+          Position(23, 204),
+          Position(27, 204),
+        ),
+      ),
+    ],
+  ))),
   TypeSystemExtensionNode(SchemaExtensionNode(SchemaExtension(
     #(
-      Position(1, 166),
-      Position(1, 168),
+      Position(1, 200),
+      Position(1, 202),
     ),
     Some([
       ConstDirectiveNode(
         NameNode(
           "onSchema",
           #(
-            Position(16, 166),
-            Position(23, 166),
+            Position(16, 200),
+            Position(23, 200),
           ),
         ),
         None,
         #(
-          Position(15, 166),
+          Position(15, 200),
           Position(1, 1),
         ),
       ),
@@ -29,15 +359,15 @@ SchemaDocument([
     Some([
       RootOperationTypeDefinition(
         #(
-          Position(3, 167),
-          Position(32, 167),
+          Position(3, 201),
+          Position(32, 201),
         ),
         Subscription,
         NamedTypeNode(NameNode(
           "SubscriptionType",
           #(
-            Position(17, 167),
-            Position(32, 167),
+            Position(17, 201),
+            Position(32, 201),
           ),
         )),
       ),
@@ -45,21 +375,21 @@ SchemaDocument([
   ))),
   TypeSystemExtensionNode(SchemaExtensionNode(SchemaExtension(
     #(
-      Position(1, 164),
-      Position(6, 166),
+      Position(1, 198),
+      Position(6, 200),
     ),
     Some([
       ConstDirectiveNode(
         NameNode(
           "onSchema",
           #(
-            Position(16, 164),
-            Position(23, 164),
+            Position(16, 198),
+            Position(23, 198),
           ),
         ),
         None,
         #(
-          Position(15, 164),
+          Position(15, 198),
           Position(1, 1),
         ),
       ),
@@ -71,13 +401,13 @@ SchemaDocument([
     NameNode(
       "onSchema",
       #(
-        Position(12, 162),
-        Position(19, 162),
+        Position(12, 196),
+        Position(19, 196),
       ),
     ),
     #(
-      Position(1, 162),
-      Position(29, 162),
+      Position(1, 196),
+      Position(29, 196),
     ),
     None,
     False,
@@ -85,8 +415,8 @@ SchemaDocument([
       DirectiveLocationNode(
         TypeSystemDirectiveLocation(SchemaDirective),
         #(
-          Position(24, 162),
-          Position(29, 162),
+          Position(24, 196),
+          Position(29, 196),
         ),
       ),
     ],
@@ -96,13 +426,13 @@ SchemaDocument([
     NameNode(
       "myRepeatableDir",
       #(
-        Position(12, 158),
-        Position(26, 158),
+        Position(12, 192),
+        Position(26, 192),
       ),
     ),
     #(
-      Position(1, 158),
-      Position(13, 160),
+      Position(1, 192),
+      Position(13, 194),
     ),
     Some([
       InputValueDefinitionNode(
@@ -110,26 +440,26 @@ SchemaDocument([
         NameNode(
           "name",
           #(
-            Position(28, 158),
-            Position(31, 158),
+            Position(28, 192),
+            Position(31, 192),
           ),
         ),
         #(
-          Position(28, 158),
-          Position(41, 158),
+          Position(28, 192),
+          Position(41, 192),
         ),
         None,
         NonNullTypeNode(
           NamedTypeNode(NameNode(
             "String",
             #(
-              Position(34, 158),
-              Position(39, 158),
+              Position(34, 192),
+              Position(39, 192),
             ),
           )),
           #(
-            Position(34, 158),
-            Position(40, 158),
+            Position(34, 192),
+            Position(40, 192),
           ),
         ),
         None,
@@ -140,15 +470,15 @@ SchemaDocument([
       DirectiveLocationNode(
         TypeSystemDirectiveLocation(ObjectDirective),
         #(
-          Position(5, 159),
-          Position(10, 159),
+          Position(5, 193),
+          Position(10, 193),
         ),
       ),
       DirectiveLocationNode(
         TypeSystemDirectiveLocation(InterfaceDirective),
         #(
-          Position(5, 160),
-          Position(13, 160),
+          Position(5, 194),
+          Position(13, 194),
         ),
       ),
     ],
@@ -158,13 +488,13 @@ SchemaDocument([
     NameNode(
       "include2",
       #(
-        Position(12, 153),
-        Position(19, 153),
+        Position(12, 187),
+        Position(19, 187),
       ),
     ),
     #(
-      Position(1, 153),
-      Position(19, 156),
+      Position(1, 187),
+      Position(19, 190),
     ),
     Some([
       InputValueDefinitionNode(
@@ -172,26 +502,26 @@ SchemaDocument([
         NameNode(
           "if",
           #(
-            Position(21, 153),
-            Position(22, 153),
+            Position(21, 187),
+            Position(22, 187),
           ),
         ),
         #(
-          Position(21, 153),
-          Position(33, 153),
+          Position(21, 187),
+          Position(33, 187),
         ),
         None,
         NonNullTypeNode(
           NamedTypeNode(NameNode(
             "Boolean",
             #(
-              Position(25, 153),
-              Position(31, 153),
+              Position(25, 187),
+              Position(31, 187),
             ),
           )),
           #(
-            Position(25, 153),
-            Position(32, 153),
+            Position(25, 187),
+            Position(32, 187),
           ),
         ),
         None,
@@ -202,22 +532,22 @@ SchemaDocument([
       DirectiveLocationNode(
         ExecutableDirectiveLocation(FieldDirective),
         #(
-          Position(5, 154),
-          Position(9, 154),
+          Position(5, 188),
+          Position(9, 188),
         ),
       ),
       DirectiveLocationNode(
         ExecutableDirectiveLocation(FragmentSpreadDirective),
         #(
-          Position(5, 155),
-          Position(19, 155),
+          Position(5, 189),
+          Position(19, 189),
         ),
       ),
       DirectiveLocationNode(
         ExecutableDirectiveLocation(InlineFragmentDirective),
         #(
-          Position(5, 156),
-          Position(19, 156),
+          Position(5, 190),
+          Position(19, 190),
         ),
       ),
     ],
@@ -227,13 +557,13 @@ SchemaDocument([
     NameNode(
       "include",
       #(
-        Position(12, 148),
-        Position(18, 148),
+        Position(12, 182),
+        Position(18, 182),
       ),
     ),
     #(
-      Position(1, 148),
-      Position(20, 151),
+      Position(1, 182),
+      Position(20, 185),
     ),
     Some([
       InputValueDefinitionNode(
@@ -241,26 +571,26 @@ SchemaDocument([
         NameNode(
           "if",
           #(
-            Position(20, 148),
-            Position(21, 148),
+            Position(20, 182),
+            Position(21, 182),
           ),
         ),
         #(
-          Position(20, 148),
-          Position(32, 148),
+          Position(20, 182),
+          Position(32, 182),
         ),
         None,
         NonNullTypeNode(
           NamedTypeNode(NameNode(
             "Boolean",
             #(
-              Position(24, 148),
-              Position(30, 148),
+              Position(24, 182),
+              Position(30, 182),
             ),
           )),
           #(
-            Position(24, 148),
-            Position(31, 148),
+            Position(24, 182),
+            Position(31, 182),
           ),
         ),
         None,
@@ -271,22 +601,22 @@ SchemaDocument([
       DirectiveLocationNode(
         ExecutableDirectiveLocation(FieldDirective),
         #(
-          Position(6, 149),
-          Position(10, 149),
+          Position(6, 183),
+          Position(10, 183),
         ),
       ),
       DirectiveLocationNode(
         ExecutableDirectiveLocation(FragmentSpreadDirective),
         #(
-          Position(6, 150),
-          Position(20, 150),
+          Position(6, 184),
+          Position(20, 184),
         ),
       ),
       DirectiveLocationNode(
         ExecutableDirectiveLocation(InlineFragmentDirective),
         #(
-          Position(6, 151),
-          Position(20, 151),
+          Position(6, 185),
+          Position(20, 185),
         ),
       ),
     ],
@@ -297,53 +627,53 @@ SchemaDocument([
 This is a description of the \`@skip\` directive
 ",
       #(
-        Position(1, 140),
-        Position(4, 142),
+        Position(1, 174),
+        Position(4, 176),
       ),
     )),
     NameNode(
       "skip",
       #(
-        Position(12, 143),
-        Position(15, 143),
+        Position(12, 177),
+        Position(15, 177),
       ),
     ),
     #(
-      Position(1, 143),
-      Position(46, 146),
+      Position(1, 177),
+      Position(46, 180),
     ),
     Some([
       InputValueDefinitionNode(
         Some(DescriptionNode(
           "This is a description of the \`if\` argument",
           #(
-            Position(3, 144),
-            Position(50, 144),
+            Position(3, 178),
+            Position(50, 178),
           ),
         )),
         NameNode(
           "if",
           #(
-            Position(3, 145),
-            Position(4, 145),
+            Position(3, 179),
+            Position(4, 179),
           ),
         ),
         #(
-          Position(3, 145),
-          Position(1, 146),
+          Position(3, 179),
+          Position(1, 180),
         ),
         Some([
           ConstDirectiveNode(
             NameNode(
               "onArgumentDefinition",
               #(
-                Position(17, 145),
-                Position(36, 145),
+                Position(17, 179),
+                Position(36, 179),
               ),
             ),
             None,
             #(
-              Position(16, 145),
+              Position(16, 179),
               Position(1, 1),
             ),
           ),
@@ -352,13 +682,13 @@ This is a description of the \`@skip\` directive
           NamedTypeNode(NameNode(
             "Boolean",
             #(
-              Position(7, 145),
-              Position(13, 145),
+              Position(7, 179),
+              Position(13, 179),
             ),
           )),
           #(
-            Position(7, 145),
-            Position(14, 145),
+            Position(7, 179),
+            Position(14, 179),
           ),
         ),
         None,
@@ -369,22 +699,22 @@ This is a description of the \`@skip\` directive
       DirectiveLocationNode(
         ExecutableDirectiveLocation(FieldDirective),
         #(
-          Position(6, 146),
-          Position(10, 146),
+          Position(6, 180),
+          Position(10, 180),
         ),
       ),
       DirectiveLocationNode(
         ExecutableDirectiveLocation(FragmentSpreadDirective),
         #(
-          Position(14, 146),
-          Position(28, 146),
+          Position(14, 180),
+          Position(28, 180),
         ),
       ),
       DirectiveLocationNode(
         ExecutableDirectiveLocation(InlineFragmentDirective),
         #(
-          Position(32, 146),
-          Position(46, 146),
+          Position(32, 180),
+          Position(46, 180),
         ),
       ),
     ],
@@ -393,23 +723,23 @@ This is a description of the \`@skip\` directive
     NameNode(
       "InputType",
       #(
-        Position(14, 138),
-        Position(22, 138),
+        Position(14, 172),
+        Position(22, 172),
       ),
     ),
-    #(Position(1, 138), Position(1, 1)),
+    #(Position(1, 172), Position(1, 1)),
     [
       ConstDirectiveNode(
         NameNode(
           "onInputObject",
           #(
-            Position(25, 138),
-            Position(37, 138),
+            Position(25, 172),
+            Position(37, 172),
           ),
         ),
         None,
         #(
-          Position(24, 138),
+          Position(24, 172),
           Position(1, 1),
         ),
       ),
@@ -419,13 +749,13 @@ This is a description of the \`@skip\` directive
     NameNode(
       "InputType",
       #(
-        Position(14, 134),
-        Position(22, 134),
+        Position(14, 168),
+        Position(22, 168),
       ),
     ),
     #(
-      Position(1, 134),
-      Position(1, 136),
+      Position(1, 168),
+      Position(1, 170),
     ),
     None,
     [
@@ -434,26 +764,26 @@ This is a description of the \`@skip\` directive
         NameNode(
           "other",
           #(
-            Position(3, 135),
-            Position(7, 135),
+            Position(3, 169),
+            Position(7, 169),
           ),
         ),
         #(
-          Position(3, 135),
-          Position(1, 136),
+          Position(3, 169),
+          Position(1, 170),
         ),
         Some([
           ConstDirectiveNode(
             NameNode(
               "onInputFieldDefinition",
               #(
-                Position(26, 135),
-                Position(47, 135),
+                Position(26, 169),
+                Position(47, 169),
               ),
             ),
             None,
             #(
-              Position(25, 135),
+              Position(25, 169),
               Position(1, 1),
             ),
           ),
@@ -462,19 +792,19 @@ This is a description of the \`@skip\` directive
           NamedTypeNode(NameNode(
             "Float",
             #(
-              Position(10, 135),
-              Position(14, 135),
+              Position(10, 169),
+              Position(14, 169),
             ),
           )),
           #(
-            Position(10, 135),
-            Position(14, 135),
+            Position(10, 169),
+            Position(14, 169),
           ),
         ),
         Some(ConstValueNode(FloatValueNode(
           #(
-            Position(18, 135),
-            Position(23, 135),
+            Position(18, 169),
+            Position(23, 169),
           ),
           1.23e4,
         ))),
@@ -486,21 +816,21 @@ This is a description of the \`@skip\` directive
     NameNode(
       "UndefinedInput",
       #(
-        Position(7, 132),
-        Position(20, 132),
+        Position(7, 166),
+        Position(20, 166),
       ),
     ),
     None,
     None,
-    #(Position(1, 132), Position(1, 1)),
+    #(Position(1, 166), Position(1, 1)),
   )))),
   TypeSystemDefinitionNode(TypeDefinitionNode(InputTypeDefinitionNode(InputTypeDefinition(
     None,
     NameNode(
       "AnnotatedInput",
       #(
-        Position(7, 128),
-        Position(20, 128),
+        Position(7, 162),
+        Position(20, 162),
       ),
     ),
     Some([
@@ -508,13 +838,13 @@ This is a description of the \`@skip\` directive
         NameNode(
           "onInputObject",
           #(
-            Position(23, 128),
-            Position(35, 128),
+            Position(23, 162),
+            Position(35, 162),
           ),
         ),
         None,
         #(
-          Position(22, 128),
+          Position(22, 162),
           Position(1, 1),
         ),
       ),
@@ -525,26 +855,26 @@ This is a description of the \`@skip\` directive
         NameNode(
           "annotatedField",
           #(
-            Position(3, 129),
-            Position(16, 129),
+            Position(3, 163),
+            Position(16, 163),
           ),
         ),
         #(
-          Position(3, 129),
-          Position(1, 130),
+          Position(3, 163),
+          Position(1, 164),
         ),
         Some([
           ConstDirectiveNode(
             NameNode(
               "onInputFieldDefinition",
               #(
-                Position(25, 129),
-                Position(46, 129),
+                Position(25, 163),
+                Position(46, 163),
               ),
             ),
             None,
             #(
-              Position(24, 129),
+              Position(24, 163),
               Position(1, 1),
             ),
           ),
@@ -553,21 +883,21 @@ This is a description of the \`@skip\` directive
           NamedTypeNode(NameNode(
             "Type",
             #(
-              Position(19, 129),
-              Position(22, 129),
+              Position(19, 163),
+              Position(22, 163),
             ),
           )),
           #(
-            Position(19, 129),
-            Position(22, 129),
+            Position(19, 163),
+            Position(22, 163),
           ),
         ),
         None,
       ),
     ]),
     #(
-      Position(1, 128),
-      Position(1, 130),
+      Position(1, 162),
+      Position(1, 164),
     ),
   )))),
   TypeSystemDefinitionNode(TypeDefinitionNode(InputTypeDefinitionNode(InputTypeDefinition(
@@ -575,8 +905,8 @@ This is a description of the \`@skip\` directive
     NameNode(
       "OneOfInputType",
       #(
-        Position(7, 123),
-        Position(20, 123),
+        Position(7, 157),
+        Position(20, 157),
       ),
     ),
     Some([
@@ -584,13 +914,13 @@ This is a description of the \`@skip\` directive
         NameNode(
           "oneOf",
           #(
-            Position(23, 123),
-            Position(27, 123),
+            Position(23, 157),
+            Position(27, 157),
           ),
         ),
         None,
         #(
-          Position(22, 123),
+          Position(22, 157),
           Position(1, 1),
         ),
       ),
@@ -601,26 +931,26 @@ This is a description of the \`@skip\` directive
         NameNode(
           "string",
           #(
-            Position(3, 124),
-            Position(8, 124),
+            Position(3, 158),
+            Position(8, 158),
           ),
         ),
         #(
-          Position(3, 124),
-          Position(5, 125),
+          Position(3, 158),
+          Position(5, 159),
         ),
         None,
         NullableTypeNode(
           NamedTypeNode(NameNode(
             "String",
             #(
-              Position(11, 124),
-              Position(16, 124),
+              Position(11, 158),
+              Position(16, 158),
             ),
           )),
           #(
-            Position(11, 124),
-            Position(16, 124),
+            Position(11, 158),
+            Position(16, 158),
           ),
         ),
         None,
@@ -630,34 +960,34 @@ This is a description of the \`@skip\` directive
         NameNode(
           "int",
           #(
-            Position(3, 125),
-            Position(5, 125),
+            Position(3, 159),
+            Position(5, 159),
           ),
         ),
         #(
-          Position(3, 125),
-          Position(1, 126),
+          Position(3, 159),
+          Position(1, 160),
         ),
         None,
         NullableTypeNode(
           NamedTypeNode(NameNode(
             "Int",
             #(
-              Position(8, 125),
-              Position(10, 125),
+              Position(8, 159),
+              Position(10, 159),
             ),
           )),
           #(
-            Position(8, 125),
-            Position(10, 125),
+            Position(8, 159),
+            Position(10, 159),
           ),
         ),
         None,
       ),
     ]),
     #(
-      Position(1, 123),
-      Position(1, 126),
+      Position(1, 157),
+      Position(1, 160),
     ),
   )))),
   TypeSystemDefinitionNode(TypeDefinitionNode(InputTypeDefinitionNode(InputTypeDefinition(
@@ -665,8 +995,8 @@ This is a description of the \`@skip\` directive
     NameNode(
       "InputType",
       #(
-        Position(7, 118),
-        Position(15, 118),
+        Position(7, 152),
+        Position(15, 152),
       ),
     ),
     None,
@@ -676,26 +1006,26 @@ This is a description of the \`@skip\` directive
         NameNode(
           "key",
           #(
-            Position(3, 119),
-            Position(5, 119),
+            Position(3, 153),
+            Position(5, 153),
           ),
         ),
         #(
-          Position(3, 119),
-          Position(8, 120),
+          Position(3, 153),
+          Position(8, 154),
         ),
         None,
         NonNullTypeNode(
           NamedTypeNode(NameNode(
             "String",
             #(
-              Position(8, 119),
-              Position(13, 119),
+              Position(8, 153),
+              Position(13, 153),
             ),
           )),
           #(
-            Position(8, 119),
-            Position(14, 119),
+            Position(8, 153),
+            Position(14, 153),
           ),
         ),
         None,
@@ -705,63 +1035,63 @@ This is a description of the \`@skip\` directive
         NameNode(
           "answer",
           #(
-            Position(3, 120),
-            Position(8, 120),
+            Position(3, 154),
+            Position(8, 154),
           ),
         ),
         #(
-          Position(3, 120),
-          Position(1, 121),
+          Position(3, 154),
+          Position(1, 155),
         ),
         None,
         NullableTypeNode(
           NamedTypeNode(NameNode(
             "Int",
             #(
-              Position(11, 120),
-              Position(13, 120),
+              Position(11, 154),
+              Position(13, 154),
             ),
           )),
           #(
-            Position(11, 120),
-            Position(13, 120),
+            Position(11, 154),
+            Position(13, 154),
           ),
         ),
         Some(ConstValueNode(IntValueNode(
           #(
-            Position(17, 120),
-            Position(18, 120),
+            Position(17, 154),
+            Position(18, 154),
           ),
           42,
         ))),
       ),
     ]),
     #(
-      Position(1, 118),
-      Position(1, 121),
+      Position(1, 152),
+      Position(1, 155),
     ),
   )))),
   TypeSystemExtensionNode(TypeExtensionNode(EnumTypeExtensionNode(EnumTypeExtensionWithoutMembers(
     NameNode(
       "Site",
       #(
-        Position(13, 116),
-        Position(16, 116),
+        Position(13, 150),
+        Position(16, 150),
       ),
     ),
-    #(Position(1, 116), Position(1, 1)),
+    #(Position(1, 150), Position(1, 1)),
     [
       ConstDirectiveNode(
         NameNode(
           "onEnum",
           #(
-            Position(19, 116),
-            Position(24, 116),
+            Position(19, 150),
+            Position(24, 150),
           ),
         ),
         None,
         #(
-          Position(18, 116),
+          Position(18, 150),
           Position(1, 1),
         ),
       ),
@@ -771,13 +1101,13 @@ This is a description of the \`@skip\` directive
     NameNode(
       "Site",
       #(
-        Position(13, 112),
-        Position(16, 112),
+        Position(13, 146),
+        Position(16, 146),
       ),
     ),
     #(
-      Position(1, 112),
-      Position(1, 114),
+      Position(1, 146),
+      Position(1, 148),
     ),
     None,
     [
@@ -786,13 +1116,13 @@ This is a description of the \`@skip\` directive
         NameNode(
           "VR",
           #(
-            Position(3, 113),
-            Position(4, 113),
+            Position(3, 147),
+            Position(4, 147),
           ),
         ),
         #(
-          Position(3, 113),
-          Position(1, 114),
+          Position(3, 147),
+          Position(1, 148),
         ),
         None,
       ),
@@ -803,11 +1133,11 @@ This is a description of the \`@skip\` directive
     NameNode(
       "UndefinedEnum",
       #(
-        Position(6, 110),
-        Position(18, 110),
+        Position(6, 144),
+        Position(18, 144),
       ),
     ),
-    #(Position(1, 110), Position(1, 1)),
+    #(Position(1, 144), Position(1, 1)),
     None,
     None,
   )))),
@@ -816,26 +1146,26 @@ This is a description of the \`@skip\` directive
     NameNode(
       "AnnotatedEnum",
       #(
-        Position(6, 105),
-        Position(18, 105),
+        Position(6, 139),
+        Position(18, 139),
       ),
     ),
     #(
-      Position(1, 105),
-      Position(1, 108),
+      Position(1, 139),
+      Position(1, 142),
     ),
     Some([
       ConstDirectiveNode(
         NameNode(
           "onEnum",
           #(
-            Position(21, 105),
-            Position(26, 105),
+            Position(21, 139),
+            Position(26, 139),
           ),
         ),
         None,
         #(
-          Position(20, 105),
+          Position(20, 139),
           Position(1, 1),
         ),
       ),
@@ -846,26 +1176,26 @@ This is a description of the \`@skip\` directive
         NameNode(
           "ANNOTATED_VALUE",
           #(
-            Position(3, 106),
-            Position(17, 106),
+            Position(3, 140),
+            Position(17, 140),
           ),
         ),
         #(
-          Position(3, 106),
-          Position(13, 107),
+          Position(3, 140),
+          Position(13, 141),
         ),
         Some([
           ConstDirectiveNode(
             NameNode(
               "onEnumValue",
               #(
-                Position(20, 106),
-                Position(30, 106),
+                Position(20, 140),
+                Position(30, 140),
               ),
             ),
             None,
             #(
-              Position(19, 106),
+              Position(19, 140),
               Position(1, 1),
             ),
           ),
@@ -876,13 +1206,13 @@ This is a description of the \`@skip\` directive
         NameNode(
           "OTHER_VALUE",
           #(
-            Position(3, 107),
-            Position(13, 107),
+            Position(3, 141),
+            Position(13, 141),
           ),
         ),
         #(
-          Position(3, 107),
-          Position(1, 108),
+          Position(3, 141),
+          Position(1, 142),
         ),
         None,
       ),
@@ -893,11 +1223,14 @@ This is a description of the \`@skip\` directive
     NameNode(
       "Site",
       #(
-        Position(6, 92),
-        Position(9, 92),
+        Position(6, 126),
+        Position(9, 126),
       ),
     ),
-    #(Position(1, 92), Position(1, 103)),
+    #(
+      Position(1, 126),
+      Position(1, 137),
+    ),
     None,
     Some([
       EnumValueDefinitionNode(
@@ -906,20 +1239,20 @@ This is a description of the \`@skip\` directive
   This is a description of the \`DESKTOP\` value
   ",
           #(
-            Position(3, 93),
-            Position(6, 95),
+            Position(3, 127),
+            Position(6, 129),
           ),
         )),
         NameNode(
           "DESKTOP",
           #(
-            Position(3, 96),
-            Position(9, 96),
+            Position(3, 130),
+            Position(9, 130),
           ),
         ),
         #(
-          Position(3, 96),
-          Position(51, 98),
+          Position(3, 130),
+          Position(51, 132),
         ),
         None,
       ),
@@ -927,20 +1260,20 @@ This is a description of the \`@skip\` directive
         Some(DescriptionNode(
           "This is a description of the \`MOBILE\` value",
           #(
-            Position(3, 98),
-            Position(51, 98),
+            Position(3, 132),
+            Position(51, 132),
           ),
         )),
         NameNode(
           "MOBILE",
           #(
-            Position(3, 99),
-            Position(8, 99),
+            Position(3, 133),
+            Position(8, 133),
           ),
         ),
         #(
-          Position(3, 99),
-          Position(46, 101),
+          Position(3, 133),
+          Position(46, 135),
         ),
         None,
       ),
@@ -948,20 +1281,20 @@ This is a description of the \`@skip\` directive
         Some(DescriptionNode(
           "This is a description of the \`WEB\` value",
           #(
-            Position(3, 101),
-            Position(46, 101),
+            Position(3, 135),
+            Position(46, 135),
           ),
         )),
         NameNode(
           "WEB",
           #(
-            Position(3, 102),
-            Position(5, 102),
+            Position(3, 136),
+            Position(5, 136),
           ),
         ),
         #(
-          Position(3, 102),
-          Position(1, 103),
+          Position(3, 136),
+          Position(1, 137),
         ),
         None,
       ),
@@ -971,23 +1304,26 @@ This is a description of the \`@skip\` directive
     NameNode(
       "CustomScalar",
       #(
-        Position(15, 90),
-        Position(26, 90),
+        Position(15, 124),
+        Position(26, 124),
       ),
     ),
-    #(Position(1, 90), Position(4, 92)),
+    #(
+      Position(1, 124),
+      Position(4, 126),
+    ),
     [
       ConstDirectiveNode(
         NameNode(
           "onScalar",
           #(
-            Position(29, 90),
-            Position(36, 90),
+            Position(29, 124),
+            Position(36, 124),
           ),
         ),
         None,
         #(
-          Position(28, 90),
+          Position(28, 124),
           Position(1, 1),
         ),
       ),
@@ -998,23 +1334,26 @@ This is a description of the \`@skip\` directive
     NameNode(
       "AnnotatedScalar",
       #(
-        Position(8, 88),
-        Position(22, 88),
+        Position(8, 122),
+        Position(22, 122),
       ),
     ),
-    #(Position(1, 88), Position(6, 90)),
+    #(
+      Position(1, 122),
+      Position(6, 124),
+    ),
     Some([
       ConstDirectiveNode(
         NameNode(
           "onScalar",
           #(
-            Position(25, 88),
-            Position(32, 88),
+            Position(25, 122),
+            Position(32, 122),
           ),
         ),
         None,
         #(
-          Position(24, 88),
+          Position(24, 122),
           Position(1, 1),
         ),
       ),
@@ -1025,34 +1364,40 @@ This is a description of the \`@skip\` directive
     NameNode(
       "CustomScalar",
       #(
-        Position(8, 86),
-        Position(19, 86),
+        Position(8, 120),
+        Position(19, 120),
       ),
     ),
-    #(Position(1, 86), Position(6, 88)),
+    #(
+      Position(1, 120),
+      Position(6, 122),
+    ),
     None,
   )))),
   TypeSystemExtensionNode(TypeExtensionNode(UnionTypeExtensionNode(UnionTypeExtensionWithDirectives(
     NameNode(
       "Feed",
       #(
-        Position(14, 84),
-        Position(17, 84),
+        Position(14, 118),
+        Position(17, 118),
       ),
     ),
-    #(Position(1, 84), Position(14, 84)),
+    #(
+      Position(1, 118),
+      Position(14, 118),
+    ),
     [
       ConstDirectiveNode(
         NameNode(
           "onUnion",
           #(
-            Position(20, 84),
-            Position(26, 84),
+            Position(20, 118),
+            Position(26, 118),
           ),
         ),
         None,
         #(
-          Position(19, 84),
+          Position(19, 118),
           Position(1, 1),
         ),
       ),
@@ -1062,39 +1407,168 @@ This is a description of the \`@skip\` directive
     NameNode(
       "Feed",
       #(
-        Position(14, 82),
-        Position(17, 82),
+        Position(14, 116),
+        Position(17, 116),
       ),
     ),
-    #(Position(1, 82), Position(33, 82)),
+    #(
+      Position(1, 116),
+      Position(33, 116),
+    ),
     None,
     [
       NamedTypeNode(NameNode(
         "Photo",
         #(
-          Position(21, 82),
-          Position(25, 82),
+          Position(21, 116),
+          Position(25, 116),
         ),
       )),
       NamedTypeNode(NameNode(
         "Video",
         #(
-          Position(29, 82),
-          Position(33, 82),
+          Position(29, 116),
+          Position(33, 116),
         ),
       )),
     ],
+  )))),
+  TypeSystemDefinitionNode(TypeDefinitionNode(ObjectTypeDefinitionNode(ObjectTypeDefinition(
+    None,
+    NameNode(
+      "Video",
+      #(
+        Position(6, 111),
+        Position(10, 111),
+      ),
+    ),
+    #(
+      Position(1, 111),
+      Position(1, 114),
+    ),
+    None,
+    None,
+    Some([
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "url",
+          #(
+            Position(3, 112),
+            Position(5, 112),
+          ),
+        ),
+        #(
+          Position(3, 112),
+          Position(10, 113),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "String",
+            #(
+              Position(8, 112),
+              Position(13, 112),
+            ),
+          )),
+          #(
+            Position(8, 112),
+            Position(14, 112),
+          ),
+        ),
+        None,
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "duration",
+          #(
+            Position(3, 113),
+            Position(10, 113),
+          ),
+        ),
+        #(
+          Position(3, 113),
+          Position(1, 114),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "Float",
+            #(
+              Position(13, 113),
+              Position(17, 113),
+            ),
+          )),
+          #(
+            Position(13, 113),
+            Position(18, 113),
+          ),
+        ),
+        None,
+      ),
+    ]),
+  )))),
+  TypeSystemDefinitionNode(TypeDefinitionNode(ObjectTypeDefinitionNode(ObjectTypeDefinition(
+    None,
+    NameNode(
+      "Photo",
+      #(
+        Position(6, 107),
+        Position(10, 107),
+      ),
+    ),
+    #(
+      Position(1, 107),
+      Position(1, 109),
+    ),
+    None,
+    None,
+    Some([
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "url",
+          #(
+            Position(3, 108),
+            Position(5, 108),
+          ),
+        ),
+        #(
+          Position(3, 108),
+          Position(1, 109),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "String",
+            #(
+              Position(8, 108),
+              Position(13, 108),
+            ),
+          )),
+          #(
+            Position(8, 108),
+            Position(14, 108),
+          ),
+        ),
+        None,
+      ),
+    ]),
   )))),
   TypeSystemDefinitionNode(TypeDefinitionNode(UnionTypeDefinitionNode(UnionTypeDefinition(
     None,
     NameNode(
       "UndefinedUnion",
       #(
-        Position(7, 80),
-        Position(20, 80),
+        Position(7, 105),
+        Position(20, 105),
       ),
     ),
-    #(Position(1, 80), Position(7, 80)),
+    #(
+      Position(1, 105),
+      Position(7, 105),
+    ),
     None,
     None,
   )))),
@@ -1103,23 +1577,26 @@ This is a description of the \`@skip\` directive
     NameNode(
       "AnnotatedUnionTwo",
       #(
-        Position(7, 78),
-        Position(23, 78),
+        Position(7, 103),
+        Position(23, 103),
       ),
     ),
-    #(Position(1, 78), Position(42, 78)),
+    #(
+      Position(1, 103),
+      Position(42, 103),
+    ),
     Some([
       ConstDirectiveNode(
         NameNode(
           "onUnion",
           #(
-            Position(26, 78),
-            Position(32, 78),
+            Position(26, 103),
+            Position(32, 103),
           ),
         ),
         None,
         #(
-          Position(25, 78),
+          Position(25, 103),
           Position(1, 1),
         ),
       ),
@@ -1128,15 +1605,15 @@ This is a description of the \`@skip\` directive
       NamedTypeNode(NameNode(
         "A",
         #(
-          Position(38, 78),
-          Position(38, 78),
+          Position(38, 103),
+          Position(38, 103),
         ),
       )),
       NamedTypeNode(NameNode(
         "B",
         #(
-          Position(42, 78),
-          Position(42, 78),
+          Position(42, 103),
+          Position(42, 103),
         ),
       )),
     ]),
@@ -1146,23 +1623,26 @@ This is a description of the \`@skip\` directive
     NameNode(
       "AnnotatedUnion",
       #(
-        Position(7, 76),
-        Position(20, 76),
+        Position(7, 101),
+        Position(20, 101),
       ),
     ),
-    #(Position(1, 76), Position(37, 76)),
+    #(
+      Position(1, 101),
+      Position(37, 101),
+    ),
     Some([
       ConstDirectiveNode(
         NameNode(
           "onUnion",
           #(
-            Position(23, 76),
-            Position(29, 76),
+            Position(23, 101),
+            Position(29, 101),
           ),
         ),
         None,
         #(
-          Position(22, 76),
+          Position(22, 101),
           Position(1, 1),
         ),
       ),
@@ -1171,17 +1651,105 @@ This is a description of the \`@skip\` directive
       NamedTypeNode(NameNode(
         "A",
         #(
-          Position(33, 76),
-          Position(33, 76),
+          Position(33, 101),
+          Position(33, 101),
         ),
       )),
       NamedTypeNode(NameNode(
         "B",
         #(
-          Position(37, 76),
-          Position(37, 76),
+          Position(37, 101),
+          Position(37, 101),
         ),
       )),
+    ]),
+  )))),
+  TypeSystemDefinitionNode(TypeDefinitionNode(ObjectTypeDefinitionNode(ObjectTypeDefinition(
+    None,
+    NameNode(
+      "B",
+      #(
+        Position(6, 97),
+        Position(6, 97),
+      ),
+    ),
+    #(Position(1, 97), Position(1, 99)),
+    None,
+    None,
+    Some([
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "b",
+          #(
+            Position(3, 98),
+            Position(3, 98),
+          ),
+        ),
+        #(
+          Position(3, 98),
+          Position(1, 99),
+        ),
+        None,
+        NullableTypeNode(
+          NamedTypeNode(NameNode(
+            "String",
+            #(
+              Position(6, 98),
+              Position(11, 98),
+            ),
+          )),
+          #(
+            Position(6, 98),
+            Position(11, 98),
+          ),
+        ),
+        None,
+      ),
+    ]),
+  )))),
+  TypeSystemDefinitionNode(TypeDefinitionNode(ObjectTypeDefinitionNode(ObjectTypeDefinition(
+    None,
+    NameNode(
+      "A",
+      #(
+        Position(6, 93),
+        Position(6, 93),
+      ),
+    ),
+    #(Position(1, 93), Position(1, 95)),
+    None,
+    None,
+    Some([
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "a",
+          #(
+            Position(3, 94),
+            Position(3, 94),
+          ),
+        ),
+        #(
+          Position(3, 94),
+          Position(1, 95),
+        ),
+        None,
+        NullableTypeNode(
+          NamedTypeNode(NameNode(
+            "String",
+            #(
+              Position(6, 94),
+              Position(11, 94),
+            ),
+          )),
+          #(
+            Position(6, 94),
+            Position(11, 94),
+          ),
+        ),
+        None,
+      ),
     ]),
   )))),
   TypeSystemDefinitionNode(TypeDefinitionNode(UnionTypeDefinitionNode(UnionTypeDefinition(
@@ -1189,34 +1757,311 @@ This is a description of the \`@skip\` directive
     NameNode(
       "Feed",
       #(
-        Position(7, 71),
-        Position(10, 71),
+        Position(7, 88),
+        Position(10, 88),
       ),
     ),
-    #(Position(1, 71), Position(10, 74)),
+    #(Position(1, 88), Position(10, 91)),
     None,
     Some([
       NamedTypeNode(NameNode(
         "Story",
         #(
-          Position(5, 72),
-          Position(9, 72),
+          Position(5, 89),
+          Position(9, 89),
         ),
       )),
       NamedTypeNode(NameNode(
         "Article",
         #(
-          Position(5, 73),
-          Position(11, 73),
+          Position(5, 90),
+          Position(11, 90),
         ),
       )),
       NamedTypeNode(NameNode(
         "Advert",
         #(
-          Position(5, 74),
-          Position(10, 74),
+          Position(5, 91),
+          Position(10, 91),
         ),
       )),
+    ]),
+  )))),
+  TypeSystemDefinitionNode(TypeDefinitionNode(ObjectTypeDefinitionNode(ObjectTypeDefinition(
+    None,
+    NameNode(
+      "Advert",
+      #(
+        Position(6, 83),
+        Position(11, 83),
+      ),
+    ),
+    #(Position(1, 83), Position(1, 86)),
+    None,
+    None,
+    Some([
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "id",
+          #(
+            Position(3, 84),
+            Position(4, 84),
+          ),
+        ),
+        #(
+          Position(3, 84),
+          Position(9, 85),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "ID",
+            #(
+              Position(7, 84),
+              Position(8, 84),
+            ),
+          )),
+          #(
+            Position(7, 84),
+            Position(9, 84),
+          ),
+        ),
+        None,
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "content",
+          #(
+            Position(3, 85),
+            Position(9, 85),
+          ),
+        ),
+        #(
+          Position(3, 85),
+          Position(1, 86),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "String",
+            #(
+              Position(12, 85),
+              Position(17, 85),
+            ),
+          )),
+          #(
+            Position(12, 85),
+            Position(18, 85),
+          ),
+        ),
+        None,
+      ),
+    ]),
+  )))),
+  TypeSystemDefinitionNode(TypeDefinitionNode(ObjectTypeDefinitionNode(ObjectTypeDefinition(
+    None,
+    NameNode(
+      "Article",
+      #(
+        Position(6, 76),
+        Position(12, 76),
+      ),
+    ),
+    #(Position(1, 76), Position(1, 81)),
+    None,
+    None,
+    Some([
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "id",
+          #(
+            Position(3, 77),
+            Position(4, 77),
+          ),
+        ),
+        #(
+          Position(3, 77),
+          Position(7, 78),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "ID",
+            #(
+              Position(7, 77),
+              Position(8, 77),
+            ),
+          )),
+          #(
+            Position(7, 77),
+            Position(9, 77),
+          ),
+        ),
+        None,
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "title",
+          #(
+            Position(3, 78),
+            Position(7, 78),
+          ),
+        ),
+        #(
+          Position(3, 78),
+          Position(9, 79),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "String",
+            #(
+              Position(10, 78),
+              Position(15, 78),
+            ),
+          )),
+          #(
+            Position(10, 78),
+            Position(16, 78),
+          ),
+        ),
+        None,
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "content",
+          #(
+            Position(3, 79),
+            Position(9, 79),
+          ),
+        ),
+        #(
+          Position(3, 79),
+          Position(8, 80),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "String",
+            #(
+              Position(12, 79),
+              Position(17, 79),
+            ),
+          )),
+          #(
+            Position(12, 79),
+            Position(18, 79),
+          ),
+        ),
+        None,
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "author",
+          #(
+            Position(3, 80),
+            Position(8, 80),
+          ),
+        ),
+        #(
+          Position(3, 80),
+          Position(1, 81),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "ID",
+            #(
+              Position(11, 80),
+              Position(12, 80),
+            ),
+          )),
+          #(
+            Position(11, 80),
+            Position(13, 80),
+          ),
+        ),
+        None,
+      ),
+    ]),
+  )))),
+  TypeSystemDefinitionNode(TypeDefinitionNode(ObjectTypeDefinitionNode(ObjectTypeDefinition(
+    None,
+    NameNode(
+      "Story",
+      #(
+        Position(6, 71),
+        Position(10, 71),
+      ),
+    ),
+    #(Position(1, 71), Position(1, 74)),
+    None,
+    None,
+    Some([
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "id",
+          #(
+            Position(3, 72),
+            Position(4, 72),
+          ),
+        ),
+        #(
+          Position(3, 72),
+          Position(7, 73),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "ID",
+            #(
+              Position(7, 72),
+              Position(8, 72),
+            ),
+          )),
+          #(
+            Position(7, 72),
+            Position(9, 72),
+          ),
+        ),
+        None,
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "title",
+          #(
+            Position(3, 73),
+            Position(7, 73),
+          ),
+        ),
+        #(
+          Position(3, 73),
+          Position(1, 74),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "String",
+            #(
+              Position(10, 73),
+              Position(15, 73),
+            ),
+          )),
+          #(
+            Position(10, 73),
+            Position(16, 73),
+          ),
+        ),
+        None,
+      ),
     ]),
   )))),
   TypeSystemDefinitionNode(TypeDefinitionNode(InterfaceTypeDefinitionNode(InterfaceTypeDefinition(

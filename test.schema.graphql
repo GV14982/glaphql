@@ -68,16 +68,50 @@ interface Two {
   one: Type
 }
 
+type Story {
+  id: ID!
+  title: String!
+}
+
+type Article {
+  id: ID!
+  title: String!
+  content: String!
+  author: ID!
+}
+
+type Advert {
+  id: ID!
+  content: String!
+}
+
 union Feed =
   | Story
   | Article
   | Advert
+
+type A {
+  a: String
+}
+
+type B {
+  b: String
+}
 
 union AnnotatedUnion @onUnion = A | B
 
 union AnnotatedUnionTwo @onUnion = | A | B
 
 union UndefinedUnion
+
+type Photo {
+  url: String!
+}
+
+type Video {
+  url: String!
+  duration: Float!
+}
 
 extend union Feed = Photo | Video
 
@@ -166,3 +200,16 @@ extend schema @onSchema
 extend schema @onSchema {
   subscription: SubscriptionType
 }
+
+directive @onUnion on UNION
+directive @onScalar on SCALAR
+directive @onInterface on INTERFACE
+directive @onType on OBJECT
+directive @onObject(arg: String!) on OBJECT
+directive @onInputObject on INPUT_OBJECT
+directive @onField on FIELD_DEFINITION
+directive @onInputFieldDefinition on INPUT_FIELD_DEFINITION
+directive @onArgumentDefinition on ARGUMENT_DEFINITION
+directive @onEnum on ENUM
+directive @onEnumValue on ENUM_VALUE
+directive @oneOf on INPUT_OBJECT

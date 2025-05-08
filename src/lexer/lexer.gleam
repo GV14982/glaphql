@@ -312,12 +312,12 @@ pub fn consume_block_string(
       }
     }
     "\"\"\"" <> tail -> Ok(#(tail, val, position.inc_col_by(pos, 3)))
+    "\r\n" <> tail ->
+      consume_block_string(tail, val <> "\r\n", position.inc_row(pos))
     "\n" <> tail ->
       consume_block_string(tail, val <> "\n", position.inc_row(pos))
     "\r" <> tail ->
       consume_block_string(tail, val <> "\r", position.inc_row(pos))
-    "\r\n" <> tail ->
-      consume_block_string(tail, val <> "\r\n", position.inc_row(pos))
     _ ->
       case string.pop_grapheme(input) {
         Ok(#(head, tail)) ->
