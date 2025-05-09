@@ -77,6 +77,7 @@ pub type SchemaValidationError {
   InvalidUnionMember(error: UnionMemberValidationError)
   InvalidDirective(error: DirectiveValidationError)
   InvalidInputField
+  InvalidOutputField(error: OutputFieldValidationError)
 }
 
 pub type InterfaceImplementationValidationError {
@@ -117,4 +118,9 @@ pub type DirectiveValidationError {
     location: node.DirectiveLocation,
   )
   DirectiveNotDefined(directive_name: String)
+}
+
+pub type OutputFieldValidationError {
+  UndefinedOutputFieldType(name: String)
+  InvalidOutputFieldType(name: String)
 }

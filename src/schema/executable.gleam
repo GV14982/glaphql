@@ -10,6 +10,7 @@ import schema/type_system
 import schema/types
 import validate/schema as validate
 import validate/schema/directive
+import validate/schema/field
 import validate/schema/interface
 import validate/schema/union
 
@@ -138,7 +139,7 @@ pub fn from_types(
     |> dict.merge(inputs)
     |> dict.merge(interfaces)
     |> dict.merge(unions)
-
+  // TODO: Put this in a helper function
   let directive_validation_result =
     type_map
     |> dict.values
@@ -243,7 +244,20 @@ pub fn from_types(
     })
     |> result.all
   use _ <- result.try(directive_validation_result)
-
+  let field_validation_result =
+    type_map
+    |> dict.values
+    |> list.filter_map(fn(def) {
+      case def {
+        types.InterfaceTypeDef(def) -> Ok(def.fields)
+        types.ObjectTypeDef(def) -> Ok(def.fields)
+        _ -> Error(Nil)
+      }
+    })
+    |> list.map(field.validate_field_definitions(_, type_map))
+    |> result.all
+    |> result.map(fn(_) { Nil })
+  use _ <- result.try(field_validation_result)
   Ok(types.ExecutableSchema(..executable_schema, directive_defs:, type_map:))
 }
 

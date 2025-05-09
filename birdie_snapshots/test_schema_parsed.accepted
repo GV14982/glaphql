@@ -868,28 +868,28 @@ This is a description of the \`@skip\` directive
             NameNode(
               "onInputFieldDefinition",
               #(
-                Position(25, 163),
-                Position(46, 163),
+                Position(33, 163),
+                Position(54, 163),
               ),
             ),
             None,
             #(
-              Position(24, 163),
+              Position(32, 163),
               Position(1, 1),
             ),
           ),
         ]),
         NullableTypeNode(
           NamedTypeNode(NameNode(
-            "Type",
+            "CustomScalar",
             #(
               Position(19, 163),
-              Position(22, 163),
+              Position(30, 163),
             ),
           )),
           #(
             Position(19, 163),
-            Position(22, 163),
+            Position(30, 163),
           ),
         ),
         None,
@@ -2093,15 +2093,15 @@ This is a description of the \`@skip\` directive
         None,
         NullableTypeNode(
           NamedTypeNode(NameNode(
-            "Type",
+            "CustomScalar",
             #(
               Position(8, 68),
-              Position(11, 68),
+              Position(19, 68),
             ),
           )),
           #(
             Position(8, 68),
-            Position(11, 68),
+            Position(19, 68),
           ),
         ),
         None,
@@ -2152,15 +2152,15 @@ This is a description of the \`@skip\` directive
         None,
         NullableTypeNode(
           NamedTypeNode(NameNode(
-            "Type",
+            "CustomScalar",
             #(
               Position(8, 62),
-              Position(11, 62),
+              Position(19, 62),
             ),
           )),
           #(
             Position(8, 62),
-            Position(11, 62),
+            Position(19, 62),
           ),
         ),
         None,
@@ -2181,15 +2181,15 @@ This is a description of the \`@skip\` directive
         None,
         NullableTypeNode(
           NamedTypeNode(NameNode(
-            "Type",
+            "CustomScalar",
             #(
               Position(30, 63),
-              Position(33, 63),
+              Position(41, 63),
             ),
           )),
           #(
             Position(30, 63),
-            Position(33, 63),
+            Position(41, 63),
           ),
         ),
         Some([
@@ -2354,15 +2354,15 @@ This is a description of the \`@skip\` directive
         None,
         NullableTypeNode(
           NamedTypeNode(NameNode(
-            "Type",
+            "CustomScalar",
             #(
               Position(30, 56),
-              Position(33, 56),
+              Position(41, 56),
             ),
           )),
           #(
             Position(30, 56),
-            Position(33, 56),
+            Position(41, 56),
           ),
         ),
         Some([
@@ -2459,28 +2459,28 @@ This is a description of the \`@skip\` directive
             NameNode(
               "onField",
               #(
-                Position(58, 50),
-                Position(64, 50),
+                Position(74, 50),
+                Position(80, 50),
               ),
             ),
             None,
             #(
-              Position(57, 50),
+              Position(73, 50),
               Position(1, 1),
             ),
           ),
         ]),
         NullableTypeNode(
           NamedTypeNode(NameNode(
-            "Type",
+            "CustomScalar",
             #(
-              Position(52, 50),
-              Position(55, 50),
+              Position(60, 50),
+              Position(71, 50),
             ),
           )),
           #(
-            Position(52, 50),
-            Position(55, 50),
+            Position(60, 50),
+            Position(71, 50),
           ),
         ),
         Some([
@@ -2495,35 +2495,35 @@ This is a description of the \`@skip\` directive
             ),
             #(
               Position(18, 50),
-              Position(49, 50),
+              Position(57, 50),
             ),
             Some([
               ConstDirectiveNode(
                 NameNode(
                   "onArgumentDefinition",
                   #(
-                    Position(29, 50),
-                    Position(48, 50),
+                    Position(37, 50),
+                    Position(56, 50),
                   ),
                 ),
                 None,
                 #(
-                  Position(28, 50),
+                  Position(36, 50),
                   Position(1, 1),
                 ),
               ),
             ]),
             NullableTypeNode(
               NamedTypeNode(NameNode(
-                "Type",
+                "CustomScalar",
                 #(
                   Position(23, 50),
-                  Position(26, 50),
+                  Position(34, 50),
                 ),
               )),
               #(
                 Position(23, 50),
-                Position(26, 50),
+                Position(34, 50),
               ),
             ),
             None,
@@ -2561,15 +2561,15 @@ This is a description of the \`@skip\` directive
         None,
         NullableTypeNode(
           NamedTypeNode(NameNode(
-            "Type",
+            "CustomScalar",
             #(
               Position(8, 45),
-              Position(11, 45),
+              Position(19, 45),
             ),
           )),
           #(
             Position(8, 45),
-            Position(11, 45),
+            Position(19, 45),
           ),
         ),
         None,
@@ -2696,15 +2696,15 @@ This is a description of the \`@skip\` directive
         None,
         NullableTypeNode(
           NamedTypeNode(NameNode(
-            "Type",
+            "CustomScalar",
             #(
               Position(30, 39),
-              Position(33, 39),
+              Position(41, 39),
             ),
           )),
           #(
             Position(30, 39),
-            Position(33, 39),
+            Position(41, 39),
           ),
         ),
         Some([
@@ -2828,28 +2828,28 @@ This is a description of the \`@skip\` directive
             NameNode(
               "onField",
               #(
-                Position(70, 33),
-                Position(76, 33),
+                Position(86, 33),
+                Position(92, 33),
               ),
             ),
             None,
             #(
-              Position(69, 33),
+              Position(85, 33),
               Position(1, 1),
             ),
           ),
         ]),
         NullableTypeNode(
           NamedTypeNode(NameNode(
-            "Type",
+            "CustomScalar",
             #(
-              Position(64, 33),
-              Position(67, 33),
+              Position(72, 33),
+              Position(83, 33),
             ),
           )),
           #(
-            Position(64, 33),
-            Position(67, 33),
+            Position(72, 33),
+            Position(83, 33),
           ),
         ),
         Some([
@@ -2864,41 +2864,41 @@ This is a description of the \`@skip\` directive
             ),
             #(
               Position(18, 33),
-              Position(61, 33),
+              Position(69, 33),
             ),
             Some([
               ConstDirectiveNode(
                 NameNode(
                   "onArgumentDefinition",
                   #(
-                    Position(41, 33),
-                    Position(60, 33),
+                    Position(49, 33),
+                    Position(68, 33),
                   ),
                 ),
                 None,
                 #(
-                  Position(40, 33),
+                  Position(48, 33),
                   Position(1, 1),
                 ),
               ),
             ]),
             NullableTypeNode(
               NamedTypeNode(NameNode(
-                "Type",
+                "CustomScalar",
                 #(
                   Position(23, 33),
-                  Position(26, 33),
+                  Position(34, 33),
                 ),
               )),
               #(
                 Position(23, 33),
-                Position(26, 33),
+                Position(34, 33),
               ),
             ),
             Some(ConstValueNode(StringValueNode(
               #(
-                Position(30, 33),
                 Position(38, 33),
+                Position(46, 33),
               ),
               "default",
             ))),
@@ -2970,15 +2970,15 @@ of the \`Foo\` type.
         None,
         NullableTypeNode(
           NamedTypeNode(NameNode(
-            "Type",
+            "CustomScalar",
             #(
               Position(8, 13),
-              Position(11, 13),
+              Position(19, 13),
             ),
           )),
           #(
             Position(8, 13),
-            Position(11, 13),
+            Position(19, 13),
           ),
         ),
         None,
@@ -3007,15 +3007,15 @@ of the \`Foo\` type.
         None,
         NullableTypeNode(
           NamedTypeNode(NameNode(
-            "Type",
+            "CustomScalar",
             #(
               Position(6, 22),
-              Position(9, 22),
+              Position(17, 22),
             ),
           )),
           #(
             Position(6, 22),
-            Position(9, 22),
+            Position(17, 22),
           ),
         ),
         Some([
@@ -3319,15 +3319,15 @@ of the \`Foo\` type.
         None,
         NullableTypeNode(
           NamedTypeNode(NameNode(
-            "Type",
+            "CustomScalar",
             #(
               Position(46, 27),
-              Position(49, 27),
+              Position(57, 27),
             ),
           )),
           #(
             Position(46, 27),
-            Position(49, 27),
+            Position(57, 27),
           ),
         ),
         Some([
@@ -3401,15 +3401,15 @@ of the \`Foo\` type.
         None,
         NullableTypeNode(
           NamedTypeNode(NameNode(
-            "Type",
+            "CustomScalar",
             #(
               Position(32, 28),
-              Position(35, 28),
+              Position(43, 28),
             ),
           )),
           #(
             Position(32, 28),
-            Position(35, 28),
+            Position(43, 28),
           ),
         ),
         Some([
@@ -3463,15 +3463,15 @@ of the \`Foo\` type.
         None,
         NullableTypeNode(
           NamedTypeNode(NameNode(
-            "Type",
+            "CustomScalar",
             #(
               Position(36, 29),
-              Position(39, 29),
+              Position(47, 29),
             ),
           )),
           #(
             Position(36, 29),
-            Position(39, 29),
+            Position(47, 29),
           ),
         ),
         Some([

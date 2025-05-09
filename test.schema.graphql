@@ -10,7 +10,7 @@ of the \`Foo\` type.
 """
 type Foo implements Bar & Baz & Two {
   "Description of the \`one\` field."
-  one: Type
+  one: CustomScalar
   """
   This is a description of the \`two\` field.
   """
@@ -19,53 +19,53 @@ type Foo implements Bar & Baz & Two {
     This is a description of the \`argument\` argument.
     """
     argument: InputType!
-  ): Type
+  ): CustomScalar
   """This is a description of the \`three\` field."""
   three(argument: InputType, other: String): Int
   four(argument: String = "string"): String
   five(argument: [String] = ["string", "string"]): String
-  six(argument: InputType = {key: "value"}): Type
-  seven(argument: Int = null): Type
-  eight(argument: OneOfInputType): Type
+  six(argument: InputType = {key: "value"}): CustomScalar
+  seven(argument: Int = null): CustomScalar
+  eight(argument: OneOfInputType): CustomScalar
 }
 
 type AnnotatedObject @onObject(arg: "value") {
-  annotatedField(arg: Type = "default" @onArgumentDefinition): Type @onField
+  annotatedField(arg: CustomScalar = "default" @onArgumentDefinition): CustomScalar @onField
 }
 
 type UndefinedType
 
 extend type Foo {
-  seven(argument: [String]): Type
+  seven(argument: [String]): CustomScalar
 }
 
 extend type Foo @onType
 
 interface Bar {
-  one: Type
+  one: CustomScalar
   four(argument: String = "string"): String
 }
 
 interface AnnotatedInterface @onInterface {
-  annotatedField(arg: Type @onArgumentDefinition): Type @onField
+  annotatedField(arg: CustomScalar @onArgumentDefinition): CustomScalar @onField
 }
 
 interface UndefinedInterface
 
 extend interface Bar implements Two {
-  two(argument: InputType!): Type
+  two(argument: InputType!): CustomScalar
 }
 
 extend interface Bar @onInterface
 
 interface Baz implements Bar & Two {
-  one: Type
-  two(argument: InputType!): Type
+  one: CustomScalar
+  two(argument: InputType!): CustomScalar
   four(argument: String = "string"): String
 }
 
 interface Two {
-  one: Type
+  one: CustomScalar
 }
 
 type Story {
@@ -160,7 +160,7 @@ input OneOfInputType @oneOf {
 }
 
 input AnnotatedInput @onInputObject {
-  annotatedField: Type @onInputFieldDefinition
+  annotatedField: CustomScalar @onInputFieldDefinition
 }
 
 input UndefinedInput

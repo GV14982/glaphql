@@ -113,8 +113,8 @@ of the \`Foo\` type.
     Position(6, 13),
   )),
   #(
-    Name("Type"),
-    #(Position(8, 13), Position(11, 13)),
+    Name("CustomScalar"),
+    #(Position(8, 13), Position(19, 13)),
   ),
   #(
     String("
@@ -164,8 +164,8 @@ of the \`Foo\` type.
     Position(4, 22),
   )),
   #(
-    Name("Type"),
-    #(Position(6, 22), Position(9, 22)),
+    Name("CustomScalar"),
+    #(Position(6, 22), Position(17, 22)),
   ),
   #(
     String("This is a description of the \`three\` field."),
@@ -410,10 +410,10 @@ of the \`Foo\` type.
     Position(44, 27),
   )),
   #(
-    Name("Type"),
+    Name("CustomScalar"),
     #(
       Position(46, 27),
-      Position(49, 27),
+      Position(57, 27),
     ),
   ),
   #(
@@ -459,10 +459,10 @@ of the \`Foo\` type.
     Position(30, 28),
   )),
   #(
-    Name("Type"),
+    Name("CustomScalar"),
     #(
       Position(32, 28),
-      Position(35, 28),
+      Position(43, 28),
     ),
   ),
   #(
@@ -497,10 +497,10 @@ of the \`Foo\` type.
     Position(34, 29),
   )),
   #(
-    Name("Type"),
+    Name("CustomScalar"),
     #(
       Position(36, 29),
-      Position(39, 29),
+      Position(47, 29),
     ),
   ),
   CloseBrace(#(
@@ -576,58 +576,58 @@ of the \`Foo\` type.
     Position(21, 33),
   )),
   #(
-    Name("Type"),
+    Name("CustomScalar"),
     #(
       Position(23, 33),
-      Position(26, 33),
+      Position(34, 33),
     ),
   ),
   Equal(#(
-    Position(28, 33),
-    Position(28, 33),
+    Position(36, 33),
+    Position(36, 33),
   )),
   #(
     String("default"),
     #(
-      Position(30, 33),
       Position(38, 33),
+      Position(46, 33),
     ),
   ),
   At(#(
-    Position(40, 33),
-    Position(40, 33),
+    Position(48, 33),
+    Position(48, 33),
   )),
   #(
     Name("onArgumentDefinition"),
     #(
-      Position(41, 33),
-      Position(60, 33),
+      Position(49, 33),
+      Position(68, 33),
     ),
   ),
   CloseParen(#(
-    Position(61, 33),
-    Position(61, 33),
+    Position(69, 33),
+    Position(69, 33),
   )),
   Colon(#(
-    Position(62, 33),
-    Position(62, 33),
+    Position(70, 33),
+    Position(70, 33),
   )),
   #(
-    Name("Type"),
+    Name("CustomScalar"),
     #(
-      Position(64, 33),
-      Position(67, 33),
+      Position(72, 33),
+      Position(83, 33),
     ),
   ),
   At(#(
-    Position(69, 33),
-    Position(69, 33),
+    Position(85, 33),
+    Position(85, 33),
   )),
   #(
     Name("onField"),
     #(
-      Position(70, 33),
-      Position(76, 33),
+      Position(86, 33),
+      Position(92, 33),
     ),
   ),
   CloseBrace(#(
@@ -701,10 +701,10 @@ of the \`Foo\` type.
     Position(28, 39),
   )),
   #(
-    Name("Type"),
+    Name("CustomScalar"),
     #(
       Position(30, 39),
-      Position(33, 39),
+      Position(41, 39),
     ),
   ),
   CloseBrace(#(
@@ -761,8 +761,8 @@ of the \`Foo\` type.
     Position(6, 45),
   )),
   #(
-    Name("Type"),
-    #(Position(8, 45), Position(11, 45)),
+    Name("CustomScalar"),
+    #(Position(8, 45), Position(19, 45)),
   ),
   #(
     Name("four"),
@@ -863,47 +863,47 @@ of the \`Foo\` type.
     Position(21, 50),
   )),
   #(
-    Name("Type"),
+    Name("CustomScalar"),
     #(
       Position(23, 50),
-      Position(26, 50),
+      Position(34, 50),
     ),
   ),
   At(#(
-    Position(28, 50),
-    Position(28, 50),
+    Position(36, 50),
+    Position(36, 50),
   )),
   #(
     Name("onArgumentDefinition"),
     #(
-      Position(29, 50),
-      Position(48, 50),
+      Position(37, 50),
+      Position(56, 50),
     ),
   ),
   CloseParen(#(
-    Position(49, 50),
-    Position(49, 50),
+    Position(57, 50),
+    Position(57, 50),
   )),
   Colon(#(
-    Position(50, 50),
-    Position(50, 50),
+    Position(58, 50),
+    Position(58, 50),
   )),
   #(
-    Name("Type"),
+    Name("CustomScalar"),
     #(
-      Position(52, 50),
-      Position(55, 50),
+      Position(60, 50),
+      Position(71, 50),
     ),
   ),
   At(#(
-    Position(57, 50),
-    Position(57, 50),
+    Position(73, 50),
+    Position(73, 50),
   )),
   #(
     Name("onField"),
     #(
-      Position(58, 50),
-      Position(64, 50),
+      Position(74, 50),
+      Position(80, 50),
     ),
   ),
   CloseBrace(#(
@@ -990,10 +990,10 @@ of the \`Foo\` type.
     Position(28, 56),
   )),
   #(
-    Name("Type"),
+    Name("CustomScalar"),
     #(
       Position(30, 56),
-      Position(33, 56),
+      Position(41, 56),
     ),
   ),
   CloseBrace(#(
@@ -1075,8 +1075,8 @@ of the \`Foo\` type.
     Position(6, 62),
   )),
   #(
-    Name("Type"),
-    #(Position(8, 62), Position(11, 62)),
+    Name("CustomScalar"),
+    #(Position(8, 62), Position(19, 62)),
   ),
   #(
     Name("two"),
@@ -1114,10 +1114,10 @@ of the \`Foo\` type.
     Position(28, 63),
   )),
   #(
-    Name("Type"),
+    Name("CustomScalar"),
     #(
       Position(30, 63),
-      Position(33, 63),
+      Position(41, 63),
     ),
   ),
   #(
@@ -1197,8 +1197,8 @@ of the \`Foo\` type.
     Position(6, 68),
   )),
   #(
-    Name("Type"),
-    #(Position(8, 68), Position(11, 68)),
+    Name("CustomScalar"),
+    #(Position(8, 68), Position(19, 68)),
   ),
   CloseBrace(#(
     Position(1, 69),
@@ -2244,21 +2244,21 @@ of the \`Foo\` type.
     Position(17, 163),
   )),
   #(
-    Name("Type"),
+    Name("CustomScalar"),
     #(
       Position(19, 163),
-      Position(22, 163),
+      Position(30, 163),
     ),
   ),
   At(#(
-    Position(24, 163),
-    Position(24, 163),
+    Position(32, 163),
+    Position(32, 163),
   )),
   #(
     Name("onInputFieldDefinition"),
     #(
-      Position(25, 163),
-      Position(46, 163),
+      Position(33, 163),
+      Position(54, 163),
     ),
   ),
   CloseBrace(#(
