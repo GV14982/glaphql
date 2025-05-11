@@ -1,3 +1,6 @@
+/// This module provides functions to create an executable GraphQL schema
+/// from the parsed type system definitions.
+
 import errors
 import gleam/dict
 import gleam/list
@@ -8,16 +11,32 @@ import internal/parser/node
 import internal/schema/merge
 import internal/schema/type_system
 import internal/schema/types
-import internal/validate/schema as validate
 import internal/validate/schema/directive
 import internal/validate/schema/field
+import internal/validate/schema/input_field
 import internal/validate/schema/interface
+import internal/validate/schema/names
 import internal/validate/schema/union
 
+/// Creates an executable schema from type system definitions
+///
+/// This function merges all type definitions and extensions, builds a complete
+/// type map, and validates the schema according to the GraphQL specification.
+///
+/// ## Arguments
+///
+/// - `ts`: Type system definitions including objects, scalars, enums, etc.
+/// - `description`: Optional schema description
+///
+/// ## Returns
+///
+/// - `Ok(ExecutableSchema)`: A valid executable schema
+/// - `Error(errors.SchemaError)`: Validation errors encountered
+///
 pub fn from_types(
   ts: types.TypeSystem,
   description: option.Option(String),
-) -> Result(types.ExecutableSchema, errors.SchemaValidationError) {
+) -> Result(types.ExecutableSchema, errors.SchemaError) {
   use executable_schema <- result.try(merge.merge_schema(ts, description))
   use enums <- result.try(merge.merge_types(
     ts.defs.enums,
@@ -104,9 +123,9 @@ pub fn from_types(
       opt |> option.map(fn(d) { #(d.name, d) }) |> option.to_result(Nil)
     })
     |> dict.from_list
-  // Check that all type names are unique
+  // Validate that all type names are unique
   use _ <- result.try(
-    validate.check_unique_names([
+    names.validate_unique_names([
       enums,
       scalars,
       objects,
@@ -115,20 +134,21 @@ pub fn from_types(
       unions,
     ]),
   )
-  // Check interface impls
+  // Validate interface implementations
   use _ <- result.try(
     objects
     |> dict.merge(interfaces)
     |> dict.values
-    |> list.map(interface.check_interface_implementations(_, interfaces))
+    |> list.map(interface.validate_interface_implementations(_, interfaces))
     |> result.all
     |> result.map_error(errors.InvalidInterfaceImplementation),
   )
+  // Validate union members
   use _ <- result.try(
     unions
     |> dict.values
     |> list.filter_map(is_executable_union)
-    |> list.map(union.check_union_members(_, objects))
+    |> list.map(union.validate_union_members(_, objects))
     |> result.all,
   )
   let type_map =
@@ -138,7 +158,7 @@ pub fn from_types(
     |> dict.merge(inputs)
     |> dict.merge(interfaces)
     |> dict.merge(unions)
-  // TODO: Put this in a helper function
+  // Validate directives
   let directive_validation_result =
     type_map
     |> dict.values
@@ -243,6 +263,7 @@ pub fn from_types(
     })
     |> result.all
   use _ <- result.try(directive_validation_result)
+  // Validate output fields
   let field_validation_result =
     type_map
     |> dict.values
@@ -257,9 +278,34 @@ pub fn from_types(
     |> result.all
     |> result.map(fn(_) { Nil })
   use _ <- result.try(field_validation_result)
+  // Validate input fields
+  let input_field_validation_result =
+    type_map
+    |> dict.values
+    |> list.filter_map(fn(def) {
+      case def {
+        types.InputTypeDef(def) -> Ok(def.fields)
+        _ -> Error(Nil)
+      }
+    })
+    |> list.map(input_field.validate_input_field_definitions(_, type_map))
+    |> result.all
+    |> result.map(fn(_) { Nil })
+  use _ <- result.try(input_field_validation_result)
   Ok(types.ExecutableSchema(..executable_schema, directive_defs:, type_map:))
 }
 
+/// Safely extracts a union type definition from an executable type
+///
+/// ## Arguments
+///
+/// - `type_def`: An executable type definition
+///
+/// ## Returns
+///
+/// - `Ok(ExecutableUnionTypeDef)`: If the type is a union
+/// - `Error(Nil)`: If the type is not a union
+///
 fn is_executable_union(
   type_def: types.ExecutableTypeDef,
 ) -> Result(types.ExecutableUnionTypeDef, Nil) {

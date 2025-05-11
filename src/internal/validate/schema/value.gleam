@@ -1,14 +1,32 @@
+/// This module provides validation functions for GraphQL input values.
+/// It ensures that values are valid according to their type definitions.
+
 import errors
 import gleam/dict
 import gleam/list
 import internal/schema/types
 import internal/validate/util
 
+/// Validates a value against an input value definition
+///
+/// Ensures that the value is valid for the given type definition.
+///
+/// ## Arguments
+///
+/// - `value`: The value to validate
+/// - `def`: The input value definition
+/// - `type_map`: Dictionary of all type definitions in the schema
+///
+/// ## Returns
+///
+/// - `Ok(Nil)`: If the value is valid
+/// - `Error(errors.SchemaError)`: If the value is invalid
+///
 pub fn validate_value_to_def(
   value: types.ExecutableConstValue,
   def: types.ExecutableInputValueDef,
   type_map: dict.Dict(String, types.ExecutableTypeDef),
-) -> Result(Nil, errors.SchemaValidationError) {
+) -> Result(Nil, errors.SchemaError) {
   case value {
     types.ExecutableConstScalar(scalar) ->
       validate_scalar_type(scalar, def, type_map)
@@ -39,11 +57,24 @@ pub fn validate_value_to_def(
   }
 }
 
+/// Validates a scalar value against its type definition
+///
+/// ## Arguments
+///
+/// - `scalar`: The scalar value to validate
+/// - `arg`: The input value definition
+/// - `type_map`: Dictionary of all type definitions in the schema
+///
+/// ## Returns
+///
+/// - `Ok(Nil)`: If the scalar value is valid
+/// - `Error(errors.SchemaError)`: If the scalar value is invalid
+///
 pub fn validate_scalar_type(
   scalar: types.ExecutableConstScalar,
   arg: types.ExecutableInputValueDef,
   type_map: dict.Dict(String, types.ExecutableTypeDef),
-) -> Result(Nil, errors.SchemaValidationError) {
+) -> Result(Nil, errors.SchemaError) {
   case scalar {
     types.ExecutableBoolVal(_)
     | types.ExecutableFloatVal(_)
@@ -90,11 +121,26 @@ pub fn validate_scalar_type(
   }
 }
 
+/// Validates input object field values
+///
+/// Ensures that all required fields are present and have valid values.
+///
+/// ## Arguments
+///
+/// - `values`: Dictionary of field values
+/// - `fields`: Dictionary of field definitions
+/// - `type_map`: Dictionary of all type definitions in the schema
+///
+/// ## Returns
+///
+/// - `Ok(Nil)`: If all field values are valid
+/// - `Error(errors.SchemaError)`: If any field value is invalid
+///
 pub fn validate_input_field_values(
   values: dict.Dict(String, types.ExecutableConstValue),
   fields: dict.Dict(String, types.ExecutableInputValueDef),
   type_map: dict.Dict(String, types.ExecutableTypeDef),
-) -> Result(Nil, errors.SchemaValidationError) {
+) -> Result(Nil, errors.SchemaError) {
   fields
   |> dict.to_list
   |> list.fold_until(Ok(Nil), fn(acc, val) {

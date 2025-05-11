@@ -1,3 +1,6 @@
+/// This module provides functions for merging type definitions and extensions
+/// to create a complete executable schema.
+
 import errors
 import gleam/dict
 import gleam/list
@@ -7,10 +10,22 @@ import internal/parser/node
 import internal/schema/type_system
 import internal/schema/types
 
+/// Merges schema definitions and extensions to create an executable schema
+///
+/// ## Arguments
+///
+/// - `ts`: Type system definitions and extensions
+/// - `description`: Optional schema description
+///
+/// ## Returns
+///
+/// - `Ok(ExecutableSchema)`: The merged schema
+/// - `Error(errors.SchemaError)`: If any errors occurred during merging
+///
 pub fn merge_schema(
   ts: types.TypeSystem,
   description: option.Option(String),
-) -> Result(types.ExecutableSchema, errors.SchemaValidationError) {
+) -> Result(types.ExecutableSchema, errors.SchemaError) {
   use query <- result.try(type_system.get_root_operation(ts, node.Query))
   let mutation =
     type_system.get_root_operation(ts, node.Mutation) |> option.from_result
@@ -58,7 +73,7 @@ pub fn merge_types(
 pub fn merge_scalar(
   def_node: node.ScalarTypeDefinition,
   ext_nodes: List(node.ScalarTypeExtension),
-) -> Result(types.ExecutableScalarTypeDef, errors.SchemaValidationError) {
+) -> Result(types.ExecutableScalarTypeDef, errors.SchemaError) {
   let ext_directives =
     ext_nodes
     |> list.map(fn(n) { n.directives })
@@ -76,7 +91,7 @@ pub fn merge_scalar(
 pub fn merge_object(
   def_node: node.ObjectTypeDefinition,
   ext_nodes: List(node.ObjectTypeExtension),
-) -> Result(types.ExecutableObjectTypeDef, errors.SchemaValidationError) {
+) -> Result(types.ExecutableObjectTypeDef, errors.SchemaError) {
   let def =
     types.ExecutableObjectTypeDef(
       name: def_node.name.value,
@@ -162,7 +177,7 @@ pub fn merge_object(
 pub fn merge_input(
   def_node: node.InputTypeDefinition,
   ext_nodes: List(node.InputTypeExtension),
-) -> Result(types.ExecutableInputTypeDef, errors.SchemaValidationError) {
+) -> Result(types.ExecutableInputTypeDef, errors.SchemaError) {
   let def =
     types.ExecutableInputTypeDef(
       name: def_node.name.value,
@@ -218,7 +233,7 @@ pub fn merge_input(
 pub fn merge_interface(
   def_node: node.InterfaceTypeDefinition,
   ext_nodes: List(node.InterfaceTypeExtension),
-) -> Result(types.ExecutableInterfaceTypeDef, errors.SchemaValidationError) {
+) -> Result(types.ExecutableInterfaceTypeDef, errors.SchemaError) {
   let def =
     types.ExecutableInterfaceTypeDef(
       name: def_node.name.value,
@@ -308,7 +323,7 @@ pub fn merge_interface(
 pub fn merge_union(
   def_node: node.UnionTypeDefinition,
   ext_nodes: List(node.UnionTypeExtension),
-) -> Result(types.ExecutableUnionTypeDef, errors.SchemaValidationError) {
+) -> Result(types.ExecutableUnionTypeDef, errors.SchemaError) {
   let def =
     types.ExecutableUnionTypeDef(
       name: def_node.name.value,
@@ -351,7 +366,7 @@ pub fn merge_union(
 pub fn merge_enum(
   def_node: node.EnumTypeDefinition,
   ext_nodes: List(node.EnumTypeExtension),
-) -> Result(types.ExecutableEnumTypeDef, errors.SchemaValidationError) {
+) -> Result(types.ExecutableEnumTypeDef, errors.SchemaError) {
   let def =
     types.ExecutableEnumTypeDef(
       name: def_node.name.value,

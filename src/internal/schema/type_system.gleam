@@ -394,7 +394,7 @@ fn operation_type_to_string(op: node.OperationType) {
 pub fn get_root_operation(
   ts: types.TypeSystem,
   op_name: node.OperationType,
-) -> Result(types.ExecutableNamedType, errors.SchemaValidationError) {
+) -> Result(types.ExecutableNamedType, errors.SchemaError) {
   let schema_def =
     ts.defs.schema
     |> option.map(fn(def) {
