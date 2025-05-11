@@ -1,7 +1,7 @@
 import birdie
 import gleeunit/should
-import lexer/lexer
-import parser/schema/document
+import internal/lexer/lexer
+import internal/parser/schema/document
 import pprint
 import simplifile
 

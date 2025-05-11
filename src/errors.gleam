@@ -1,6 +1,6 @@
-import lexer/position
-import parser/node
-import schema/types
+import internal/lexer/position
+import internal/parser/node
+import internal/schema/types
 
 pub type LexError {
   InvalidCharacter(val: String, pos: position.Position)

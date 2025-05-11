@@ -1,9 +1,9 @@
 import gleam/option
 import gleeunit/should
-import lexer/lexer
-import parser/schema/document
-import schema/executable
-import schema/type_system
+import internal/lexer/lexer
+import internal/parser/schema/document
+import internal/schema/executable
+import internal/schema/type_system
 import simplifile
 
 pub fn make_executable_schema_test() {

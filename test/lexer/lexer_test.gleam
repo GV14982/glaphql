@@ -2,7 +2,7 @@ import birdie
 import errors
 import gleam/result
 import gleeunit/should
-import lexer/lexer
+import internal/lexer/lexer
 import pprint
 import simplifile
 

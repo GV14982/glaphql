@@ -1,11 +1,11 @@
 import errors
 import gleam/option
 import gleeunit/should
-import lexer/lexer
-import parser/node
-import parser/schema/document
-import schema/executable
-import schema/type_system
+import internal/lexer/lexer
+import internal/parser/node
+import internal/parser/schema/document
+import internal/schema/executable
+import internal/schema/type_system
 
 pub fn directive_validation_test() -> Nil {
   "
