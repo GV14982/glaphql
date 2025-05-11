@@ -7,7 +7,6 @@ import internal/parser/node
 import internal/schema/types
 import internal/validate/schema/arg
 
-@internal
 pub fn validate_executable_type_def_directives(
   type_def: types.ExecutableTypeDef,
   directives: dict.Dict(String, types.ExecutableDirectiveDef),
@@ -16,7 +15,6 @@ pub fn validate_executable_type_def_directives(
   todo
 }
 
-@internal
 pub fn validate_directives(
   directives: List(types.ExecutableDirective),
   location: node.DirectiveLocation,
@@ -77,7 +75,6 @@ pub fn validate_directives(
   })
 }
 
-@internal
 pub fn validate_directive(
   directive: types.ExecutableDirective,
   location: node.DirectiveLocation,
@@ -88,7 +85,6 @@ pub fn validate_directive(
   arg.validate_arguments(directive.args, def.args, type_map)
 }
 
-@internal
 pub fn validate_directive_location(
   directive: types.ExecutableDirective,
   location: node.DirectiveLocation,

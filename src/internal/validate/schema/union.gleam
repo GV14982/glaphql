@@ -4,7 +4,6 @@ import gleam/list
 import gleam/result
 import internal/schema/types
 
-@internal
 pub fn check_union_members(
   union: types.ExecutableUnionTypeDef,
   type_maps: dict.Dict(String, types.ExecutableTypeDef),

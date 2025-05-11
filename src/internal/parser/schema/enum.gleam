@@ -10,7 +10,6 @@ import internal/parser/node
 import internal/parser/schema/description
 import internal/parser/util
 
-@internal
 pub fn parse_enum_ext(
   tokens: List(token.Token),
   start: position.Position,
@@ -54,7 +53,6 @@ pub fn parse_enum_ext(
   }
 }
 
-@internal
 pub fn parse_enum_def(
   tokens: List(token.Token),
   description: option.Option(node.DescriptionNode),
@@ -85,7 +83,6 @@ pub fn parse_enum_def(
   }
 }
 
-@internal
 pub fn parse_optional_enum_members_def(
   tokens: List(token.Token),
 ) -> Result(
@@ -102,7 +99,6 @@ pub fn parse_optional_enum_members_def(
   )
 }
 
-@internal
 pub fn parse_enum_members_def(
   tokens: List(token.Token),
 ) -> Result(
@@ -120,7 +116,6 @@ pub fn parse_enum_members_def(
   )
 }
 
-@internal
 pub fn parse_enum_member_list(
   tokens: List(token.Token),
   members: List(node.EnumValueDefinitionNode),
@@ -153,7 +148,6 @@ pub fn parse_enum_member_list(
   }
 }
 
-@internal
 pub fn parse_enum_member(
   tokens: List(token.Token),
 ) -> Result(

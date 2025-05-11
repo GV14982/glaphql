@@ -9,7 +9,6 @@ import internal/lexer/token_kind
 import internal/parser/arg
 import internal/parser/node
 
-@internal
 pub fn parse_optional_directive_list(
   tokens: List(token.Token),
   directives: List(node.DirectiveNode),
@@ -36,7 +35,6 @@ pub fn parse_optional_directive_list(
   }
 }
 
-@internal
 pub fn parse_optional_directive(
   tokens: List(token.Token),
 ) -> Result(

@@ -8,7 +8,6 @@ import internal/parser/const_directive
 import internal/parser/node
 import internal/parser/schema/input_value_def
 
-@internal
 pub fn parse_input_ext(
   tokens: List(token.Token),
   start: position.Position,
@@ -56,7 +55,6 @@ pub fn parse_input_ext(
   }
 }
 
-@internal
 pub fn parse_input_def(
   tokens: List(token.Token),
   description: node.OptionalDescription,

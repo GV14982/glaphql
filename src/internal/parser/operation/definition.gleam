@@ -6,7 +6,6 @@ import internal/parser/node
 import internal/parser/operation/fragment_def
 import internal/parser/operation/operation_def
 
-@internal
 pub fn parse_executable(
   tokens: List(token.Token),
 ) -> Result(

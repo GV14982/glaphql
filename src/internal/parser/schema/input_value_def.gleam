@@ -11,7 +11,6 @@ import internal/parser/schema/description
 import internal/parser/type_node
 import internal/parser/util
 
-@internal
 pub fn parse_optional_input_value_def_list(
   tokens: List(token.Token),
   start: token_kind.TokenKind,
@@ -25,7 +24,6 @@ pub fn parse_optional_input_value_def_list(
   util.parse_between_optional(start, end, tokens, parse_input_value)
 }
 
-@internal
 pub fn parse_input_value_def_list(
   tokens: List(token.Token),
   start: token_kind.TokenKind,
@@ -45,7 +43,6 @@ pub fn parse_input_value_def_list(
   )
 }
 
-@internal
 pub fn parse_input_value(
   tokens: List(token.Token),
 ) -> Result(

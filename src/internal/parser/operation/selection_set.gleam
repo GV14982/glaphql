@@ -9,7 +9,6 @@ import internal/parser/arg
 import internal/parser/directive
 import internal/parser/node
 
-@internal
 pub fn parse_field_name(
   tokens: List(token.Token),
 ) -> Result(
@@ -45,7 +44,6 @@ pub fn parse_field_name(
   }
 }
 
-@internal
 pub fn parse_field(
   tokens: List(token.Token),
 ) -> Result(node.NodeWithTokenList(node.SelectionNode), errors.ParseError) {
@@ -75,7 +73,6 @@ pub fn parse_field(
   ))
 }
 
-@internal
 pub fn parse_optional_selection_set(
   tokens: List(token.Token),
   init: position.Position,
@@ -96,7 +93,6 @@ pub fn parse_optional_selection_set(
   }
 }
 
-@internal
 pub fn parse_selection_set(
   tokens: List(token.Token),
 ) -> Result(
@@ -117,7 +113,6 @@ pub fn parse_selection_set(
   }
 }
 
-@internal
 pub fn parse_selection(
   tokens: List(token.Token),
 ) -> Result(node.NodeWithTokenList(node.SelectionNode), errors.ParseError) {
@@ -160,7 +155,6 @@ pub fn parse_selection(
   }
 }
 
-@internal
 pub fn parse_optional_named_type_spread(
   tokens: List(token.Token),
 ) -> Result(
@@ -177,7 +171,6 @@ pub fn parse_optional_named_type_spread(
   }
 }
 
-@internal
 pub fn parse_selections(
   tokens: List(token.Token),
   selections: List(node.SelectionNode),

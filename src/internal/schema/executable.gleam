@@ -14,7 +14,6 @@ import internal/validate/schema/field
 import internal/validate/schema/interface
 import internal/validate/schema/union
 
-@internal
 pub fn from_types(
   ts: types.TypeSystem,
   description: option.Option(String),

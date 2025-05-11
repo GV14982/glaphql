@@ -7,7 +7,6 @@ import internal/lexer/token
 import internal/lexer/token_kind
 import internal/parser/node
 
-@internal
 pub fn expect_next(
   tokens: List(token.Token),
   expected: token_kind.TokenKind,
@@ -19,7 +18,6 @@ pub fn expect_next(
   }
 }
 
-@internal
 pub fn parse_between(
   start: token_kind.TokenKind,
   end: token_kind.TokenKind,
@@ -43,7 +41,6 @@ pub fn parse_between(
   }
 }
 
-@internal
 pub fn parse_between_optional(
   start: token_kind.TokenKind,
   end: token_kind.TokenKind,
@@ -65,7 +62,6 @@ pub fn parse_between_optional(
   }
 }
 
-@internal
 pub fn parse_until(
   end: token_kind.TokenKind,
   tokens: List(token.Token),

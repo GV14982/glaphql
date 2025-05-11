@@ -9,7 +9,6 @@ import internal/parser/named_type
 import internal/parser/node
 import internal/parser/schema/field_def
 
-@internal
 pub fn parse_interface_ext(
   tokens: List(token.Token),
   start: position.Position,
@@ -69,7 +68,6 @@ pub fn parse_interface_ext(
   }
 }
 
-@internal
 pub fn parse_interface_def(
   tokens: List(token.Token),
   description: option.Option(node.DescriptionNode),
@@ -104,7 +102,6 @@ pub fn parse_interface_def(
   }
 }
 
-@internal
 pub fn parse_optional_interface_implementations(
   tokens: List(token.Token),
   start: position.Position,

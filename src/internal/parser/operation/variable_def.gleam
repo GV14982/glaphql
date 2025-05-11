@@ -9,7 +9,6 @@ import internal/parser/default_value
 import internal/parser/node
 import internal/parser/type_node as tn
 
-@internal
 pub fn parse_optional_variable_definitions(
   tokens: List(token.Token),
 ) -> Result(
@@ -27,7 +26,6 @@ pub fn parse_optional_variable_definitions(
   }
 }
 
-@internal
 pub fn parse_variable_definition_list(
   tokens: List(token.Token),
   defs: List(node.VariableDefinitionNode),

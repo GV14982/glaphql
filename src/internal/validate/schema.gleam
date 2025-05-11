@@ -5,7 +5,6 @@ import gleam/option
 import gleam/result
 import internal/schema/types
 
-@internal
 pub fn validate_root_operations(
   schema: types.ExecutableSchema,
 ) -> Result(Nil, errors.SchemaValidationError) {
@@ -33,7 +32,6 @@ pub fn validate_root_operations(
   }
 }
 
-@internal
 pub fn check_unique_names(
   type_maps: List(dict.Dict(String, types.ExecutableTypeDef)),
 ) -> Result(Nil, errors.SchemaValidationError) {

@@ -7,7 +7,6 @@ import internal/parser/node
 import internal/schema/type_system
 import internal/schema/types
 
-@internal
 pub fn merge_schema(
   ts: types.TypeSystem,
   description: option.Option(String),
@@ -37,7 +36,6 @@ pub fn merge_schema(
   ))
 }
 
-@internal
 pub fn merge_types(
   defs: dict.Dict(String, type_def_node),
   exts: dict.Dict(String, List(type_ext_node)),
@@ -57,7 +55,6 @@ pub fn merge_types(
   |> result.map(dict.from_list)
 }
 
-@internal
 pub fn merge_scalar(
   def_node: node.ScalarTypeDefinition,
   ext_nodes: List(node.ScalarTypeExtension),
@@ -76,7 +73,6 @@ pub fn merge_scalar(
   ))
 }
 
-@internal
 pub fn merge_object(
   def_node: node.ObjectTypeDefinition,
   ext_nodes: List(node.ObjectTypeExtension),
@@ -163,7 +159,6 @@ pub fn merge_object(
   }
 }
 
-@internal
 pub fn merge_input(
   def_node: node.InputTypeDefinition,
   ext_nodes: List(node.InputTypeExtension),
@@ -220,7 +215,6 @@ pub fn merge_input(
   }
 }
 
-@internal
 pub fn merge_interface(
   def_node: node.InterfaceTypeDefinition,
   ext_nodes: List(node.InterfaceTypeExtension),
@@ -311,7 +305,6 @@ pub fn merge_interface(
   }
 }
 
-@internal
 pub fn merge_union(
   def_node: node.UnionTypeDefinition,
   ext_nodes: List(node.UnionTypeExtension),
@@ -355,7 +348,6 @@ pub fn merge_union(
   }
 }
 
-@internal
 pub fn merge_enum(
   def_node: node.EnumTypeDefinition,
   ext_nodes: List(node.EnumTypeExtension),

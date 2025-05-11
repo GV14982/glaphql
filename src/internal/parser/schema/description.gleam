@@ -4,7 +4,6 @@ import internal/lexer/token
 import internal/lexer/token_kind
 import internal/parser/node
 
-@internal
 pub fn parse_optional_description(
   tokens: List(token.Token),
 ) -> Result(

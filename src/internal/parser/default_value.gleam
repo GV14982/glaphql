@@ -6,7 +6,6 @@ import internal/lexer/token_kind
 import internal/parser/const_value
 import internal/parser/node
 
-@internal
 pub fn parse_optional(
   tokens: List(token.Token),
 ) -> Result(

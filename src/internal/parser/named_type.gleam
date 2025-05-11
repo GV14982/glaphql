@@ -6,7 +6,6 @@ import internal/lexer/token
 import internal/lexer/token_kind
 import internal/parser/node
 
-@internal
 pub fn parse_named_type_list(
   tokens: List(token.Token),
   members: List(node.NamedTypeNode),

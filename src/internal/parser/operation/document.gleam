@@ -6,7 +6,6 @@ import internal/lexer/token_kind
 import internal/parser/node
 import internal/parser/operation/definition
 
-@internal
 pub fn parse_operations_document(
   tokens: List(token.Token),
   defs: List(node.ExecutableDefinitionNode),

@@ -9,7 +9,6 @@ import internal/parser/node
 import internal/parser/schema/field_def
 import internal/parser/schema/interface
 
-@internal
 pub fn parse_object_ext(
   tokens: List(token.Token),
   start: position.Position,
@@ -66,7 +65,6 @@ pub fn parse_object_ext(
   }
 }
 
-@internal
 pub fn parse_object_def(
   tokens: List(token.Token),
   description: node.OptionalDescription,

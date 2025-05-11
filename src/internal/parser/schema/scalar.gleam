@@ -7,7 +7,6 @@ import internal/lexer/token_kind
 import internal/parser/const_directive
 import internal/parser/node
 
-@internal
 pub fn parse_scalar_ext(
   tokens: List(token.Token),
   start: position.Position,
@@ -36,7 +35,6 @@ pub fn parse_scalar_ext(
   }
 }
 
-@internal
 pub fn parse_scalar_def(
   tokens: List(token.Token),
   description: option.Option(node.DescriptionNode),

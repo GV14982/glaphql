@@ -11,7 +11,6 @@ import internal/parser/schema/input_value_def
 import internal/parser/type_node
 import internal/parser/util
 
-@internal
 pub fn parse_optional_field_definitions(
   tokens: List(token.Token),
 ) -> Result(
@@ -26,7 +25,6 @@ pub fn parse_optional_field_definitions(
   )
 }
 
-@internal
 pub fn parse_field_definition(
   tokens: List(token.Token),
 ) -> Result(node.NodeWithTokenList(node.FieldDefinitionNode), errors.ParseError) {

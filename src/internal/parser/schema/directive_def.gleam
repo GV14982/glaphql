@@ -8,7 +8,6 @@ import internal/lexer/token_kind
 import internal/parser/node
 import internal/parser/schema/input_value_def
 
-@internal
 pub fn parse_directive_def(
   tokens: List(token.Token),
   description: option.Option(node.DescriptionNode),
@@ -55,7 +54,6 @@ pub fn parse_directive_def(
   }
 }
 
-@internal
 pub fn parse_directive_locations(
   tokens: List(token.Token),
   locations: List(node.DirectiveLocationNode),
@@ -86,7 +84,6 @@ pub fn parse_directive_locations(
   }
 }
 
-@internal
 pub fn parse_directive_location(
   name: String,
 ) -> Result(node.DirectiveLocation, errors.ParseError) {

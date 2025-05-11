@@ -4,7 +4,6 @@ import gleam/list
 import internal/schema/types
 import internal/validate/util
 
-@internal
 pub fn validate_value_to_def(
   value: types.ExecutableConstValue,
   def: types.ExecutableInputValueDef,
@@ -40,7 +39,6 @@ pub fn validate_value_to_def(
   }
 }
 
-@internal
 pub fn validate_scalar_type(
   scalar: types.ExecutableConstScalar,
   arg: types.ExecutableInputValueDef,
@@ -92,7 +90,6 @@ pub fn validate_scalar_type(
   }
 }
 
-@internal
 pub fn validate_input_field_values(
   values: dict.Dict(String, types.ExecutableConstValue),
   fields: dict.Dict(String, types.ExecutableInputValueDef),

@@ -4,7 +4,6 @@ import internal/lexer/token
 import internal/lexer/token_kind
 import internal/parser/node
 
-@internal
 pub fn parse_type_node(
   tokens: List(token.Token),
 ) -> Result(node.NodeWithTokenList(node.TypeNode), errors.ParseError) {

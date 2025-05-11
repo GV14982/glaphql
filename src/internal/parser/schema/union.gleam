@@ -8,7 +8,6 @@ import internal/parser/const_directive
 import internal/parser/named_type
 import internal/parser/node
 
-@internal
 pub fn parse_union_ext(
   tokens: List(token.Token),
   start: position.Position,
@@ -50,7 +49,6 @@ pub fn parse_union_ext(
   }
 }
 
-@internal
 pub fn parse_union_def(
   tokens: List(token.Token),
   description: option.Option(node.DescriptionNode),

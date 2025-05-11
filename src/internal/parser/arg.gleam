@@ -8,7 +8,6 @@ import internal/lexer/token_kind
 import internal/parser/const_value
 import internal/parser/node
 
-@internal
 pub fn parse_optional_args(
   tokens: List(token.Token),
   default_end: position.Position,
@@ -27,7 +26,6 @@ pub fn parse_optional_args(
   }
 }
 
-@internal
 pub fn parse_arg_list(
   tokens: List(token.Token),
   args: List(node.ArgumentNode),
@@ -46,7 +44,6 @@ pub fn parse_arg_list(
   }
 }
 
-@internal
 pub fn parse_arg(
   tokens: List(token.Token),
 ) -> Result(node.NodeWithTokenList(node.ArgumentNode), errors.ParseError) {
@@ -63,7 +60,6 @@ pub fn parse_arg(
   }
 }
 
-@internal
 pub fn parse_var_or_const(
   tokens: List(token.Token),
 ) -> Result(
@@ -108,7 +104,6 @@ pub fn parse_var_or_const(
   }
 }
 
-@internal
 pub fn parse_list_value(
   tokens: List(token.Token),
   values: List(node.ValueNode),
@@ -126,7 +121,6 @@ pub fn parse_list_value(
   }
 }
 
-@internal
 pub fn parse_object_field(
   tokens: List(token.Token),
 ) -> Result(node.NodeWithTokenList(node.ObjectFieldNode), errors.ParseError) {
@@ -143,7 +137,6 @@ pub fn parse_object_field(
   }
 }
 
-@internal
 pub fn parse_object_value(
   tokens: List(token.Token),
   values: List(node.ObjectFieldNode),

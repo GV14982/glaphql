@@ -4,7 +4,6 @@ import gleam/option
 import gleam/result
 import internal/schema/types
 
-@internal
 pub fn validate_root_operations(
   schema: types.ExecutableSchema,
 ) -> Result(Nil, errors.SchemaValidationError) {

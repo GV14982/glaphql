@@ -8,7 +8,6 @@ import internal/lexer/token
 import internal/lexer/token_kind
 import internal/parser/node
 
-@internal
 pub fn parse_const_value(
   tokens: List(token.Token),
 ) -> Result(node.NodeWithTokenList(node.ConstValueNode), errors.ParseError) {
@@ -32,7 +31,6 @@ pub fn parse_const_value(
   }
 }
 
-@internal
 pub fn parse_const(
   tokens: List(token.Token),
 ) -> Result(node.NodeWithTokenList(node.ConstNode), errors.ParseError) {

@@ -14,7 +14,6 @@ import internal/parser/schema/scalar
 import internal/parser/schema/schema_def
 import internal/parser/schema/union
 
-@internal
 pub fn parse(
   tokens: List(token.Token),
   description: option.Option(node.DescriptionNode),
@@ -84,7 +83,6 @@ pub fn parse(
   }
 }
 
-@internal
 pub fn parse_type_ext(
   name: String,
   tokens: List(token.Token),
@@ -103,7 +101,6 @@ pub fn parse_type_ext(
   }
 }
 
-@internal
 pub fn parse_type_def(
   name: String,
   tokens: List(token.Token),

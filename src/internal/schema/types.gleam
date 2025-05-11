@@ -2,7 +2,6 @@ import gleam/dict
 import gleam/option
 import internal/parser/node
 
-@internal
 pub type TypeSystemDefinitionsByType {
   TypeSystemDefinitionsByType(
     scalars: dict.Dict(String, node.ScalarTypeDefinition),
@@ -15,7 +14,6 @@ pub type TypeSystemDefinitionsByType {
   )
 }
 
-@internal
 pub type TypeSystemExtensionsByType {
   TypeSystemExtensionsByType(
     scalars: dict.Dict(String, List(node.ScalarTypeExtension)),
@@ -28,7 +26,6 @@ pub type TypeSystemExtensionsByType {
   )
 }
 
-@internal
 pub type TypeSystem {
   TypeSystem(
     defs: TypeSystemDefinitionsByType,
@@ -37,7 +34,6 @@ pub type TypeSystem {
   )
 }
 
-@internal
 pub type ExecutableSchema {
   ExecutableSchema(
     description: option.Option(String),
@@ -50,7 +46,6 @@ pub type ExecutableSchema {
   )
 }
 
-@internal
 pub type ExecutableTypeDef {
   ScalarTypeDef(ExecutableScalarTypeDef)
   EnumTypeDef(ExecutableEnumTypeDef)
@@ -60,7 +55,6 @@ pub type ExecutableTypeDef {
   UnionTypeDef(ExecutableUnionTypeDef)
 }
 
-@internal
 pub type ExecutableScalarTypeDef {
   ExecutableScalarTypeDef(
     name: String,
@@ -69,7 +63,6 @@ pub type ExecutableScalarTypeDef {
   )
 }
 
-@internal
 pub type ExecutableObjectTypeDef {
   ExecutableObjectTypeDef(
     name: String,
@@ -80,7 +73,6 @@ pub type ExecutableObjectTypeDef {
   )
 }
 
-@internal
 pub type ExecutableInterfaceTypeDef {
   ExecutableInterfaceTypeDef(
     name: String,
@@ -91,7 +83,6 @@ pub type ExecutableInterfaceTypeDef {
   )
 }
 
-@internal
 pub type ExecutableUnionTypeDef {
   ExecutableUnionTypeDef(
     name: String,
@@ -101,7 +92,6 @@ pub type ExecutableUnionTypeDef {
   )
 }
 
-@internal
 pub type ExecutableEnumTypeDef {
   ExecutableEnumTypeDef(
     name: String,
@@ -111,7 +101,6 @@ pub type ExecutableEnumTypeDef {
   )
 }
 
-@internal
 pub type ExecutableEnumMember {
   ExecutableEnumMember(
     name: String,
@@ -120,7 +109,6 @@ pub type ExecutableEnumMember {
   )
 }
 
-@internal
 pub type ExecutableInputTypeDef {
   ExecutableInputTypeDef(
     name: String,
@@ -130,7 +118,6 @@ pub type ExecutableInputTypeDef {
   )
 }
 
-@internal
 pub type ExecutableInputValueDef {
   ExecutableInputValueDef(
     description: option.Option(String),
@@ -141,7 +128,6 @@ pub type ExecutableInputValueDef {
   )
 }
 
-@internal
 pub type ExecutableFieldDef {
   ExecutableFieldDef(
     name: String,
@@ -152,30 +138,25 @@ pub type ExecutableFieldDef {
   )
 }
 
-@internal
 pub type ExecutableType {
   NamedType(ExecutableNamedType)
   ListType(ExecutableListType)
 }
 
-@internal
 pub type ExecutableNamedType {
   ExecutableNamedType(nullable: Bool, name: String)
 }
 
-@internal
 pub type ExecutableListType {
   ExecutableListType(nullable: Bool, executable_type: ExecutableType)
 }
 
-@internal
 pub type ExecutableConstValue {
   ExecutableConstScalar(val: ExecutableConstScalar)
   ExecutableConstObject(val: dict.Dict(String, ExecutableConstValue))
   ExecutableConstList(val: List(ExecutableConstValue))
 }
 
-@internal
 pub type ExecutableConstScalar {
   ExecutableIntVal(Int)
   ExecutableFloatVal(Float)
@@ -185,7 +166,6 @@ pub type ExecutableConstScalar {
   ExecutableNullVal
 }
 
-@internal
 pub type ExecutableArgumentDef {
   ExecutableArgumentDef(
     name: String,
@@ -196,7 +176,6 @@ pub type ExecutableArgumentDef {
   )
 }
 
-@internal
 pub type ExecutableDirectiveDef {
   DirectiveDef(
     name: String,
@@ -207,7 +186,6 @@ pub type ExecutableDirectiveDef {
   )
 }
 
-@internal
 pub type ExecutableDirective {
   ExecutableDirective(
     name: String,

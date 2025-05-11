@@ -8,7 +8,6 @@ import internal/parser/const_value
 import internal/parser/node
 import internal/parser/util
 
-@internal
 pub fn parse_optional_const_arg_defs(
   tokens: List(token.Token),
 ) -> Result(

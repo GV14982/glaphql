@@ -4,7 +4,6 @@ import gleam/list
 import internal/schema/types
 import internal/validate/schema/value
 
-@internal
 pub fn validate_arguments(
   args: dict.Dict(String, types.ExecutableConstValue),
   arg_defs: dict.Dict(String, types.ExecutableInputValueDef),

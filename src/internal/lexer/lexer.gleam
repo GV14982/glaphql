@@ -7,35 +7,29 @@ import internal/lexer/predicates
 import internal/lexer/token
 import internal/lexer/token_kind
 
-@internal
 pub type Lexer {
   Lexer(input: String, pos: position.Position)
 }
 
-@internal
 pub type LexResult =
   Result(List(token.Token), errors.LexError)
 
-@internal
 pub type TokenResult =
   Result(#(token.Token, Lexer), errors.LexError)
 
 type AccumulatedVal(a) =
   #(String, a, position.Position)
 
-@internal
 pub type NumberType {
   Integer
   Float
 }
 
-@internal
 pub fn lex(input: String) -> LexResult {
   let init_lexer = Lexer(input, position.new())
   lex_until_error(init_lexer, [])
 }
 
-@internal
 pub fn lex_until_error(lexer: Lexer, tokens: List(token.Token)) -> LexResult {
   let token_result = get_next_token(lexer)
   case token_result {
@@ -52,13 +46,11 @@ fn result_with_token(token: token.Token, lexer: Lexer) -> TokenResult {
   Ok(#(token, lexer))
 }
 
-@internal
 pub fn lookahead(lexer: Lexer) -> TokenResult {
   use #(token, _lexer) <- result.try(get_next_token(lexer))
   Ok(#(token, lexer))
 }
 
-@internal
 pub fn get_next_token(lexer: Lexer) -> TokenResult {
   case lexer.input {
     "\u{FEFF}" <> tail ->
@@ -183,7 +175,6 @@ pub fn get_next_token(lexer: Lexer) -> TokenResult {
   }
 }
 
-@internal
 pub fn handle_name_or_number(lexer: Lexer) -> TokenResult {
   use #(head, tail) <- result.try(
     string.pop_grapheme(lexer.input)
@@ -225,7 +216,6 @@ pub fn handle_name_or_number(lexer: Lexer) -> TokenResult {
   }
 }
 
-@internal
 pub fn consume_comment(
   input: String,
   comment: String,
@@ -242,7 +232,6 @@ pub fn consume_comment(
   }
 }
 
-@internal
 pub fn consume_name(
   input: String,
   val: String,
@@ -263,7 +252,6 @@ pub fn consume_name(
   }
 }
 
-@internal
 pub fn consume_string(
   input: String,
   val: String,
@@ -291,7 +279,6 @@ pub fn consume_string(
   }
 }
 
-@internal
 pub fn consume_block_string(
   input: String,
   val: String,
@@ -327,7 +314,6 @@ pub fn consume_block_string(
   }
 }
 
-@internal
 pub fn consume_number(
   input: String,
   val: String,
@@ -359,7 +345,6 @@ pub fn consume_number(
   }
 }
 
-@internal
 pub fn number_type_to_token_kind(
   number_type: NumberType,
   val: String,

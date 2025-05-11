@@ -9,7 +9,6 @@ import internal/parser/node
 import internal/parser/operation/selection_set
 import internal/parser/operation/variable_def
 
-@internal
 pub fn parse_operation_def(
   tokens: List(token.Token),
   operation_type: String,
@@ -28,7 +27,6 @@ pub fn parse_operation_def(
   }
 }
 
-@internal
 pub fn parse_unnamed_query(
   tokens: List(token.Token),
   start: position.Position,
@@ -51,7 +49,6 @@ pub fn parse_unnamed_query(
   ))
 }
 
-@internal
 pub fn parse_named_operation(
   tokens: List(token.Token),
   name: node.NameNode,

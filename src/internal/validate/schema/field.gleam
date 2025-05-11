@@ -4,7 +4,6 @@ import gleam/list
 import gleam/result
 import internal/schema/types
 
-@internal
 pub fn validate_field_definitions(
   fields: dict.Dict(String, types.ExecutableFieldDef),
   type_map: dict.Dict(String, types.ExecutableTypeDef),
@@ -24,7 +23,6 @@ pub fn validate_field_definitions(
   Ok(Nil)
 }
 
-@internal
 pub fn validate_field_type(
   field_type: types.ExecutableType,
   type_map: dict.Dict(String, types.ExecutableTypeDef),

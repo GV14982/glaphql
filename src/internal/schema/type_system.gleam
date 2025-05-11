@@ -6,7 +6,6 @@ import gleam/result
 import internal/parser/node
 import internal/schema/types
 
-@internal
 pub fn from_schema_doc(doc: node.Document) -> Result(types.TypeSystem, Nil) {
   let type_system =
     types.TypeSystem(
@@ -45,7 +44,6 @@ pub fn from_schema_doc(doc: node.Document) -> Result(types.TypeSystem, Nil) {
   )
 }
 
-@internal
 pub fn type_ext(
   type_system_node: node.TypeSystemExtensionNode,
   acc: types.TypeSystem,
@@ -153,7 +151,6 @@ pub fn type_ext(
   }
 }
 
-@internal
 pub fn type_node(
   type_def_node: node.TypeSystemDefinitionNode,
   acc: types.TypeSystem,
@@ -244,7 +241,6 @@ pub fn type_node(
   }
 }
 
-@internal
 pub fn map_directives(
   directives: node.ConstDirectives,
 ) -> List(types.ExecutableDirective) {
@@ -261,7 +257,6 @@ pub fn map_directives(
   })
 }
 
-@internal
 pub fn map_fields(
   fields: node.FieldDefinitions,
 ) -> dict.Dict(String, types.ExecutableFieldDef) {
@@ -288,7 +283,6 @@ pub fn map_fields(
   )
 }
 
-@internal
 pub fn map_input_values(
   fields: node.InputValueDefinitions,
 ) -> dict.Dict(String, types.ExecutableInputValueDef) {
@@ -314,7 +308,6 @@ pub fn map_input_values(
   )
 }
 
-@internal
 pub fn map_enum_members(
   members: option.Option(List(node.EnumValueDefinitionNode)),
 ) -> List(types.ExecutableEnumMember) {
@@ -326,7 +319,6 @@ pub fn map_enum_members(
   )
 }
 
-@internal
 pub fn map_named_type_nodes(
   named_type_nodes: option.Option(List(node.NamedTypeNode)),
 ) -> List(String) {
@@ -334,7 +326,6 @@ pub fn map_named_type_nodes(
   named_type_node.name.value
 }
 
-@internal
 pub fn map_type_node(type_node: node.TypeNode) -> types.ExecutableType {
   case type_node {
     node.NullableTypeNode(type_node:, ..) ->
@@ -360,7 +351,6 @@ pub fn map_type_node(type_node: node.TypeNode) -> types.ExecutableType {
   }
 }
 
-@internal
 pub fn map_const_value(
   const_val: node.ConstValueNode,
 ) -> types.ExecutableConstValue {
@@ -401,7 +391,6 @@ fn operation_type_to_string(op: node.OperationType) {
   }
 }
 
-@internal
 pub fn get_root_operation(
   ts: types.TypeSystem,
   op_name: node.OperationType,

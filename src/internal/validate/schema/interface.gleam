@@ -7,7 +7,6 @@ import gleam/result
 import gleam/set
 import internal/schema/types
 
-@internal
 pub fn check_interface_implementations(
   type_def: types.ExecutableTypeDef,
   type_maps: dict.Dict(String, types.ExecutableTypeDef),
