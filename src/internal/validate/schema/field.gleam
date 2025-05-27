@@ -1,6 +1,5 @@
 /// This module provides validation functions for GraphQL output field types.
 /// It ensures that field types are valid according to the GraphQL specification.
-
 import errors
 import gleam/dict
 import gleam/list

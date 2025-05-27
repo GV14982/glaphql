@@ -1,6 +1,5 @@
 /// This module provides validation functions for GraphQL union members.
 /// It ensures that union members follow the GraphQL specification.
-
 import errors
 import gleam/dict
 import gleam/list
