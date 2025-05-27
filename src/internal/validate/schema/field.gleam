@@ -5,7 +5,7 @@ import errors
 import gleam/dict
 import gleam/list
 import gleam/result
-import internal/schema/types
+import internal/executable/types
 
 /// Validates a collection of output field definitions
 ///

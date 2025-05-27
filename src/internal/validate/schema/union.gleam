@@ -5,7 +5,7 @@ import errors
 import gleam/dict
 import gleam/list
 import gleam/result
-import internal/schema/types
+import internal/executable/types
 
 /// Validates that all members of a union type are valid object types
 ///

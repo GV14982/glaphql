@@ -5,1446 +5,18 @@ file: ./test/parser/schema/document_test.gleam
 test_name: parse_schema_document_test
 ---
 SchemaDocument([
-  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
-    None,
-    NameNode(
-      "oneOf",
-      #(
-        Position(12, 215),
-        Position(16, 215),
-      ),
-    ),
-    #(
-      Position(1, 215),
-      Position(32, 215),
-    ),
-    None,
-    False,
-    [
-      DirectiveLocationNode(
-        TypeSystemDirectiveLocation(InputObjectDirective),
-        #(
-          Position(21, 215),
-          Position(32, 215),
-        ),
-      ),
-    ],
-  ))),
-  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
-    None,
-    NameNode(
-      "onEnumValue",
-      #(
-        Position(12, 214),
-        Position(22, 214),
-      ),
-    ),
-    #(
-      Position(1, 214),
-      Position(36, 214),
-    ),
-    None,
-    False,
-    [
-      DirectiveLocationNode(
-        TypeSystemDirectiveLocation(EnumValueDirective),
-        #(
-          Position(27, 214),
-          Position(36, 214),
-        ),
-      ),
-    ],
-  ))),
-  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
-    None,
-    NameNode(
-      "onEnum",
-      #(
-        Position(12, 213),
-        Position(17, 213),
-      ),
-    ),
-    #(
-      Position(1, 213),
-      Position(25, 213),
-    ),
-    None,
-    False,
-    [
-      DirectiveLocationNode(
-        TypeSystemDirectiveLocation(EnumDirective),
-        #(
-          Position(22, 213),
-          Position(25, 213),
-        ),
-      ),
-    ],
-  ))),
-  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
-    None,
-    NameNode(
-      "onArgumentDefinition",
-      #(
-        Position(12, 212),
-        Position(31, 212),
-      ),
-    ),
-    #(
-      Position(1, 212),
-      Position(54, 212),
-    ),
-    None,
-    False,
-    [
-      DirectiveLocationNode(
-        TypeSystemDirectiveLocation(ArgumentDefinitionDirective),
-        #(
-          Position(36, 212),
-          Position(54, 212),
-        ),
-      ),
-    ],
-  ))),
-  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
-    None,
-    NameNode(
-      "onInputFieldDefinition",
-      #(
-        Position(12, 211),
-        Position(33, 211),
-      ),
-    ),
-    #(
-      Position(1, 211),
-      Position(59, 211),
-    ),
-    None,
-    False,
-    [
-      DirectiveLocationNode(
-        TypeSystemDirectiveLocation(InputFieldDefinitionDirective),
-        #(
-          Position(38, 211),
-          Position(59, 211),
-        ),
-      ),
-    ],
-  ))),
-  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
-    None,
-    NameNode(
-      "onField",
-      #(
-        Position(12, 210),
-        Position(18, 210),
-      ),
-    ),
-    #(
-      Position(1, 210),
-      Position(38, 210),
-    ),
-    None,
-    False,
-    [
-      DirectiveLocationNode(
-        TypeSystemDirectiveLocation(FieldDefinitionDirective),
-        #(
-          Position(23, 210),
-          Position(38, 210),
-        ),
-      ),
-    ],
-  ))),
-  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
-    None,
-    NameNode(
-      "onInputObject",
-      #(
-        Position(12, 209),
-        Position(24, 209),
-      ),
-    ),
-    #(
-      Position(1, 209),
-      Position(40, 209),
-    ),
-    None,
-    False,
-    [
-      DirectiveLocationNode(
-        TypeSystemDirectiveLocation(InputObjectDirective),
-        #(
-          Position(29, 209),
-          Position(40, 209),
-        ),
-      ),
-    ],
-  ))),
-  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
-    None,
-    NameNode(
-      "onObject",
-      #(
-        Position(12, 208),
-        Position(19, 208),
-      ),
-    ),
-    #(
-      Position(1, 208),
-      Position(43, 208),
-    ),
-    Some([
-      InputValueDefinitionNode(
-        None,
-        NameNode(
-          "arg",
-          #(
-            Position(21, 208),
-            Position(23, 208),
-          ),
-        ),
-        #(
-          Position(21, 208),
-          Position(33, 208),
-        ),
-        None,
-        NonNullTypeNode(
-          NamedTypeNode(NameNode(
-            "String",
-            #(
-              Position(26, 208),
-              Position(31, 208),
-            ),
-          )),
-          #(
-            Position(26, 208),
-            Position(32, 208),
-          ),
-        ),
-        None,
-      ),
-    ]),
-    False,
-    [
-      DirectiveLocationNode(
-        TypeSystemDirectiveLocation(ObjectDirective),
-        #(
-          Position(38, 208),
-          Position(43, 208),
-        ),
-      ),
-    ],
-  ))),
-  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
-    None,
-    NameNode(
-      "onType",
-      #(
-        Position(12, 207),
-        Position(17, 207),
-      ),
-    ),
-    #(
-      Position(1, 207),
-      Position(27, 207),
-    ),
-    None,
-    False,
-    [
-      DirectiveLocationNode(
-        TypeSystemDirectiveLocation(ObjectDirective),
-        #(
-          Position(22, 207),
-          Position(27, 207),
-        ),
-      ),
-    ],
-  ))),
-  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
-    None,
-    NameNode(
-      "onInterface",
-      #(
-        Position(12, 206),
-        Position(22, 206),
-      ),
-    ),
-    #(
-      Position(1, 206),
-      Position(35, 206),
-    ),
-    None,
-    False,
-    [
-      DirectiveLocationNode(
-        TypeSystemDirectiveLocation(InterfaceDirective),
-        #(
-          Position(27, 206),
-          Position(35, 206),
-        ),
-      ),
-    ],
-  ))),
-  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
-    None,
-    NameNode(
-      "onScalar",
-      #(
-        Position(12, 205),
-        Position(19, 205),
-      ),
-    ),
-    #(
-      Position(1, 205),
-      Position(29, 205),
-    ),
-    None,
-    False,
-    [
-      DirectiveLocationNode(
-        TypeSystemDirectiveLocation(ScalarDirective),
-        #(
-          Position(24, 205),
-          Position(29, 205),
-        ),
-      ),
-    ],
-  ))),
-  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
-    None,
-    NameNode(
-      "onUnion",
-      #(
-        Position(12, 204),
-        Position(18, 204),
-      ),
-    ),
-    #(
-      Position(1, 204),
-      Position(27, 204),
-    ),
-    None,
-    False,
-    [
-      DirectiveLocationNode(
-        TypeSystemDirectiveLocation(UnionDirective),
-        #(
-          Position(23, 204),
-          Position(27, 204),
-        ),
-      ),
-    ],
-  ))),
-  TypeSystemExtensionNode(SchemaExtensionNode(SchemaExtension(
-    #(
-      Position(1, 200),
-      Position(1, 202),
-    ),
-    Some([
-      ConstDirectiveNode(
-        NameNode(
-          "onSchema",
-          #(
-            Position(16, 200),
-            Position(23, 200),
-          ),
-        ),
-        None,
-        #(
-          Position(15, 200),
-          Position(1, 1),
-        ),
-      ),
-    ]),
-    Some([
-      RootOperationTypeDefinition(
-        #(
-          Position(3, 201),
-          Position(32, 201),
-        ),
-        Subscription,
-        NamedTypeNode(NameNode(
-          "SubscriptionType",
-          #(
-            Position(17, 201),
-            Position(32, 201),
-          ),
-        )),
-      ),
-    ]),
-  ))),
-  TypeSystemExtensionNode(SchemaExtensionNode(SchemaExtension(
-    #(
-      Position(1, 198),
-      Position(6, 200),
-    ),
-    Some([
-      ConstDirectiveNode(
-        NameNode(
-          "onSchema",
-          #(
-            Position(16, 198),
-            Position(23, 198),
-          ),
-        ),
-        None,
-        #(
-          Position(15, 198),
-          Position(1, 1),
-        ),
-      ),
-    ]),
-    None,
-  ))),
-  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
-    None,
-    NameNode(
-      "onSchema",
-      #(
-        Position(12, 196),
-        Position(19, 196),
-      ),
-    ),
-    #(
-      Position(1, 196),
-      Position(29, 196),
-    ),
-    None,
-    False,
-    [
-      DirectiveLocationNode(
-        TypeSystemDirectiveLocation(SchemaDirective),
-        #(
-          Position(24, 196),
-          Position(29, 196),
-        ),
-      ),
-    ],
-  ))),
-  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
-    None,
-    NameNode(
-      "myRepeatableDir",
-      #(
-        Position(12, 192),
-        Position(26, 192),
-      ),
-    ),
-    #(
-      Position(1, 192),
-      Position(13, 194),
-    ),
-    Some([
-      InputValueDefinitionNode(
-        None,
-        NameNode(
-          "name",
-          #(
-            Position(28, 192),
-            Position(31, 192),
-          ),
-        ),
-        #(
-          Position(28, 192),
-          Position(41, 192),
-        ),
-        None,
-        NonNullTypeNode(
-          NamedTypeNode(NameNode(
-            "String",
-            #(
-              Position(34, 192),
-              Position(39, 192),
-            ),
-          )),
-          #(
-            Position(34, 192),
-            Position(40, 192),
-          ),
-        ),
-        None,
-      ),
-    ]),
-    True,
-    [
-      DirectiveLocationNode(
-        TypeSystemDirectiveLocation(ObjectDirective),
-        #(
-          Position(5, 193),
-          Position(10, 193),
-        ),
-      ),
-      DirectiveLocationNode(
-        TypeSystemDirectiveLocation(InterfaceDirective),
-        #(
-          Position(5, 194),
-          Position(13, 194),
-        ),
-      ),
-    ],
-  ))),
-  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
-    None,
-    NameNode(
-      "include2",
-      #(
-        Position(12, 187),
-        Position(19, 187),
-      ),
-    ),
-    #(
-      Position(1, 187),
-      Position(19, 190),
-    ),
-    Some([
-      InputValueDefinitionNode(
-        None,
-        NameNode(
-          "if",
-          #(
-            Position(21, 187),
-            Position(22, 187),
-          ),
-        ),
-        #(
-          Position(21, 187),
-          Position(33, 187),
-        ),
-        None,
-        NonNullTypeNode(
-          NamedTypeNode(NameNode(
-            "Boolean",
-            #(
-              Position(25, 187),
-              Position(31, 187),
-            ),
-          )),
-          #(
-            Position(25, 187),
-            Position(32, 187),
-          ),
-        ),
-        None,
-      ),
-    ]),
-    False,
-    [
-      DirectiveLocationNode(
-        ExecutableDirectiveLocation(FieldDirective),
-        #(
-          Position(5, 188),
-          Position(9, 188),
-        ),
-      ),
-      DirectiveLocationNode(
-        ExecutableDirectiveLocation(FragmentSpreadDirective),
-        #(
-          Position(5, 189),
-          Position(19, 189),
-        ),
-      ),
-      DirectiveLocationNode(
-        ExecutableDirectiveLocation(InlineFragmentDirective),
-        #(
-          Position(5, 190),
-          Position(19, 190),
-        ),
-      ),
-    ],
-  ))),
-  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
-    None,
-    NameNode(
-      "include",
-      #(
-        Position(12, 182),
-        Position(18, 182),
-      ),
-    ),
-    #(
-      Position(1, 182),
-      Position(20, 185),
-    ),
-    Some([
-      InputValueDefinitionNode(
-        None,
-        NameNode(
-          "if",
-          #(
-            Position(20, 182),
-            Position(21, 182),
-          ),
-        ),
-        #(
-          Position(20, 182),
-          Position(32, 182),
-        ),
-        None,
-        NonNullTypeNode(
-          NamedTypeNode(NameNode(
-            "Boolean",
-            #(
-              Position(24, 182),
-              Position(30, 182),
-            ),
-          )),
-          #(
-            Position(24, 182),
-            Position(31, 182),
-          ),
-        ),
-        None,
-      ),
-    ]),
-    False,
-    [
-      DirectiveLocationNode(
-        ExecutableDirectiveLocation(FieldDirective),
-        #(
-          Position(6, 183),
-          Position(10, 183),
-        ),
-      ),
-      DirectiveLocationNode(
-        ExecutableDirectiveLocation(FragmentSpreadDirective),
-        #(
-          Position(6, 184),
-          Position(20, 184),
-        ),
-      ),
-      DirectiveLocationNode(
-        ExecutableDirectiveLocation(InlineFragmentDirective),
-        #(
-          Position(6, 185),
-          Position(20, 185),
-        ),
-      ),
-    ],
-  ))),
-  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
-    Some(DescriptionNode(
-      "
-This is a description of the \`@skip\` directive
-",
-      #(
-        Position(1, 174),
-        Position(4, 176),
-      ),
-    )),
-    NameNode(
-      "skip",
-      #(
-        Position(12, 177),
-        Position(15, 177),
-      ),
-    ),
-    #(
-      Position(1, 177),
-      Position(46, 180),
-    ),
-    Some([
-      InputValueDefinitionNode(
-        Some(DescriptionNode(
-          "This is a description of the \`if\` argument",
-          #(
-            Position(3, 178),
-            Position(50, 178),
-          ),
-        )),
-        NameNode(
-          "if",
-          #(
-            Position(3, 179),
-            Position(4, 179),
-          ),
-        ),
-        #(
-          Position(3, 179),
-          Position(1, 180),
-        ),
-        Some([
-          ConstDirectiveNode(
-            NameNode(
-              "onArgumentDefinition",
-              #(
-                Position(17, 179),
-                Position(36, 179),
-              ),
-            ),
-            None,
-            #(
-              Position(16, 179),
-              Position(1, 1),
-            ),
-          ),
-        ]),
-        NonNullTypeNode(
-          NamedTypeNode(NameNode(
-            "Boolean",
-            #(
-              Position(7, 179),
-              Position(13, 179),
-            ),
-          )),
-          #(
-            Position(7, 179),
-            Position(14, 179),
-          ),
-        ),
-        None,
-      ),
-    ]),
-    False,
-    [
-      DirectiveLocationNode(
-        ExecutableDirectiveLocation(FieldDirective),
-        #(
-          Position(6, 180),
-          Position(10, 180),
-        ),
-      ),
-      DirectiveLocationNode(
-        ExecutableDirectiveLocation(FragmentSpreadDirective),
-        #(
-          Position(14, 180),
-          Position(28, 180),
-        ),
-      ),
-      DirectiveLocationNode(
-        ExecutableDirectiveLocation(InlineFragmentDirective),
-        #(
-          Position(32, 180),
-          Position(46, 180),
-        ),
-      ),
-    ],
-  ))),
-  TypeSystemExtensionNode(TypeExtensionNode(InputObjectTypeExtensionNode(InputTypeExtensionWithDirectives(
-    NameNode(
-      "InputType",
-      #(
-        Position(14, 172),
-        Position(22, 172),
-      ),
-    ),
-    #(Position(1, 172), Position(1, 1)),
-    [
-      ConstDirectiveNode(
-        NameNode(
-          "onInputObject",
-          #(
-            Position(25, 172),
-            Position(37, 172),
-          ),
-        ),
-        None,
-        #(
-          Position(24, 172),
-          Position(1, 1),
-        ),
-      ),
-    ],
-  )))),
-  TypeSystemExtensionNode(TypeExtensionNode(InputObjectTypeExtensionNode(InputTypeExtensionWithFields(
-    NameNode(
-      "InputType",
-      #(
-        Position(14, 168),
-        Position(22, 168),
-      ),
-    ),
-    #(
-      Position(1, 168),
-      Position(1, 170),
-    ),
-    None,
-    [
-      InputValueDefinitionNode(
-        None,
-        NameNode(
-          "other",
-          #(
-            Position(3, 169),
-            Position(7, 169),
-          ),
-        ),
-        #(
-          Position(3, 169),
-          Position(1, 170),
-        ),
-        Some([
-          ConstDirectiveNode(
-            NameNode(
-              "onInputFieldDefinition",
-              #(
-                Position(26, 169),
-                Position(47, 169),
-              ),
-            ),
-            None,
-            #(
-              Position(25, 169),
-              Position(1, 1),
-            ),
-          ),
-        ]),
-        NullableTypeNode(
-          NamedTypeNode(NameNode(
-            "Float",
-            #(
-              Position(10, 169),
-              Position(14, 169),
-            ),
-          )),
-          #(
-            Position(10, 169),
-            Position(14, 169),
-          ),
-        ),
-        Some(ConstValueNode(FloatValueNode(
-          #(
-            Position(18, 169),
-            Position(23, 169),
-          ),
-          1.23e4,
-        ))),
-      ),
-    ],
-  )))),
-  TypeSystemDefinitionNode(TypeDefinitionNode(InputTypeDefinitionNode(InputTypeDefinition(
-    None,
-    NameNode(
-      "UndefinedInput",
-      #(
-        Position(7, 166),
-        Position(20, 166),
-      ),
-    ),
-    None,
-    None,
-    #(Position(1, 166), Position(1, 1)),
-  )))),
-  TypeSystemDefinitionNode(TypeDefinitionNode(InputTypeDefinitionNode(InputTypeDefinition(
-    None,
-    NameNode(
-      "AnnotatedInput",
-      #(
-        Position(7, 162),
-        Position(20, 162),
-      ),
-    ),
-    Some([
-      ConstDirectiveNode(
-        NameNode(
-          "onInputObject",
-          #(
-            Position(23, 162),
-            Position(35, 162),
-          ),
-        ),
-        None,
-        #(
-          Position(22, 162),
-          Position(1, 1),
-        ),
-      ),
-    ]),
-    Some([
-      InputValueDefinitionNode(
-        None,
-        NameNode(
-          "annotatedField",
-          #(
-            Position(3, 163),
-            Position(16, 163),
-          ),
-        ),
-        #(
-          Position(3, 163),
-          Position(1, 164),
-        ),
-        Some([
-          ConstDirectiveNode(
-            NameNode(
-              "onInputFieldDefinition",
-              #(
-                Position(33, 163),
-                Position(54, 163),
-              ),
-            ),
-            None,
-            #(
-              Position(32, 163),
-              Position(1, 1),
-            ),
-          ),
-        ]),
-        NullableTypeNode(
-          NamedTypeNode(NameNode(
-            "CustomScalar",
-            #(
-              Position(19, 163),
-              Position(30, 163),
-            ),
-          )),
-          #(
-            Position(19, 163),
-            Position(30, 163),
-          ),
-        ),
-        None,
-      ),
-    ]),
-    #(
-      Position(1, 162),
-      Position(1, 164),
-    ),
-  )))),
-  TypeSystemDefinitionNode(TypeDefinitionNode(InputTypeDefinitionNode(InputTypeDefinition(
-    None,
-    NameNode(
-      "OneOfInputType",
-      #(
-        Position(7, 157),
-        Position(20, 157),
-      ),
-    ),
-    Some([
-      ConstDirectiveNode(
-        NameNode(
-          "oneOf",
-          #(
-            Position(23, 157),
-            Position(27, 157),
-          ),
-        ),
-        None,
-        #(
-          Position(22, 157),
-          Position(1, 1),
-        ),
-      ),
-    ]),
-    Some([
-      InputValueDefinitionNode(
-        None,
-        NameNode(
-          "string",
-          #(
-            Position(3, 158),
-            Position(8, 158),
-          ),
-        ),
-        #(
-          Position(3, 158),
-          Position(5, 159),
-        ),
-        None,
-        NullableTypeNode(
-          NamedTypeNode(NameNode(
-            "String",
-            #(
-              Position(11, 158),
-              Position(16, 158),
-            ),
-          )),
-          #(
-            Position(11, 158),
-            Position(16, 158),
-          ),
-        ),
-        None,
-      ),
-      InputValueDefinitionNode(
-        None,
-        NameNode(
-          "int",
-          #(
-            Position(3, 159),
-            Position(5, 159),
-          ),
-        ),
-        #(
-          Position(3, 159),
-          Position(1, 160),
-        ),
-        None,
-        NullableTypeNode(
-          NamedTypeNode(NameNode(
-            "Int",
-            #(
-              Position(8, 159),
-              Position(10, 159),
-            ),
-          )),
-          #(
-            Position(8, 159),
-            Position(10, 159),
-          ),
-        ),
-        None,
-      ),
-    ]),
-    #(
-      Position(1, 157),
-      Position(1, 160),
-    ),
-  )))),
-  TypeSystemDefinitionNode(TypeDefinitionNode(InputTypeDefinitionNode(InputTypeDefinition(
-    None,
-    NameNode(
-      "InputType",
-      #(
-        Position(7, 152),
-        Position(15, 152),
-      ),
-    ),
-    None,
-    Some([
-      InputValueDefinitionNode(
-        None,
-        NameNode(
-          "key",
-          #(
-            Position(3, 153),
-            Position(5, 153),
-          ),
-        ),
-        #(
-          Position(3, 153),
-          Position(8, 154),
-        ),
-        None,
-        NonNullTypeNode(
-          NamedTypeNode(NameNode(
-            "String",
-            #(
-              Position(8, 153),
-              Position(13, 153),
-            ),
-          )),
-          #(
-            Position(8, 153),
-            Position(14, 153),
-          ),
-        ),
-        None,
-      ),
-      InputValueDefinitionNode(
-        None,
-        NameNode(
-          "answer",
-          #(
-            Position(3, 154),
-            Position(8, 154),
-          ),
-        ),
-        #(
-          Position(3, 154),
-          Position(1, 155),
-        ),
-        None,
-        NullableTypeNode(
-          NamedTypeNode(NameNode(
-            "Int",
-            #(
-              Position(11, 154),
-              Position(13, 154),
-            ),
-          )),
-          #(
-            Position(11, 154),
-            Position(13, 154),
-          ),
-        ),
-        Some(ConstValueNode(IntValueNode(
-          #(
-            Position(17, 154),
-            Position(18, 154),
-          ),
-          42,
-        ))),
-      ),
-    ]),
-    #(
-      Position(1, 152),
-      Position(1, 155),
-    ),
-  )))),
-  TypeSystemExtensionNode(TypeExtensionNode(EnumTypeExtensionNode(EnumTypeExtensionWithoutMembers(
-    NameNode(
-      "Site",
-      #(
-        Position(13, 150),
-        Position(16, 150),
-      ),
-    ),
-    #(Position(1, 150), Position(1, 1)),
-    [
-      ConstDirectiveNode(
-        NameNode(
-          "onEnum",
-          #(
-            Position(19, 150),
-            Position(24, 150),
-          ),
-        ),
-        None,
-        #(
-          Position(18, 150),
-          Position(1, 1),
-        ),
-      ),
-    ],
-  )))),
-  TypeSystemExtensionNode(TypeExtensionNode(EnumTypeExtensionNode(EnumTypeExtensionWithMembers(
-    NameNode(
-      "Site",
-      #(
-        Position(13, 146),
-        Position(16, 146),
-      ),
-    ),
-    #(
-      Position(1, 146),
-      Position(1, 148),
-    ),
-    None,
-    [
-      EnumValueDefinitionNode(
-        None,
-        NameNode(
-          "VR",
-          #(
-            Position(3, 147),
-            Position(4, 147),
-          ),
-        ),
-        #(
-          Position(3, 147),
-          Position(1, 148),
-        ),
-        None,
-      ),
-    ],
-  )))),
-  TypeSystemDefinitionNode(TypeDefinitionNode(EnumTypeDefinitionNode(EnumTypeDefinition(
-    None,
-    NameNode(
-      "UndefinedEnum",
-      #(
-        Position(6, 144),
-        Position(18, 144),
-      ),
-    ),
-    #(Position(1, 144), Position(1, 1)),
-    None,
-    None,
-  )))),
-  TypeSystemDefinitionNode(TypeDefinitionNode(EnumTypeDefinitionNode(EnumTypeDefinition(
-    None,
-    NameNode(
-      "AnnotatedEnum",
-      #(
-        Position(6, 139),
-        Position(18, 139),
-      ),
-    ),
-    #(
-      Position(1, 139),
-      Position(1, 142),
-    ),
-    Some([
-      ConstDirectiveNode(
-        NameNode(
-          "onEnum",
-          #(
-            Position(21, 139),
-            Position(26, 139),
-          ),
-        ),
-        None,
-        #(
-          Position(20, 139),
-          Position(1, 1),
-        ),
-      ),
-    ]),
-    Some([
-      EnumValueDefinitionNode(
-        None,
-        NameNode(
-          "ANNOTATED_VALUE",
-          #(
-            Position(3, 140),
-            Position(17, 140),
-          ),
-        ),
-        #(
-          Position(3, 140),
-          Position(13, 141),
-        ),
-        Some([
-          ConstDirectiveNode(
-            NameNode(
-              "onEnumValue",
-              #(
-                Position(20, 140),
-                Position(30, 140),
-              ),
-            ),
-            None,
-            #(
-              Position(19, 140),
-              Position(1, 1),
-            ),
-          ),
-        ]),
-      ),
-      EnumValueDefinitionNode(
-        None,
-        NameNode(
-          "OTHER_VALUE",
-          #(
-            Position(3, 141),
-            Position(13, 141),
-          ),
-        ),
-        #(
-          Position(3, 141),
-          Position(1, 142),
-        ),
-        None,
-      ),
-    ]),
-  )))),
-  TypeSystemDefinitionNode(TypeDefinitionNode(EnumTypeDefinitionNode(EnumTypeDefinition(
-    None,
-    NameNode(
-      "Site",
-      #(
-        Position(6, 126),
-        Position(9, 126),
-      ),
-    ),
-    #(
-      Position(1, 126),
-      Position(1, 137),
-    ),
-    None,
-    Some([
-      EnumValueDefinitionNode(
-        Some(DescriptionNode(
-          "
-  This is a description of the \`DESKTOP\` value
-  ",
-          #(
-            Position(3, 127),
-            Position(6, 129),
-          ),
-        )),
-        NameNode(
-          "DESKTOP",
-          #(
-            Position(3, 130),
-            Position(9, 130),
-          ),
-        ),
-        #(
-          Position(3, 130),
-          Position(51, 132),
-        ),
-        None,
-      ),
-      EnumValueDefinitionNode(
-        Some(DescriptionNode(
-          "This is a description of the \`MOBILE\` value",
-          #(
-            Position(3, 132),
-            Position(51, 132),
-          ),
-        )),
-        NameNode(
-          "MOBILE",
-          #(
-            Position(3, 133),
-            Position(8, 133),
-          ),
-        ),
-        #(
-          Position(3, 133),
-          Position(46, 135),
-        ),
-        None,
-      ),
-      EnumValueDefinitionNode(
-        Some(DescriptionNode(
-          "This is a description of the \`WEB\` value",
-          #(
-            Position(3, 135),
-            Position(46, 135),
-          ),
-        )),
-        NameNode(
-          "WEB",
-          #(
-            Position(3, 136),
-            Position(5, 136),
-          ),
-        ),
-        #(
-          Position(3, 136),
-          Position(1, 137),
-        ),
-        None,
-      ),
-    ]),
-  )))),
-  TypeSystemExtensionNode(TypeExtensionNode(ScalarTypeExtensionNode(ScalarTypeExtension(
-    NameNode(
-      "CustomScalar",
-      #(
-        Position(15, 124),
-        Position(26, 124),
-      ),
-    ),
-    #(
-      Position(1, 124),
-      Position(4, 126),
-    ),
-    [
-      ConstDirectiveNode(
-        NameNode(
-          "onScalar",
-          #(
-            Position(29, 124),
-            Position(36, 124),
-          ),
-        ),
-        None,
-        #(
-          Position(28, 124),
-          Position(1, 1),
-        ),
-      ),
-    ],
-  )))),
-  TypeSystemDefinitionNode(TypeDefinitionNode(ScalarTypeDefinitionNode(ScalarTypeDefinition(
-    None,
-    NameNode(
-      "AnnotatedScalar",
-      #(
-        Position(8, 122),
-        Position(22, 122),
-      ),
-    ),
-    #(
-      Position(1, 122),
-      Position(6, 124),
-    ),
-    Some([
-      ConstDirectiveNode(
-        NameNode(
-          "onScalar",
-          #(
-            Position(25, 122),
-            Position(32, 122),
-          ),
-        ),
-        None,
-        #(
-          Position(24, 122),
-          Position(1, 1),
-        ),
-      ),
-    ]),
-  )))),
-  TypeSystemDefinitionNode(TypeDefinitionNode(ScalarTypeDefinitionNode(ScalarTypeDefinition(
-    None,
-    NameNode(
-      "CustomScalar",
-      #(
-        Position(8, 120),
-        Position(19, 120),
-      ),
-    ),
-    #(
-      Position(1, 120),
-      Position(6, 122),
-    ),
-    None,
-  )))),
-  TypeSystemExtensionNode(TypeExtensionNode(UnionTypeExtensionNode(UnionTypeExtensionWithDirectives(
-    NameNode(
-      "Feed",
-      #(
-        Position(14, 118),
-        Position(17, 118),
-      ),
-    ),
-    #(
-      Position(1, 118),
-      Position(14, 118),
-    ),
-    [
-      ConstDirectiveNode(
-        NameNode(
-          "onUnion",
-          #(
-            Position(20, 118),
-            Position(26, 118),
-          ),
-        ),
-        None,
-        #(
-          Position(19, 118),
-          Position(1, 1),
-        ),
-      ),
-    ],
-  )))),
-  TypeSystemExtensionNode(TypeExtensionNode(UnionTypeExtensionNode(UnionTypeExtensionWithMembers(
-    NameNode(
-      "Feed",
-      #(
-        Position(14, 116),
-        Position(17, 116),
-      ),
-    ),
-    #(
-      Position(1, 116),
-      Position(33, 116),
-    ),
-    None,
-    [
-      NamedTypeNode(NameNode(
-        "Photo",
-        #(
-          Position(21, 116),
-          Position(25, 116),
-        ),
-      )),
-      NamedTypeNode(NameNode(
-        "Video",
-        #(
-          Position(29, 116),
-          Position(33, 116),
-        ),
-      )),
-    ],
-  )))),
   TypeSystemDefinitionNode(TypeDefinitionNode(ObjectTypeDefinitionNode(ObjectTypeDefinition(
     None,
     NameNode(
-      "Video",
+      "Subscription",
       #(
-        Position(6, 111),
-        Position(10, 111),
+        Position(6, 100),
+        Position(17, 100),
       ),
     ),
     #(
-      Position(1, 111),
-      Position(1, 114),
+      Position(1, 100),
+      Position(1, 104),
     ),
     None,
     None,
@@ -1452,28 +24,28 @@ This is a description of the \`@skip\` directive
       FieldDefinitionNode(
         None,
         NameNode(
-          "url",
+          "userCreated",
           #(
-            Position(3, 112),
-            Position(5, 112),
+            Position(3, 101),
+            Position(13, 101),
           ),
         ),
         #(
-          Position(3, 112),
-          Position(10, 113),
+          Position(3, 101),
+          Position(13, 102),
         ),
         None,
         NonNullTypeNode(
           NamedTypeNode(NameNode(
-            "String",
+            "User",
             #(
-              Position(8, 112),
-              Position(13, 112),
+              Position(16, 101),
+              Position(19, 101),
             ),
           )),
           #(
-            Position(8, 112),
-            Position(14, 112),
+            Position(16, 101),
+            Position(20, 101),
           ),
         ),
         None,
@@ -1481,423 +53,1015 @@ This is a description of the \`@skip\` directive
       FieldDefinitionNode(
         None,
         NameNode(
-          "duration",
+          "postCreated",
           #(
-            Position(3, 113),
-            Position(10, 113),
+            Position(3, 102),
+            Position(13, 102),
           ),
         ),
         #(
-          Position(3, 113),
-          Position(1, 114),
+          Position(3, 102),
+          Position(14, 103),
         ),
         None,
         NonNullTypeNode(
           NamedTypeNode(NameNode(
-            "Float",
+            "Post",
             #(
-              Position(13, 113),
-              Position(17, 113),
+              Position(16, 102),
+              Position(19, 102),
             ),
           )),
           #(
-            Position(13, 113),
-            Position(18, 113),
+            Position(16, 102),
+            Position(20, 102),
           ),
         ),
         None,
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "commentAdded",
+          #(
+            Position(3, 103),
+            Position(14, 103),
+          ),
+        ),
+        #(
+          Position(3, 103),
+          Position(1, 104),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "Comment",
+            #(
+              Position(29, 103),
+              Position(35, 103),
+            ),
+          )),
+          #(
+            Position(29, 103),
+            Position(36, 103),
+          ),
+        ),
+        Some([
+          InputValueDefinitionNode(
+            None,
+            NameNode(
+              "postId",
+              #(
+                Position(16, 103),
+                Position(21, 103),
+              ),
+            ),
+            #(
+              Position(16, 103),
+              Position(26, 103),
+            ),
+            None,
+            NullableTypeNode(
+              NamedTypeNode(NameNode(
+                "ID",
+                #(
+                  Position(24, 103),
+                  Position(25, 103),
+                ),
+              )),
+              #(
+                Position(24, 103),
+                Position(25, 103),
+              ),
+            ),
+            None,
+          ),
+        ]),
       ),
     ]),
   )))),
   TypeSystemDefinitionNode(TypeDefinitionNode(ObjectTypeDefinitionNode(ObjectTypeDefinition(
     None,
     NameNode(
-      "Photo",
+      "Mutation",
       #(
-        Position(6, 107),
-        Position(10, 107),
+        Position(6, 92),
+        Position(13, 92),
       ),
     ),
-    #(
-      Position(1, 107),
-      Position(1, 109),
-    ),
+    #(Position(1, 92), Position(1, 97)),
     None,
     None,
     Some([
       FieldDefinitionNode(
         None,
         NameNode(
-          "url",
+          "createUser",
           #(
-            Position(3, 108),
-            Position(5, 108),
+            Position(3, 93),
+            Position(12, 93),
           ),
         ),
         #(
-          Position(3, 108),
-          Position(1, 109),
+          Position(3, 93),
+          Position(12, 94),
         ),
-        None,
+        Some([
+          ConstDirectiveNode(
+            NameNode(
+              "auth",
+              #(
+                Position(41, 93),
+                Position(44, 93),
+              ),
+            ),
+            None,
+            #(
+              Position(40, 93),
+              Position(1, 1),
+            ),
+          ),
+        ]),
         NonNullTypeNode(
           NamedTypeNode(NameNode(
-            "String",
+            "User",
             #(
-              Position(8, 108),
-              Position(13, 108),
+              Position(34, 93),
+              Position(37, 93),
             ),
           )),
           #(
-            Position(8, 108),
-            Position(14, 108),
+            Position(34, 93),
+            Position(38, 93),
           ),
         ),
-        None,
-      ),
-    ]),
-  )))),
-  TypeSystemDefinitionNode(TypeDefinitionNode(UnionTypeDefinitionNode(UnionTypeDefinition(
-    None,
-    NameNode(
-      "UndefinedUnion",
-      #(
-        Position(7, 105),
-        Position(20, 105),
-      ),
-    ),
-    #(
-      Position(1, 105),
-      Position(7, 105),
-    ),
-    None,
-    None,
-  )))),
-  TypeSystemDefinitionNode(TypeDefinitionNode(UnionTypeDefinitionNode(UnionTypeDefinition(
-    None,
-    NameNode(
-      "AnnotatedUnionTwo",
-      #(
-        Position(7, 103),
-        Position(23, 103),
-      ),
-    ),
-    #(
-      Position(1, 103),
-      Position(42, 103),
-    ),
-    Some([
-      ConstDirectiveNode(
-        NameNode(
-          "onUnion",
-          #(
-            Position(26, 103),
-            Position(32, 103),
-          ),
-        ),
-        None,
-        #(
-          Position(25, 103),
-          Position(1, 1),
-        ),
-      ),
-    ]),
-    Some([
-      NamedTypeNode(NameNode(
-        "A",
-        #(
-          Position(38, 103),
-          Position(38, 103),
-        ),
-      )),
-      NamedTypeNode(NameNode(
-        "B",
-        #(
-          Position(42, 103),
-          Position(42, 103),
-        ),
-      )),
-    ]),
-  )))),
-  TypeSystemDefinitionNode(TypeDefinitionNode(UnionTypeDefinitionNode(UnionTypeDefinition(
-    None,
-    NameNode(
-      "AnnotatedUnion",
-      #(
-        Position(7, 101),
-        Position(20, 101),
-      ),
-    ),
-    #(
-      Position(1, 101),
-      Position(37, 101),
-    ),
-    Some([
-      ConstDirectiveNode(
-        NameNode(
-          "onUnion",
-          #(
-            Position(23, 101),
-            Position(29, 101),
-          ),
-        ),
-        None,
-        #(
-          Position(22, 101),
-          Position(1, 1),
-        ),
-      ),
-    ]),
-    Some([
-      NamedTypeNode(NameNode(
-        "A",
-        #(
-          Position(33, 101),
-          Position(33, 101),
-        ),
-      )),
-      NamedTypeNode(NameNode(
-        "B",
-        #(
-          Position(37, 101),
-          Position(37, 101),
-        ),
-      )),
-    ]),
-  )))),
-  TypeSystemDefinitionNode(TypeDefinitionNode(ObjectTypeDefinitionNode(ObjectTypeDefinition(
-    None,
-    NameNode(
-      "B",
-      #(
-        Position(6, 97),
-        Position(6, 97),
-      ),
-    ),
-    #(Position(1, 97), Position(1, 99)),
-    None,
-    None,
-    Some([
-      FieldDefinitionNode(
-        None,
-        NameNode(
-          "b",
-          #(
-            Position(3, 98),
-            Position(3, 98),
-          ),
-        ),
-        #(
-          Position(3, 98),
-          Position(1, 99),
-        ),
-        None,
-        NullableTypeNode(
-          NamedTypeNode(NameNode(
-            "String",
-            #(
-              Position(6, 98),
-              Position(11, 98),
+        Some([
+          InputValueDefinitionNode(
+            None,
+            NameNode(
+              "input",
+              #(
+                Position(14, 93),
+                Position(18, 93),
+              ),
             ),
-          )),
-          #(
-            Position(6, 98),
-            Position(11, 98),
+            #(
+              Position(14, 93),
+              Position(31, 93),
+            ),
+            None,
+            NonNullTypeNode(
+              NamedTypeNode(NameNode(
+                "UserInput",
+                #(
+                  Position(21, 93),
+                  Position(29, 93),
+                ),
+              )),
+              #(
+                Position(21, 93),
+                Position(30, 93),
+              ),
+            ),
+            None,
           ),
-        ),
-        None,
+        ]),
       ),
-    ]),
-  )))),
-  TypeSystemDefinitionNode(TypeDefinitionNode(ObjectTypeDefinitionNode(ObjectTypeDefinition(
-    None,
-    NameNode(
-      "A",
-      #(
-        Position(6, 93),
-        Position(6, 93),
-      ),
-    ),
-    #(Position(1, 93), Position(1, 95)),
-    None,
-    None,
-    Some([
       FieldDefinitionNode(
         None,
         NameNode(
-          "a",
+          "updateUser",
           #(
             Position(3, 94),
-            Position(3, 94),
+            Position(12, 94),
           ),
         ),
         #(
           Position(3, 94),
-          Position(1, 95),
+          Position(12, 95),
+        ),
+        Some([
+          ConstDirectiveNode(
+            NameNode(
+              "auth",
+              #(
+                Position(50, 94),
+                Position(53, 94),
+              ),
+            ),
+            None,
+            #(
+              Position(49, 94),
+              Position(1, 1),
+            ),
+          ),
+        ]),
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "User",
+            #(
+              Position(43, 94),
+              Position(46, 94),
+            ),
+          )),
+          #(
+            Position(43, 94),
+            Position(47, 94),
+          ),
+        ),
+        Some([
+          InputValueDefinitionNode(
+            None,
+            NameNode(
+              "id",
+              #(
+                Position(14, 94),
+                Position(15, 94),
+              ),
+            ),
+            #(
+              Position(14, 94),
+              Position(27, 94),
+            ),
+            None,
+            NonNullTypeNode(
+              NamedTypeNode(NameNode(
+                "ID",
+                #(
+                  Position(18, 94),
+                  Position(19, 94),
+                ),
+              )),
+              #(
+                Position(18, 94),
+                Position(20, 94),
+              ),
+            ),
+            None,
+          ),
+          InputValueDefinitionNode(
+            None,
+            NameNode(
+              "input",
+              #(
+                Position(23, 94),
+                Position(27, 94),
+              ),
+            ),
+            #(
+              Position(23, 94),
+              Position(40, 94),
+            ),
+            None,
+            NonNullTypeNode(
+              NamedTypeNode(NameNode(
+                "UserInput",
+                #(
+                  Position(30, 94),
+                  Position(38, 94),
+                ),
+              )),
+              #(
+                Position(30, 94),
+                Position(39, 94),
+              ),
+            ),
+            None,
+          ),
+        ]),
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "createPost",
+          #(
+            Position(3, 95),
+            Position(12, 95),
+          ),
+        ),
+        #(
+          Position(3, 95),
+          Position(15, 96),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "Post",
+            #(
+              Position(63, 95),
+              Position(66, 95),
+            ),
+          )),
+          #(
+            Position(63, 95),
+            Position(67, 95),
+          ),
+        ),
+        Some([
+          InputValueDefinitionNode(
+            None,
+            NameNode(
+              "title",
+              #(
+                Position(14, 95),
+                Position(18, 95),
+              ),
+            ),
+            #(
+              Position(14, 95),
+              Position(36, 95),
+            ),
+            None,
+            NonNullTypeNode(
+              NamedTypeNode(NameNode(
+                "String",
+                #(
+                  Position(21, 95),
+                  Position(26, 95),
+                ),
+              )),
+              #(
+                Position(21, 95),
+                Position(27, 95),
+              ),
+            ),
+            None,
+          ),
+          InputValueDefinitionNode(
+            None,
+            NameNode(
+              "content",
+              #(
+                Position(30, 95),
+                Position(36, 95),
+              ),
+            ),
+            #(
+              Position(30, 95),
+              Position(54, 95),
+            ),
+            None,
+            NullableTypeNode(
+              NamedTypeNode(NameNode(
+                "String",
+                #(
+                  Position(39, 95),
+                  Position(44, 95),
+                ),
+              )),
+              #(
+                Position(39, 95),
+                Position(44, 95),
+              ),
+            ),
+            None,
+          ),
+          InputValueDefinitionNode(
+            None,
+            NameNode(
+              "authorId",
+              #(
+                Position(47, 95),
+                Position(54, 95),
+              ),
+            ),
+            #(
+              Position(47, 95),
+              Position(60, 95),
+            ),
+            None,
+            NonNullTypeNode(
+              NamedTypeNode(NameNode(
+                "ID",
+                #(
+                  Position(57, 95),
+                  Position(58, 95),
+                ),
+              )),
+              #(
+                Position(57, 95),
+                Position(59, 95),
+              ),
+            ),
+            None,
+          ),
+        ]),
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "createComment",
+          #(
+            Position(3, 96),
+            Position(15, 96),
+          ),
+        ),
+        #(
+          Position(3, 96),
+          Position(1, 97),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "Comment",
+            #(
+              Position(61, 96),
+              Position(67, 96),
+            ),
+          )),
+          #(
+            Position(61, 96),
+            Position(68, 96),
+          ),
+        ),
+        Some([
+          InputValueDefinitionNode(
+            None,
+            NameNode(
+              "postId",
+              #(
+                Position(17, 96),
+                Position(22, 96),
+              ),
+            ),
+            #(
+              Position(17, 96),
+              Position(33, 96),
+            ),
+            None,
+            NonNullTypeNode(
+              NamedTypeNode(NameNode(
+                "ID",
+                #(
+                  Position(25, 96),
+                  Position(26, 96),
+                ),
+              )),
+              #(
+                Position(25, 96),
+                Position(27, 96),
+              ),
+            ),
+            None,
+          ),
+          InputValueDefinitionNode(
+            None,
+            NameNode(
+              "text",
+              #(
+                Position(30, 96),
+                Position(33, 96),
+              ),
+            ),
+            #(
+              Position(30, 96),
+              Position(52, 96),
+            ),
+            None,
+            NonNullTypeNode(
+              NamedTypeNode(NameNode(
+                "String",
+                #(
+                  Position(36, 96),
+                  Position(41, 96),
+                ),
+              )),
+              #(
+                Position(36, 96),
+                Position(42, 96),
+              ),
+            ),
+            None,
+          ),
+          InputValueDefinitionNode(
+            None,
+            NameNode(
+              "authorId",
+              #(
+                Position(45, 96),
+                Position(52, 96),
+              ),
+            ),
+            #(
+              Position(45, 96),
+              Position(58, 96),
+            ),
+            None,
+            NonNullTypeNode(
+              NamedTypeNode(NameNode(
+                "ID",
+                #(
+                  Position(55, 96),
+                  Position(56, 96),
+                ),
+              )),
+              #(
+                Position(55, 96),
+                Position(57, 96),
+              ),
+            ),
+            None,
+          ),
+        ]),
+      ),
+    ]),
+  )))),
+  TypeSystemDefinitionNode(TypeDefinitionNode(ObjectTypeDefinitionNode(ObjectTypeDefinition(
+    None,
+    NameNode(
+      "Query",
+      #(
+        Position(6, 82),
+        Position(10, 82),
+      ),
+    ),
+    #(Position(1, 82), Position(1, 89)),
+    None,
+    None,
+    Some([
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "node",
+          #(
+            Position(3, 83),
+            Position(6, 83),
+          ),
+        ),
+        #(
+          Position(3, 83),
+          Position(6, 84),
         ),
         None,
         NullableTypeNode(
           NamedTypeNode(NameNode(
-            "String",
+            "Node",
             #(
-              Position(6, 94),
-              Position(11, 94),
+              Position(18, 83),
+              Position(21, 83),
             ),
           )),
           #(
-            Position(6, 94),
-            Position(11, 94),
+            Position(18, 83),
+            Position(21, 83),
           ),
         ),
-        None,
+        Some([
+          InputValueDefinitionNode(
+            None,
+            NameNode(
+              "id",
+              #(
+                Position(8, 83),
+                Position(9, 83),
+              ),
+            ),
+            #(
+              Position(8, 83),
+              Position(15, 83),
+            ),
+            None,
+            NonNullTypeNode(
+              NamedTypeNode(NameNode(
+                "ID",
+                #(
+                  Position(12, 83),
+                  Position(13, 83),
+                ),
+              )),
+              #(
+                Position(12, 83),
+                Position(14, 83),
+              ),
+            ),
+            None,
+          ),
+        ]),
       ),
-    ]),
-  )))),
-  TypeSystemDefinitionNode(TypeDefinitionNode(UnionTypeDefinitionNode(UnionTypeDefinition(
-    None,
-    NameNode(
-      "Feed",
-      #(
-        Position(7, 88),
-        Position(10, 88),
-      ),
-    ),
-    #(Position(1, 88), Position(10, 91)),
-    None,
-    Some([
-      NamedTypeNode(NameNode(
-        "Story",
-        #(
-          Position(5, 89),
-          Position(9, 89),
-        ),
-      )),
-      NamedTypeNode(NameNode(
-        "Article",
-        #(
-          Position(5, 90),
-          Position(11, 90),
-        ),
-      )),
-      NamedTypeNode(NameNode(
-        "Advert",
-        #(
-          Position(5, 91),
-          Position(10, 91),
-        ),
-      )),
-    ]),
-  )))),
-  TypeSystemDefinitionNode(TypeDefinitionNode(ObjectTypeDefinitionNode(ObjectTypeDefinition(
-    None,
-    NameNode(
-      "Advert",
-      #(
-        Position(6, 83),
-        Position(11, 83),
-      ),
-    ),
-    #(Position(1, 83), Position(1, 86)),
-    None,
-    None,
-    Some([
       FieldDefinitionNode(
         None,
         NameNode(
-          "id",
+          "user",
           #(
             Position(3, 84),
-            Position(4, 84),
+            Position(6, 84),
           ),
         ),
         #(
           Position(3, 84),
-          Position(9, 85),
+          Position(7, 85),
         ),
         None,
-        NonNullTypeNode(
+        NullableTypeNode(
           NamedTypeNode(NameNode(
-            "ID",
+            "User",
             #(
-              Position(7, 84),
-              Position(8, 84),
+              Position(18, 84),
+              Position(21, 84),
             ),
           )),
           #(
-            Position(7, 84),
-            Position(9, 84),
+            Position(18, 84),
+            Position(21, 84),
           ),
         ),
-        None,
+        Some([
+          InputValueDefinitionNode(
+            None,
+            NameNode(
+              "id",
+              #(
+                Position(8, 84),
+                Position(9, 84),
+              ),
+            ),
+            #(
+              Position(8, 84),
+              Position(15, 84),
+            ),
+            None,
+            NonNullTypeNode(
+              NamedTypeNode(NameNode(
+                "ID",
+                #(
+                  Position(12, 84),
+                  Position(13, 84),
+                ),
+              )),
+              #(
+                Position(12, 84),
+                Position(14, 84),
+              ),
+            ),
+            None,
+          ),
+        ]),
       ),
       FieldDefinitionNode(
         None,
         NameNode(
-          "content",
+          "users",
           #(
             Position(3, 85),
-            Position(9, 85),
+            Position(7, 85),
           ),
         ),
         #(
           Position(3, 85),
-          Position(1, 86),
+          Position(6, 86),
         ),
         None,
-        NonNullTypeNode(
-          NamedTypeNode(NameNode(
-            "String",
+        NonNullListTypeNode(
+          NonNullTypeNode(
+            NamedTypeNode(NameNode(
+              "User",
+              #(
+                Position(28, 85),
+                Position(31, 85),
+              ),
+            )),
             #(
-              Position(12, 85),
-              Position(17, 85),
+              Position(28, 85),
+              Position(32, 85),
+            ),
+          ),
+          #(
+            Position(27, 85),
+            Position(34, 85),
+          ),
+        ),
+        Some([
+          InputValueDefinitionNode(
+            None,
+            NameNode(
+              "limit",
+              #(
+                Position(9, 85),
+                Position(13, 85),
+              ),
+            ),
+            #(
+              Position(9, 85),
+              Position(24, 85),
+            ),
+            None,
+            NullableTypeNode(
+              NamedTypeNode(NameNode(
+                "Int",
+                #(
+                  Position(16, 85),
+                  Position(18, 85),
+                ),
+              )),
+              #(
+                Position(16, 85),
+                Position(18, 85),
+              ),
+            ),
+            Some(ConstValueNode(IntValueNode(
+              #(
+                Position(22, 85),
+                Position(23, 85),
+              ),
+              10,
+            ))),
+          ),
+        ]),
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "post",
+          #(
+            Position(3, 86),
+            Position(6, 86),
+          ),
+        ),
+        #(
+          Position(3, 86),
+          Position(7, 87),
+        ),
+        None,
+        NullableTypeNode(
+          NamedTypeNode(NameNode(
+            "Post",
+            #(
+              Position(18, 86),
+              Position(21, 86),
             ),
           )),
           #(
-            Position(12, 85),
-            Position(18, 85),
+            Position(18, 86),
+            Position(21, 86),
           ),
         ),
+        Some([
+          InputValueDefinitionNode(
+            None,
+            NameNode(
+              "id",
+              #(
+                Position(8, 86),
+                Position(9, 86),
+              ),
+            ),
+            #(
+              Position(8, 86),
+              Position(15, 86),
+            ),
+            None,
+            NonNullTypeNode(
+              NamedTypeNode(NameNode(
+                "ID",
+                #(
+                  Position(12, 86),
+                  Position(13, 86),
+                ),
+              )),
+              #(
+                Position(12, 86),
+                Position(14, 86),
+              ),
+            ),
+            None,
+          ),
+        ]),
+      ),
+      FieldDefinitionNode(
         None,
+        NameNode(
+          "posts",
+          #(
+            Position(3, 87),
+            Position(7, 87),
+          ),
+        ),
+        #(
+          Position(3, 87),
+          Position(8, 88),
+        ),
+        None,
+        NonNullListTypeNode(
+          NonNullTypeNode(
+            NamedTypeNode(NameNode(
+              "Post",
+              #(
+                Position(42, 87),
+                Position(45, 87),
+              ),
+            )),
+            #(
+              Position(42, 87),
+              Position(46, 87),
+            ),
+          ),
+          #(
+            Position(41, 87),
+            Position(48, 87),
+          ),
+        ),
+        Some([
+          InputValueDefinitionNode(
+            None,
+            NameNode(
+              "authorId",
+              #(
+                Position(9, 87),
+                Position(16, 87),
+              ),
+            ),
+            #(
+              Position(9, 87),
+              Position(26, 87),
+            ),
+            None,
+            NullableTypeNode(
+              NamedTypeNode(NameNode(
+                "ID",
+                #(
+                  Position(19, 87),
+                  Position(20, 87),
+                ),
+              )),
+              #(
+                Position(19, 87),
+                Position(20, 87),
+              ),
+            ),
+            None,
+          ),
+          InputValueDefinitionNode(
+            None,
+            NameNode(
+              "tags",
+              #(
+                Position(23, 87),
+                Position(26, 87),
+              ),
+            ),
+            #(
+              Position(23, 87),
+              Position(38, 87),
+            ),
+            None,
+            NullableListTypeNode(
+              NonNullTypeNode(
+                NamedTypeNode(NameNode(
+                  "String",
+                  #(
+                    Position(30, 87),
+                    Position(35, 87),
+                  ),
+                )),
+                #(
+                  Position(30, 87),
+                  Position(36, 87),
+                ),
+              ),
+              #(
+                Position(29, 87),
+                Position(37, 87),
+              ),
+            ),
+            None,
+          ),
+        ]),
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "search",
+          #(
+            Position(3, 88),
+            Position(8, 88),
+          ),
+        ),
+        #(
+          Position(3, 88),
+          Position(1, 89),
+        ),
+        Some([
+          ConstDirectiveNode(
+            NameNode(
+              "auth",
+              #(
+                Position(44, 88),
+                Position(47, 88),
+              ),
+            ),
+            None,
+            #(
+              Position(43, 88),
+              Position(1, 1),
+            ),
+          ),
+        ]),
+        NonNullListTypeNode(
+          NonNullTypeNode(
+            NamedTypeNode(NameNode(
+              "SearchResult",
+              #(
+                Position(27, 88),
+                Position(38, 88),
+              ),
+            )),
+            #(
+              Position(27, 88),
+              Position(39, 88),
+            ),
+          ),
+          #(
+            Position(26, 88),
+            Position(41, 88),
+          ),
+        ),
+        Some([
+          InputValueDefinitionNode(
+            None,
+            NameNode(
+              "term",
+              #(
+                Position(10, 88),
+                Position(13, 88),
+              ),
+            ),
+            #(
+              Position(10, 88),
+              Position(23, 88),
+            ),
+            None,
+            NonNullTypeNode(
+              NamedTypeNode(NameNode(
+                "String",
+                #(
+                  Position(16, 88),
+                  Position(21, 88),
+                ),
+              )),
+              #(
+                Position(16, 88),
+                Position(22, 88),
+              ),
+            ),
+            None,
+          ),
+        ]),
       ),
     ]),
   )))),
   TypeSystemDefinitionNode(TypeDefinitionNode(ObjectTypeDefinitionNode(ObjectTypeDefinition(
     None,
     NameNode(
-      "Article",
+      "Comment",
       #(
-        Position(6, 76),
-        Position(12, 76),
+        Position(6, 72),
+        Position(12, 72),
       ),
     ),
-    #(Position(1, 76), Position(1, 81)),
+    #(Position(1, 72), Position(1, 79)),
     None,
-    None,
+    Some([
+      NamedTypeNode(NameNode(
+        "Node",
+        #(
+          Position(25, 72),
+          Position(28, 72),
+        ),
+      )),
+      NamedTypeNode(NameNode(
+        "Timestamped",
+        #(
+          Position(32, 72),
+          Position(42, 72),
+        ),
+      )),
+    ]),
     Some([
       FieldDefinitionNode(
         None,
         NameNode(
           "id",
           #(
-            Position(3, 77),
-            Position(4, 77),
+            Position(3, 73),
+            Position(4, 73),
           ),
         ),
         #(
-          Position(3, 77),
-          Position(7, 78),
+          Position(3, 73),
+          Position(6, 74),
         ),
         None,
         NonNullTypeNode(
           NamedTypeNode(NameNode(
             "ID",
             #(
-              Position(7, 77),
-              Position(8, 77),
+              Position(7, 73),
+              Position(8, 73),
             ),
           )),
           #(
-            Position(7, 77),
-            Position(9, 77),
+            Position(7, 73),
+            Position(9, 73),
           ),
         ),
         None,
@@ -1905,57 +1069,28 @@ This is a description of the \`@skip\` directive
       FieldDefinitionNode(
         None,
         NameNode(
-          "title",
+          "text",
           #(
-            Position(3, 78),
-            Position(7, 78),
+            Position(3, 74),
+            Position(6, 74),
           ),
         ),
         #(
-          Position(3, 78),
-          Position(9, 79),
+          Position(3, 74),
+          Position(8, 75),
         ),
         None,
         NonNullTypeNode(
           NamedTypeNode(NameNode(
             "String",
             #(
-              Position(10, 78),
-              Position(15, 78),
+              Position(9, 74),
+              Position(14, 74),
             ),
           )),
           #(
-            Position(10, 78),
-            Position(16, 78),
-          ),
-        ),
-        None,
-      ),
-      FieldDefinitionNode(
-        None,
-        NameNode(
-          "content",
-          #(
-            Position(3, 79),
-            Position(9, 79),
-          ),
-        ),
-        #(
-          Position(3, 79),
-          Position(8, 80),
-        ),
-        None,
-        NonNullTypeNode(
-          NamedTypeNode(NameNode(
-            "String",
-            #(
-              Position(12, 79),
-              Position(17, 79),
-            ),
-          )),
-          #(
-            Position(12, 79),
-            Position(18, 79),
+            Position(9, 74),
+            Position(15, 74),
           ),
         ),
         None,
@@ -1965,26 +1100,113 @@ This is a description of the \`@skip\` directive
         NameNode(
           "author",
           #(
-            Position(3, 80),
-            Position(8, 80),
+            Position(3, 75),
+            Position(8, 75),
           ),
         ),
         #(
-          Position(3, 80),
-          Position(1, 81),
+          Position(3, 75),
+          Position(6, 76),
         ),
         None,
         NonNullTypeNode(
           NamedTypeNode(NameNode(
-            "ID",
+            "User",
             #(
-              Position(11, 80),
-              Position(12, 80),
+              Position(11, 75),
+              Position(14, 75),
             ),
           )),
           #(
-            Position(11, 80),
-            Position(13, 80),
+            Position(11, 75),
+            Position(15, 75),
+          ),
+        ),
+        None,
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "post",
+          #(
+            Position(3, 76),
+            Position(6, 76),
+          ),
+        ),
+        #(
+          Position(3, 76),
+          Position(11, 77),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "Post",
+            #(
+              Position(9, 76),
+              Position(12, 76),
+            ),
+          )),
+          #(
+            Position(9, 76),
+            Position(13, 76),
+          ),
+        ),
+        None,
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "createdAt",
+          #(
+            Position(3, 77),
+            Position(11, 77),
+          ),
+        ),
+        #(
+          Position(3, 77),
+          Position(11, 78),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "DateTime",
+            #(
+              Position(14, 77),
+              Position(21, 77),
+            ),
+          )),
+          #(
+            Position(14, 77),
+            Position(22, 77),
+          ),
+        ),
+        None,
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "updatedAt",
+          #(
+            Position(3, 78),
+            Position(11, 78),
+          ),
+        ),
+        #(
+          Position(3, 78),
+          Position(1, 79),
+        ),
+        None,
+        NullableTypeNode(
+          NamedTypeNode(NameNode(
+            "DateTime",
+            #(
+              Position(14, 78),
+              Position(21, 78),
+            ),
+          )),
+          #(
+            Position(14, 78),
+            Position(21, 78),
           ),
         ),
         None,
@@ -1994,41 +1216,56 @@ This is a description of the \`@skip\` directive
   TypeSystemDefinitionNode(TypeDefinitionNode(ObjectTypeDefinitionNode(ObjectTypeDefinition(
     None,
     NameNode(
-      "Story",
+      "Post",
       #(
-        Position(6, 71),
-        Position(10, 71),
+        Position(6, 59),
+        Position(9, 59),
       ),
     ),
-    #(Position(1, 71), Position(1, 74)),
+    #(Position(1, 59), Position(1, 69)),
     None,
-    None,
+    Some([
+      NamedTypeNode(NameNode(
+        "Node",
+        #(
+          Position(22, 59),
+          Position(25, 59),
+        ),
+      )),
+      NamedTypeNode(NameNode(
+        "Timestamped",
+        #(
+          Position(29, 59),
+          Position(39, 59),
+        ),
+      )),
+    ]),
     Some([
       FieldDefinitionNode(
         None,
         NameNode(
           "id",
           #(
-            Position(3, 72),
-            Position(4, 72),
+            Position(3, 60),
+            Position(4, 60),
           ),
         ),
         #(
-          Position(3, 72),
-          Position(7, 73),
+          Position(3, 60),
+          Position(7, 61),
         ),
         None,
         NonNullTypeNode(
           NamedTypeNode(NameNode(
             "ID",
             #(
-              Position(7, 72),
-              Position(8, 72),
+              Position(7, 60),
+              Position(8, 60),
             ),
           )),
           #(
-            Position(7, 72),
-            Position(9, 72),
+            Position(7, 60),
+            Position(9, 60),
           ),
         ),
         None,
@@ -2038,52 +1275,223 @@ This is a description of the \`@skip\` directive
         NameNode(
           "title",
           #(
-            Position(3, 73),
-            Position(7, 73),
+            Position(3, 61),
+            Position(7, 61),
           ),
         ),
         #(
-          Position(3, 73),
-          Position(1, 74),
+          Position(3, 61),
+          Position(9, 62),
         ),
         None,
         NonNullTypeNode(
           NamedTypeNode(NameNode(
             "String",
             #(
-              Position(10, 73),
-              Position(15, 73),
+              Position(10, 61),
+              Position(15, 61),
             ),
           )),
           #(
-            Position(10, 73),
-            Position(16, 73),
+            Position(10, 61),
+            Position(16, 61),
           ),
         ),
         None,
       ),
-    ]),
-  )))),
-  TypeSystemDefinitionNode(TypeDefinitionNode(InterfaceTypeDefinitionNode(InterfaceTypeDefinition(
-    None,
-    NameNode(
-      "Two",
-      #(
-        Position(11, 67),
-        Position(13, 67),
-      ),
-    ),
-    #(Position(1, 67), Position(1, 69)),
-    None,
-    None,
-    Some([
       FieldDefinitionNode(
         None,
         NameNode(
-          "one",
+          "content",
+          #(
+            Position(3, 62),
+            Position(9, 62),
+          ),
+        ),
+        #(
+          Position(3, 62),
+          Position(11, 63),
+        ),
+        None,
+        NullableTypeNode(
+          NamedTypeNode(NameNode(
+            "String",
+            #(
+              Position(12, 62),
+              Position(17, 62),
+            ),
+          )),
+          #(
+            Position(12, 62),
+            Position(17, 62),
+          ),
+        ),
+        None,
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "published",
+          #(
+            Position(3, 63),
+            Position(11, 63),
+          ),
+        ),
+        #(
+          Position(3, 63),
+          Position(8, 64),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "Boolean",
+            #(
+              Position(14, 63),
+              Position(20, 63),
+            ),
+          )),
+          #(
+            Position(14, 63),
+            Position(21, 63),
+          ),
+        ),
+        None,
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "author",
+          #(
+            Position(3, 64),
+            Position(8, 64),
+          ),
+        ),
+        #(
+          Position(3, 64),
+          Position(10, 65),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "User",
+            #(
+              Position(11, 64),
+              Position(14, 64),
+            ),
+          )),
+          #(
+            Position(11, 64),
+            Position(15, 64),
+          ),
+        ),
+        None,
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "comments",
+          #(
+            Position(3, 65),
+            Position(10, 65),
+          ),
+        ),
+        #(
+          Position(3, 65),
+          Position(6, 66),
+        ),
+        None,
+        NonNullListTypeNode(
+          NonNullTypeNode(
+            NamedTypeNode(NameNode(
+              "Comment",
+              #(
+                Position(14, 65),
+                Position(20, 65),
+              ),
+            )),
+            #(
+              Position(14, 65),
+              Position(21, 65),
+            ),
+          ),
+          #(
+            Position(13, 65),
+            Position(23, 65),
+          ),
+        ),
+        None,
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "tags",
+          #(
+            Position(3, 66),
+            Position(6, 66),
+          ),
+        ),
+        #(
+          Position(3, 66),
+          Position(11, 67),
+        ),
+        None,
+        NullableListTypeNode(
+          NonNullTypeNode(
+            NamedTypeNode(NameNode(
+              "String",
+              #(
+                Position(10, 66),
+                Position(15, 66),
+              ),
+            )),
+            #(
+              Position(10, 66),
+              Position(16, 66),
+            ),
+          ),
+          #(
+            Position(9, 66),
+            Position(17, 66),
+          ),
+        ),
+        None,
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "createdAt",
+          #(
+            Position(3, 67),
+            Position(11, 67),
+          ),
+        ),
+        #(
+          Position(3, 67),
+          Position(11, 68),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "DateTime",
+            #(
+              Position(14, 67),
+              Position(21, 67),
+            ),
+          )),
+          #(
+            Position(14, 67),
+            Position(22, 67),
+          ),
+        ),
+        None,
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "updatedAt",
           #(
             Position(3, 68),
-            Position(5, 68),
+            Position(11, 68),
           ),
         ),
         #(
@@ -2093,45 +1501,45 @@ This is a description of the \`@skip\` directive
         None,
         NullableTypeNode(
           NamedTypeNode(NameNode(
-            "CustomScalar",
+            "DateTime",
             #(
-              Position(8, 68),
-              Position(19, 68),
+              Position(14, 68),
+              Position(21, 68),
             ),
           )),
           #(
-            Position(8, 68),
-            Position(19, 68),
+            Position(14, 68),
+            Position(21, 68),
           ),
         ),
         None,
       ),
     ]),
   )))),
-  TypeSystemDefinitionNode(TypeDefinitionNode(InterfaceTypeDefinitionNode(InterfaceTypeDefinition(
+  TypeSystemDefinitionNode(TypeDefinitionNode(ObjectTypeDefinitionNode(ObjectTypeDefinition(
     None,
     NameNode(
-      "Baz",
+      "User",
       #(
-        Position(11, 61),
-        Position(13, 61),
+        Position(6, 48),
+        Position(9, 48),
       ),
     ),
-    #(Position(1, 61), Position(1, 65)),
+    #(Position(1, 48), Position(1, 56)),
     None,
     Some([
       NamedTypeNode(NameNode(
-        "Bar",
+        "Node",
         #(
-          Position(26, 61),
-          Position(28, 61),
+          Position(22, 48),
+          Position(25, 48),
         ),
       )),
       NamedTypeNode(NameNode(
-        "Two",
+        "Timestamped",
         #(
-          Position(32, 61),
-          Position(34, 61),
+          Position(29, 48),
+          Position(39, 48),
         ),
       )),
     ]),
@@ -2139,28 +1547,28 @@ This is a description of the \`@skip\` directive
       FieldDefinitionNode(
         None,
         NameNode(
-          "one",
+          "id",
           #(
-            Position(3, 62),
-            Position(5, 62),
+            Position(3, 49),
+            Position(4, 49),
           ),
         ),
         #(
-          Position(3, 62),
-          Position(5, 63),
+          Position(3, 49),
+          Position(6, 50),
         ),
         None,
-        NullableTypeNode(
+        NonNullTypeNode(
           NamedTypeNode(NameNode(
-            "CustomScalar",
+            "ID",
             #(
-              Position(8, 62),
-              Position(19, 62),
+              Position(7, 49),
+              Position(8, 49),
             ),
           )),
           #(
-            Position(8, 62),
-            Position(19, 62),
+            Position(7, 49),
+            Position(9, 49),
           ),
         ),
         None,
@@ -2168,1230 +1576,355 @@ This is a description of the \`@skip\` directive
       FieldDefinitionNode(
         None,
         NameNode(
-          "two",
-          #(
-            Position(3, 63),
-            Position(5, 63),
-          ),
-        ),
-        #(
-          Position(3, 63),
-          Position(6, 64),
-        ),
-        None,
-        NullableTypeNode(
-          NamedTypeNode(NameNode(
-            "CustomScalar",
-            #(
-              Position(30, 63),
-              Position(41, 63),
-            ),
-          )),
-          #(
-            Position(30, 63),
-            Position(41, 63),
-          ),
-        ),
-        Some([
-          InputValueDefinitionNode(
-            None,
-            NameNode(
-              "argument",
-              #(
-                Position(7, 63),
-                Position(14, 63),
-              ),
-            ),
-            #(
-              Position(7, 63),
-              Position(27, 63),
-            ),
-            None,
-            NonNullTypeNode(
-              NamedTypeNode(NameNode(
-                "InputType",
-                #(
-                  Position(17, 63),
-                  Position(25, 63),
-                ),
-              )),
-              #(
-                Position(17, 63),
-                Position(26, 63),
-              ),
-            ),
-            None,
-          ),
-        ]),
-      ),
-      FieldDefinitionNode(
-        None,
-        NameNode(
-          "four",
-          #(
-            Position(3, 64),
-            Position(6, 64),
-          ),
-        ),
-        #(
-          Position(3, 64),
-          Position(1, 65),
-        ),
-        None,
-        NullableTypeNode(
-          NamedTypeNode(NameNode(
-            "String",
-            #(
-              Position(38, 64),
-              Position(43, 64),
-            ),
-          )),
-          #(
-            Position(38, 64),
-            Position(43, 64),
-          ),
-        ),
-        Some([
-          InputValueDefinitionNode(
-            None,
-            NameNode(
-              "argument",
-              #(
-                Position(8, 64),
-                Position(15, 64),
-              ),
-            ),
-            #(
-              Position(8, 64),
-              Position(35, 64),
-            ),
-            None,
-            NullableTypeNode(
-              NamedTypeNode(NameNode(
-                "String",
-                #(
-                  Position(18, 64),
-                  Position(23, 64),
-                ),
-              )),
-              #(
-                Position(18, 64),
-                Position(23, 64),
-              ),
-            ),
-            Some(ConstValueNode(StringValueNode(
-              #(
-                Position(27, 64),
-                Position(34, 64),
-              ),
-              "string",
-            ))),
-          ),
-        ]),
-      ),
-    ]),
-  )))),
-  TypeSystemExtensionNode(TypeExtensionNode(InterfaceTypeExtensionNode(InterfaceTypeExtensionWithDirectivesNode(
-    NameNode(
-      "Bar",
-      #(
-        Position(18, 59),
-        Position(20, 59),
-      ),
-    ),
-    #(Position(1, 59), Position(1, 1)),
-    None,
-    [
-      ConstDirectiveNode(
-        NameNode(
-          "onInterface",
-          #(
-            Position(23, 59),
-            Position(33, 59),
-          ),
-        ),
-        None,
-        #(
-          Position(22, 59),
-          Position(1, 1),
-        ),
-      ),
-    ],
-  )))),
-  TypeSystemExtensionNode(TypeExtensionNode(InterfaceTypeExtensionNode(InterfaceTypeExtensionWithFieldsNode(
-    NameNode(
-      "Bar",
-      #(
-        Position(18, 55),
-        Position(20, 55),
-      ),
-    ),
-    #(Position(1, 55), Position(1, 57)),
-    Some([
-      NamedTypeNode(NameNode(
-        "Two",
-        #(
-          Position(33, 55),
-          Position(35, 55),
-        ),
-      )),
-    ]),
-    None,
-    [
-      FieldDefinitionNode(
-        None,
-        NameNode(
-          "two",
-          #(
-            Position(3, 56),
-            Position(5, 56),
-          ),
-        ),
-        #(
-          Position(3, 56),
-          Position(1, 57),
-        ),
-        None,
-        NullableTypeNode(
-          NamedTypeNode(NameNode(
-            "CustomScalar",
-            #(
-              Position(30, 56),
-              Position(41, 56),
-            ),
-          )),
-          #(
-            Position(30, 56),
-            Position(41, 56),
-          ),
-        ),
-        Some([
-          InputValueDefinitionNode(
-            None,
-            NameNode(
-              "argument",
-              #(
-                Position(7, 56),
-                Position(14, 56),
-              ),
-            ),
-            #(
-              Position(7, 56),
-              Position(27, 56),
-            ),
-            None,
-            NonNullTypeNode(
-              NamedTypeNode(NameNode(
-                "InputType",
-                #(
-                  Position(17, 56),
-                  Position(25, 56),
-                ),
-              )),
-              #(
-                Position(17, 56),
-                Position(26, 56),
-              ),
-            ),
-            None,
-          ),
-        ]),
-      ),
-    ],
-  )))),
-  TypeSystemDefinitionNode(TypeDefinitionNode(InterfaceTypeDefinitionNode(InterfaceTypeDefinition(
-    None,
-    NameNode(
-      "UndefinedInterface",
-      #(
-        Position(11, 53),
-        Position(28, 53),
-      ),
-    ),
-    #(Position(1, 53), Position(1, 1)),
-    None,
-    None,
-    None,
-  )))),
-  TypeSystemDefinitionNode(TypeDefinitionNode(InterfaceTypeDefinitionNode(InterfaceTypeDefinition(
-    None,
-    NameNode(
-      "AnnotatedInterface",
-      #(
-        Position(11, 49),
-        Position(28, 49),
-      ),
-    ),
-    #(Position(1, 49), Position(1, 51)),
-    Some([
-      ConstDirectiveNode(
-        NameNode(
-          "onInterface",
-          #(
-            Position(31, 49),
-            Position(41, 49),
-          ),
-        ),
-        None,
-        #(
-          Position(30, 49),
-          Position(1, 1),
-        ),
-      ),
-    ]),
-    None,
-    Some([
-      FieldDefinitionNode(
-        None,
-        NameNode(
-          "annotatedField",
+          "name",
           #(
             Position(3, 50),
-            Position(16, 50),
+            Position(6, 50),
           ),
         ),
         #(
           Position(3, 50),
-          Position(1, 51),
+          Position(7, 51),
         ),
-        Some([
-          ConstDirectiveNode(
-            NameNode(
-              "onField",
-              #(
-                Position(74, 50),
-                Position(80, 50),
-              ),
-            ),
-            None,
-            #(
-              Position(73, 50),
-              Position(1, 1),
-            ),
-          ),
-        ]),
-        NullableTypeNode(
+        None,
+        NonNullTypeNode(
           NamedTypeNode(NameNode(
-            "CustomScalar",
+            "String",
             #(
-              Position(60, 50),
-              Position(71, 50),
+              Position(9, 50),
+              Position(14, 50),
             ),
           )),
           #(
-            Position(60, 50),
-            Position(71, 50),
+            Position(9, 50),
+            Position(15, 50),
           ),
         ),
-        Some([
-          InputValueDefinitionNode(
-            None,
-            NameNode(
-              "arg",
-              #(
-                Position(18, 50),
-                Position(20, 50),
-              ),
-            ),
-            #(
-              Position(18, 50),
-              Position(57, 50),
-            ),
-            Some([
-              ConstDirectiveNode(
-                NameNode(
-                  "onArgumentDefinition",
-                  #(
-                    Position(37, 50),
-                    Position(56, 50),
-                  ),
-                ),
-                None,
-                #(
-                  Position(36, 50),
-                  Position(1, 1),
-                ),
-              ),
-            ]),
-            NullableTypeNode(
-              NamedTypeNode(NameNode(
-                "CustomScalar",
-                #(
-                  Position(23, 50),
-                  Position(34, 50),
-                ),
-              )),
-              #(
-                Position(23, 50),
-                Position(34, 50),
-              ),
-            ),
-            None,
+        None,
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "email",
+          #(
+            Position(3, 51),
+            Position(7, 51),
           ),
-        ]),
+        ),
+        #(
+          Position(3, 51),
+          Position(6, 52),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "String",
+            #(
+              Position(10, 51),
+              Position(15, 51),
+            ),
+          )),
+          #(
+            Position(10, 51),
+            Position(16, 51),
+          ),
+        ),
+        None,
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "role",
+          #(
+            Position(3, 52),
+            Position(6, 52),
+          ),
+        ),
+        #(
+          Position(3, 52),
+          Position(7, 53),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "Role",
+            #(
+              Position(9, 52),
+              Position(12, 52),
+            ),
+          )),
+          #(
+            Position(9, 52),
+            Position(13, 52),
+          ),
+        ),
+        None,
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "posts",
+          #(
+            Position(3, 53),
+            Position(7, 53),
+          ),
+        ),
+        #(
+          Position(3, 53),
+          Position(11, 54),
+        ),
+        None,
+        NullableListTypeNode(
+          NonNullTypeNode(
+            NamedTypeNode(NameNode(
+              "Post",
+              #(
+                Position(11, 53),
+                Position(14, 53),
+              ),
+            )),
+            #(
+              Position(11, 53),
+              Position(15, 53),
+            ),
+          ),
+          #(
+            Position(10, 53),
+            Position(16, 53),
+          ),
+        ),
+        None,
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "createdAt",
+          #(
+            Position(3, 54),
+            Position(11, 54),
+          ),
+        ),
+        #(
+          Position(3, 54),
+          Position(11, 55),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "DateTime",
+            #(
+              Position(14, 54),
+              Position(21, 54),
+            ),
+          )),
+          #(
+            Position(14, 54),
+            Position(22, 54),
+          ),
+        ),
+        None,
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "updatedAt",
+          #(
+            Position(3, 55),
+            Position(11, 55),
+          ),
+        ),
+        #(
+          Position(3, 55),
+          Position(1, 56),
+        ),
+        None,
+        NullableTypeNode(
+          NamedTypeNode(NameNode(
+            "DateTime",
+            #(
+              Position(14, 55),
+              Position(21, 55),
+            ),
+          )),
+          #(
+            Position(14, 55),
+            Position(21, 55),
+          ),
+        ),
+        None,
+      ),
+    ]),
+  )))),
+  TypeSystemDefinitionNode(TypeDefinitionNode(UnionTypeDefinitionNode(UnionTypeDefinition(
+    None,
+    NameNode(
+      "SearchResult",
+      #(
+        Position(7, 45),
+        Position(18, 45),
+      ),
+    ),
+    #(Position(1, 45), Position(42, 45)),
+    None,
+    Some([
+      NamedTypeNode(NameNode(
+        "User",
+        #(
+          Position(22, 45),
+          Position(25, 45),
+        ),
+      )),
+      NamedTypeNode(NameNode(
+        "Post",
+        #(
+          Position(29, 45),
+          Position(32, 45),
+        ),
+      )),
+      NamedTypeNode(NameNode(
+        "Comment",
+        #(
+          Position(36, 45),
+          Position(42, 45),
+        ),
+      )),
+    ]),
+  )))),
+  TypeSystemDefinitionNode(TypeDefinitionNode(InterfaceTypeDefinitionNode(InterfaceTypeDefinition(
+    None,
+    NameNode(
+      "Timestamped",
+      #(
+        Position(11, 39),
+        Position(21, 39),
+      ),
+    ),
+    #(Position(1, 39), Position(1, 42)),
+    None,
+    None,
+    Some([
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "createdAt",
+          #(
+            Position(3, 40),
+            Position(11, 40),
+          ),
+        ),
+        #(
+          Position(3, 40),
+          Position(11, 41),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "DateTime",
+            #(
+              Position(14, 40),
+              Position(21, 40),
+            ),
+          )),
+          #(
+            Position(14, 40),
+            Position(22, 40),
+          ),
+        ),
+        None,
+      ),
+      FieldDefinitionNode(
+        None,
+        NameNode(
+          "updatedAt",
+          #(
+            Position(3, 41),
+            Position(11, 41),
+          ),
+        ),
+        #(
+          Position(3, 41),
+          Position(1, 42),
+        ),
+        None,
+        NullableTypeNode(
+          NamedTypeNode(NameNode(
+            "DateTime",
+            #(
+              Position(14, 41),
+              Position(21, 41),
+            ),
+          )),
+          #(
+            Position(14, 41),
+            Position(21, 41),
+          ),
+        ),
+        None,
       ),
     ]),
   )))),
   TypeSystemDefinitionNode(TypeDefinitionNode(InterfaceTypeDefinitionNode(InterfaceTypeDefinition(
     None,
     NameNode(
-      "Bar",
+      "Node",
       #(
-        Position(11, 44),
-        Position(13, 44),
+        Position(11, 34),
+        Position(14, 34),
       ),
     ),
-    #(Position(1, 44), Position(1, 47)),
+    #(Position(1, 34), Position(1, 36)),
     None,
     None,
     Some([
       FieldDefinitionNode(
         None,
         NameNode(
-          "one",
+          "id",
           #(
-            Position(3, 45),
-            Position(5, 45),
+            Position(3, 35),
+            Position(4, 35),
           ),
         ),
         #(
-          Position(3, 45),
-          Position(6, 46),
+          Position(3, 35),
+          Position(1, 36),
         ),
         None,
-        NullableTypeNode(
+        NonNullTypeNode(
           NamedTypeNode(NameNode(
-            "CustomScalar",
+            "ID",
             #(
-              Position(8, 45),
-              Position(19, 45),
+              Position(7, 35),
+              Position(8, 35),
             ),
           )),
           #(
-            Position(8, 45),
-            Position(19, 45),
+            Position(7, 35),
+            Position(9, 35),
           ),
         ),
         None,
-      ),
-      FieldDefinitionNode(
-        None,
-        NameNode(
-          "four",
-          #(
-            Position(3, 46),
-            Position(6, 46),
-          ),
-        ),
-        #(
-          Position(3, 46),
-          Position(1, 47),
-        ),
-        None,
-        NullableTypeNode(
-          NamedTypeNode(NameNode(
-            "String",
-            #(
-              Position(38, 46),
-              Position(43, 46),
-            ),
-          )),
-          #(
-            Position(38, 46),
-            Position(43, 46),
-          ),
-        ),
-        Some([
-          InputValueDefinitionNode(
-            None,
-            NameNode(
-              "argument",
-              #(
-                Position(8, 46),
-                Position(15, 46),
-              ),
-            ),
-            #(
-              Position(8, 46),
-              Position(35, 46),
-            ),
-            None,
-            NullableTypeNode(
-              NamedTypeNode(NameNode(
-                "String",
-                #(
-                  Position(18, 46),
-                  Position(23, 46),
-                ),
-              )),
-              #(
-                Position(18, 46),
-                Position(23, 46),
-              ),
-            ),
-            Some(ConstValueNode(StringValueNode(
-              #(
-                Position(27, 46),
-                Position(34, 46),
-              ),
-              "string",
-            ))),
-          ),
-        ]),
       ),
     ]),
   )))),
-  TypeSystemExtensionNode(TypeExtensionNode(ObjectTypeExtensionNode(ObjectTypeExtensionWithDirectives(
-    NameNode(
-      "Foo",
-      #(
-        Position(13, 42),
-        Position(15, 42),
-      ),
-    ),
-    #(Position(1, 42), Position(1, 1)),
-    None,
-    [
-      ConstDirectiveNode(
-        NameNode(
-          "onType",
-          #(
-            Position(18, 42),
-            Position(23, 42),
-          ),
-        ),
-        None,
-        #(
-          Position(17, 42),
-          Position(1, 1),
-        ),
-      ),
-    ],
-  )))),
-  TypeSystemExtensionNode(TypeExtensionNode(ObjectTypeExtensionNode(ObjectTypeExtensionWithFields(
-    NameNode(
-      "Foo",
-      #(
-        Position(13, 38),
-        Position(15, 38),
-      ),
-    ),
-    #(Position(1, 38), Position(1, 40)),
-    None,
-    None,
-    [
-      FieldDefinitionNode(
-        None,
-        NameNode(
-          "seven",
-          #(
-            Position(3, 39),
-            Position(7, 39),
-          ),
-        ),
-        #(
-          Position(3, 39),
-          Position(1, 40),
-        ),
-        None,
-        NullableTypeNode(
-          NamedTypeNode(NameNode(
-            "CustomScalar",
-            #(
-              Position(30, 39),
-              Position(41, 39),
-            ),
-          )),
-          #(
-            Position(30, 39),
-            Position(41, 39),
-          ),
-        ),
-        Some([
-          InputValueDefinitionNode(
-            None,
-            NameNode(
-              "argument",
-              #(
-                Position(9, 39),
-                Position(16, 39),
-              ),
-            ),
-            #(
-              Position(9, 39),
-              Position(27, 39),
-            ),
-            None,
-            NullableListTypeNode(
-              NullableTypeNode(
-                NamedTypeNode(NameNode(
-                  "String",
-                  #(
-                    Position(20, 39),
-                    Position(25, 39),
-                  ),
-                )),
-                #(
-                  Position(20, 39),
-                  Position(25, 39),
-                ),
-              ),
-              #(
-                Position(19, 39),
-                Position(26, 39),
-              ),
-            ),
-            None,
-          ),
-        ]),
-      ),
-    ],
-  )))),
-  TypeSystemDefinitionNode(TypeDefinitionNode(ObjectTypeDefinitionNode(ObjectTypeDefinition(
+  TypeSystemDefinitionNode(TypeDefinitionNode(InputTypeDefinitionNode(InputTypeDefinition(
     None,
     NameNode(
-      "UndefinedType",
+      "UserInput",
       #(
-        Position(6, 36),
-        Position(18, 36),
+        Position(7, 27),
+        Position(15, 27),
       ),
     ),
-    #(Position(1, 36), Position(1, 1)),
-    None,
-    None,
-    None,
-  )))),
-  TypeSystemDefinitionNode(TypeDefinitionNode(ObjectTypeDefinitionNode(ObjectTypeDefinition(
-    None,
-    NameNode(
-      "AnnotatedObject",
-      #(
-        Position(6, 32),
-        Position(20, 32),
-      ),
-    ),
-    #(Position(1, 32), Position(1, 34)),
-    Some([
-      ConstDirectiveNode(
-        NameNode(
-          "onObject",
-          #(
-            Position(23, 32),
-            Position(30, 32),
-          ),
-        ),
-        Some([
-          ConstArgumentNode(
-            NameNode(
-              "arg",
-              #(
-                Position(32, 32),
-                Position(34, 32),
-              ),
-            ),
-            ConstValueNode(StringValueNode(
-              #(
-                Position(37, 32),
-                Position(43, 32),
-              ),
-              "value",
-            )),
-            #(
-              Position(32, 32),
-              Position(43, 32),
-            ),
-          ),
-        ]),
-        #(
-          Position(22, 32),
-          Position(44, 32),
-        ),
-      ),
-    ]),
     None,
     Some([
-      FieldDefinitionNode(
+      InputValueDefinitionNode(
         None,
         NameNode(
-          "annotatedField",
-          #(
-            Position(3, 33),
-            Position(16, 33),
-          ),
-        ),
-        #(
-          Position(3, 33),
-          Position(1, 34),
-        ),
-        Some([
-          ConstDirectiveNode(
-            NameNode(
-              "onField",
-              #(
-                Position(86, 33),
-                Position(92, 33),
-              ),
-            ),
-            None,
-            #(
-              Position(85, 33),
-              Position(1, 1),
-            ),
-          ),
-        ]),
-        NullableTypeNode(
-          NamedTypeNode(NameNode(
-            "CustomScalar",
-            #(
-              Position(72, 33),
-              Position(83, 33),
-            ),
-          )),
-          #(
-            Position(72, 33),
-            Position(83, 33),
-          ),
-        ),
-        Some([
-          InputValueDefinitionNode(
-            None,
-            NameNode(
-              "arg",
-              #(
-                Position(18, 33),
-                Position(20, 33),
-              ),
-            ),
-            #(
-              Position(18, 33),
-              Position(69, 33),
-            ),
-            Some([
-              ConstDirectiveNode(
-                NameNode(
-                  "onArgumentDefinition",
-                  #(
-                    Position(49, 33),
-                    Position(68, 33),
-                  ),
-                ),
-                None,
-                #(
-                  Position(48, 33),
-                  Position(1, 1),
-                ),
-              ),
-            ]),
-            NullableTypeNode(
-              NamedTypeNode(NameNode(
-                "CustomScalar",
-                #(
-                  Position(23, 33),
-                  Position(34, 33),
-                ),
-              )),
-              #(
-                Position(23, 33),
-                Position(34, 33),
-              ),
-            ),
-            Some(ConstValueNode(StringValueNode(
-              #(
-                Position(38, 33),
-                Position(46, 33),
-              ),
-              "default",
-            ))),
-          ),
-        ]),
-      ),
-    ]),
-  )))),
-  TypeSystemDefinitionNode(TypeDefinitionNode(ObjectTypeDefinitionNode(ObjectTypeDefinition(
-    Some(DescriptionNode(
-      "
-This is a description
-of the \`Foo\` type.
-",
-      #(Position(1, 7), Position(4, 10)),
-    )),
-    NameNode(
-      "Foo",
-      #(
-        Position(6, 11),
-        Position(8, 11),
-      ),
-    ),
-    #(Position(1, 11), Position(1, 30)),
-    None,
-    Some([
-      NamedTypeNode(NameNode(
-        "Bar",
-        #(
-          Position(21, 11),
-          Position(23, 11),
-        ),
-      )),
-      NamedTypeNode(NameNode(
-        "Baz",
-        #(
-          Position(27, 11),
-          Position(29, 11),
-        ),
-      )),
-      NamedTypeNode(NameNode(
-        "Two",
-        #(
-          Position(33, 11),
-          Position(35, 11),
-        ),
-      )),
-    ]),
-    Some([
-      FieldDefinitionNode(
-        Some(DescriptionNode(
-          "Description of the \`one\` field.",
-          #(
-            Position(3, 12),
-            Position(37, 12),
-          ),
-        )),
-        NameNode(
-          "one",
-          #(
-            Position(3, 13),
-            Position(5, 13),
-          ),
-        ),
-        #(
-          Position(3, 12),
-          Position(6, 16),
-        ),
-        None,
-        NullableTypeNode(
-          NamedTypeNode(NameNode(
-            "CustomScalar",
-            #(
-              Position(8, 13),
-              Position(19, 13),
-            ),
-          )),
-          #(
-            Position(8, 13),
-            Position(19, 13),
-          ),
-        ),
-        None,
-      ),
-      FieldDefinitionNode(
-        Some(DescriptionNode(
-          "
-  This is a description of the \`two\` field.
-  ",
-          #(
-            Position(3, 14),
-            Position(6, 16),
-          ),
-        )),
-        NameNode(
-          "two",
-          #(
-            Position(3, 17),
-            Position(5, 17),
-          ),
-        ),
-        #(
-          Position(3, 14),
-          Position(51, 23),
-        ),
-        None,
-        NullableTypeNode(
-          NamedTypeNode(NameNode(
-            "CustomScalar",
-            #(
-              Position(6, 22),
-              Position(17, 22),
-            ),
-          )),
-          #(
-            Position(6, 22),
-            Position(17, 22),
-          ),
-        ),
-        Some([
-          InputValueDefinitionNode(
-            Some(DescriptionNode(
-              "
-    This is a description of the \`argument\` argument.
-    ",
-              #(
-                Position(5, 18),
-                Position(8, 20),
-              ),
-            )),
-            NameNode(
-              "argument",
-              #(
-                Position(5, 21),
-                Position(12, 21),
-              ),
-            ),
-            #(
-              Position(5, 21),
-              Position(3, 22),
-            ),
-            None,
-            NonNullTypeNode(
-              NamedTypeNode(NameNode(
-                "InputType",
-                #(
-                  Position(15, 21),
-                  Position(23, 21),
-                ),
-              )),
-              #(
-                Position(15, 21),
-                Position(24, 21),
-              ),
-            ),
-            None,
-          ),
-        ]),
-      ),
-      FieldDefinitionNode(
-        Some(DescriptionNode(
-          "This is a description of the \`three\` field.",
-          #(
-            Position(3, 23),
-            Position(51, 23),
-          ),
-        )),
-        NameNode(
-          "three",
-          #(
-            Position(3, 24),
-            Position(7, 24),
-          ),
-        ),
-        #(
-          Position(3, 23),
-          Position(6, 25),
-        ),
-        None,
-        NullableTypeNode(
-          NamedTypeNode(NameNode(
-            "Int",
-            #(
-              Position(46, 24),
-              Position(48, 24),
-            ),
-          )),
-          #(
-            Position(46, 24),
-            Position(48, 24),
-          ),
-        ),
-        Some([
-          InputValueDefinitionNode(
-            None,
-            NameNode(
-              "argument",
-              #(
-                Position(9, 24),
-                Position(16, 24),
-              ),
-            ),
-            #(
-              Position(9, 24),
-              Position(34, 24),
-            ),
-            None,
-            NullableTypeNode(
-              NamedTypeNode(NameNode(
-                "InputType",
-                #(
-                  Position(19, 24),
-                  Position(27, 24),
-                ),
-              )),
-              #(
-                Position(19, 24),
-                Position(27, 24),
-              ),
-            ),
-            None,
-          ),
-          InputValueDefinitionNode(
-            None,
-            NameNode(
-              "other",
-              #(
-                Position(30, 24),
-                Position(34, 24),
-              ),
-            ),
-            #(
-              Position(30, 24),
-              Position(43, 24),
-            ),
-            None,
-            NullableTypeNode(
-              NamedTypeNode(NameNode(
-                "String",
-                #(
-                  Position(37, 24),
-                  Position(42, 24),
-                ),
-              )),
-              #(
-                Position(37, 24),
-                Position(42, 24),
-              ),
-            ),
-            None,
-          ),
-        ]),
-      ),
-      FieldDefinitionNode(
-        None,
-        NameNode(
-          "four",
-          #(
-            Position(3, 25),
-            Position(6, 25),
-          ),
-        ),
-        #(
-          Position(3, 25),
-          Position(6, 26),
-        ),
-        None,
-        NullableTypeNode(
-          NamedTypeNode(NameNode(
-            "String",
-            #(
-              Position(38, 25),
-              Position(43, 25),
-            ),
-          )),
-          #(
-            Position(38, 25),
-            Position(43, 25),
-          ),
-        ),
-        Some([
-          InputValueDefinitionNode(
-            None,
-            NameNode(
-              "argument",
-              #(
-                Position(8, 25),
-                Position(15, 25),
-              ),
-            ),
-            #(
-              Position(8, 25),
-              Position(35, 25),
-            ),
-            None,
-            NullableTypeNode(
-              NamedTypeNode(NameNode(
-                "String",
-                #(
-                  Position(18, 25),
-                  Position(23, 25),
-                ),
-              )),
-              #(
-                Position(18, 25),
-                Position(23, 25),
-              ),
-            ),
-            Some(ConstValueNode(StringValueNode(
-              #(
-                Position(27, 25),
-                Position(34, 25),
-              ),
-              "string",
-            ))),
-          ),
-        ]),
-      ),
-      FieldDefinitionNode(
-        None,
-        NameNode(
-          "five",
-          #(
-            Position(3, 26),
-            Position(6, 26),
-          ),
-        ),
-        #(
-          Position(3, 26),
-          Position(5, 27),
-        ),
-        None,
-        NullableTypeNode(
-          NamedTypeNode(NameNode(
-            "String",
-            #(
-              Position(52, 26),
-              Position(57, 26),
-            ),
-          )),
-          #(
-            Position(52, 26),
-            Position(57, 26),
-          ),
-        ),
-        Some([
-          InputValueDefinitionNode(
-            None,
-            NameNode(
-              "argument",
-              #(
-                Position(8, 26),
-                Position(15, 26),
-              ),
-            ),
-            #(
-              Position(8, 26),
-              Position(49, 26),
-            ),
-            None,
-            NullableListTypeNode(
-              NullableTypeNode(
-                NamedTypeNode(NameNode(
-                  "String",
-                  #(
-                    Position(19, 26),
-                    Position(24, 26),
-                  ),
-                )),
-                #(
-                  Position(19, 26),
-                  Position(24, 26),
-                ),
-              ),
-              #(
-                Position(18, 26),
-                Position(25, 26),
-              ),
-            ),
-            Some(ConstListNode(
-              [
-                ConstValueNode(StringValueNode(
-                  #(
-                    Position(30, 26),
-                    Position(37, 26),
-                  ),
-                  "string",
-                )),
-                ConstValueNode(StringValueNode(
-                  #(
-                    Position(40, 26),
-                    Position(47, 26),
-                  ),
-                  "string",
-                )),
-              ],
-              #(
-                Position(29, 26),
-                Position(48, 26),
-              ),
-            )),
-          ),
-        ]),
-      ),
-      FieldDefinitionNode(
-        None,
-        NameNode(
-          "six",
-          #(
-            Position(3, 27),
-            Position(5, 27),
-          ),
-        ),
-        #(
-          Position(3, 27),
-          Position(7, 28),
-        ),
-        None,
-        NullableTypeNode(
-          NamedTypeNode(NameNode(
-            "CustomScalar",
-            #(
-              Position(46, 27),
-              Position(57, 27),
-            ),
-          )),
-          #(
-            Position(46, 27),
-            Position(57, 27),
-          ),
-        ),
-        Some([
-          InputValueDefinitionNode(
-            None,
-            NameNode(
-              "argument",
-              #(
-                Position(7, 27),
-                Position(14, 27),
-              ),
-            ),
-            #(
-              Position(7, 27),
-              Position(43, 27),
-            ),
-            None,
-            NullableTypeNode(
-              NamedTypeNode(NameNode(
-                "InputType",
-                #(
-                  Position(17, 27),
-                  Position(25, 27),
-                ),
-              )),
-              #(
-                Position(17, 27),
-                Position(25, 27),
-              ),
-            ),
-            Some(ConstObjectNode(
-              [
-                ConstObjectFieldNode(
-                  NameNode(
-                    "key",
-                    #(
-                      Position(30, 27),
-                      Position(32, 27),
-                    ),
-                  ),
-                  ConstValueNode(StringValueNode(
-                    #(
-                      Position(35, 27),
-                      Position(41, 27),
-                    ),
-                    "value",
-                  )),
-                ),
-              ],
-              #(
-                Position(29, 27),
-                Position(42, 27),
-              ),
-            )),
-          ),
-        ]),
-      ),
-      FieldDefinitionNode(
-        None,
-        NameNode(
-          "seven",
+          "name",
           #(
             Position(3, 28),
-            Position(7, 28),
+            Position(6, 28),
           ),
         ),
         #(
@@ -3399,58 +1932,25 @@ of the \`Foo\` type.
           Position(7, 29),
         ),
         None,
-        NullableTypeNode(
+        NonNullTypeNode(
           NamedTypeNode(NameNode(
-            "CustomScalar",
+            "String",
             #(
-              Position(32, 28),
-              Position(43, 28),
+              Position(9, 28),
+              Position(14, 28),
             ),
           )),
           #(
-            Position(32, 28),
-            Position(43, 28),
+            Position(9, 28),
+            Position(15, 28),
           ),
         ),
-        Some([
-          InputValueDefinitionNode(
-            None,
-            NameNode(
-              "argument",
-              #(
-                Position(9, 28),
-                Position(16, 28),
-              ),
-            ),
-            #(
-              Position(9, 28),
-              Position(29, 28),
-            ),
-            None,
-            NullableTypeNode(
-              NamedTypeNode(NameNode(
-                "Int",
-                #(
-                  Position(19, 28),
-                  Position(21, 28),
-                ),
-              )),
-              #(
-                Position(19, 28),
-                Position(21, 28),
-              ),
-            ),
-            Some(ConstValueNode(NullValueNode(#(
-              Position(25, 28),
-              Position(28, 28),
-            )))),
-          ),
-        ]),
+        None,
       ),
-      FieldDefinitionNode(
+      InputValueDefinitionNode(
         None,
         NameNode(
-          "eight",
+          "email",
           #(
             Position(3, 29),
             Position(7, 29),
@@ -3458,89 +1958,247 @@ of the \`Foo\` type.
         ),
         #(
           Position(3, 29),
-          Position(1, 30),
+          Position(6, 30),
+        ),
+        None,
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "String",
+            #(
+              Position(10, 29),
+              Position(15, 29),
+            ),
+          )),
+          #(
+            Position(10, 29),
+            Position(16, 29),
+          ),
+        ),
+        None,
+      ),
+      InputValueDefinitionNode(
+        None,
+        NameNode(
+          "role",
+          #(
+            Position(3, 30),
+            Position(6, 30),
+          ),
+        ),
+        #(
+          Position(3, 30),
+          Position(1, 31),
         ),
         None,
         NullableTypeNode(
           NamedTypeNode(NameNode(
-            "CustomScalar",
+            "Role",
             #(
-              Position(36, 29),
-              Position(47, 29),
+              Position(9, 30),
+              Position(12, 30),
             ),
           )),
           #(
-            Position(36, 29),
-            Position(47, 29),
+            Position(9, 30),
+            Position(12, 30),
           ),
         ),
-        Some([
-          InputValueDefinitionNode(
-            None,
-            NameNode(
-              "argument",
-              #(
-                Position(9, 29),
-                Position(16, 29),
-              ),
-            ),
-            #(
-              Position(9, 29),
-              Position(33, 29),
-            ),
-            None,
-            NullableTypeNode(
-              NamedTypeNode(NameNode(
-                "OneOfInputType",
-                #(
-                  Position(19, 29),
-                  Position(32, 29),
-                ),
-              )),
-              #(
-                Position(19, 29),
-                Position(32, 29),
-              ),
-            ),
-            None,
+        Some(ConstValueNode(EnumValueNode(
+          #(
+            Position(16, 30),
+            Position(19, 30),
           ),
-        ]),
+          "USER",
+        ))),
+      ),
+    ]),
+    #(Position(1, 27), Position(1, 31)),
+  )))),
+  TypeSystemDefinitionNode(TypeDefinitionNode(EnumTypeDefinitionNode(EnumTypeDefinition(
+    None,
+    NameNode(
+      "Role",
+      #(
+        Position(6, 20),
+        Position(9, 20),
+      ),
+    ),
+    #(Position(1, 20), Position(1, 24)),
+    None,
+    Some([
+      EnumValueDefinitionNode(
+        None,
+        NameNode(
+          "ADMIN",
+          #(
+            Position(3, 21),
+            Position(7, 21),
+          ),
+        ),
+        #(
+          Position(3, 21),
+          Position(6, 22),
+        ),
+        None,
+      ),
+      EnumValueDefinitionNode(
+        None,
+        NameNode(
+          "USER",
+          #(
+            Position(3, 22),
+            Position(6, 22),
+          ),
+        ),
+        #(
+          Position(3, 22),
+          Position(7, 23),
+        ),
+        None,
+      ),
+      EnumValueDefinitionNode(
+        None,
+        NameNode(
+          "GUEST",
+          #(
+            Position(3, 23),
+            Position(7, 23),
+          ),
+        ),
+        #(
+          Position(3, 23),
+          Position(1, 24),
+        ),
+        None,
       ),
     ]),
   )))),
+  TypeSystemDefinitionNode(DirectiveDefinitionNode(DirectiveDefinition(
+    None,
+    NameNode(
+      "auth",
+      #(
+        Position(12, 15),
+        Position(15, 15),
+      ),
+    ),
+    #(Position(1, 15), Position(30, 17)),
+    Some([
+      InputValueDefinitionNode(
+        None,
+        NameNode(
+          "requires",
+          #(
+            Position(3, 16),
+            Position(10, 16),
+          ),
+        ),
+        #(
+          Position(3, 16),
+          Position(1, 17),
+        ),
+        None,
+        NullableTypeNode(
+          NamedTypeNode(NameNode(
+            "Role",
+            #(
+              Position(13, 16),
+              Position(16, 16),
+            ),
+          )),
+          #(
+            Position(13, 16),
+            Position(16, 16),
+          ),
+        ),
+        Some(ConstValueNode(EnumValueNode(
+          #(
+            Position(20, 16),
+            Position(24, 16),
+          ),
+          "ADMIN",
+        ))),
+      ),
+    ]),
+    False,
+    [
+      DirectiveLocationNode(
+        TypeSystemDirectiveLocation(FieldDefinitionDirective),
+        #(
+          Position(6, 17),
+          Position(21, 17),
+        ),
+      ),
+      DirectiveLocationNode(
+        TypeSystemDirectiveLocation(ObjectDirective),
+        #(
+          Position(25, 17),
+          Position(30, 17),
+        ),
+      ),
+    ],
+  ))),
+  TypeSystemDefinitionNode(TypeDefinitionNode(ScalarTypeDefinitionNode(ScalarTypeDefinition(
+    None,
+    NameNode(
+      "DateTime",
+      #(
+        Position(8, 12),
+        Position(15, 12),
+      ),
+    ),
+    #(Position(1, 12), Position(9, 15)),
+    None,
+  )))),
   TypeSystemDefinitionNode(SchemaDefinitionNode(SchemaDefinition(
     Some(DescriptionNode(
-      "This is a description of the schema as a whole.",
-      #(Position(1, 1), Position(51, 1)),
+      "
+A simplified GraphQL schema demonstrating all type system features
+",
+      #(Position(1, 1), Position(4, 3)),
     )),
-    #(Position(1, 2), Position(1, 5)),
+    #(Position(1, 5), Position(1, 9)),
     None,
     [
       RootOperationTypeDefinition(
         #(
-          Position(3, 4),
-          Position(24, 4),
+          Position(3, 8),
+          Position(28, 8),
         ),
-        Mutation,
+        Subscription,
         NamedTypeNode(NameNode(
-          "MutationType",
+          "Subscription",
           #(
-            Position(13, 4),
-            Position(24, 4),
+            Position(17, 8),
+            Position(28, 8),
           ),
         )),
       ),
       RootOperationTypeDefinition(
         #(
-          Position(3, 3),
-          Position(18, 3),
+          Position(3, 7),
+          Position(20, 7),
+        ),
+        Mutation,
+        NamedTypeNode(NameNode(
+          "Mutation",
+          #(
+            Position(13, 7),
+            Position(20, 7),
+          ),
+        )),
+      ),
+      RootOperationTypeDefinition(
+        #(
+          Position(3, 6),
+          Position(14, 6),
         ),
         Query,
         NamedTypeNode(NameNode(
-          "QueryType",
+          "Query",
           #(
-            Position(10, 3),
-            Position(18, 3),
+            Position(10, 6),
+            Position(14, 6),
           ),
         )),
       ),

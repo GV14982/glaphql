@@ -5,7 +5,7 @@ import errors
 import gleam/dict
 import gleam/option
 import gleam/result
-import internal/schema/types
+import internal/executable/types
 
 /// Validates the schema's root operation types
 ///

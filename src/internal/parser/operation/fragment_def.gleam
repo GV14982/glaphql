@@ -11,7 +11,7 @@ pub fn parse_fragment_def(
   tokens: List(token.Token),
   start: position.Position,
 ) -> Result(
-  node.NodeWithTokenList(node.ExecutableDefinitionNode),
+  node.NodeWithTokenList(node.OperationDefinitionNode),
   errors.ParseError,
 ) {
   case tokens {

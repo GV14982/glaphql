@@ -39,6 +39,4 @@ pub type TokenKind {
   Int(String)
   // Floating Point Number Literal
   Float(String)
-  // Comment starting with a #
-  Comment(String)
 }

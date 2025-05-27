@@ -8,7 +8,7 @@ import gleam/list
 import gleam/option
 import gleam/result
 import gleam/set
-import internal/schema/types
+import internal/executable/types
 
 /// Validates interface implementations for a type definition
 ///

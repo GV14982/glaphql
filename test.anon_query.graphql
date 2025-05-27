@@ -1,0 +1,14 @@
+{
+  user(id: 123) {
+    id
+    name
+    email
+    role
+    createdAt
+    posts {
+      id
+      title
+      published
+    }
+  }
+}

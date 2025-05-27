@@ -16,9 +16,10 @@ pub fn parse_operation_def(
   node.NodeWithTokenList(node.OperationDefinitionNode),
   errors.ParseError,
 ) {
+  use operation_type <- result.try(root_operation_from_string(operation_type))
   case tokens {
     [#(token_kind.OpenBrace, #(start, _)), ..] ->
-      parse_unnamed_query(tokens, start)
+      parse_unnamed_operation(tokens, start, operation_type)
     [#(token_kind.Name(value), location), ..tokens] -> {
       let name = node.NameNode(value:, location:)
       parse_named_operation(tokens, name, location.0, operation_type)
@@ -27,9 +28,10 @@ pub fn parse_operation_def(
   }
 }
 
-pub fn parse_unnamed_query(
+pub fn parse_unnamed_operation(
   tokens: List(token.Token),
   start: position.Position,
+  operation_type: node.OperationType,
 ) -> Result(
   node.NodeWithTokenList(node.OperationDefinitionNode),
   errors.ParseError,
@@ -37,10 +39,10 @@ pub fn parse_unnamed_query(
   use #(#(selection_set, end), tokens) <- result.try(
     selection_set.parse_selection_set(tokens),
   )
+
   Ok(#(
-    node.QueryOperationNode(
-      name: option.None,
-      variable_definitions: option.None,
+    node.AnonymousOperationDefinitionNode(
+      operation_type:,
       directives: option.None,
       selection_set:,
       location: #(start, end),
@@ -53,7 +55,7 @@ pub fn parse_named_operation(
   tokens: List(token.Token),
   name: node.NameNode,
   start: position.Position,
-  operation_type: String,
+  operation_type: node.OperationType,
 ) -> Result(
   node.NodeWithTokenList(node.OperationDefinitionNode),
   errors.ParseError,
@@ -67,41 +69,26 @@ pub fn parse_named_operation(
   use #(#(selection_set, end), tokens) <- result.try(
     selection_set.parse_selection_set(tokens),
   )
-  let location = #(start, end)
-  case operation_type {
-    "query" ->
-      Ok(#(
-        node.QueryOperationNode(
-          name: option.Some(name),
-          variable_definitions:,
-          directives:,
-          selection_set:,
-          location:,
-        ),
-        tokens,
-      ))
-    "mutation" ->
-      Ok(#(
-        node.MutationOperationNode(
-          name:,
-          variable_definitions:,
-          directives:,
-          selection_set:,
-          location:,
-        ),
-        tokens,
-      ))
-    "subscription" ->
-      Ok(#(
-        node.SubscriptionOperationNode(
-          name:,
-          variable_definitions:,
-          directives:,
-          selection_set:,
-          location:,
-        ),
-        tokens,
-      ))
-    _ -> Error(errors.InvalidOperationType)
+  Ok(#(
+    node.NamedOperationDefinitionNode(
+      name:,
+      variable_definitions:,
+      operation_type:,
+      directives:,
+      selection_set:,
+      location: #(start, end),
+    ),
+    tokens,
+  ))
+}
+
+fn root_operation_from_string(
+  str: String,
+) -> Result(node.OperationType, errors.ParseError) {
+  case str {
+    "query" -> node.Query |> Ok
+    "mutation" -> node.Mutation |> Ok
+    "subscription" -> node.Subscription |> Ok
+    val -> Error(errors.InvalidOperationType(val))
   }
 }

@@ -1,432 +1,132 @@
 ---
-version: 1.2.5
+version: 1.2.6
 title: test operations parsed
 file: ./test/parser/operation/document_test.gleam
 test_name: parse_executable_document_test
 ---
 OperationDocument([
-  OperationDefinitionNode(QueryOperationNode(
-    None,
-    None,
-    None,
-    SelectionSetNode(
-      [
-        FieldNode(
-          None,
-          NameNode(
-            "__typename",
-            #(
-              Position(3, 65),
-              Position(12, 65),
-            ),
-          ),
-          None,
-          None,
-          None,
-          #(
-            Position(3, 65),
-            Position(1, 66),
-          ),
-        ),
-      ],
-      #(
-        Position(7, 64),
-        Position(1, 66),
-      ),
-    ),
-    #(Position(7, 64), Position(1, 66)),
-  )),
-  OperationDefinitionNode(QueryOperationNode(
-    None,
-    None,
-    None,
-    SelectionSetNode(
-      [
-        FieldNode(
-          None,
-          NameNode(
-            "unnamed",
-            #(
-              Position(3, 60),
-              Position(9, 60),
-            ),
-          ),
-          Some([
-            ArgumentNode(
-              NameNode(
-                "truthy",
-                #(
-                  Position(11, 60),
-                  Position(16, 60),
-                ),
-              ),
-              ValueNode(BooleanValueNode(
-                #(
-                  Position(19, 60),
-                  Position(22, 60),
-                ),
-                True,
-              )),
-              #(
-                Position(11, 60),
-                Position(22, 60),
-              ),
-            ),
-            ArgumentNode(
-              NameNode(
-                "falsy",
-                #(
-                  Position(25, 60),
-                  Position(29, 60),
-                ),
-              ),
-              ValueNode(BooleanValueNode(
-                #(
-                  Position(32, 60),
-                  Position(36, 60),
-                ),
-                False,
-              )),
-              #(
-                Position(25, 60),
-                Position(36, 60),
-              ),
-            ),
-            ArgumentNode(
-              NameNode(
-                "nullish",
-                #(
-                  Position(39, 60),
-                  Position(45, 60),
-                ),
-              ),
-              ValueNode(NullValueNode(#(
-                Position(48, 60),
-                Position(51, 60),
-              ))),
-              #(
-                Position(39, 60),
-                Position(51, 60),
-              ),
-            ),
-          ]),
-          None,
-          None,
-          #(
-            Position(3, 60),
-            Position(7, 61),
-          ),
-        ),
-        FieldNode(
-          None,
-          NameNode(
-            "query",
-            #(
-              Position(3, 61),
-              Position(7, 61),
-            ),
-          ),
-          None,
-          None,
-          None,
-          #(
-            Position(3, 61),
-            Position(1, 62),
-          ),
-        ),
-      ],
-      #(
-        Position(1, 59),
-        Position(1, 62),
-      ),
-    ),
-    #(Position(1, 59), Position(1, 62)),
-  )),
-  FragmentDefinitionNode(
+  NamedOperationDefinitionNode(
+    Subscription,
     NameNode(
-      "frag",
+      "WatchComments",
       #(
-        Position(10, 46),
-        Position(13, 46),
-      ),
-    ),
-    NamedTypeNode(NameNode(
-      "Friend",
-      #(
-        Position(18, 46),
-        Position(23, 46),
-      ),
-    )),
-    Some([
-      DirectiveNode(
-        NameNode(
-          "onFragmentDefinition",
-          #(
-            Position(26, 46),
-            Position(45, 46),
-          ),
-        ),
-        None,
-        #(
-          Position(25, 46),
-          Position(25, 46),
-        ),
-      ),
-    ]),
-    SelectionSetNode(
-      [
-        FieldNode(
-          None,
-          NameNode(
-            "foo",
-            #(
-              Position(3, 47),
-              Position(5, 47),
-            ),
-          ),
-          Some([
-            ArgumentNode(
-              NameNode(
-                "size",
-                #(
-                  Position(5, 48),
-                  Position(8, 48),
-                ),
-              ),
-              Variable(VariableNode(
-                NameNode(
-                  "size",
-                  #(
-                    Position(12, 48),
-                    Position(15, 48),
-                  ),
-                ),
-                #(
-                  Position(11, 48),
-                  Position(15, 48),
-                ),
-              )),
-              #(
-                Position(5, 48),
-                Position(15, 48),
-              ),
-            ),
-            ArgumentNode(
-              NameNode(
-                "bar",
-                #(
-                  Position(5, 49),
-                  Position(7, 49),
-                ),
-              ),
-              Variable(VariableNode(
-                NameNode(
-                  "b",
-                  #(
-                    Position(11, 49),
-                    Position(11, 49),
-                  ),
-                ),
-                #(
-                  Position(10, 49),
-                  Position(11, 49),
-                ),
-              )),
-              #(
-                Position(5, 49),
-                Position(11, 49),
-              ),
-            ),
-            ArgumentNode(
-              NameNode(
-                "obj",
-                #(
-                  Position(5, 50),
-                  Position(7, 50),
-                ),
-              ),
-              ObjectNode(
-                [
-                  ObjectFieldNode(
-                    NameNode(
-                      "key",
-                      #(
-                        Position(7, 51),
-                        Position(9, 51),
-                      ),
-                    ),
-                    ValueNode(StringValueNode(
-                      #(
-                        Position(12, 51),
-                        Position(18, 51),
-                      ),
-                      "value",
-                    )),
-                    #(
-                      Position(7, 51),
-                      Position(18, 51),
-                    ),
-                  ),
-                  ObjectFieldNode(
-                    NameNode(
-                      "block",
-                      #(
-                        Position(7, 52),
-                        Position(11, 52),
-                      ),
-                    ),
-                    ValueNode(StringValueNode(
-                      #(
-                        Position(14, 52),
-                        Position(10, 54),
-                      ),
-                      "
-      block string uses """
-      ",
-                    )),
-                    #(
-                      Position(7, 52),
-                      Position(10, 54),
-                    ),
-                  ),
-                ],
-                #(
-                  Position(10, 50),
-                  Position(5, 55),
-                ),
-              ),
-              #(
-                Position(5, 50),
-                Position(5, 55),
-              ),
-            ),
-          ]),
-          None,
-          None,
-          #(
-            Position(3, 47),
-            Position(1, 57),
-          ),
-        ),
-      ],
-      #(
-        Position(47, 46),
-        Position(1, 57),
-      ),
-    ),
-    #(Position(1, 46), Position(1, 57)),
-  ),
-  OperationDefinitionNode(SubscriptionOperationNode(
-    NameNode(
-      "StoryLikeSubscription",
-      #(
-        Position(14, 30),
-        Position(34, 30),
+        Position(14, 176),
+        Position(26, 176),
       ),
     ),
     Some([
       VariableDefinitionNode(
         VariableNode(
           NameNode(
-            "input",
+            "postId",
             #(
-              Position(4, 31),
-              Position(8, 31),
+              Position(29, 176),
+              Position(34, 176),
             ),
           ),
           #(
-            Position(3, 31),
-            Position(4, 31),
+            Position(28, 176),
+            Position(29, 176),
           ),
         ),
         NullableTypeNode(
           NamedTypeNode(NameNode(
-            "StoryLikeSubscribeInput",
+            "ID",
             #(
-              Position(11, 31),
-              Position(33, 31),
+              Position(37, 176),
+              Position(38, 176),
             ),
           )),
           #(
-            Position(11, 31),
-            Position(33, 31),
+            Position(37, 176),
+            Position(38, 176),
           ),
         ),
         None,
-        Some([
-          ConstDirectiveNode(
-            NameNode(
-              "onVariableDefinition",
-              #(
-                Position(36, 31),
-                Position(55, 31),
-              ),
-            ),
-            None,
+        None,
+        #(
+          Position(28, 176),
+          Position(41, 176),
+        ),
+      ),
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "skipAuthorInfo",
             #(
-              Position(35, 31),
-              Position(1, 1),
+              Position(42, 176),
+              Position(55, 176),
             ),
           ),
-        ]),
-        #(
-          Position(3, 31),
-          Position(1, 32),
-        ),
-      ),
-    ]),
-    Some([
-      DirectiveNode(
-        NameNode(
-          "onSubscription",
           #(
-            Position(4, 33),
-            Position(17, 33),
+            Position(41, 176),
+            Position(42, 176),
           ),
         ),
+        NullableTypeNode(
+          NamedTypeNode(NameNode(
+            "Boolean",
+            #(
+              Position(58, 176),
+              Position(64, 176),
+            ),
+          )),
+          #(
+            Position(58, 176),
+            Position(64, 176),
+          ),
+        ),
+        Some(ConstValueNode(BooleanValueNode(
+          #(
+            Position(68, 176),
+            Position(72, 176),
+          ),
+          False,
+        ))),
         None,
         #(
-          Position(3, 33),
-          Position(3, 33),
+          Position(41, 176),
+          Position(73, 176),
         ),
       ),
     ]),
+    None,
     SelectionSetNode(
       [
         FieldNode(
           None,
           NameNode(
-            "storyLikeSubscribe",
+            "commentAdded",
             #(
-              Position(3, 34),
-              Position(20, 34),
+              Position(3, 177),
+              Position(14, 177),
             ),
           ),
           Some([
             ArgumentNode(
               NameNode(
-                "input",
+                "postId",
                 #(
-                  Position(22, 34),
-                  Position(26, 34),
+                  Position(16, 177),
+                  Position(21, 177),
                 ),
               ),
               Variable(VariableNode(
                 NameNode(
-                  "input",
+                  "postId",
                   #(
-                    Position(30, 34),
-                    Position(34, 34),
+                    Position(25, 177),
+                    Position(30, 177),
                   ),
                 ),
                 #(
-                  Position(29, 34),
-                  Position(34, 34),
+                  Position(24, 177),
+                  Position(30, 177),
                 ),
               )),
               #(
-                Position(22, 34),
-                Position(34, 34),
+                Position(16, 177),
+                Position(30, 177),
               ),
             ),
           ]),
@@ -436,10 +136,709 @@ OperationDocument([
               FieldNode(
                 None,
                 NameNode(
-                  "story",
+                  "id",
                   #(
-                    Position(5, 35),
-                    Position(9, 35),
+                    Position(5, 178),
+                    Position(6, 178),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 178),
+                  Position(8, 179),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "text",
+                  #(
+                    Position(5, 179),
+                    Position(8, 179),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 179),
+                  Position(10, 180),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "author",
+                  #(
+                    Position(5, 180),
+                    Position(10, 180),
+                  ),
+                ),
+                None,
+                Some([
+                  DirectiveNode(
+                    NameNode(
+                      "skip",
+                      #(
+                        Position(
+                          13,
+                          180,
+                        ),
+                        Position(
+                          16,
+                          180,
+                        ),
+                      ),
+                    ),
+                    Some([
+                      ArgumentNode(
+                        NameNode(
+                          "if",
+                          #(
+                            Position(
+                              18,
+                              180,
+                            ),
+                            Position(
+                              19,
+                              180,
+                            ),
+                          ),
+                        ),
+                        Variable(VariableNode(
+                          NameNode(
+                            "skipAuthorInfo",
+                            #(
+                              Position(
+                                23,
+                                180,
+                              ),
+                              Position(
+                                36,
+                                180,
+                              ),
+                            ),
+                          ),
+                          #(
+                            Position(
+                              22,
+                              180,
+                            ),
+                            Position(
+                              36,
+                              180,
+                            ),
+                          ),
+                        )),
+                        #(
+                          Position(
+                            18,
+                            180,
+                          ),
+                          Position(
+                            36,
+                            180,
+                          ),
+                        ),
+                      ),
+                    ]),
+                    #(
+                      Position(12, 180),
+                      Position(37, 180),
+                    ),
+                  ),
+                ]),
+                Some(SelectionSetNode(
+                  [
+                    FieldNode(
+                      None,
+                      NameNode(
+                        "name",
+                        #(
+                          Position(
+                            7,
+                            181,
+                          ),
+                          Position(
+                            10,
+                            181,
+                          ),
+                        ),
+                      ),
+                      None,
+                      None,
+                      None,
+                      #(
+                        Position(7, 181),
+                        Position(5, 182),
+                      ),
+                    ),
+                  ],
+                  #(
+                    Position(39, 180),
+                    Position(5, 182),
+                  ),
+                )),
+                #(
+                  Position(5, 180),
+                  Position(5, 182),
+                ),
+              ),
+            ],
+            #(
+              Position(33, 177),
+              Position(3, 183),
+            ),
+          )),
+          #(
+            Position(3, 177),
+            Position(3, 183),
+          ),
+        ),
+      ],
+      #(
+        Position(75, 176),
+        Position(1, 184),
+      ),
+    ),
+    #(
+      Position(14, 176),
+      Position(1, 184),
+    ),
+  ),
+  NamedOperationDefinitionNode(
+    Subscription,
+    NameNode(
+      "WatchPosts",
+      #(
+        Position(14, 165),
+        Position(23, 165),
+      ),
+    ),
+    Some([
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "includeAuthor",
+            #(
+              Position(26, 165),
+              Position(38, 165),
+            ),
+          ),
+          #(
+            Position(25, 165),
+            Position(26, 165),
+          ),
+        ),
+        NullableTypeNode(
+          NamedTypeNode(NameNode(
+            "Boolean",
+            #(
+              Position(41, 165),
+              Position(47, 165),
+            ),
+          )),
+          #(
+            Position(41, 165),
+            Position(47, 165),
+          ),
+        ),
+        Some(ConstValueNode(BooleanValueNode(
+          #(
+            Position(51, 165),
+            Position(54, 165),
+          ),
+          True,
+        ))),
+        None,
+        #(
+          Position(25, 165),
+          Position(55, 165),
+        ),
+      ),
+    ]),
+    None,
+    SelectionSetNode(
+      [
+        FieldNode(
+          None,
+          NameNode(
+            "postCreated",
+            #(
+              Position(3, 166),
+              Position(13, 166),
+            ),
+          ),
+          None,
+          None,
+          Some(SelectionSetNode(
+            [
+              FieldNode(
+                None,
+                NameNode(
+                  "id",
+                  #(
+                    Position(5, 167),
+                    Position(6, 167),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 167),
+                  Position(9, 168),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "title",
+                  #(
+                    Position(5, 168),
+                    Position(9, 168),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 168),
+                  Position(10, 169),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "author",
+                  #(
+                    Position(5, 169),
+                    Position(10, 169),
+                  ),
+                ),
+                None,
+                Some([
+                  DirectiveNode(
+                    NameNode(
+                      "include",
+                      #(
+                        Position(
+                          13,
+                          169,
+                        ),
+                        Position(
+                          19,
+                          169,
+                        ),
+                      ),
+                    ),
+                    Some([
+                      ArgumentNode(
+                        NameNode(
+                          "if",
+                          #(
+                            Position(
+                              21,
+                              169,
+                            ),
+                            Position(
+                              22,
+                              169,
+                            ),
+                          ),
+                        ),
+                        Variable(VariableNode(
+                          NameNode(
+                            "includeAuthor",
+                            #(
+                              Position(
+                                26,
+                                169,
+                              ),
+                              Position(
+                                38,
+                                169,
+                              ),
+                            ),
+                          ),
+                          #(
+                            Position(
+                              25,
+                              169,
+                            ),
+                            Position(
+                              38,
+                              169,
+                            ),
+                          ),
+                        )),
+                        #(
+                          Position(
+                            21,
+                            169,
+                          ),
+                          Position(
+                            38,
+                            169,
+                          ),
+                        ),
+                      ),
+                    ]),
+                    #(
+                      Position(12, 169),
+                      Position(39, 169),
+                    ),
+                  ),
+                ]),
+                Some(SelectionSetNode(
+                  [
+                    FieldNode(
+                      None,
+                      NameNode(
+                        "name",
+                        #(
+                          Position(
+                            7,
+                            170,
+                          ),
+                          Position(
+                            10,
+                            170,
+                          ),
+                        ),
+                      ),
+                      None,
+                      None,
+                      None,
+                      #(
+                        Position(7, 170),
+                        Position(5, 171),
+                      ),
+                    ),
+                  ],
+                  #(
+                    Position(41, 169),
+                    Position(5, 171),
+                  ),
+                )),
+                #(
+                  Position(5, 169),
+                  Position(5, 171),
+                ),
+              ),
+            ],
+            #(
+              Position(15, 166),
+              Position(3, 172),
+            ),
+          )),
+          #(
+            Position(3, 166),
+            Position(3, 172),
+          ),
+        ),
+      ],
+      #(
+        Position(57, 165),
+        Position(1, 173),
+      ),
+    ),
+    #(
+      Position(14, 165),
+      Position(1, 173),
+    ),
+  ),
+  NamedOperationDefinitionNode(
+    Mutation,
+    NameNode(
+      "AddComment",
+      #(
+        Position(10, 150),
+        Position(19, 150),
+      ),
+    ),
+    Some([
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "postId",
+            #(
+              Position(22, 150),
+              Position(27, 150),
+            ),
+          ),
+          #(
+            Position(21, 150),
+            Position(22, 150),
+          ),
+        ),
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "ID",
+            #(
+              Position(30, 150),
+              Position(31, 150),
+            ),
+          )),
+          #(
+            Position(30, 150),
+            Position(32, 150),
+          ),
+        ),
+        None,
+        None,
+        #(
+          Position(21, 150),
+          Position(35, 150),
+        ),
+      ),
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "text",
+            #(
+              Position(36, 150),
+              Position(39, 150),
+            ),
+          ),
+          #(
+            Position(35, 150),
+            Position(36, 150),
+          ),
+        ),
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "String",
+            #(
+              Position(42, 150),
+              Position(47, 150),
+            ),
+          )),
+          #(
+            Position(42, 150),
+            Position(48, 150),
+          ),
+        ),
+        None,
+        None,
+        #(
+          Position(35, 150),
+          Position(51, 150),
+        ),
+      ),
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "authorId",
+            #(
+              Position(52, 150),
+              Position(59, 150),
+            ),
+          ),
+          #(
+            Position(51, 150),
+            Position(52, 150),
+          ),
+        ),
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "ID",
+            #(
+              Position(62, 150),
+              Position(63, 150),
+            ),
+          )),
+          #(
+            Position(62, 150),
+            Position(64, 150),
+          ),
+        ),
+        None,
+        None,
+        #(
+          Position(51, 150),
+          Position(67, 150),
+        ),
+      ),
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "includePostInfo",
+            #(
+              Position(68, 150),
+              Position(82, 150),
+            ),
+          ),
+          #(
+            Position(67, 150),
+            Position(68, 150),
+          ),
+        ),
+        NullableTypeNode(
+          NamedTypeNode(NameNode(
+            "Boolean",
+            #(
+              Position(85, 150),
+              Position(91, 150),
+            ),
+          )),
+          #(
+            Position(85, 150),
+            Position(91, 150),
+          ),
+        ),
+        Some(ConstValueNode(BooleanValueNode(
+          #(
+            Position(95, 150),
+            Position(99, 150),
+          ),
+          False,
+        ))),
+        None,
+        #(
+          Position(67, 150),
+          Position(100, 150),
+        ),
+      ),
+    ]),
+    None,
+    SelectionSetNode(
+      [
+        FieldNode(
+          None,
+          NameNode(
+            "createComment",
+            #(
+              Position(3, 151),
+              Position(15, 151),
+            ),
+          ),
+          Some([
+            ArgumentNode(
+              NameNode(
+                "postId",
+                #(
+                  Position(17, 151),
+                  Position(22, 151),
+                ),
+              ),
+              Variable(VariableNode(
+                NameNode(
+                  "postId",
+                  #(
+                    Position(26, 151),
+                    Position(31, 151),
+                  ),
+                ),
+                #(
+                  Position(25, 151),
+                  Position(31, 151),
+                ),
+              )),
+              #(
+                Position(17, 151),
+                Position(31, 151),
+              ),
+            ),
+            ArgumentNode(
+              NameNode(
+                "text",
+                #(
+                  Position(34, 151),
+                  Position(37, 151),
+                ),
+              ),
+              Variable(VariableNode(
+                NameNode(
+                  "text",
+                  #(
+                    Position(41, 151),
+                    Position(44, 151),
+                  ),
+                ),
+                #(
+                  Position(40, 151),
+                  Position(44, 151),
+                ),
+              )),
+              #(
+                Position(34, 151),
+                Position(44, 151),
+              ),
+            ),
+            ArgumentNode(
+              NameNode(
+                "authorId",
+                #(
+                  Position(47, 151),
+                  Position(54, 151),
+                ),
+              ),
+              Variable(VariableNode(
+                NameNode(
+                  "authorId",
+                  #(
+                    Position(58, 151),
+                    Position(65, 151),
+                  ),
+                ),
+                #(
+                  Position(57, 151),
+                  Position(65, 151),
+                ),
+              )),
+              #(
+                Position(47, 151),
+                Position(65, 151),
+              ),
+            ),
+          ]),
+          None,
+          Some(SelectionSetNode(
+            [
+              FieldNode(
+                None,
+                NameNode(
+                  "id",
+                  #(
+                    Position(5, 152),
+                    Position(6, 152),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 152),
+                  Position(8, 153),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "text",
+                  #(
+                    Position(5, 153),
+                    Position(8, 153),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 153),
+                  Position(10, 154),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "author",
+                  #(
+                    Position(5, 154),
+                    Position(10, 154),
                   ),
                 ),
                 None,
@@ -449,246 +848,1440 @@ OperationDocument([
                     FieldNode(
                       None,
                       NameNode(
-                        "likers",
+                        "name",
                         #(
                           Position(
                             7,
-                            36,
+                            155,
                           ),
                           Position(
-                            12,
-                            36,
+                            10,
+                            155,
                           ),
                         ),
                       ),
                       None,
                       None,
-                      Some(SelectionSetNode(
-                        [
-                          FieldNode(
-                            None,
-                            NameNode(
-                              "count",
-                              #(
-                                Position(
-                                  9,
-                                  37,
-                                ),
-                                Position(
-                                  13,
-                                  37,
-                                ),
-                              ),
+                      None,
+                      #(
+                        Position(7, 155),
+                        Position(5, 156),
+                      ),
+                    ),
+                  ],
+                  #(
+                    Position(12, 154),
+                    Position(5, 156),
+                  ),
+                )),
+                #(
+                  Position(5, 154),
+                  Position(5, 156),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "post",
+                  #(
+                    Position(5, 157),
+                    Position(8, 157),
+                  ),
+                ),
+                None,
+                Some([
+                  DirectiveNode(
+                    NameNode(
+                      "include",
+                      #(
+                        Position(
+                          11,
+                          157,
+                        ),
+                        Position(
+                          17,
+                          157,
+                        ),
+                      ),
+                    ),
+                    Some([
+                      ArgumentNode(
+                        NameNode(
+                          "if",
+                          #(
+                            Position(
+                              19,
+                              157,
                             ),
-                            None,
-                            None,
-                            None,
-                            #(
-                              Position(
-                                9,
-                                37,
-                              ),
-                              Position(
-                                7,
-                                38,
-                              ),
+                            Position(
+                              20,
+                              157,
                             ),
-                          ),
-                        ],
-                        #(
-                          Position(
-                            14,
-                            36,
-                          ),
-                          Position(
-                            7,
-                            38,
                           ),
                         ),
-                      )),
+                        Variable(VariableNode(
+                          NameNode(
+                            "includePostInfo",
+                            #(
+                              Position(
+                                24,
+                                157,
+                              ),
+                              Position(
+                                38,
+                                157,
+                              ),
+                            ),
+                          ),
+                          #(
+                            Position(
+                              23,
+                              157,
+                            ),
+                            Position(
+                              38,
+                              157,
+                            ),
+                          ),
+                        )),
+                        #(
+                          Position(
+                            19,
+                            157,
+                          ),
+                          Position(
+                            38,
+                            157,
+                          ),
+                        ),
+                      ),
+                    ]),
+                    #(
+                      Position(10, 157),
+                      Position(39, 157),
+                    ),
+                  ),
+                ]),
+                Some(SelectionSetNode(
+                  [
+                    FieldNode(
+                      None,
+                      NameNode(
+                        "title",
+                        #(
+                          Position(
+                            7,
+                            158,
+                          ),
+                          Position(
+                            11,
+                            158,
+                          ),
+                        ),
+                      ),
+                      None,
+                      None,
+                      None,
                       #(
-                        Position(7, 36),
-                        Position(7, 38),
+                        Position(7, 158),
+                        Position(
+                          13,
+                          159,
+                        ),
                       ),
                     ),
                     FieldNode(
                       None,
                       NameNode(
-                        "likeSentence",
+                        "content",
                         #(
                           Position(
                             7,
-                            39,
+                            159,
                           ),
                           Position(
-                            18,
-                            39,
+                            13,
+                            159,
                           ),
                         ),
                       ),
                       None,
                       None,
-                      Some(SelectionSetNode(
-                        [
-                          FieldNode(
-                            None,
-                            NameNode(
-                              "text",
-                              #(
-                                Position(
-                                  9,
-                                  40,
-                                ),
-                                Position(
-                                  12,
-                                  40,
-                                ),
-                              ),
-                            ),
-                            None,
-                            None,
-                            None,
-                            #(
-                              Position(
-                                9,
-                                40,
-                              ),
-                              Position(
-                                7,
-                                41,
-                              ),
-                            ),
-                          ),
-                        ],
-                        #(
-                          Position(
-                            20,
-                            39,
-                          ),
-                          Position(
-                            7,
-                            41,
-                          ),
-                        ),
-                      )),
+                      None,
                       #(
-                        Position(7, 39),
-                        Position(7, 41),
+                        Position(7, 159),
+                        Position(5, 160),
                       ),
                     ),
                   ],
                   #(
-                    Position(11, 35),
-                    Position(5, 42),
+                    Position(41, 157),
+                    Position(5, 160),
                   ),
                 )),
                 #(
-                  Position(5, 35),
-                  Position(5, 42),
+                  Position(5, 157),
+                  Position(5, 160),
                 ),
               ),
             ],
             #(
-              Position(37, 34),
-              Position(3, 43),
+              Position(68, 151),
+              Position(3, 161),
             ),
           )),
           #(
-            Position(3, 34),
-            Position(3, 43),
+            Position(3, 151),
+            Position(3, 161),
           ),
         ),
       ],
       #(
-        Position(19, 33),
-        Position(1, 44),
+        Position(102, 150),
+        Position(1, 162),
       ),
     ),
-    #(Position(14, 30), Position(1, 44)),
-  )),
-  OperationDefinitionNode(MutationOperationNode(
+    #(
+      Position(10, 150),
+      Position(1, 162),
+    ),
+  ),
+  NamedOperationDefinitionNode(
+    Mutation,
     NameNode(
-      "likeStory",
+      "CreateNewPost",
       #(
-        Position(10, 22),
-        Position(18, 22),
+        Position(10, 137),
+        Position(22, 137),
       ),
     ),
-    None,
     Some([
-      DirectiveNode(
-        NameNode(
-          "onMutation",
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "title",
+            #(
+              Position(25, 137),
+              Position(29, 137),
+            ),
+          ),
           #(
-            Position(21, 22),
-            Position(30, 22),
+            Position(24, 137),
+            Position(25, 137),
+          ),
+        ),
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "String",
+            #(
+              Position(32, 137),
+              Position(37, 137),
+            ),
+          )),
+          #(
+            Position(32, 137),
+            Position(38, 137),
           ),
         ),
         None,
+        None,
         #(
-          Position(20, 22),
-          Position(20, 22),
+          Position(24, 137),
+          Position(41, 137),
+        ),
+      ),
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "content",
+            #(
+              Position(42, 137),
+              Position(48, 137),
+            ),
+          ),
+          #(
+            Position(41, 137),
+            Position(42, 137),
+          ),
+        ),
+        NullableTypeNode(
+          NamedTypeNode(NameNode(
+            "String",
+            #(
+              Position(51, 137),
+              Position(56, 137),
+            ),
+          )),
+          #(
+            Position(51, 137),
+            Position(56, 137),
+          ),
+        ),
+        None,
+        None,
+        #(
+          Position(41, 137),
+          Position(59, 137),
+        ),
+      ),
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "authorId",
+            #(
+              Position(60, 137),
+              Position(67, 137),
+            ),
+          ),
+          #(
+            Position(59, 137),
+            Position(60, 137),
+          ),
+        ),
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "ID",
+            #(
+              Position(70, 137),
+              Position(71, 137),
+            ),
+          )),
+          #(
+            Position(70, 137),
+            Position(72, 137),
+          ),
+        ),
+        None,
+        None,
+        #(
+          Position(59, 137),
+          Position(75, 137),
+        ),
+      ),
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "includeAuthor",
+            #(
+              Position(76, 137),
+              Position(88, 137),
+            ),
+          ),
+          #(
+            Position(75, 137),
+            Position(76, 137),
+          ),
+        ),
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "Boolean",
+            #(
+              Position(91, 137),
+              Position(97, 137),
+            ),
+          )),
+          #(
+            Position(91, 137),
+            Position(98, 137),
+          ),
+        ),
+        None,
+        None,
+        #(
+          Position(75, 137),
+          Position(99, 137),
         ),
       ),
     ]),
+    None,
     SelectionSetNode(
       [
         FieldNode(
           None,
           NameNode(
-            "like",
+            "createPost",
             #(
-              Position(3, 23),
-              Position(6, 23),
+              Position(3, 138),
+              Position(12, 138),
             ),
           ),
           Some([
             ArgumentNode(
               NameNode(
-                "story",
+                "title",
                 #(
-                  Position(8, 23),
-                  Position(12, 23),
+                  Position(14, 138),
+                  Position(18, 138),
                 ),
               ),
-              ValueNode(IntValueNode(
-                #(
-                  Position(15, 23),
-                  Position(17, 23),
+              Variable(VariableNode(
+                NameNode(
+                  "title",
+                  #(
+                    Position(22, 138),
+                    Position(26, 138),
+                  ),
                 ),
-                123,
+                #(
+                  Position(21, 138),
+                  Position(26, 138),
+                ),
               )),
               #(
-                Position(8, 23),
-                Position(17, 23),
+                Position(14, 138),
+                Position(26, 138),
               ),
             ),
-          ]),
-          Some([
-            DirectiveNode(
+            ArgumentNode(
               NameNode(
-                "onField",
+                "content",
                 #(
-                  Position(21, 23),
-                  Position(27, 23),
+                  Position(29, 138),
+                  Position(35, 138),
                 ),
               ),
-              None,
+              Variable(VariableNode(
+                NameNode(
+                  "content",
+                  #(
+                    Position(39, 138),
+                    Position(45, 138),
+                  ),
+                ),
+                #(
+                  Position(38, 138),
+                  Position(45, 138),
+                ),
+              )),
               #(
-                Position(20, 23),
-                Position(20, 23),
+                Position(29, 138),
+                Position(45, 138),
+              ),
+            ),
+            ArgumentNode(
+              NameNode(
+                "authorId",
+                #(
+                  Position(48, 138),
+                  Position(55, 138),
+                ),
+              ),
+              Variable(VariableNode(
+                NameNode(
+                  "authorId",
+                  #(
+                    Position(59, 138),
+                    Position(66, 138),
+                  ),
+                ),
+                #(
+                  Position(58, 138),
+                  Position(66, 138),
+                ),
+              )),
+              #(
+                Position(48, 138),
+                Position(66, 138),
               ),
             ),
           ]),
+          None,
           Some(SelectionSetNode(
             [
               FieldNode(
                 None,
                 NameNode(
-                  "story",
+                  "id",
                   #(
-                    Position(5, 24),
-                    Position(9, 24),
+                    Position(5, 139),
+                    Position(6, 139),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 139),
+                  Position(9, 140),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "title",
+                  #(
+                    Position(5, 140),
+                    Position(9, 140),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 140),
+                  Position(11, 141),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "content",
+                  #(
+                    Position(5, 141),
+                    Position(11, 141),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 141),
+                  Position(13, 142),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "published",
+                  #(
+                    Position(5, 142),
+                    Position(13, 142),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 142),
+                  Position(10, 143),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "author",
+                  #(
+                    Position(5, 143),
+                    Position(10, 143),
+                  ),
+                ),
+                None,
+                Some([
+                  DirectiveNode(
+                    NameNode(
+                      "include",
+                      #(
+                        Position(
+                          13,
+                          143,
+                        ),
+                        Position(
+                          19,
+                          143,
+                        ),
+                      ),
+                    ),
+                    Some([
+                      ArgumentNode(
+                        NameNode(
+                          "if",
+                          #(
+                            Position(
+                              21,
+                              143,
+                            ),
+                            Position(
+                              22,
+                              143,
+                            ),
+                          ),
+                        ),
+                        Variable(VariableNode(
+                          NameNode(
+                            "includeAuthor",
+                            #(
+                              Position(
+                                26,
+                                143,
+                              ),
+                              Position(
+                                38,
+                                143,
+                              ),
+                            ),
+                          ),
+                          #(
+                            Position(
+                              25,
+                              143,
+                            ),
+                            Position(
+                              38,
+                              143,
+                            ),
+                          ),
+                        )),
+                        #(
+                          Position(
+                            21,
+                            143,
+                          ),
+                          Position(
+                            38,
+                            143,
+                          ),
+                        ),
+                      ),
+                    ]),
+                    #(
+                      Position(12, 143),
+                      Position(39, 143),
+                    ),
+                  ),
+                ]),
+                Some(SelectionSetNode(
+                  [
+                    FieldNode(
+                      None,
+                      NameNode(
+                        "name",
+                        #(
+                          Position(
+                            7,
+                            144,
+                          ),
+                          Position(
+                            10,
+                            144,
+                          ),
+                        ),
+                      ),
+                      None,
+                      None,
+                      None,
+                      #(
+                        Position(7, 144),
+                        Position(5, 145),
+                      ),
+                    ),
+                  ],
+                  #(
+                    Position(41, 143),
+                    Position(5, 145),
+                  ),
+                )),
+                #(
+                  Position(5, 143),
+                  Position(5, 145),
+                ),
+              ),
+            ],
+            #(
+              Position(69, 138),
+              Position(3, 146),
+            ),
+          )),
+          #(
+            Position(3, 138),
+            Position(3, 146),
+          ),
+        ),
+      ],
+      #(
+        Position(101, 137),
+        Position(1, 147),
+      ),
+    ),
+    #(
+      Position(10, 137),
+      Position(1, 147),
+    ),
+  ),
+  NamedOperationDefinitionNode(
+    Mutation,
+    NameNode(
+      "CreateNewUser",
+      #(
+        Position(10, 127),
+        Position(22, 127),
+      ),
+    ),
+    Some([
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "input",
+            #(
+              Position(25, 127),
+              Position(29, 127),
+            ),
+          ),
+          #(
+            Position(24, 127),
+            Position(25, 127),
+          ),
+        ),
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "UserInput",
+            #(
+              Position(32, 127),
+              Position(40, 127),
+            ),
+          )),
+          #(
+            Position(32, 127),
+            Position(41, 127),
+          ),
+        ),
+        None,
+        None,
+        #(
+          Position(24, 127),
+          Position(42, 127),
+        ),
+      ),
+    ]),
+    None,
+    SelectionSetNode(
+      [
+        FieldNode(
+          None,
+          NameNode(
+            "createUser",
+            #(
+              Position(3, 128),
+              Position(12, 128),
+            ),
+          ),
+          Some([
+            ArgumentNode(
+              NameNode(
+                "input",
+                #(
+                  Position(14, 128),
+                  Position(18, 128),
+                ),
+              ),
+              Variable(VariableNode(
+                NameNode(
+                  "input",
+                  #(
+                    Position(22, 128),
+                    Position(26, 128),
+                  ),
+                ),
+                #(
+                  Position(21, 128),
+                  Position(26, 128),
+                ),
+              )),
+              #(
+                Position(14, 128),
+                Position(26, 128),
+              ),
+            ),
+          ]),
+          None,
+          Some(SelectionSetNode(
+            [
+              FieldNode(
+                None,
+                NameNode(
+                  "id",
+                  #(
+                    Position(5, 129),
+                    Position(6, 129),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 129),
+                  Position(8, 130),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "name",
+                  #(
+                    Position(5, 130),
+                    Position(8, 130),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 130),
+                  Position(9, 131),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "email",
+                  #(
+                    Position(5, 131),
+                    Position(9, 131),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 131),
+                  Position(8, 132),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "role",
+                  #(
+                    Position(5, 132),
+                    Position(8, 132),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 132),
+                  Position(3, 133),
+                ),
+              ),
+            ],
+            #(
+              Position(29, 128),
+              Position(3, 133),
+            ),
+          )),
+          #(
+            Position(3, 128),
+            Position(3, 133),
+          ),
+        ),
+      ],
+      #(
+        Position(44, 127),
+        Position(1, 134),
+      ),
+    ),
+    #(
+      Position(10, 127),
+      Position(1, 134),
+    ),
+  ),
+  NamedOperationDefinitionNode(
+    Query,
+    NameNode(
+      "UserWithFragments",
+      #(
+        Position(7, 118),
+        Position(23, 118),
+      ),
+    ),
+    Some([
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "userId",
+            #(
+              Position(26, 118),
+              Position(31, 118),
+            ),
+          ),
+          #(
+            Position(25, 118),
+            Position(26, 118),
+          ),
+        ),
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "ID",
+            #(
+              Position(34, 118),
+              Position(35, 118),
+            ),
+          )),
+          #(
+            Position(34, 118),
+            Position(36, 118),
+          ),
+        ),
+        None,
+        None,
+        #(
+          Position(25, 118),
+          Position(39, 118),
+        ),
+      ),
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "includeDetails",
+            #(
+              Position(40, 118),
+              Position(53, 118),
+            ),
+          ),
+          #(
+            Position(39, 118),
+            Position(40, 118),
+          ),
+        ),
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "Boolean",
+            #(
+              Position(56, 118),
+              Position(62, 118),
+            ),
+          )),
+          #(
+            Position(56, 118),
+            Position(63, 118),
+          ),
+        ),
+        None,
+        None,
+        #(
+          Position(39, 118),
+          Position(64, 118),
+        ),
+      ),
+    ]),
+    None,
+    SelectionSetNode(
+      [
+        FieldNode(
+          None,
+          NameNode(
+            "user",
+            #(
+              Position(3, 119),
+              Position(6, 119),
+            ),
+          ),
+          Some([
+            ArgumentNode(
+              NameNode(
+                "id",
+                #(
+                  Position(8, 119),
+                  Position(9, 119),
+                ),
+              ),
+              Variable(VariableNode(
+                NameNode(
+                  "userId",
+                  #(
+                    Position(13, 119),
+                    Position(18, 119),
+                  ),
+                ),
+                #(
+                  Position(12, 119),
+                  Position(18, 119),
+                ),
+              )),
+              #(
+                Position(8, 119),
+                Position(18, 119),
+              ),
+            ),
+          ]),
+          None,
+          Some(SelectionSetNode(
+            [
+              FieldNode(
+                None,
+                NameNode(
+                  "id",
+                  #(
+                    Position(5, 120),
+                    Position(6, 120),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 120),
+                  Position(8, 121),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "name",
+                  #(
+                    Position(5, 121),
+                    Position(8, 121),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 121),
+                  Position(7, 122),
+                ),
+              ),
+              FragmentSpreadNode(
+                NameNode(
+                  "UserDetails",
+                  #(
+                    Position(8, 122),
+                    Position(18, 122),
+                  ),
+                ),
+                Some([
+                  DirectiveNode(
+                    NameNode(
+                      "include",
+                      #(
+                        Position(
+                          21,
+                          122,
+                        ),
+                        Position(
+                          27,
+                          122,
+                        ),
+                      ),
+                    ),
+                    Some([
+                      ArgumentNode(
+                        NameNode(
+                          "if",
+                          #(
+                            Position(
+                              29,
+                              122,
+                            ),
+                            Position(
+                              30,
+                              122,
+                            ),
+                          ),
+                        ),
+                        Variable(VariableNode(
+                          NameNode(
+                            "includeDetails",
+                            #(
+                              Position(
+                                34,
+                                122,
+                              ),
+                              Position(
+                                47,
+                                122,
+                              ),
+                            ),
+                          ),
+                          #(
+                            Position(
+                              33,
+                              122,
+                            ),
+                            Position(
+                              47,
+                              122,
+                            ),
+                          ),
+                        )),
+                        #(
+                          Position(
+                            29,
+                            122,
+                          ),
+                          Position(
+                            47,
+                            122,
+                          ),
+                        ),
+                      ),
+                    ]),
+                    #(
+                      Position(20, 122),
+                      Position(48, 122),
+                    ),
+                  ),
+                ]),
+                #(
+                  Position(5, 122),
+                  Position(3, 123),
+                ),
+              ),
+            ],
+            #(
+              Position(21, 119),
+              Position(3, 123),
+            ),
+          )),
+          #(
+            Position(3, 119),
+            Position(3, 123),
+          ),
+        ),
+      ],
+      #(
+        Position(66, 118),
+        Position(1, 124),
+      ),
+    ),
+    #(
+      Position(7, 118),
+      Position(1, 124),
+    ),
+  ),
+  NamedOperationDefinitionNode(
+    Query,
+    NameNode(
+      "ConditionalData",
+      #(
+        Position(7, 98),
+        Position(21, 98),
+      ),
+    ),
+    Some([
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "userId",
+            #(
+              Position(24, 98),
+              Position(29, 98),
+            ),
+          ),
+          #(
+            Position(23, 98),
+            Position(24, 98),
+          ),
+        ),
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "ID",
+            #(
+              Position(32, 98),
+              Position(33, 98),
+            ),
+          )),
+          #(
+            Position(32, 98),
+            Position(34, 98),
+          ),
+        ),
+        None,
+        None,
+        #(
+          Position(23, 98),
+          Position(37, 98),
+        ),
+      ),
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "showUserDetails",
+            #(
+              Position(38, 98),
+              Position(52, 98),
+            ),
+          ),
+          #(
+            Position(37, 98),
+            Position(38, 98),
+          ),
+        ),
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "Boolean",
+            #(
+              Position(55, 98),
+              Position(61, 98),
+            ),
+          )),
+          #(
+            Position(55, 98),
+            Position(62, 98),
+          ),
+        ),
+        None,
+        None,
+        #(
+          Position(37, 98),
+          Position(65, 98),
+        ),
+      ),
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "showPostDetails",
+            #(
+              Position(66, 98),
+              Position(80, 98),
+            ),
+          ),
+          #(
+            Position(65, 98),
+            Position(66, 98),
+          ),
+        ),
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "Boolean",
+            #(
+              Position(83, 98),
+              Position(89, 98),
+            ),
+          )),
+          #(
+            Position(83, 98),
+            Position(90, 98),
+          ),
+        ),
+        None,
+        None,
+        #(
+          Position(65, 98),
+          Position(91, 98),
+        ),
+      ),
+    ]),
+    None,
+    SelectionSetNode(
+      [
+        FieldNode(
+          None,
+          NameNode(
+            "user",
+            #(
+              Position(3, 99),
+              Position(6, 99),
+            ),
+          ),
+          Some([
+            ArgumentNode(
+              NameNode(
+                "id",
+                #(
+                  Position(8, 99),
+                  Position(9, 99),
+                ),
+              ),
+              Variable(VariableNode(
+                NameNode(
+                  "userId",
+                  #(
+                    Position(13, 99),
+                    Position(18, 99),
+                  ),
+                ),
+                #(
+                  Position(12, 99),
+                  Position(18, 99),
+                ),
+              )),
+              #(
+                Position(8, 99),
+                Position(18, 99),
+              ),
+            ),
+          ]),
+          None,
+          Some(SelectionSetNode(
+            [
+              FieldNode(
+                None,
+                NameNode(
+                  "id",
+                  #(
+                    Position(5, 100),
+                    Position(6, 100),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 100),
+                  Position(7, 101),
+                ),
+              ),
+              InlineFragmentNode(
+                None,
+                Some([
+                  DirectiveNode(
+                    NameNode(
+                      "include",
+                      #(
+                        Position(
+                          10,
+                          101,
+                        ),
+                        Position(
+                          16,
+                          101,
+                        ),
+                      ),
+                    ),
+                    Some([
+                      ArgumentNode(
+                        NameNode(
+                          "if",
+                          #(
+                            Position(
+                              18,
+                              101,
+                            ),
+                            Position(
+                              19,
+                              101,
+                            ),
+                          ),
+                        ),
+                        Variable(VariableNode(
+                          NameNode(
+                            "showUserDetails",
+                            #(
+                              Position(
+                                23,
+                                101,
+                              ),
+                              Position(
+                                37,
+                                101,
+                              ),
+                            ),
+                          ),
+                          #(
+                            Position(
+                              22,
+                              101,
+                            ),
+                            Position(
+                              37,
+                              101,
+                            ),
+                          ),
+                        )),
+                        #(
+                          Position(
+                            18,
+                            101,
+                          ),
+                          Position(
+                            37,
+                            101,
+                          ),
+                        ),
+                      ),
+                    ]),
+                    #(
+                      Position(9, 101),
+                      Position(38, 101),
+                    ),
+                  ),
+                ]),
+                SelectionSetNode(
+                  [
+                    FieldNode(
+                      None,
+                      NameNode(
+                        "name",
+                        #(
+                          Position(
+                            7,
+                            102,
+                          ),
+                          Position(
+                            10,
+                            102,
+                          ),
+                        ),
+                      ),
+                      None,
+                      None,
+                      None,
+                      #(
+                        Position(7, 102),
+                        Position(
+                          11,
+                          103,
+                        ),
+                      ),
+                    ),
+                    FieldNode(
+                      None,
+                      NameNode(
+                        "email",
+                        #(
+                          Position(
+                            7,
+                            103,
+                          ),
+                          Position(
+                            11,
+                            103,
+                          ),
+                        ),
+                      ),
+                      None,
+                      None,
+                      None,
+                      #(
+                        Position(7, 103),
+                        Position(
+                          10,
+                          104,
+                        ),
+                      ),
+                    ),
+                    FieldNode(
+                      None,
+                      NameNode(
+                        "role",
+                        #(
+                          Position(
+                            7,
+                            104,
+                          ),
+                          Position(
+                            10,
+                            104,
+                          ),
+                        ),
+                      ),
+                      None,
+                      None,
+                      None,
+                      #(
+                        Position(7, 104),
+                        Position(5, 105),
+                      ),
+                    ),
+                  ],
+                  #(
+                    Position(40, 101),
+                    Position(5, 105),
+                  ),
+                ),
+                #(
+                  Position(5, 101),
+                  Position(5, 105),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "posts",
+                  #(
+                    Position(5, 106),
+                    Position(9, 106),
                   ),
                 ),
                 None,
@@ -702,191 +2295,334 @@ OperationDocument([
                         #(
                           Position(
                             7,
-                            25,
+                            107,
                           ),
                           Position(
                             8,
-                            25,
+                            107,
                           ),
                         ),
                       ),
+                      None,
+                      None,
+                      None,
+                      #(
+                        Position(7, 107),
+                        Position(9, 108),
+                      ),
+                    ),
+                    InlineFragmentNode(
                       None,
                       Some([
                         DirectiveNode(
                           NameNode(
-                            "onField",
+                            "include",
                             #(
                               Position(
-                                11,
-                                25,
+                                12,
+                                108,
                               ),
                               Position(
-                                17,
-                                25,
+                                18,
+                                108,
                               ),
                             ),
                           ),
-                          None,
+                          Some([
+                            ArgumentNode(
+                              NameNode(
+                                "if",
+                                #(
+                                  Position(
+                                    20,
+                                    108,
+                                  ),
+                                  Position(
+                                    21,
+                                    108,
+                                  ),
+                                ),
+                              ),
+                              Variable(VariableNode(
+                                NameNode(
+                                  "showPostDetails",
+                                  #(
+                                    Position(
+                                      25,
+                                      108,
+                                    ),
+                                    Position(
+                                      39,
+                                      108,
+                                    ),
+                                  ),
+                                ),
+                                #(
+                                  Position(
+                                    24,
+                                    108,
+                                  ),
+                                  Position(
+                                    39,
+                                    108,
+                                  ),
+                                ),
+                              )),
+                              #(
+                                Position(
+                                  20,
+                                  108,
+                                ),
+                                Position(
+                                  39,
+                                  108,
+                                ),
+                              ),
+                            ),
+                          ]),
                           #(
                             Position(
-                              10,
-                              25,
+                              11,
+                              108,
                             ),
                             Position(
-                              10,
-                              25,
+                              40,
+                              108,
                             ),
                           ),
                         ),
                       ]),
-                      None,
+                      SelectionSetNode(
+                        [
+                          FieldNode(
+                            None,
+                            NameNode(
+                              "title",
+                              #(
+                                Position(
+                                  9,
+                                  109,
+                                ),
+                                Position(
+                                  13,
+                                  109,
+                                ),
+                              ),
+                            ),
+                            None,
+                            None,
+                            None,
+                            #(
+                              Position(
+                                9,
+                                109,
+                              ),
+                              Position(
+                                15,
+                                110,
+                              ),
+                            ),
+                          ),
+                          FieldNode(
+                            None,
+                            NameNode(
+                              "content",
+                              #(
+                                Position(
+                                  9,
+                                  110,
+                                ),
+                                Position(
+                                  15,
+                                  110,
+                                ),
+                              ),
+                            ),
+                            None,
+                            None,
+                            None,
+                            #(
+                              Position(
+                                9,
+                                110,
+                              ),
+                              Position(
+                                17,
+                                111,
+                              ),
+                            ),
+                          ),
+                          FieldNode(
+                            None,
+                            NameNode(
+                              "published",
+                              #(
+                                Position(
+                                  9,
+                                  111,
+                                ),
+                                Position(
+                                  17,
+                                  111,
+                                ),
+                              ),
+                            ),
+                            None,
+                            None,
+                            None,
+                            #(
+                              Position(
+                                9,
+                                111,
+                              ),
+                              Position(
+                                7,
+                                112,
+                              ),
+                            ),
+                          ),
+                        ],
+                        #(
+                          Position(
+                            42,
+                            108,
+                          ),
+                          Position(
+                            7,
+                            112,
+                          ),
+                        ),
+                      ),
                       #(
-                        Position(7, 25),
-                        Position(5, 26),
+                        Position(7, 108),
+                        Position(7, 112),
                       ),
                     ),
                   ],
                   #(
-                    Position(11, 24),
-                    Position(5, 26),
+                    Position(11, 106),
+                    Position(5, 113),
                   ),
                 )),
                 #(
-                  Position(5, 24),
-                  Position(5, 26),
+                  Position(5, 106),
+                  Position(5, 113),
                 ),
               ),
             ],
             #(
-              Position(29, 23),
-              Position(3, 27),
+              Position(21, 99),
+              Position(3, 114),
             ),
           )),
           #(
-            Position(3, 23),
-            Position(3, 27),
+            Position(3, 99),
+            Position(3, 114),
           ),
         ),
       ],
       #(
-        Position(32, 22),
-        Position(1, 28),
+        Position(93, 98),
+        Position(1, 115),
       ),
     ),
-    #(Position(10, 22), Position(1, 28)),
-  )),
-  OperationDefinitionNode(QueryOperationNode(
-    Some(NameNode(
-      "queryName",
-      #(Position(7, 1), Position(15, 1)),
-    )),
+    #(Position(7, 98), Position(1, 115)),
+  ),
+  NamedOperationDefinitionNode(
+    Query,
+    NameNode(
+      "GetPostWithDetails",
+      #(
+        Position(7, 84),
+        Position(24, 84),
+      ),
+    ),
     Some([
       VariableDefinitionNode(
         VariableNode(
           NameNode(
-            "foo",
+            "postId",
             #(
-              Position(18, 1),
-              Position(20, 1),
+              Position(27, 84),
+              Position(32, 84),
             ),
           ),
           #(
-            Position(17, 1),
-            Position(18, 1),
+            Position(26, 84),
+            Position(27, 84),
           ),
         ),
-        NullableTypeNode(
+        NonNullTypeNode(
           NamedTypeNode(NameNode(
-            "ComplexType",
+            "ID",
             #(
-              Position(23, 1),
-              Position(33, 1),
+              Position(35, 84),
+              Position(36, 84),
             ),
           )),
           #(
-            Position(23, 1),
-            Position(33, 1),
+            Position(35, 84),
+            Position(37, 84),
           ),
         ),
         None,
         None,
         #(
-          Position(17, 1),
-          Position(36, 1),
+          Position(26, 84),
+          Position(40, 84),
         ),
       ),
       VariableDefinitionNode(
         VariableNode(
           NameNode(
-            "site",
+            "includeComments",
             #(
-              Position(37, 1),
-              Position(40, 1),
+              Position(41, 84),
+              Position(55, 84),
             ),
           ),
           #(
-            Position(36, 1),
-            Position(37, 1),
+            Position(40, 84),
+            Position(41, 84),
           ),
         ),
         NullableTypeNode(
           NamedTypeNode(NameNode(
-            "Site",
+            "Boolean",
             #(
-              Position(43, 1),
-              Position(46, 1),
+              Position(58, 84),
+              Position(64, 84),
             ),
           )),
           #(
-            Position(43, 1),
-            Position(46, 1),
+            Position(58, 84),
+            Position(64, 84),
           ),
         ),
-        Some(ConstValueNode(EnumValueNode(
+        Some(ConstValueNode(BooleanValueNode(
           #(
-            Position(50, 1),
-            Position(55, 1),
+            Position(68, 84),
+            Position(71, 84),
           ),
-          "MOBILE",
+          True,
         ))),
         None,
         #(
-          Position(36, 1),
-          Position(56, 1),
+          Position(40, 84),
+          Position(72, 84),
         ),
       ),
     ]),
-    Some([
-      DirectiveNode(
-        NameNode(
-          "onQuery",
-          #(
-            Position(59, 1),
-            Position(65, 1),
-          ),
-        ),
-        None,
-        #(
-          Position(58, 1),
-          Position(58, 1),
-        ),
-      ),
-    ]),
+    None,
     SelectionSetNode(
       [
         FieldNode(
-          Some(NameNode(
-            "whoever123is",
-            #(
-              Position(3, 2),
-              Position(14, 2),
-            ),
-          )),
+          None,
           NameNode(
-            "node",
+            "post",
             #(
-              Position(17, 2),
-              Position(20, 2),
+              Position(3, 85),
+              Position(6, 85),
             ),
           ),
           Some([
@@ -894,35 +2630,679 @@ OperationDocument([
               NameNode(
                 "id",
                 #(
-                  Position(22, 2),
-                  Position(23, 2),
+                  Position(8, 85),
+                  Position(9, 85),
                 ),
               ),
-              ListNode(
-                [
-                  ValueNode(IntValueNode(
-                    #(
-                      Position(27, 2),
-                      Position(29, 2),
-                    ),
-                    123,
-                  )),
-                  ValueNode(IntValueNode(
-                    #(
-                      Position(32, 2),
-                      Position(34, 2),
-                    ),
-                    456,
-                  )),
-                ],
+              Variable(VariableNode(
+                NameNode(
+                  "postId",
+                  #(
+                    Position(13, 85),
+                    Position(18, 85),
+                  ),
+                ),
                 #(
-                  Position(26, 2),
-                  Position(35, 2),
+                  Position(12, 85),
+                  Position(18, 85),
+                ),
+              )),
+              #(
+                Position(8, 85),
+                Position(18, 85),
+              ),
+            ),
+          ]),
+          None,
+          Some(SelectionSetNode(
+            [
+              FragmentSpreadNode(
+                NameNode(
+                  "PostDetails",
+                  #(
+                    Position(8, 86),
+                    Position(18, 86),
+                  ),
+                ),
+                None,
+                #(
+                  Position(5, 86),
+                  Position(12, 87),
                 ),
               ),
+              FieldNode(
+                None,
+                NameNode(
+                  "comments",
+                  #(
+                    Position(5, 87),
+                    Position(12, 87),
+                  ),
+                ),
+                None,
+                Some([
+                  DirectiveNode(
+                    NameNode(
+                      "include",
+                      #(
+                        Position(15, 87),
+                        Position(21, 87),
+                      ),
+                    ),
+                    Some([
+                      ArgumentNode(
+                        NameNode(
+                          "if",
+                          #(
+                            Position(
+                              23,
+                              87,
+                            ),
+                            Position(
+                              24,
+                              87,
+                            ),
+                          ),
+                        ),
+                        Variable(VariableNode(
+                          NameNode(
+                            "includeComments",
+                            #(
+                              Position(
+                                28,
+                                87,
+                              ),
+                              Position(
+                                42,
+                                87,
+                              ),
+                            ),
+                          ),
+                          #(
+                            Position(
+                              27,
+                              87,
+                            ),
+                            Position(
+                              42,
+                              87,
+                            ),
+                          ),
+                        )),
+                        #(
+                          Position(
+                            23,
+                            87,
+                          ),
+                          Position(
+                            42,
+                            87,
+                          ),
+                        ),
+                      ),
+                    ]),
+                    #(
+                      Position(14, 87),
+                      Position(43, 87),
+                    ),
+                  ),
+                ]),
+                Some(SelectionSetNode(
+                  [
+                    FieldNode(
+                      None,
+                      NameNode(
+                        "id",
+                        #(
+                          Position(
+                            7,
+                            88,
+                          ),
+                          Position(
+                            8,
+                            88,
+                          ),
+                        ),
+                      ),
+                      None,
+                      None,
+                      None,
+                      #(
+                        Position(7, 88),
+                        Position(10, 89),
+                      ),
+                    ),
+                    FieldNode(
+                      None,
+                      NameNode(
+                        "text",
+                        #(
+                          Position(
+                            7,
+                            89,
+                          ),
+                          Position(
+                            10,
+                            89,
+                          ),
+                        ),
+                      ),
+                      None,
+                      None,
+                      None,
+                      #(
+                        Position(7, 89),
+                        Position(12, 90),
+                      ),
+                    ),
+                    FieldNode(
+                      None,
+                      NameNode(
+                        "author",
+                        #(
+                          Position(
+                            7,
+                            90,
+                          ),
+                          Position(
+                            12,
+                            90,
+                          ),
+                        ),
+                      ),
+                      None,
+                      None,
+                      Some(SelectionSetNode(
+                        [
+                          FragmentSpreadNode(
+                            NameNode(
+                              "UserDetails",
+                              #(
+                                Position(
+                                  12,
+                                  91,
+                                ),
+                                Position(
+                                  22,
+                                  91,
+                                ),
+                              ),
+                            ),
+                            None,
+                            #(
+                              Position(
+                                9,
+                                91,
+                              ),
+                              Position(
+                                7,
+                                92,
+                              ),
+                            ),
+                          ),
+                        ],
+                        #(
+                          Position(
+                            14,
+                            90,
+                          ),
+                          Position(
+                            7,
+                            92,
+                          ),
+                        ),
+                      )),
+                      #(
+                        Position(7, 90),
+                        Position(7, 92),
+                      ),
+                    ),
+                  ],
+                  #(
+                    Position(45, 87),
+                    Position(5, 93),
+                  ),
+                )),
+                #(
+                  Position(5, 87),
+                  Position(5, 93),
+                ),
+              ),
+            ],
+            #(
+              Position(21, 85),
+              Position(3, 94),
+            ),
+          )),
+          #(
+            Position(3, 85),
+            Position(3, 94),
+          ),
+        ),
+      ],
+      #(
+        Position(74, 84),
+        Position(1, 95),
+      ),
+    ),
+    #(Position(7, 84), Position(1, 95)),
+  ),
+  FragmentDefinitionNode(
+    NameNode(
+      "PostDetails",
+      #(
+        Position(10, 72),
+        Position(20, 72),
+      ),
+    ),
+    NamedTypeNode(NameNode(
+      "Post",
+      #(
+        Position(25, 72),
+        Position(28, 72),
+      ),
+    )),
+    None,
+    SelectionSetNode(
+      [
+        FieldNode(
+          None,
+          NameNode(
+            "id",
+            #(
+              Position(3, 73),
+              Position(4, 73),
+            ),
+          ),
+          None,
+          None,
+          None,
+          #(
+            Position(3, 73),
+            Position(7, 74),
+          ),
+        ),
+        FieldNode(
+          None,
+          NameNode(
+            "title",
+            #(
+              Position(3, 74),
+              Position(7, 74),
+            ),
+          ),
+          None,
+          None,
+          None,
+          #(
+            Position(3, 74),
+            Position(9, 75),
+          ),
+        ),
+        FieldNode(
+          None,
+          NameNode(
+            "content",
+            #(
+              Position(3, 75),
+              Position(9, 75),
+            ),
+          ),
+          None,
+          None,
+          None,
+          #(
+            Position(3, 75),
+            Position(11, 76),
+          ),
+        ),
+        FieldNode(
+          None,
+          NameNode(
+            "published",
+            #(
+              Position(3, 76),
+              Position(11, 76),
+            ),
+          ),
+          None,
+          None,
+          None,
+          #(
+            Position(3, 76),
+            Position(11, 77),
+          ),
+        ),
+        FieldNode(
+          None,
+          NameNode(
+            "createdAt",
+            #(
+              Position(3, 77),
+              Position(11, 77),
+            ),
+          ),
+          None,
+          None,
+          None,
+          #(
+            Position(3, 77),
+            Position(8, 78),
+          ),
+        ),
+        FieldNode(
+          None,
+          NameNode(
+            "author",
+            #(
+              Position(3, 78),
+              Position(8, 78),
+            ),
+          ),
+          None,
+          None,
+          Some(SelectionSetNode(
+            [
+              FragmentSpreadNode(
+                NameNode(
+                  "UserDetails",
+                  #(
+                    Position(8, 79),
+                    Position(18, 79),
+                  ),
+                ),
+                None,
+                #(
+                  Position(5, 79),
+                  Position(3, 80),
+                ),
+              ),
+            ],
+            #(
+              Position(10, 78),
+              Position(3, 80),
+            ),
+          )),
+          #(
+            Position(3, 78),
+            Position(3, 80),
+          ),
+        ),
+      ],
+      #(
+        Position(30, 72),
+        Position(1, 81),
+      ),
+    ),
+    #(Position(1, 72), Position(1, 81)),
+  ),
+  FragmentDefinitionNode(
+    NameNode(
+      "UserDetails",
+      #(
+        Position(10, 64),
+        Position(20, 64),
+      ),
+    ),
+    NamedTypeNode(NameNode(
+      "User",
+      #(
+        Position(25, 64),
+        Position(28, 64),
+      ),
+    )),
+    None,
+    SelectionSetNode(
+      [
+        FieldNode(
+          None,
+          NameNode(
+            "id",
+            #(
+              Position(3, 65),
+              Position(4, 65),
+            ),
+          ),
+          None,
+          None,
+          None,
+          #(
+            Position(3, 65),
+            Position(6, 66),
+          ),
+        ),
+        FieldNode(
+          None,
+          NameNode(
+            "name",
+            #(
+              Position(3, 66),
+              Position(6, 66),
+            ),
+          ),
+          None,
+          None,
+          None,
+          #(
+            Position(3, 66),
+            Position(7, 67),
+          ),
+        ),
+        FieldNode(
+          None,
+          NameNode(
+            "email",
+            #(
+              Position(3, 67),
+              Position(7, 67),
+            ),
+          ),
+          None,
+          None,
+          None,
+          #(
+            Position(3, 67),
+            Position(6, 68),
+          ),
+        ),
+        FieldNode(
+          None,
+          NameNode(
+            "role",
+            #(
+              Position(3, 68),
+              Position(6, 68),
+            ),
+          ),
+          None,
+          None,
+          None,
+          #(
+            Position(3, 68),
+            Position(11, 69),
+          ),
+        ),
+        FieldNode(
+          None,
+          NameNode(
+            "createdAt",
+            #(
+              Position(3, 69),
+              Position(11, 69),
+            ),
+          ),
+          None,
+          None,
+          None,
+          #(
+            Position(3, 69),
+            Position(1, 70),
+          ),
+        ),
+      ],
+      #(
+        Position(30, 64),
+        Position(1, 70),
+      ),
+    ),
+    #(Position(1, 64), Position(1, 70)),
+  ),
+  NamedOperationDefinitionNode(
+    Query,
+    NameNode(
+      "SearchContent",
+      #(
+        Position(7, 27),
+        Position(19, 27),
+      ),
+    ),
+    Some([
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "term",
+            #(
+              Position(22, 27),
+              Position(25, 27),
+            ),
+          ),
+          #(
+            Position(21, 27),
+            Position(22, 27),
+          ),
+        ),
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "String",
+            #(
+              Position(28, 27),
+              Position(33, 27),
+            ),
+          )),
+          #(
+            Position(28, 27),
+            Position(34, 27),
+          ),
+        ),
+        None,
+        None,
+        #(
+          Position(21, 27),
+          Position(37, 27),
+        ),
+      ),
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "postAuthorId",
+            #(
+              Position(38, 27),
+              Position(49, 27),
+            ),
+          ),
+          #(
+            Position(37, 27),
+            Position(38, 27),
+          ),
+        ),
+        NullableTypeNode(
+          NamedTypeNode(NameNode(
+            "ID",
+            #(
+              Position(52, 27),
+              Position(53, 27),
+            ),
+          )),
+          #(
+            Position(52, 27),
+            Position(53, 27),
+          ),
+        ),
+        None,
+        None,
+        #(
+          Position(37, 27),
+          Position(56, 27),
+        ),
+      ),
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "includePostDetails",
+            #(
+              Position(57, 27),
+              Position(74, 27),
+            ),
+          ),
+          #(
+            Position(56, 27),
+            Position(57, 27),
+          ),
+        ),
+        NullableTypeNode(
+          NamedTypeNode(NameNode(
+            "Boolean",
+            #(
+              Position(77, 27),
+              Position(83, 27),
+            ),
+          )),
+          #(
+            Position(77, 27),
+            Position(83, 27),
+          ),
+        ),
+        Some(ConstValueNode(BooleanValueNode(
+          #(
+            Position(87, 27),
+            Position(90, 27),
+          ),
+          True,
+        ))),
+        None,
+        #(
+          Position(56, 27),
+          Position(91, 27),
+        ),
+      ),
+    ]),
+    None,
+    SelectionSetNode(
+      [
+        FieldNode(
+          None,
+          NameNode(
+            "search",
+            #(
+              Position(3, 28),
+              Position(8, 28),
+            ),
+          ),
+          Some([
+            ArgumentNode(
+              NameNode(
+                "term",
+                #(
+                  Position(10, 28),
+                  Position(13, 28),
+                ),
+              ),
+              Variable(VariableNode(
+                NameNode(
+                  "term",
+                  #(
+                    Position(17, 28),
+                    Position(20, 28),
+                  ),
+                ),
+                #(
+                  Position(16, 28),
+                  Position(20, 28),
+                ),
+              )),
               #(
-                Position(22, 2),
-                Position(35, 2),
+                Position(10, 28),
+                Position(20, 28),
               ),
             ),
           ]),
@@ -932,32 +3312,32 @@ OperationDocument([
               FieldNode(
                 None,
                 NameNode(
-                  "id",
+                  "__typename",
                   #(
-                    Position(5, 3),
-                    Position(6, 3),
+                    Position(5, 29),
+                    Position(14, 29),
                   ),
                 ),
                 None,
                 None,
                 None,
                 #(
-                  Position(5, 3),
-                  Position(7, 4),
+                  Position(5, 29),
+                  Position(7, 30),
                 ),
               ),
               FragmentSpreadNode(
                 NameNode(
                   "on",
                   #(
-                    Position(9, 4),
-                    Position(10, 4),
+                    Position(9, 30),
+                    Position(10, 30),
                   ),
                 ),
                 None,
                 #(
-                  Position(5, 4),
-                  Position(15, 4),
+                  Position(5, 30),
+                  Position(15, 30),
                 ),
               ),
               FieldNode(
@@ -965,38 +3345,280 @@ OperationDocument([
                 NameNode(
                   "User",
                   #(
-                    Position(12, 4),
-                    Position(15, 4),
+                    Position(12, 30),
+                    Position(15, 30),
                   ),
                 ),
                 None,
-                Some([
-                  DirectiveNode(
-                    NameNode(
-                      "onInlineFragment",
-                      #(
-                        Position(18, 4),
-                        Position(33, 4),
-                      ),
-                    ),
-                    None,
-                    #(
-                      Position(17, 4),
-                      Position(17, 4),
-                    ),
-                  ),
-                ]),
+                None,
                 Some(SelectionSetNode(
                   [
                     FieldNode(
                       None,
                       NameNode(
-                        "field2",
+                        "id",
                         #(
-                          Position(7, 5),
+                          Position(
+                            7,
+                            31,
+                          ),
+                          Position(
+                            8,
+                            31,
+                          ),
+                        ),
+                      ),
+                      None,
+                      None,
+                      None,
+                      #(
+                        Position(7, 31),
+                        Position(10, 32),
+                      ),
+                    ),
+                    FieldNode(
+                      None,
+                      NameNode(
+                        "name",
+                        #(
+                          Position(
+                            7,
+                            32,
+                          ),
+                          Position(
+                            10,
+                            32,
+                          ),
+                        ),
+                      ),
+                      None,
+                      None,
+                      None,
+                      #(
+                        Position(7, 32),
+                        Position(11, 33),
+                      ),
+                    ),
+                    FieldNode(
+                      None,
+                      NameNode(
+                        "email",
+                        #(
+                          Position(
+                            7,
+                            33,
+                          ),
+                          Position(
+                            11,
+                            33,
+                          ),
+                        ),
+                      ),
+                      None,
+                      None,
+                      None,
+                      #(
+                        Position(7, 33),
+                        Position(5, 34),
+                      ),
+                    ),
+                  ],
+                  #(
+                    Position(17, 30),
+                    Position(5, 34),
+                  ),
+                )),
+                #(
+                  Position(12, 30),
+                  Position(5, 34),
+                ),
+              ),
+              FragmentSpreadNode(
+                NameNode(
+                  "on",
+                  #(
+                    Position(9, 35),
+                    Position(10, 35),
+                  ),
+                ),
+                None,
+                #(
+                  Position(5, 35),
+                  Position(15, 35),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "Post",
+                  #(
+                    Position(12, 35),
+                    Position(15, 35),
+                  ),
+                ),
+                None,
+                None,
+                Some(SelectionSetNode(
+                  [
+                    FieldNode(
+                      None,
+                      NameNode(
+                        "id",
+                        #(
+                          Position(
+                            7,
+                            36,
+                          ),
+                          Position(
+                            8,
+                            36,
+                          ),
+                        ),
+                      ),
+                      None,
+                      None,
+                      None,
+                      #(
+                        Position(7, 36),
+                        Position(11, 37),
+                      ),
+                    ),
+                    FieldNode(
+                      None,
+                      NameNode(
+                        "title",
+                        #(
+                          Position(
+                            7,
+                            37,
+                          ),
+                          Position(
+                            11,
+                            37,
+                          ),
+                        ),
+                      ),
+                      None,
+                      None,
+                      None,
+                      #(
+                        Position(7, 37),
+                        Position(13, 38),
+                      ),
+                    ),
+                    FieldNode(
+                      None,
+                      NameNode(
+                        "content",
+                        #(
+                          Position(
+                            7,
+                            38,
+                          ),
+                          Position(
+                            13,
+                            38,
+                          ),
+                        ),
+                      ),
+                      None,
+                      Some([
+                        DirectiveNode(
+                          NameNode(
+                            "include",
+                            #(
+                              Position(
+                                16,
+                                38,
+                              ),
+                              Position(
+                                22,
+                                38,
+                              ),
+                            ),
+                          ),
+                          Some([
+                            ArgumentNode(
+                              NameNode(
+                                "if",
+                                #(
+                                  Position(
+                                    24,
+                                    38,
+                                  ),
+                                  Position(
+                                    25,
+                                    38,
+                                  ),
+                                ),
+                              ),
+                              Variable(VariableNode(
+                                NameNode(
+                                  "includePostDetails",
+                                  #(
+                                    Position(
+                                      29,
+                                      38,
+                                    ),
+                                    Position(
+                                      46,
+                                      38,
+                                    ),
+                                  ),
+                                ),
+                                #(
+                                  Position(
+                                    28,
+                                    38,
+                                  ),
+                                  Position(
+                                    46,
+                                    38,
+                                  ),
+                                ),
+                              )),
+                              #(
+                                Position(
+                                  24,
+                                  38,
+                                ),
+                                Position(
+                                  46,
+                                  38,
+                                ),
+                              ),
+                            ),
+                          ]),
+                          #(
+                            Position(
+                              15,
+                              38,
+                            ),
+                            Position(
+                              47,
+                              38,
+                            ),
+                          ),
+                        ),
+                      ]),
+                      None,
+                      #(
+                        Position(7, 38),
+                        Position(12, 39),
+                      ),
+                    ),
+                    FieldNode(
+                      None,
+                      NameNode(
+                        "author",
+                        #(
+                          Position(
+                            7,
+                            39,
+                          ),
                           Position(
                             12,
-                            5,
+                            39,
                           ),
                         ),
                       ),
@@ -1011,11 +3633,11 @@ OperationDocument([
                               #(
                                 Position(
                                   9,
-                                  6,
+                                  40,
                                 ),
                                 Position(
                                   10,
-                                  6,
+                                  40,
                                 ),
                               ),
                             ),
@@ -1025,314 +3647,40 @@ OperationDocument([
                             #(
                               Position(
                                 9,
-                                6,
+                                40,
                               ),
                               Position(
-                                13,
-                                7,
+                                12,
+                                41,
                               ),
                             ),
                           ),
                           FieldNode(
-                            Some(NameNode(
-                              "alias",
+                            None,
+                            NameNode(
+                              "name",
                               #(
                                 Position(
                                   9,
-                                  7,
+                                  41,
                                 ),
                                 Position(
-                                  13,
-                                  7,
-                                ),
-                              ),
-                            )),
-                            NameNode(
-                              "field1",
-                              #(
-                                Position(
-                                  16,
-                                  7,
-                                ),
-                                Position(
-                                  21,
-                                  7,
+                                  12,
+                                  41,
                                 ),
                               ),
                             ),
-                            Some([
-                              ArgumentNode(
-                                NameNode(
-                                  "first",
-                                  #(
-                                    Position(
-                                      23,
-                                      7,
-                                    ),
-                                    Position(
-                                      27,
-                                      7,
-                                    ),
-                                  ),
-                                ),
-                                ValueNode(IntValueNode(
-                                  #(
-                                    Position(
-                                      30,
-                                      7,
-                                    ),
-                                    Position(
-                                      31,
-                                      7,
-                                    ),
-                                  ),
-                                  10,
-                                )),
-                                #(
-                                  Position(
-                                    23,
-                                    7,
-                                  ),
-                                  Position(
-                                    31,
-                                    7,
-                                  ),
-                                ),
-                              ),
-                              ArgumentNode(
-                                NameNode(
-                                  "after",
-                                  #(
-                                    Position(
-                                      34,
-                                      7,
-                                    ),
-                                    Position(
-                                      38,
-                                      7,
-                                    ),
-                                  ),
-                                ),
-                                Variable(VariableNode(
-                                  NameNode(
-                                    "foo",
-                                    #(
-                                      Position(
-                                        42,
-                                        7,
-                                      ),
-                                      Position(
-                                        44,
-                                        7,
-                                      ),
-                                    ),
-                                  ),
-                                  #(
-                                    Position(
-                                      41,
-                                      7,
-                                    ),
-                                    Position(
-                                      44,
-                                      7,
-                                    ),
-                                  ),
-                                )),
-                                #(
-                                  Position(
-                                    34,
-                                    7,
-                                  ),
-                                  Position(
-                                    44,
-                                    7,
-                                  ),
-                                ),
-                              ),
-                            ]),
-                            Some([
-                              DirectiveNode(
-                                NameNode(
-                                  "include",
-                                  #(
-                                    Position(
-                                      48,
-                                      7,
-                                    ),
-                                    Position(
-                                      54,
-                                      7,
-                                    ),
-                                  ),
-                                ),
-                                Some([
-                                  ArgumentNode(
-                                    NameNode(
-                                      "if",
-                                      #(
-                                        Position(
-                                          56,
-                                          7,
-                                        ),
-                                        Position(
-                                          57,
-                                          7,
-                                        ),
-                                      ),
-                                    ),
-                                    Variable(VariableNode(
-                                      NameNode(
-                                        "foo",
-                                        #(
-                                          Position(
-                                            61,
-                                            7,
-                                          ),
-                                          Position(
-                                            63,
-                                            7,
-                                          ),
-                                        ),
-                                      ),
-                                      #(
-                                        Position(
-                                          60,
-                                          7,
-                                        ),
-                                        Position(
-                                          63,
-                                          7,
-                                        ),
-                                      ),
-                                    )),
-                                    #(
-                                      Position(
-                                        56,
-                                        7,
-                                      ),
-                                      Position(
-                                        63,
-                                        7,
-                                      ),
-                                    ),
-                                  ),
-                                ]),
-                                #(
-                                  Position(
-                                    47,
-                                    7,
-                                  ),
-                                  Position(
-                                    64,
-                                    7,
-                                  ),
-                                ),
-                              ),
-                            ]),
-                            Some(SelectionSetNode(
-                              [
-                                FieldNode(
-                                  None,
-                                  NameNode(
-                                    "id",
-                                    #(
-                                      Position(
-                                        11,
-                                        8,
-                                      ),
-                                      Position(
-                                        12,
-                                        8,
-                                      ),
-                                    ),
-                                  ),
-                                  None,
-                                  None,
-                                  None,
-                                  #(
-                                    Position(
-                                      11,
-                                      8,
-                                    ),
-                                    Position(
-                                      13,
-                                      9,
-                                    ),
-                                  ),
-                                ),
-                                FragmentSpreadNode(
-                                  NameNode(
-                                    "frag",
-                                    #(
-                                      Position(
-                                        14,
-                                        9,
-                                      ),
-                                      Position(
-                                        17,
-                                        9,
-                                      ),
-                                    ),
-                                  ),
-                                  Some([
-                                    DirectiveNode(
-                                      NameNode(
-                                        "onFragmentSpread",
-                                        #(
-                                          Position(
-                                            20,
-                                            9,
-                                          ),
-                                          Position(
-                                            35,
-                                            9,
-                                          ),
-                                        ),
-                                      ),
-                                      None,
-                                      #(
-                                        Position(
-                                          19,
-                                          9,
-                                        ),
-                                        Position(
-                                          19,
-                                          9,
-                                        ),
-                                      ),
-                                    ),
-                                  ]),
-                                  #(
-                                    Position(
-                                      11,
-                                      9,
-                                    ),
-                                    Position(
-                                      9,
-                                      10,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                              #(
-                                Position(
-                                  66,
-                                  7,
-                                ),
-                                Position(
-                                  9,
-                                  10,
-                                ),
-                              ),
-                            )),
+                            None,
+                            None,
+                            None,
                             #(
                               Position(
                                 9,
-                                7,
+                                41,
                               ),
                               Position(
-                                9,
-                                10,
+                                7,
+                                42,
                               ),
                             ),
                           ),
@@ -1340,191 +3688,1104 @@ OperationDocument([
                         #(
                           Position(
                             14,
-                            5,
+                            39,
                           ),
                           Position(
                             7,
-                            11,
+                            42,
                           ),
                         ),
                       )),
                       #(
-                        Position(7, 5),
-                        Position(7, 11),
+                        Position(7, 39),
+                        Position(7, 42),
                       ),
                     ),
                   ],
                   #(
-                    Position(35, 4),
-                    Position(5, 12),
+                    Position(17, 35),
+                    Position(5, 43),
                   ),
                 )),
                 #(
-                  Position(12, 4),
-                  Position(5, 12),
+                  Position(12, 35),
+                  Position(5, 43),
                 ),
               ),
-              InlineFragmentNode(
+              FragmentSpreadNode(
+                NameNode(
+                  "on",
+                  #(
+                    Position(9, 44),
+                    Position(10, 44),
+                  ),
+                ),
+                None,
+                #(
+                  Position(5, 44),
+                  Position(18, 44),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "Comment",
+                  #(
+                    Position(12, 44),
+                    Position(18, 44),
+                  ),
+                ),
+                None,
+                None,
+                Some(SelectionSetNode(
+                  [
+                    FieldNode(
+                      None,
+                      NameNode(
+                        "id",
+                        #(
+                          Position(
+                            7,
+                            45,
+                          ),
+                          Position(
+                            8,
+                            45,
+                          ),
+                        ),
+                      ),
+                      None,
+                      None,
+                      None,
+                      #(
+                        Position(7, 45),
+                        Position(10, 46),
+                      ),
+                    ),
+                    FieldNode(
+                      None,
+                      NameNode(
+                        "text",
+                        #(
+                          Position(
+                            7,
+                            46,
+                          ),
+                          Position(
+                            10,
+                            46,
+                          ),
+                        ),
+                      ),
+                      None,
+                      None,
+                      None,
+                      #(
+                        Position(7, 46),
+                        Position(12, 47),
+                      ),
+                    ),
+                    FieldNode(
+                      None,
+                      NameNode(
+                        "author",
+                        #(
+                          Position(
+                            7,
+                            47,
+                          ),
+                          Position(
+                            12,
+                            47,
+                          ),
+                        ),
+                      ),
+                      None,
+                      None,
+                      Some(SelectionSetNode(
+                        [
+                          FieldNode(
+                            None,
+                            NameNode(
+                              "name",
+                              #(
+                                Position(
+                                  9,
+                                  48,
+                                ),
+                                Position(
+                                  12,
+                                  48,
+                                ),
+                              ),
+                            ),
+                            None,
+                            None,
+                            None,
+                            #(
+                              Position(
+                                9,
+                                48,
+                              ),
+                              Position(
+                                7,
+                                49,
+                              ),
+                            ),
+                          ),
+                        ],
+                        #(
+                          Position(
+                            14,
+                            47,
+                          ),
+                          Position(
+                            7,
+                            49,
+                          ),
+                        ),
+                      )),
+                      #(
+                        Position(7, 47),
+                        Position(7, 49),
+                      ),
+                    ),
+                    FieldNode(
+                      None,
+                      NameNode(
+                        "post",
+                        #(
+                          Position(
+                            7,
+                            50,
+                          ),
+                          Position(
+                            10,
+                            50,
+                          ),
+                        ),
+                      ),
+                      None,
+                      None,
+                      Some(SelectionSetNode(
+                        [
+                          FieldNode(
+                            None,
+                            NameNode(
+                              "title",
+                              #(
+                                Position(
+                                  9,
+                                  51,
+                                ),
+                                Position(
+                                  13,
+                                  51,
+                                ),
+                              ),
+                            ),
+                            None,
+                            None,
+                            None,
+                            #(
+                              Position(
+                                9,
+                                51,
+                              ),
+                              Position(
+                                7,
+                                52,
+                              ),
+                            ),
+                          ),
+                        ],
+                        #(
+                          Position(
+                            12,
+                            50,
+                          ),
+                          Position(
+                            7,
+                            52,
+                          ),
+                        ),
+                      )),
+                      #(
+                        Position(7, 50),
+                        Position(7, 52),
+                      ),
+                    ),
+                  ],
+                  #(
+                    Position(20, 44),
+                    Position(5, 53),
+                  ),
+                )),
+                #(
+                  Position(12, 44),
+                  Position(5, 53),
+                ),
+              ),
+            ],
+            #(
+              Position(23, 28),
+              Position(3, 54),
+            ),
+          )),
+          #(
+            Position(3, 28),
+            Position(3, 54),
+          ),
+        ),
+        FieldNode(
+          None,
+          NameNode(
+            "posts",
+            #(
+              Position(3, 57),
+              Position(7, 57),
+            ),
+          ),
+          Some([
+            ArgumentNode(
+              NameNode(
+                "authorId",
+                #(
+                  Position(9, 57),
+                  Position(16, 57),
+                ),
+              ),
+              Variable(VariableNode(
+                NameNode(
+                  "postAuthorId",
+                  #(
+                    Position(20, 57),
+                    Position(31, 57),
+                  ),
+                ),
+                #(
+                  Position(19, 57),
+                  Position(31, 57),
+                ),
+              )),
+              #(
+                Position(9, 57),
+                Position(31, 57),
+              ),
+            ),
+          ]),
+          None,
+          Some(SelectionSetNode(
+            [
+              FieldNode(
+                None,
+                NameNode(
+                  "id",
+                  #(
+                    Position(5, 58),
+                    Position(6, 58),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 58),
+                  Position(9, 59),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "title",
+                  #(
+                    Position(5, 59),
+                    Position(9, 59),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 59),
+                  Position(3, 60),
+                ),
+              ),
+            ],
+            #(
+              Position(34, 57),
+              Position(3, 60),
+            ),
+          )),
+          #(
+            Position(3, 57),
+            Position(3, 60),
+          ),
+        ),
+      ],
+      #(
+        Position(93, 27),
+        Position(1, 61),
+      ),
+    ),
+    #(Position(7, 27), Position(1, 61)),
+  ),
+  NamedOperationDefinitionNode(
+    Query,
+    NameNode(
+      "GetUsers",
+      #(
+        Position(7, 18),
+        Position(14, 18),
+      ),
+    ),
+    Some([
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "limit",
+            #(
+              Position(17, 18),
+              Position(21, 18),
+            ),
+          ),
+          #(
+            Position(16, 18),
+            Position(17, 18),
+          ),
+        ),
+        NullableTypeNode(
+          NamedTypeNode(NameNode(
+            "Int",
+            #(
+              Position(24, 18),
+              Position(26, 18),
+            ),
+          )),
+          #(
+            Position(24, 18),
+            Position(26, 18),
+          ),
+        ),
+        Some(ConstValueNode(IntValueNode(
+          #(
+            Position(30, 18),
+            Position(30, 18),
+          ),
+          5,
+        ))),
+        None,
+        #(
+          Position(16, 18),
+          Position(33, 18),
+        ),
+      ),
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "includeRole",
+            #(
+              Position(34, 18),
+              Position(44, 18),
+            ),
+          ),
+          #(
+            Position(33, 18),
+            Position(34, 18),
+          ),
+        ),
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "Boolean",
+            #(
+              Position(47, 18),
+              Position(53, 18),
+            ),
+          )),
+          #(
+            Position(47, 18),
+            Position(54, 18),
+          ),
+        ),
+        None,
+        None,
+        #(
+          Position(33, 18),
+          Position(55, 18),
+        ),
+      ),
+    ]),
+    None,
+    SelectionSetNode(
+      [
+        FieldNode(
+          None,
+          NameNode(
+            "users",
+            #(
+              Position(3, 19),
+              Position(7, 19),
+            ),
+          ),
+          Some([
+            ArgumentNode(
+              NameNode(
+                "limit",
+                #(
+                  Position(9, 19),
+                  Position(13, 19),
+                ),
+              ),
+              Variable(VariableNode(
+                NameNode(
+                  "limit",
+                  #(
+                    Position(17, 19),
+                    Position(21, 19),
+                  ),
+                ),
+                #(
+                  Position(16, 19),
+                  Position(21, 19),
+                ),
+              )),
+              #(
+                Position(9, 19),
+                Position(21, 19),
+              ),
+            ),
+          ]),
+          None,
+          Some(SelectionSetNode(
+            [
+              FieldNode(
+                None,
+                NameNode(
+                  "id",
+                  #(
+                    Position(5, 20),
+                    Position(6, 20),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 20),
+                  Position(8, 21),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "name",
+                  #(
+                    Position(5, 21),
+                    Position(8, 21),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 21),
+                  Position(8, 22),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "role",
+                  #(
+                    Position(5, 22),
+                    Position(8, 22),
+                  ),
+                ),
                 None,
                 Some([
                   DirectiveNode(
                     NameNode(
-                      "skip",
+                      "include",
                       #(
-                        Position(10, 13),
-                        Position(13, 13),
+                        Position(11, 22),
+                        Position(17, 22),
                       ),
                     ),
                     Some([
                       ArgumentNode(
                         NameNode(
-                          "unless",
+                          "if",
                           #(
                             Position(
-                              15,
-                              13,
+                              19,
+                              22,
                             ),
                             Position(
                               20,
-                              13,
+                              22,
                             ),
                           ),
                         ),
                         Variable(VariableNode(
                           NameNode(
-                            "foo",
+                            "includeRole",
                             #(
                               Position(
                                 24,
-                                13,
+                                22,
                               ),
                               Position(
-                                26,
-                                13,
+                                34,
+                                22,
                               ),
                             ),
                           ),
                           #(
                             Position(
                               23,
-                              13,
+                              22,
                             ),
                             Position(
-                              26,
-                              13,
+                              34,
+                              22,
                             ),
                           ),
                         )),
                         #(
                           Position(
-                            15,
-                            13,
+                            19,
+                            22,
                           ),
                           Position(
-                            26,
-                            13,
+                            34,
+                            22,
                           ),
                         ),
                       ),
                     ]),
                     #(
-                      Position(9, 13),
-                      Position(27, 13),
+                      Position(10, 22),
+                      Position(35, 22),
                     ),
                   ),
                 ]),
-                SelectionSetNode(
-                  [
-                    FieldNode(
-                      None,
-                      NameNode(
-                        "id",
-                        #(
-                          Position(
-                            7,
-                            14,
-                          ),
-                          Position(
-                            8,
-                            14,
-                          ),
-                        ),
-                      ),
-                      None,
-                      None,
-                      None,
-                      #(
-                        Position(7, 14),
-                        Position(5, 15),
-                      ),
-                    ),
-                  ],
-                  #(
-                    Position(29, 13),
-                    Position(5, 15),
-                  ),
-                ),
-                #(
-                  Position(5, 13),
-                  Position(5, 15),
-                ),
-              ),
-              InlineFragmentNode(
                 None,
-                None,
-                SelectionSetNode(
-                  [
-                    FieldNode(
-                      None,
-                      NameNode(
-                        "id",
-                        #(
-                          Position(
-                            7,
-                            17,
-                          ),
-                          Position(
-                            8,
-                            17,
-                          ),
-                        ),
-                      ),
-                      None,
-                      None,
-                      None,
-                      #(
-                        Position(7, 17),
-                        Position(5, 18),
-                      ),
-                    ),
-                  ],
-                  #(
-                    Position(9, 16),
-                    Position(5, 18),
-                  ),
-                ),
                 #(
-                  Position(5, 16),
-                  Position(5, 18),
+                  Position(5, 22),
+                  Position(3, 23),
                 ),
               ),
             ],
             #(
-              Position(38, 2),
-              Position(3, 19),
+              Position(24, 19),
+              Position(3, 23),
             ),
           )),
           #(
-            Position(3, 2),
             Position(3, 19),
+            Position(3, 23),
           ),
         ),
       ],
       #(
-        Position(67, 1),
-        Position(1, 20),
+        Position(57, 18),
+        Position(1, 24),
       ),
     ),
-    #(Position(7, 1), Position(1, 20)),
-  )),
+    #(Position(7, 18), Position(1, 24)),
+  ),
+  NamedOperationDefinitionNode(
+    Query,
+    NameNode(
+      "GetUser",
+      #(Position(7, 2), Position(13, 2)),
+    ),
+    Some([
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "userId",
+            #(
+              Position(16, 2),
+              Position(21, 2),
+            ),
+          ),
+          #(
+            Position(15, 2),
+            Position(16, 2),
+          ),
+        ),
+        NonNullTypeNode(
+          NamedTypeNode(NameNode(
+            "ID",
+            #(
+              Position(24, 2),
+              Position(25, 2),
+            ),
+          )),
+          #(
+            Position(24, 2),
+            Position(26, 2),
+          ),
+        ),
+        None,
+        None,
+        #(
+          Position(15, 2),
+          Position(29, 2),
+        ),
+      ),
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "includePosts",
+            #(
+              Position(30, 2),
+              Position(41, 2),
+            ),
+          ),
+          #(
+            Position(29, 2),
+            Position(30, 2),
+          ),
+        ),
+        NullableTypeNode(
+          NamedTypeNode(NameNode(
+            "Boolean",
+            #(
+              Position(44, 2),
+              Position(50, 2),
+            ),
+          )),
+          #(
+            Position(44, 2),
+            Position(50, 2),
+          ),
+        ),
+        Some(ConstValueNode(BooleanValueNode(
+          #(
+            Position(54, 2),
+            Position(58, 2),
+          ),
+          False,
+        ))),
+        None,
+        #(
+          Position(29, 2),
+          Position(61, 2),
+        ),
+      ),
+      VariableDefinitionNode(
+        VariableNode(
+          NameNode(
+            "skipRoleInfo",
+            #(
+              Position(62, 2),
+              Position(73, 2),
+            ),
+          ),
+          #(
+            Position(61, 2),
+            Position(62, 2),
+          ),
+        ),
+        NullableTypeNode(
+          NamedTypeNode(NameNode(
+            "Boolean",
+            #(
+              Position(76, 2),
+              Position(82, 2),
+            ),
+          )),
+          #(
+            Position(76, 2),
+            Position(82, 2),
+          ),
+        ),
+        Some(ConstValueNode(BooleanValueNode(
+          #(
+            Position(86, 2),
+            Position(90, 2),
+          ),
+          False,
+        ))),
+        None,
+        #(
+          Position(61, 2),
+          Position(91, 2),
+        ),
+      ),
+    ]),
+    None,
+    SelectionSetNode(
+      [
+        FieldNode(
+          None,
+          NameNode(
+            "user",
+            #(
+              Position(3, 3),
+              Position(6, 3),
+            ),
+          ),
+          Some([
+            ArgumentNode(
+              NameNode(
+                "id",
+                #(
+                  Position(8, 3),
+                  Position(9, 3),
+                ),
+              ),
+              Variable(VariableNode(
+                NameNode(
+                  "userId",
+                  #(
+                    Position(13, 3),
+                    Position(18, 3),
+                  ),
+                ),
+                #(
+                  Position(12, 3),
+                  Position(18, 3),
+                ),
+              )),
+              #(
+                Position(8, 3),
+                Position(18, 3),
+              ),
+            ),
+          ]),
+          None,
+          Some(SelectionSetNode(
+            [
+              FieldNode(
+                None,
+                NameNode(
+                  "id",
+                  #(
+                    Position(5, 4),
+                    Position(6, 4),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 4),
+                  Position(8, 5),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "name",
+                  #(
+                    Position(5, 5),
+                    Position(8, 5),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 5),
+                  Position(9, 6),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "email",
+                  #(
+                    Position(5, 6),
+                    Position(9, 6),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 6),
+                  Position(8, 7),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "role",
+                  #(
+                    Position(5, 7),
+                    Position(8, 7),
+                  ),
+                ),
+                None,
+                Some([
+                  DirectiveNode(
+                    NameNode(
+                      "skip",
+                      #(
+                        Position(11, 7),
+                        Position(14, 7),
+                      ),
+                    ),
+                    Some([
+                      ArgumentNode(
+                        NameNode(
+                          "if",
+                          #(
+                            Position(
+                              16,
+                              7,
+                            ),
+                            Position(
+                              17,
+                              7,
+                            ),
+                          ),
+                        ),
+                        Variable(VariableNode(
+                          NameNode(
+                            "skipRoleInfo",
+                            #(
+                              Position(
+                                21,
+                                7,
+                              ),
+                              Position(
+                                32,
+                                7,
+                              ),
+                            ),
+                          ),
+                          #(
+                            Position(
+                              20,
+                              7,
+                            ),
+                            Position(
+                              32,
+                              7,
+                            ),
+                          ),
+                        )),
+                        #(
+                          Position(
+                            16,
+                            7,
+                          ),
+                          Position(
+                            32,
+                            7,
+                          ),
+                        ),
+                      ),
+                    ]),
+                    #(
+                      Position(10, 7),
+                      Position(33, 7),
+                    ),
+                  ),
+                ]),
+                None,
+                #(
+                  Position(5, 7),
+                  Position(13, 8),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "createdAt",
+                  #(
+                    Position(5, 8),
+                    Position(13, 8),
+                  ),
+                ),
+                None,
+                None,
+                None,
+                #(
+                  Position(5, 8),
+                  Position(9, 9),
+                ),
+              ),
+              FieldNode(
+                None,
+                NameNode(
+                  "posts",
+                  #(
+                    Position(5, 9),
+                    Position(9, 9),
+                  ),
+                ),
+                None,
+                Some([
+                  DirectiveNode(
+                    NameNode(
+                      "include",
+                      #(
+                        Position(12, 9),
+                        Position(18, 9),
+                      ),
+                    ),
+                    Some([
+                      ArgumentNode(
+                        NameNode(
+                          "if",
+                          #(
+                            Position(
+                              20,
+                              9,
+                            ),
+                            Position(
+                              21,
+                              9,
+                            ),
+                          ),
+                        ),
+                        Variable(VariableNode(
+                          NameNode(
+                            "includePosts",
+                            #(
+                              Position(
+                                25,
+                                9,
+                              ),
+                              Position(
+                                36,
+                                9,
+                              ),
+                            ),
+                          ),
+                          #(
+                            Position(
+                              24,
+                              9,
+                            ),
+                            Position(
+                              36,
+                              9,
+                            ),
+                          ),
+                        )),
+                        #(
+                          Position(
+                            20,
+                            9,
+                          ),
+                          Position(
+                            36,
+                            9,
+                          ),
+                        ),
+                      ),
+                    ]),
+                    #(
+                      Position(11, 9),
+                      Position(37, 9),
+                    ),
+                  ),
+                ]),
+                Some(SelectionSetNode(
+                  [
+                    FieldNode(
+                      None,
+                      NameNode(
+                        "id",
+                        #(
+                          Position(
+                            7,
+                            10,
+                          ),
+                          Position(
+                            8,
+                            10,
+                          ),
+                        ),
+                      ),
+                      None,
+                      None,
+                      None,
+                      #(
+                        Position(7, 10),
+                        Position(11, 11),
+                      ),
+                    ),
+                    FieldNode(
+                      None,
+                      NameNode(
+                        "title",
+                        #(
+                          Position(
+                            7,
+                            11,
+                          ),
+                          Position(
+                            11,
+                            11,
+                          ),
+                        ),
+                      ),
+                      None,
+                      None,
+                      None,
+                      #(
+                        Position(7, 11),
+                        Position(15, 12),
+                      ),
+                    ),
+                    FieldNode(
+                      None,
+                      NameNode(
+                        "published",
+                        #(
+                          Position(
+                            7,
+                            12,
+                          ),
+                          Position(
+                            15,
+                            12,
+                          ),
+                        ),
+                      ),
+                      None,
+                      None,
+                      None,
+                      #(
+                        Position(7, 12),
+                        Position(5, 13),
+                      ),
+                    ),
+                  ],
+                  #(
+                    Position(39, 9),
+                    Position(5, 13),
+                  ),
+                )),
+                #(
+                  Position(5, 9),
+                  Position(5, 13),
+                ),
+              ),
+            ],
+            #(
+              Position(21, 3),
+              Position(3, 14),
+            ),
+          )),
+          #(
+            Position(3, 3),
+            Position(3, 14),
+          ),
+        ),
+      ],
+      #(
+        Position(93, 2),
+        Position(1, 15),
+      ),
+    ),
+    #(Position(7, 2), Position(1, 15)),
+  ),
 ])

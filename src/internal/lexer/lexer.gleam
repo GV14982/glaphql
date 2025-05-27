@@ -60,20 +60,9 @@ pub fn get_next_token(lexer: Lexer) -> TokenResult {
     "\r\n" <> tail | "\n" <> tail | "\r" <> tail ->
       get_next_token(Lexer(tail, position.inc_row(lexer.pos)))
     "#" <> tail -> {
-      let #(rest, comment, pos) =
+      let #(tail, _, _) =
         consume_comment(tail, "", position.inc_col_by(lexer.pos, 1))
-      case rest {
-        "" ->
-          result_with_token(
-            #(token_kind.Comment(comment), #(lexer.pos, pos)),
-            Lexer(rest, pos |> position.inc_col_by(1)),
-          )
-        _ ->
-          result_with_token(
-            #(token_kind.Comment(comment), #(lexer.pos, pos)),
-            Lexer(rest, pos |> position.inc_row),
-          )
-      }
+      get_next_token(Lexer(tail, position.inc_row(lexer.pos)))
     }
     "!" <> tail ->
       result_with_token(

@@ -1,9 +1,8 @@
 /// This module defines all error types used throughout the GraphQL implementation.
 /// Error types are grouped by category and follow consistent naming patterns.
-
+import internal/executable/types
 import internal/lexer/position
 import internal/parser/node
-import internal/schema/types
 
 /// Represents errors that can occur during lexical analysis of GraphQL documents
 pub type LexError {
@@ -49,7 +48,7 @@ pub type ParseError {
   InvalidValue
   InvalidSelectionSet
   InvalidField
-  InvalidOperationType
+  InvalidOperationType(String)
   InvalidOperationDef
   InvalidFragmentDef
   InvalidExecutableDef
@@ -85,17 +84,17 @@ pub type SchemaError {
   /// A constant value was used incorrectly
   InvalidConstValueUsage(error: ConstValueError)
   /// A scalar type is invalid
-  InvalidScalarType
+  InvalidScalarType(name: String)
   /// An object type is invalid
-  InvalidObjectType
+  InvalidObjectType(name: String)
   /// An input type is invalid
-  InvalidInputType
+  InvalidInputType(name: String)
   /// An interface type is invalid
-  InvalidInterfaceType
+  InvalidInterfaceType(name: String)
   /// A union type is invalid
-  InvalidUnionType
+  InvalidUnionType(name: String)
   /// An enum type is invalid
-  InvalidEnumType
+  InvalidEnumType(name: String)
   /// An interface implementation is invalid
   InvalidInterfaceImplementation(error: InterfaceImplementationError)
   /// A union member is invalid
@@ -106,6 +105,7 @@ pub type SchemaError {
   InvalidInputField(error: FieldError)
   /// An output field is invalid
   InvalidOutputField(error: FieldError)
+  MissingRequiredField(name: String)
 }
 
 /// Represents errors related to interface implementation validation
@@ -167,6 +167,8 @@ pub type DirectiveError {
   )
   /// Referenced directive is not defined
   DirectiveNotDefined(directive_name: String)
+  // This is a fallback error, should never happen
+  InvalidDirectiveList
 }
 
 /// Represents errors related to field validation
@@ -176,3 +178,28 @@ pub type FieldError {
   /// Field has an invalid type
   InvalidFieldType(name: String)
 }
+
+pub type OperationError {
+  InvalidDocumentType
+  OperationNotSupported(node.OperationType)
+  DuplicateVariableName(name: String)
+  DuplicateArgumentName(name: String)
+  DuplicateFragmentName(name: String)
+  DuplicateOperationName(name: String)
+  DuplicateFieldInSelectionSet(name: String)
+  NamedWithAnonymous
+  UndefinedOperation(name: String)
+  UndefinedFragment(name: String)
+  MissingSelectedOperation
+  MissingRequiredVariable
+  UndefinedVariableType(name: String)
+  InvalidVariableType(name: String)
+  InvalidVariableValue(
+    variable_type: types.ExecutableType,
+    val: types.ExecutableConstValue,
+  )
+  UndefinedScalarType(name: String)
+  InvalidListAsScalarType
+}
+
+pub type VariableDefinitionError

@@ -1,11 +1,10 @@
 import errors
 import gleam/option
 import gleeunit/should
+import internal/executable/schema/executable
+import internal/executable/schema/type_system
 import internal/lexer/lexer
 import internal/parser/schema/document
-import internal/schema/executable
-import internal/schema/type_system
-import internal/schema/types
 
 pub fn validate_union_members_test() {
   "

@@ -1,11 +1,10 @@
 /// This module provides validation functions for GraphQL input field types.
 /// It ensures that input field types are valid according to the GraphQL specification.
-
 import errors
 import gleam/dict
 import gleam/list
 import gleam/result
-import internal/schema/types
+import internal/executable/types
 
 /// Validates a collection of input field definitions
 ///
@@ -73,8 +72,9 @@ pub fn validate_input_field_type(
           Error(
             errors.InvalidInputField(errors.UndefinedFieldType(named_type.name)),
           )
-        Ok(types.InputTypeDef(_)) -> Ok(Nil)
-        Ok(types.ScalarTypeDef(_)) -> Ok(Nil)
+        Ok(types.ScalarTypeDef(_))
+        | Ok(types.InputTypeDef(_))
+        | Ok(types.EnumTypeDef(_)) -> Ok(Nil)
         Ok(_) ->
           Error(
             errors.InvalidInputField(errors.InvalidFieldType(named_type.name)),

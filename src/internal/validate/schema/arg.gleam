@@ -1,10 +1,9 @@
 /// This module provides validation functions for GraphQL arguments.
 /// It ensures that arguments are valid according to the GraphQL specification.
-
 import errors
 import gleam/dict
 import gleam/list
-import internal/schema/types
+import internal/executable/types
 import internal/validate/schema/value
 
 /// Validates arguments against their definitions

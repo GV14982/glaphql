@@ -1,14 +1,13 @@
 /// This module provides functions for merging type definitions and extensions
 /// to create a complete executable schema.
-
 import errors
 import gleam/dict
 import gleam/list
 import gleam/option
 import gleam/result
+import internal/executable/schema/type_system
+import internal/executable/types
 import internal/parser/node
-import internal/schema/type_system
-import internal/schema/types
 
 /// Merges schema definitions and extensions to create an executable schema
 ///
@@ -23,7 +22,7 @@ import internal/schema/types
 /// - `Error(errors.SchemaError)`: If any errors occurred during merging
 ///
 pub fn merge_schema(
-  ts: types.TypeSystem,
+  ts: type_system.TypeSystem,
   description: option.Option(String),
 ) -> Result(types.ExecutableSchema, errors.SchemaError) {
   use query <- result.try(type_system.get_root_operation(ts, node.Query))
@@ -134,7 +133,7 @@ pub fn merge_object(
         ),
       )
     node.ObjectTypeExtensionWithFields(
-      name: _,
+      name:,
       location: _,
       interfaces:,
       directives:,
@@ -168,7 +167,7 @@ pub fn merge_object(
             ),
           )
         // TODO: Add error for conflicting types in object type extension fields
-        _ -> Error(errors.InvalidObjectType)
+        _ -> Error(errors.InvalidObjectType(name: name.value))
       }
     }
   }
@@ -197,12 +196,7 @@ pub fn merge_input(
             ),
         ),
       )
-    node.InputTypeExtensionWithFields(
-      name: _,
-      location: _,
-      directives:,
-      fields:,
-    ) -> {
+    node.InputTypeExtensionWithFields(name:, location: _, directives:, fields:) -> {
       let ext_fields = fields |> option.Some |> type_system.map_input_values
       let conflicting_types =
         ext_fields
@@ -224,7 +218,7 @@ pub fn merge_input(
             ),
           )
         // TODO: Add error for conflicting types in object type extension fields
-        _ -> Error(errors.InvalidInputType)
+        _ -> Error(errors.InvalidInputType(name: name.value))
       }
     }
   }
@@ -280,7 +274,7 @@ pub fn merge_interface(
         ),
       )
     node.InterfaceTypeExtensionWithFieldsNode(
-      name: _,
+      name:,
       location: _,
       interfaces:,
       directives:,
@@ -314,7 +308,7 @@ pub fn merge_interface(
             ),
           )
         // TODO: Add error for conflicting types in object type extension fields
-        _ -> Error(errors.InvalidInterfaceType)
+        _ -> Error(errors.InvalidInterfaceType(name: name.value))
       }
     }
   }

@@ -6,10 +6,10 @@ import internal/parser/node
 import internal/parser/operation/fragment_def
 import internal/parser/operation/operation_def
 
-pub fn parse_executable(
+pub fn parse_operation(
   tokens: List(token.Token),
 ) -> Result(
-  node.NodeWithTokenList(node.ExecutableDefinitionNode),
+  node.NodeWithTokenList(node.OperationDefinitionNode),
   errors.ParseError,
 ) {
   case tokens {
@@ -18,7 +18,7 @@ pub fn parse_executable(
         tokens,
         "query",
       ))
-      Ok(#(node.OperationDefinitionNode(operation), tokens))
+      Ok(#(operation, tokens))
     }
     [#(token_kind.Name(val), #(start, _)), ..tokens] -> {
       case val {
@@ -26,7 +26,7 @@ pub fn parse_executable(
           use #(operation, tokens) <- result.try(
             operation_def.parse_operation_def(tokens, val),
           )
-          Ok(#(node.OperationDefinitionNode(operation), tokens))
+          Ok(#(operation, tokens))
         }
         // Fragment
         "fragment" -> fragment_def.parse_fragment_def(tokens, start)

@@ -1,66 +1,184 @@
-query queryName($foo: ComplexType, $site: Site = MOBILE) @onQuery {
-  whoever123is: node(id: [123, 456]) {
+# Query to get a single user with their posts
+query GetUser($userId: ID!, $includePosts: Boolean = false, $skipRoleInfo: Boolean = false) {
+  user(id: $userId) {
     id
-    ... on User @onInlineFragment {
-      field2 {
+    name
+    email
+    role @skip(if: $skipRoleInfo)
+    createdAt
+    posts @include(if: $includePosts) {
+      id
+      title
+      published
+    }
+  }
+}
+
+# Query with default parameter value
+query GetUsers($limit: Int = 5, $includeRole: Boolean!) {
+  users(limit: $limit) {
+    id
+    name
+    role @include(if: $includeRole)
+  }
+}
+
+# Query with multiple parameters and inline fragments
+query SearchContent($term: String!, $postAuthorId: ID, $includePostDetails: Boolean = true) {
+  search(term: $term) {
+    __typename
+    ... on User {
+      id
+      name
+      email
+    }
+    ... on Post {
+      id
+      title
+      content @include(if: $includePostDetails)
+      author {
         id
-        alias: field1(first: 10, after: $foo) @include(if: $foo) {
-          id
-          ...frag @onFragmentSpread
-        }
+        name
       }
     }
-    ... @skip(unless: $foo) {
+    ... on Comment {
       id
+      text
+      author {
+        name
+      }
+      post {
+        title
+      }
     }
-    ... {
+  }
+
+  # Additional field in the same query
+  posts(authorId: $postAuthorId) {
+    id
+    title
+  }
+}
+
+# Fragment definition
+fragment UserDetails on User {
+  id
+  name
+  email
+  role
+  createdAt
+}
+
+fragment PostDetails on Post {
+  id
+  title
+  content
+  published
+  createdAt
+  author {
+    ...UserDetails
+  }
+}
+
+# Query using fragments
+query GetPostWithDetails($postId: ID!, $includeComments: Boolean = true) {
+  post(id: $postId) {
+    ...PostDetails
+    comments @include(if: $includeComments) {
       id
-    }
-  }
-}
-
-mutation likeStory @onMutation {
-  like(story: 123) @onField {
-    story {
-      id @onField
-    }
-  }
-}
-
-subscription StoryLikeSubscription(
-  $input: StoryLikeSubscribeInput @onVariableDefinition
-)
-  @onSubscription {
-  storyLikeSubscribe(input: $input) {
-    story {
-      likers {
-        count
-      }
-      likeSentence {
-        text
+      text
+      author {
+        ...UserDetails
       }
     }
   }
 }
 
-fragment frag on Friend @onFragmentDefinition {
-  foo(
-    size: $size
-    bar: $b
-    obj: {
-      key: "value"
-      block: """
-      block string uses \"""
-      """
+# Conditional inline fragments
+query ConditionalData($userId: ID!, $showUserDetails: Boolean!, $showPostDetails: Boolean!) {
+  user(id: $userId) {
+    id
+    ... @include(if: $showUserDetails) {
+      name
+      email
+      role
     }
-  )
+    posts {
+      id
+      ... @include(if: $showPostDetails) {
+        title
+        content
+        published
+      }
+    }
+  }
 }
 
-{
-  unnamed(truthy: true, falsy: false, nullish: null)
-  query
+# Using directives with fragment spreads
+query UserWithFragments($userId: ID!, $includeDetails: Boolean!) {
+  user(id: $userId) {
+    id
+    name
+    ...UserDetails @include(if: $includeDetails)
+  }
 }
 
-query {
-  __typename
+# Mutation to create a user
+mutation CreateNewUser($input: UserInput!) {
+  createUser(input: $input) {
+    id
+    name
+    email
+    role
+  }
+}
+
+# Mutation to create a post
+mutation CreateNewPost($title: String!, $content: String, $authorId: ID!, $includeAuthor: Boolean!) {
+  createPost(title: $title, content: $content, authorId: $authorId) {
+    id
+    title
+    content
+    published
+    author @include(if: $includeAuthor) {
+      name
+    }
+  }
+}
+
+# Mutation to create a comment
+mutation AddComment($postId: ID!, $text: String!, $authorId: ID!, $includePostInfo: Boolean = false) {
+  createComment(postId: $postId, text: $text, authorId: $authorId) {
+    id
+    text
+    author {
+      name
+    }
+    post @include(if: $includePostInfo) {
+      title
+      content
+    }
+  }
+}
+
+# Subscription to new posts
+subscription WatchPosts($includeAuthor: Boolean = true) {
+  postCreated {
+    id
+    title
+    author @include(if: $includeAuthor) {
+      name
+    }
+  }
+}
+
+# Subscription with variables
+subscription WatchComments($postId: ID, $skipAuthorInfo: Boolean = false) {
+  commentAdded(postId: $postId) {
+    id
+    text
+    author @skip(if: $skipAuthorInfo) {
+      name
+    }
+  }
 }

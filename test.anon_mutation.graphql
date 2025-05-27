@@ -1,0 +1,9 @@
+# Mutation to create a user
+mutation {
+  createUser(input: {name: "Fritzy", email: "frit@zy.cat"}) {
+    id
+    name
+    email
+    role
+  }
+}

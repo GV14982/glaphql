@@ -4,8 +4,8 @@ import gleeunit/should
 import internal/lexer/lexer
 import internal/parser/node
 import internal/parser/schema/document
-import internal/schema/executable
-import internal/schema/type_system
+import internal/executable/schema/executable
+import internal/executable/schema/type_system
 
 pub fn directive_validation_test() -> Nil {
   "

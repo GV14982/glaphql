@@ -1,25 +1,13 @@
 /// This module provides validation functions for GraphQL directives.
 /// It ensures that directives are used correctly according to the GraphQL specification.
-
 import errors
 import gleam/bool
 import gleam/dict
 import gleam/list
 import gleam/result
+import internal/executable/types
 import internal/parser/node
-import internal/schema/types
 import internal/validate/schema/arg
-
-/// Validates directives attached to a type definition
-///
-/// This function is a placeholder for future implementation.
-pub fn validate_executable_type_def_directives(
-  type_def: types.ExecutableTypeDef,
-  directives: dict.Dict(String, types.ExecutableDirectiveDef),
-  type_map: dict.Dict(String, types.ExecutableTypeDef),
-) -> Nil {
-  todo
-}
 
 /// Validates a list of directives at a specific location
 ///
@@ -42,7 +30,7 @@ pub fn validate_executable_type_def_directives(
 /// - `Error(errors.SchemaError)`: If any validation error is found
 ///
 pub fn validate_directives(
-  directives: List(types.ExecutableDirective),
+  directives: List(types.ExecutableConstDirective),
   location: node.DirectiveLocation,
   directive_def_map: dict.Dict(String, types.ExecutableDirectiveDef),
   type_map: dict.Dict(String, types.ExecutableTypeDef),
@@ -89,8 +77,11 @@ pub fn validate_directives(
                 )
             }
           }
-          // TODO: Come up with a sort of "fallback error"
-          [] -> list.Stop(Error(todo as "should never get here"))
+          // This is a fallback error, we should never get here
+          [] ->
+            list.Stop(
+              Error(errors.InvalidDirective(errors.InvalidDirectiveList)),
+            )
         }
       }
       Error(_) ->
@@ -119,7 +110,7 @@ pub fn validate_directives(
 /// - `Error(errors.SchemaError)`: If any validation error is found
 ///
 pub fn validate_directive(
-  directive: types.ExecutableDirective,
+  directive: types.ExecutableConstDirective,
   location: node.DirectiveLocation,
   def: types.ExecutableDirectiveDef,
   type_map: dict.Dict(String, types.ExecutableTypeDef),
@@ -142,7 +133,7 @@ pub fn validate_directive(
 /// - `Error(errors.SchemaError)`: If the directive is not allowed at the location
 ///
 pub fn validate_directive_location(
-  directive: types.ExecutableDirective,
+  directive: types.ExecutableConstDirective,
   location: node.DirectiveLocation,
   def: types.ExecutableDirectiveDef,
 ) -> Result(Nil, errors.SchemaError) {

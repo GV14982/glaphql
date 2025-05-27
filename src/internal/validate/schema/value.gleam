@@ -1,27 +1,10 @@
-/// This module provides validation functions for GraphQL input values.
-/// It ensures that values are valid according to their type definitions.
-
 import errors
+import gleam/bool
 import gleam/dict
 import gleam/list
-import internal/schema/types
+import internal/executable/types
 import internal/validate/util
 
-/// Validates a value against an input value definition
-///
-/// Ensures that the value is valid for the given type definition.
-///
-/// ## Arguments
-///
-/// - `value`: The value to validate
-/// - `def`: The input value definition
-/// - `type_map`: Dictionary of all type definitions in the schema
-///
-/// ## Returns
-///
-/// - `Ok(Nil)`: If the value is valid
-/// - `Error(errors.SchemaError)`: If the value is invalid
-///
 pub fn validate_value_to_def(
   value: types.ExecutableConstValue,
   def: types.ExecutableInputValueDef,
@@ -40,102 +23,70 @@ pub fn validate_value_to_def(
               name: _,
               fields:,
             ))) -> validate_input_field_values(val, fields, type_map)
-            Ok(_) -> Error(todo as "Make error for invalid input type")
+            Ok(_) -> Error(errors.InvalidInputType(name))
             _ -> Error(errors.MissingType(name))
           }
         }
-        _ -> Error(todo as "should never get here")
+        _ -> Error(errors.InvalidInputType(def.name))
       }
     types.ExecutableConstList(vals) ->
-      vals
-      |> list.fold_until(Ok(Nil), fn(acc, val) {
-        case validate_value_to_def(val, def, type_map) {
-          Ok(_) -> list.Continue(acc)
-          Error(err) -> list.Stop(Error(err))
-        }
-      })
+      case def.named_type {
+        types.ListType(_) ->
+          vals
+          |> list.fold_until(Ok(Nil), fn(acc, val) {
+            case validate_value_to_def(val, def, type_map) {
+              Ok(_) -> list.Continue(acc)
+              Error(err) -> list.Stop(Error(err))
+            }
+          })
+        _ -> Error(errors.InvalidInputType(def.name))
+      }
   }
 }
 
-/// Validates a scalar value against its type definition
-///
-/// ## Arguments
-///
-/// - `scalar`: The scalar value to validate
-/// - `arg`: The input value definition
-/// - `type_map`: Dictionary of all type definitions in the schema
-///
-/// ## Returns
-///
-/// - `Ok(Nil)`: If the scalar value is valid
-/// - `Error(errors.SchemaError)`: If the scalar value is invalid
-///
 pub fn validate_scalar_type(
   scalar: types.ExecutableConstScalar,
   arg: types.ExecutableInputValueDef,
   type_map: dict.Dict(String, types.ExecutableTypeDef),
 ) -> Result(Nil, errors.SchemaError) {
-  case scalar {
-    types.ExecutableBoolVal(_)
-    | types.ExecutableFloatVal(_)
-    | types.ExecutableIntVal(_)
-    | types.ExecutableStringVal(_) ->
-      case arg.named_type {
-        types.NamedType(types.ExecutableNamedType(name:, nullable: _)) ->
-          case type_map |> dict.get(name) {
-            Ok(types.ScalarTypeDef(_)) -> Ok(Nil)
-            _ -> Error(errors.MissingType(name))
-          }
-        _ -> Error(todo as "should never get here")
+  case scalar, arg.named_type {
+    types.ExecutableBoolVal(_), types.NamedType(t)
+    | types.ExecutableFloatVal(_), types.NamedType(t)
+    | types.ExecutableIntVal(_), types.NamedType(t)
+    | types.ExecutableStringVal(_), types.NamedType(t)
+    ->
+      case type_map |> dict.get(t.name) {
+        Ok(types.ScalarTypeDef(_)) -> Ok(Nil)
+        Ok(_) -> Error(errors.InvalidInputType(t.name))
+        Error(_) -> Error(errors.MissingType(t.name))
       }
-    types.ExecutableEnumVal(val) -> {
-      case arg.named_type {
-        types.NamedType(types.ExecutableNamedType(name:, nullable: _)) ->
-          case type_map |> dict.get(name) {
-            Ok(types.EnumTypeDef(types.ExecutableEnumTypeDef(
-              description: _,
-              directives: _,
-              members:,
-              name: _,
-            ))) -> {
-              case members |> list.any(fn(member) { member.name == val }) {
-                True -> Ok(Nil)
-                False ->
-                  Error(
-                    errors.InvalidConstValueUsage(errors.InvalidEnumValue(val)),
-                  )
-              }
-            }
-            _ -> Error(errors.MissingType(name))
+    types.ExecutableEnumVal(val), types.NamedType(t) -> {
+      case type_map |> dict.get(t.name) {
+        Ok(types.EnumTypeDef(types.ExecutableEnumTypeDef(
+          description: _,
+          directives: _,
+          name: _,
+          members:,
+        ))) -> {
+          case members |> list.any(fn(member) { member.name == val }) {
+            True -> Ok(Nil)
+            False ->
+              Error(errors.InvalidConstValueUsage(errors.InvalidEnumValue(val)))
           }
-        _ -> Error(todo as "should never get here")
+        }
+        Ok(_) -> Error(errors.InvalidInputType(t.name))
+        Error(_) -> Error(errors.MissingType(t.name))
       }
     }
-    types.ExecutableNullVal -> {
-      case util.is_nullable(arg.named_type) {
-        True -> Ok(Nil)
-        False ->
-          Error(errors.InvalidConstValueUsage(errors.NullValueForNonNullType))
-      }
+    types.ExecutableNullVal, _ -> {
+      use <- bool.guard(util.is_nullable(arg.named_type), Ok(Nil))
+      Error(errors.InvalidConstValueUsage(errors.NullValueForNonNullType))
     }
+    _, types.ListType(_) ->
+      Error(errors.InvalidScalarType(get_scalar_name(arg.named_type)))
   }
 }
 
-/// Validates input object field values
-///
-/// Ensures that all required fields are present and have valid values.
-///
-/// ## Arguments
-///
-/// - `values`: Dictionary of field values
-/// - `fields`: Dictionary of field definitions
-/// - `type_map`: Dictionary of all type definitions in the schema
-///
-/// ## Returns
-///
-/// - `Ok(Nil)`: If all field values are valid
-/// - `Error(errors.SchemaError)`: If any field value is invalid
-///
 pub fn validate_input_field_values(
   values: dict.Dict(String, types.ExecutableConstValue),
   fields: dict.Dict(String, types.ExecutableInputValueDef),
@@ -149,7 +100,14 @@ pub fn validate_input_field_values(
       Ok(value), _ ->
         list.Continue(validate_value_to_def(value, field, type_map))
       _, True -> list.Continue(acc)
-      _, _ -> list.Stop(Error(todo as "create invalid value error"))
+      _, _ -> list.Stop(Error(errors.MissingRequiredField(field_name)))
     }
   })
+}
+
+pub fn get_scalar_name(exec_type: types.ExecutableType) -> String {
+  case exec_type {
+    types.ListType(t) -> "[" <> t.executable_type |> get_scalar_name <> "]"
+    types.NamedType(t) -> t.name
+  }
 }

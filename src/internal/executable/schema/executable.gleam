@@ -1,16 +1,15 @@
 /// This module provides functions to create an executable GraphQL schema
 /// from the parsed type system definitions.
-
 import errors
 import gleam/dict
 import gleam/list
 import gleam/option
 import gleam/result
+import internal/executable/schema/merge
+import internal/executable/schema/type_system
+import internal/executable/types
 import internal/lexer/position
 import internal/parser/node
-import internal/schema/merge
-import internal/schema/type_system
-import internal/schema/types
 import internal/validate/schema/directive
 import internal/validate/schema/field
 import internal/validate/schema/input_field
@@ -34,7 +33,7 @@ import internal/validate/schema/union
 /// - `Error(errors.SchemaError)`: Validation errors encountered
 ///
 pub fn from_types(
-  ts: types.TypeSystem,
+  ts: type_system.TypeSystem,
   description: option.Option(String),
 ) -> Result(types.ExecutableSchema, errors.SchemaError) {
   use executable_schema <- result.try(merge.merge_schema(ts, description))
@@ -62,8 +61,118 @@ pub fn from_types(
         ),
       )
     })
+  let built_in_directives =
+    dict.new()
+    |> dict.insert(
+      "skip",
+      types.DirectiveDef(
+        name: "skip",
+        description: option.None,
+        repeatable: False,
+        locations: [
+          node.ExecutableDirectiveLocation(node.FieldDirective),
+          node.ExecutableDirectiveLocation(node.FragmentSpreadDirective),
+          node.ExecutableDirectiveLocation(node.InlineFragmentDirective),
+        ],
+        args: dict.new()
+          |> dict.insert(
+            "if",
+            types.ExecutableInputValueDef(
+              description: option.None,
+              default_value: option.None,
+              name: "if",
+              named_type: types.NamedType(types.ExecutableNamedType(
+                nullable: False,
+                name: "Boolean",
+              )),
+              directives: [],
+            ),
+          ),
+      ),
+    )
+    |> dict.insert(
+      "include",
+      types.DirectiveDef(
+        name: "include",
+        description: option.None,
+        repeatable: False,
+        locations: [
+          node.ExecutableDirectiveLocation(node.FieldDirective),
+          node.ExecutableDirectiveLocation(node.FragmentSpreadDirective),
+          node.ExecutableDirectiveLocation(node.InlineFragmentDirective),
+        ],
+        args: dict.new()
+          |> dict.insert(
+            "if",
+            types.ExecutableInputValueDef(
+              description: option.None,
+              default_value: option.None,
+              name: "if",
+              named_type: types.NamedType(types.ExecutableNamedType(
+                nullable: False,
+                name: "Boolean",
+              )),
+              directives: [],
+            ),
+          ),
+      ),
+    )
+    |> dict.insert(
+      "deprecated",
+      types.DirectiveDef(
+        name: "deprecated",
+        description: option.None,
+        repeatable: False,
+        locations: [
+          node.TypeSystemDirectiveLocation(node.FieldDefinitionDirective),
+          node.TypeSystemDirectiveLocation(node.EnumValueDirective),
+        ],
+        args: dict.new()
+          |> dict.insert(
+            "reason",
+            types.ExecutableInputValueDef(
+              description: option.None,
+              default_value: option.Some(
+                types.ExecutableConstScalar(types.ExecutableStringVal(
+                  "No longer supported",
+                )),
+              ),
+              name: "reason",
+              named_type: types.NamedType(types.ExecutableNamedType(
+                nullable: True,
+                name: "String",
+              )),
+              directives: [],
+            ),
+          ),
+      ),
+    )
+    |> dict.insert(
+      "specifiedBy",
+      types.DirectiveDef(
+        name: "specifiedBy",
+        description: option.None,
+        repeatable: False,
+        locations: [node.TypeSystemDirectiveLocation(node.ScalarDirective)],
+        args: dict.new()
+          |> dict.insert(
+            "url",
+            types.ExecutableInputValueDef(
+              description: option.None,
+              default_value: option.None,
+              name: "url",
+              named_type: types.NamedType(types.ExecutableNamedType(
+                nullable: False,
+                name: "String",
+              )),
+              directives: [],
+            ),
+          ),
+      ),
+    )
   use scalars <- result.try(merge.merge_types(
     ts.defs.scalars
+      // TODO: Rewrite this to bail on conflicting names
       |> dict.merge(built_in_scalars),
     ts.exts.scalars,
     types.ScalarTypeDef,
@@ -95,34 +204,32 @@ pub fn from_types(
   ))
   let directive_defs =
     ts.directives
-    |> dict.to_list
-    |> list.map(fn(d) {
-      let #(name, directive) = d
-      case directive {
+    |> dict.values
+    // TODO: This should bail if conflicting name
+    |> list.fold(built_in_directives, fn(acc, curr) {
+      case curr {
         node.DirectiveDefinitionNode(node.DirectiveDefinition(
-          name: _,
+          name:,
           description:,
           arguments:,
           locations:,
           repeatable:,
           location: _,
         )) -> {
-          option.Some(types.DirectiveDef(
+          let name = name.value
+          types.DirectiveDef(
             name: name,
             description: description |> option.map(fn(d) { d.value }),
             args: arguments
               |> type_system.map_input_values,
             locations: locations |> list.map(fn(l) { l.value }),
             repeatable:,
-          ))
+          )
+          |> dict.insert(acc, name, _)
         }
-        _ -> option.None
+        _ -> acc
       }
     })
-    |> list.filter_map(fn(opt) {
-      opt |> option.map(fn(d) { #(d.name, d) }) |> option.to_result(Nil)
-    })
-    |> dict.from_list
   // Validate that all type names are unique
   use _ <- result.try(
     names.validate_unique_names([

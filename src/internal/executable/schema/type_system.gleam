@@ -3,13 +3,46 @@ import gleam/dict
 import gleam/list
 import gleam/option
 import gleam/result
+import internal/executable/types
 import internal/parser/node
-import internal/schema/types
+import internal/util
 
-pub fn from_schema_doc(doc: node.Document) -> Result(types.TypeSystem, Nil) {
+pub type TypeSystemDefinitionsByType {
+  TypeSystemDefinitionsByType(
+    scalars: dict.Dict(String, node.ScalarTypeDefinition),
+    objects: dict.Dict(String, node.ObjectTypeDefinition),
+    inputs: dict.Dict(String, node.InputTypeDefinition),
+    interfaces: dict.Dict(String, node.InterfaceTypeDefinition),
+    unions: dict.Dict(String, node.UnionTypeDefinition),
+    enums: dict.Dict(String, node.EnumTypeDefinition),
+    schema: option.Option(node.SchemaDefinition),
+  )
+}
+
+pub type TypeSystemExtensionsByType {
+  TypeSystemExtensionsByType(
+    scalars: dict.Dict(String, List(node.ScalarTypeExtension)),
+    objects: dict.Dict(String, List(node.ObjectTypeExtension)),
+    inputs: dict.Dict(String, List(node.InputTypeExtension)),
+    interfaces: dict.Dict(String, List(node.InterfaceTypeExtension)),
+    unions: dict.Dict(String, List(node.UnionTypeExtension)),
+    enums: dict.Dict(String, List(node.EnumTypeExtension)),
+    schema: List(node.SchemaExtension),
+  )
+}
+
+pub type TypeSystem {
+  TypeSystem(
+    defs: TypeSystemDefinitionsByType,
+    exts: TypeSystemExtensionsByType,
+    directives: dict.Dict(String, node.TypeSystemDefinitionNode),
+  )
+}
+
+pub fn from_schema_doc(doc: node.Document) -> Result(TypeSystem, Nil) {
   let type_system =
-    types.TypeSystem(
-      defs: types.TypeSystemDefinitionsByType(
+    TypeSystem(
+      defs: TypeSystemDefinitionsByType(
         scalars: dict.new(),
         objects: dict.new(),
         inputs: dict.new(),
@@ -18,7 +51,7 @@ pub fn from_schema_doc(doc: node.Document) -> Result(types.TypeSystem, Nil) {
         enums: dict.new(),
         schema: option.None,
       ),
-      exts: types.TypeSystemExtensionsByType(
+      exts: TypeSystemExtensionsByType(
         scalars: dict.new(),
         objects: dict.new(),
         inputs: dict.new(),
@@ -29,32 +62,30 @@ pub fn from_schema_doc(doc: node.Document) -> Result(types.TypeSystem, Nil) {
       ),
       directives: dict.new(),
     )
-  // TODO: Propery handle this
+  // Properly handle schema document parsing
   let assert node.SchemaDocument(defs) = doc
-  Ok(
-    defs
-    |> list.fold(type_system, fn(acc, curr) {
-      case curr {
-        node.TypeSystemDefinitionNode(type_def_node) ->
-          type_node(type_def_node, acc)
-        node.TypeSystemExtensionNode(type_ext_node) ->
-          type_ext(type_ext_node, acc)
-      }
-    }),
-  )
+  defs
+  |> list.try_fold(type_system, fn(acc, curr) {
+    case curr {
+      node.TypeSystemDefinitionNode(type_def_node) ->
+        Ok(type_node(type_def_node, acc))
+      node.TypeSystemExtensionNode(type_ext_node) ->
+        Ok(type_ext(type_ext_node, acc))
+    }
+  })
 }
 
 pub fn type_ext(
   type_system_node: node.TypeSystemExtensionNode,
-  acc: types.TypeSystem,
-) -> types.TypeSystem {
+  acc: TypeSystem,
+) -> TypeSystem {
   case type_system_node {
     node.TypeExtensionNode(type_node) ->
       case type_node {
         node.ScalarTypeExtensionNode(ext) ->
-          types.TypeSystem(
+          TypeSystem(
             ..acc,
-            exts: types.TypeSystemExtensionsByType(
+            exts: TypeSystemExtensionsByType(
               ..acc.exts,
               scalars: acc.exts.scalars
                 |> dict.insert(ext.name.value, [
@@ -66,9 +97,9 @@ pub fn type_ext(
             ),
           )
         node.ObjectTypeExtensionNode(ext) ->
-          types.TypeSystem(
+          TypeSystem(
             ..acc,
-            exts: types.TypeSystemExtensionsByType(
+            exts: TypeSystemExtensionsByType(
               ..acc.exts,
               objects: acc.exts.objects
                 |> dict.insert(ext.name.value, [
@@ -80,9 +111,9 @@ pub fn type_ext(
             ),
           )
         node.InputObjectTypeExtensionNode(ext) ->
-          types.TypeSystem(
+          TypeSystem(
             ..acc,
-            exts: types.TypeSystemExtensionsByType(
+            exts: TypeSystemExtensionsByType(
               ..acc.exts,
               inputs: acc.exts.inputs
                 |> dict.insert(ext.name.value, [
@@ -94,9 +125,9 @@ pub fn type_ext(
             ),
           )
         node.InterfaceTypeExtensionNode(ext) ->
-          types.TypeSystem(
+          TypeSystem(
             ..acc,
-            exts: types.TypeSystemExtensionsByType(
+            exts: TypeSystemExtensionsByType(
               ..acc.exts,
               interfaces: acc.exts.interfaces
                 |> dict.insert(ext.name.value, [
@@ -108,9 +139,9 @@ pub fn type_ext(
             ),
           )
         node.UnionTypeExtensionNode(ext) ->
-          types.TypeSystem(
+          TypeSystem(
             ..acc,
-            exts: types.TypeSystemExtensionsByType(
+            exts: TypeSystemExtensionsByType(
               ..acc.exts,
               unions: acc.exts.unions
                 |> dict.insert(ext.name.value, [
@@ -122,9 +153,9 @@ pub fn type_ext(
             ),
           )
         node.EnumTypeExtensionNode(ext) ->
-          types.TypeSystem(
+          TypeSystem(
             ..acc,
-            exts: types.TypeSystemExtensionsByType(
+            exts: TypeSystemExtensionsByType(
               ..acc.exts,
               enums: acc.exts.enums
                 |> dict.insert(ext.name.value, [
@@ -141,9 +172,9 @@ pub fn type_ext(
       directives:,
       operation_types:,
     )) ->
-      types.TypeSystem(
+      TypeSystem(
         ..acc,
-        exts: types.TypeSystemExtensionsByType(..acc.exts, schema: [
+        exts: TypeSystemExtensionsByType(..acc.exts, schema: [
           node.SchemaExtension(location:, directives:, operation_types:),
           ..acc.exts.schema
         ]),
@@ -153,60 +184,60 @@ pub fn type_ext(
 
 pub fn type_node(
   type_def_node: node.TypeSystemDefinitionNode,
-  acc: types.TypeSystem,
-) -> types.TypeSystem {
+  acc: TypeSystem,
+) -> TypeSystem {
   case type_def_node {
     node.TypeDefinitionNode(type_node) -> {
       case type_node {
         node.ScalarTypeDefinitionNode(scalar) ->
-          types.TypeSystem(
+          TypeSystem(
             ..acc,
-            defs: types.TypeSystemDefinitionsByType(
+            defs: TypeSystemDefinitionsByType(
               ..acc.defs,
               scalars: acc.defs.scalars
                 |> dict.insert(scalar.name.value, scalar),
             ),
           )
         node.ObjectTypeDefinitionNode(object) ->
-          types.TypeSystem(
+          TypeSystem(
             ..acc,
-            defs: types.TypeSystemDefinitionsByType(
+            defs: TypeSystemDefinitionsByType(
               ..acc.defs,
               objects: acc.defs.objects
                 |> dict.insert(object.name.value, object),
             ),
           )
         node.InputTypeDefinitionNode(input) ->
-          types.TypeSystem(
+          TypeSystem(
             ..acc,
-            defs: types.TypeSystemDefinitionsByType(
+            defs: TypeSystemDefinitionsByType(
               ..acc.defs,
               inputs: acc.defs.inputs
                 |> dict.insert(input.name.value, input),
             ),
           )
         node.InterfaceTypeDefinitionNode(interface) ->
-          types.TypeSystem(
+          TypeSystem(
             ..acc,
-            defs: types.TypeSystemDefinitionsByType(
+            defs: TypeSystemDefinitionsByType(
               ..acc.defs,
               interfaces: acc.defs.interfaces
                 |> dict.insert(interface.name.value, interface),
             ),
           )
         node.UnionTypeDefinitionNode(union) ->
-          types.TypeSystem(
+          TypeSystem(
             ..acc,
-            defs: types.TypeSystemDefinitionsByType(
+            defs: TypeSystemDefinitionsByType(
               ..acc.defs,
               unions: acc.defs.unions
                 |> dict.insert(union.name.value, union),
             ),
           )
         node.EnumTypeDefinitionNode(enum) ->
-          types.TypeSystem(
+          TypeSystem(
             ..acc,
-            defs: types.TypeSystemDefinitionsByType(
+            defs: TypeSystemDefinitionsByType(
               ..acc.defs,
               enums: acc.defs.enums
                 |> dict.insert(enum.name.value, enum),
@@ -215,7 +246,7 @@ pub fn type_node(
       }
     }
     node.DirectiveDefinitionNode(node.DirectiveDefinition(name:, ..)) ->
-      types.TypeSystem(
+      TypeSystem(
         ..acc,
         directives: acc.directives
           |> dict.insert(name.value, type_def_node),
@@ -226,9 +257,9 @@ pub fn type_node(
       directives:,
       operation_types:,
     )) ->
-      types.TypeSystem(
+      TypeSystem(
         ..acc,
-        defs: types.TypeSystemDefinitionsByType(
+        defs: TypeSystemDefinitionsByType(
           ..acc.defs,
           schema: option.Some(node.SchemaDefinition(
             description:,
@@ -243,12 +274,12 @@ pub fn type_node(
 
 pub fn map_directives(
   directives: node.ConstDirectives,
-) -> List(types.ExecutableDirective) {
+) -> List(types.ExecutableConstDirective) {
   let directives =
     directives
     |> option.unwrap([])
   use directive <- list.map(directives)
-  types.ExecutableDirective(name: directive.name.value, args: {
+  types.ExecutableConstDirective(name: directive.name.value, args: {
     let args =
       directive.arguments
       |> option.unwrap([])
@@ -355,21 +386,7 @@ pub fn map_const_value(
   const_val: node.ConstValueNode,
 ) -> types.ExecutableConstValue {
   case const_val {
-    node.ConstValueNode(val) ->
-      case val {
-        node.BooleanValueNode(value:, location: _) ->
-          types.ExecutableConstScalar(val: types.ExecutableBoolVal(value))
-        node.StringValueNode(value:, location: _) ->
-          types.ExecutableConstScalar(val: types.ExecutableStringVal(value))
-        node.IntValueNode(value:, location: _) ->
-          types.ExecutableConstScalar(val: types.ExecutableIntVal(value))
-        node.FloatValueNode(value:, location: _) ->
-          types.ExecutableConstScalar(val: types.ExecutableFloatVal(value))
-        node.EnumValueNode(value:, location: _) ->
-          types.ExecutableConstScalar(types.ExecutableEnumVal(value))
-        node.NullValueNode(location: _) ->
-          types.ExecutableConstScalar(types.ExecutableNullVal)
-      }
+    node.ConstValueNode(val) -> map_const(val) |> types.ExecutableConstScalar
     node.ConstObjectNode(values:, location: _) ->
       types.ExecutableConstObject(
         val: values
@@ -383,16 +400,20 @@ pub fn map_const_value(
   }
 }
 
-fn operation_type_to_string(op: node.OperationType) {
-  case op {
-    node.Query -> "Query"
-    node.Mutation -> "Mutation"
-    node.Subscription -> "Subscription"
+pub fn map_const(val: node.ConstNode) -> types.ExecutableConstScalar {
+  case val {
+    node.BooleanValueNode(value:, location: _) -> types.ExecutableBoolVal(value)
+    node.StringValueNode(value:, location: _) ->
+      types.ExecutableStringVal(value)
+    node.IntValueNode(value:, location: _) -> types.ExecutableIntVal(value)
+    node.FloatValueNode(value:, location: _) -> types.ExecutableFloatVal(value)
+    node.EnumValueNode(value:, location: _) -> types.ExecutableEnumVal(value)
+    node.NullValueNode(location: _) -> types.ExecutableNullVal
   }
 }
 
 pub fn get_root_operation(
-  ts: types.TypeSystem,
+  ts: TypeSystem,
   op_name: node.OperationType,
 ) -> Result(types.ExecutableNamedType, errors.SchemaError) {
   let schema_def =
@@ -430,8 +451,7 @@ pub fn get_root_operation(
         |> list.unique
       case type_names {
         [type_name] -> Ok(types.ExecutableNamedType(True, type_name))
-        // TODO: Handle error if type changes a given root operation
-        _ -> Error(errors.MissingQueryType)
+        _ -> Error(errors.InvalidRootOperationType)
       }
     }
     option.None -> {
@@ -441,9 +461,10 @@ pub fn get_root_operation(
         |> list.unique
       case type_names {
         [] -> {
+          let op_type_name = util.operation_type_to_string(op_name)
           let has_ext_with_fields =
             ts.exts.objects
-            |> dict.get(operation_type_to_string(op_name))
+            |> dict.get(op_type_name)
             |> result.map(fn(exts) {
               exts
               |> list.any(fn(ext) {
@@ -455,19 +476,15 @@ pub fn get_root_operation(
             })
             |> result.unwrap(False)
           let has_def =
-            ts.defs.objects |> dict.has_key(operation_type_to_string(op_name))
+            ts.defs.objects
+            |> dict.has_key(op_type_name)
           case has_def || has_ext_with_fields {
-            True ->
-              Ok(types.ExecutableNamedType(
-                True,
-                operation_type_to_string(op_name),
-              ))
+            True -> Ok(types.ExecutableNamedType(True, op_type_name))
             False -> Error(errors.MissingQueryType)
           }
         }
         [type_name] -> Ok(types.ExecutableNamedType(True, type_name))
-        // TODO: Handle error if type changes a given root operation
-        _ -> Error(errors.MissingQueryType)
+        _ -> Error(errors.InvalidRootOperationType)
       }
     }
   }

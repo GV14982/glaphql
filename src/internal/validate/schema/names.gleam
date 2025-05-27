@@ -5,7 +5,7 @@ import errors
 import gleam/dict
 import gleam/list
 import gleam/result
-import internal/schema/types
+import internal/executable/types
 
 /// Validates that type names are unique across different type categories
 ///

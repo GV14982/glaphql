@@ -30,12 +30,25 @@ pub type InputValueDefinitions =
   option.Option(List(InputValueDefinitionNode))
 
 pub type Document {
-  OperationDocument(definitions: List(ExecutableDefinitionNode))
+  OperationDocument(definitions: List(OperationDefinitionNode))
   SchemaDocument(definitions: List(TypeSystemDefinitionOrExtensionNode))
 }
 
-pub type ExecutableDefinitionNode {
-  OperationDefinitionNode(OperationDefinitionNode)
+pub type OperationDefinitionNode {
+  NamedOperationDefinitionNode(
+    operation_type: OperationType,
+    name: NameNode,
+    variable_definitions: option.Option(List(VariableDefinitionNode)),
+    directives: Directives,
+    selection_set: SelectionSetNode,
+    location: position.Offset,
+  )
+  AnonymousOperationDefinitionNode(
+    operation_type: OperationType,
+    directives: Directives,
+    selection_set: SelectionSetNode,
+    location: position.Offset,
+  )
   FragmentDefinitionNode(
     name: NameNode,
     type_condition: NamedTypeNode,
@@ -48,30 +61,6 @@ pub type ExecutableDefinitionNode {
 pub type TypeSystemDefinitionOrExtensionNode {
   TypeSystemDefinitionNode(node: TypeSystemDefinitionNode)
   TypeSystemExtensionNode(node: TypeSystemExtensionNode)
-}
-
-pub type OperationDefinitionNode {
-  QueryOperationNode(
-    name: option.Option(NameNode),
-    variable_definitions: option.Option(List(VariableDefinitionNode)),
-    directives: Directives,
-    selection_set: SelectionSetNode,
-    location: position.Offset,
-  )
-  MutationOperationNode(
-    name: NameNode,
-    variable_definitions: option.Option(List(VariableDefinitionNode)),
-    directives: Directives,
-    selection_set: SelectionSetNode,
-    location: position.Offset,
-  )
-  SubscriptionOperationNode(
-    name: NameNode,
-    variable_definitions: option.Option(List(VariableDefinitionNode)),
-    directives: Directives,
-    selection_set: SelectionSetNode,
-    location: position.Offset,
-  )
 }
 
 pub type SelectionSetNode {

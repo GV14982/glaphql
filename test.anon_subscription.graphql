@@ -1,0 +1,9 @@
+subscription {
+  postCreated {
+    id
+    title
+    author {
+      name
+    }
+  }
+}
