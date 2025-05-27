@@ -1,6 +1,5 @@
 /// This module provides validation functions for GraphQL root operation types.
 /// It ensures that the schema's root operations are valid according to the GraphQL specification.
-
 import errors
 import gleam/dict
 import gleam/option

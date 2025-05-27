@@ -1,6 +1,5 @@
 /// This module provides name validation functions for GraphQL schemas.
 /// It ensures that type names are unique across different type categories.
-
 import errors
 import gleam/dict
 import gleam/list

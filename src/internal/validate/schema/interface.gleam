@@ -1,6 +1,5 @@
 /// This module provides validation functions for GraphQL interface implementations.
 /// It ensures that types implementing interfaces follow the GraphQL specification.
-
 import errors
 import gleam/bool
 import gleam/dict
