@@ -2,30 +2,39 @@ import gleam/option
 import internal/lexer/position
 import internal/lexer/token
 
+/// A tuple containing a node and a list of tokens associated with it.
 pub type NodeWithTokenList(a) =
   #(a, List(token.Token))
 
+/// Optional list of directive nodes.
 pub type Directives =
   option.Option(List(DirectiveNode))
 
+/// Optional list of constant directive nodes.
 pub type ConstDirectives =
   option.Option(List(ConstDirectiveNode))
 
+/// Optional list of constant argument nodes.
 pub type ConstArguments =
   option.Option(List(ConstArgumentNode))
 
+/// Optional list of argument nodes.
 pub type Arguments =
   option.Option(List(ArgumentNode))
 
+/// Optional list of field definition nodes.
 pub type FieldDefinitions =
   option.Option(List(FieldDefinitionNode))
 
+/// Optional description node.
 pub type OptionalDescription =
   option.Option(DescriptionNode)
 
+/// Optional list of named type nodes.
 pub type OptionalNamedTypeList =
   option.Option(List(NamedTypeNode))
 
+/// Optional list of input value definition nodes.
 pub type InputValueDefinitions =
   option.Option(List(InputValueDefinitionNode))
 

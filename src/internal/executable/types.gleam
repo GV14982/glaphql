@@ -2,6 +2,7 @@ import gleam/dict
 import gleam/option
 import internal/parser/node
 
+/// Represents an executable GraphQL schema, including all types, directives, and root operations.
 pub type ExecutableSchema {
   ExecutableSchema(
     description: option.Option(String),
@@ -14,6 +15,7 @@ pub type ExecutableSchema {
   )
 }
 
+/// Represents all possible executable GraphQL type definitions.
 pub type ExecutableTypeDef {
   ScalarTypeDef(ExecutableScalarTypeDef)
   EnumTypeDef(ExecutableEnumTypeDef)
@@ -23,6 +25,7 @@ pub type ExecutableTypeDef {
   UnionTypeDef(ExecutableUnionTypeDef)
 }
 
+/// Represents an executable scalar type definition.
 pub type ExecutableScalarTypeDef {
   ExecutableScalarTypeDef(
     name: String,
@@ -31,6 +34,7 @@ pub type ExecutableScalarTypeDef {
   )
 }
 
+/// Represents an executable object type definition.
 pub type ExecutableObjectTypeDef {
   ExecutableObjectTypeDef(
     name: String,
