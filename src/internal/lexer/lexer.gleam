@@ -226,8 +226,6 @@ pub fn consume_name(
   val: String,
   pos: position.Position,
 ) -> Result(AccumulatedVal(String), errors.LexError) {
-  case input {
-    _ ->
       case string.pop_grapheme(input) {
         Ok(#(head, tail)) -> {
           let is_name_continue = predicates.is_alphanumeric(head) || head == "_"
@@ -238,7 +236,6 @@ pub fn consume_name(
         }
         Error(_) -> Ok(#(input, val, pos))
       }
-  }
 }
 
 pub fn consume_string(
