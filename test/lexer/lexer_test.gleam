@@ -3,11 +3,9 @@ import errors
 import gleam/result
 import gleeunit/should
 import internal/lexer/lexer
+import internal/lexer/position
 import pprint
 import simplifile
-import internal/lexer/position
-
-
 
 pub fn schema_lex_test() {
   simplifile.read("test.schema.graphql")
@@ -31,13 +29,17 @@ pub fn operations_lex_test() {
   |> Ok
 }
 
-
 pub fn consume_comment_test() {
-    let #(rest, comment, pos) = lexer.consume_comment("this is a comment\nyes", "", position.Position(row: 1, col: 1))
-    rest 
-    |> should.equal("yes")
-    comment 
-    |> should.equal("this is a comment")
-    pos
-    |> should.equal(position.Position(row: 1, col: 18))
+  let #(rest, comment, pos) =
+    lexer.consume_comment(
+      "this is a comment\nyes",
+      "",
+      position.Position(row: 1, col: 1),
+    )
+  rest
+  |> should.equal("yes")
+  comment
+  |> should.equal("this is a comment")
+  pos
+  |> should.equal(position.Position(row: 1, col: 18))
 }
