@@ -3,6 +3,7 @@ import errors
 import gleam/result
 import gleeunit/should
 import internal/lexer/lexer
+import internal/lexer/position
 import pprint
 import simplifile
 
@@ -26,4 +27,19 @@ pub fn operations_lex_test() {
   |> pprint.format
   |> birdie.snap(title: "test operations lexed")
   |> Ok
+}
+
+pub fn consume_comment_test() {
+  let #(rest, comment, pos) =
+    lexer.consume_comment(
+      "this is a comment\nyes",
+      "",
+      position.Position(row: 1, col: 1),
+    )
+  rest
+  |> should.equal("yes")
+  comment
+  |> should.equal("this is a comment")
+  pos
+  |> should.equal(position.Position(row: 1, col: 18))
 }
