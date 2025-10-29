@@ -1,14 +1,15 @@
 import errors
 import gleam/option
-import gleeunit/should
+import gleam/result
 import internal/executable/schema/executable
 import internal/executable/schema/type_system
 import internal/executable/types
 import internal/lexer/lexer
 import internal/parser/schema/document
 
-pub fn validate_interface_implementations_test() -> Nil {
-  "
+pub fn validate_interface_implementations_test() {
+  let schema =
+    "
 type Query {
   obj: Obj
 }
@@ -22,19 +23,15 @@ type Obj implements Interface {
   b: Int
 }
     "
-  |> lexer.lex
-  |> should.be_ok
-  |> document.parse_schema_document([])
-  |> should.be_ok
-  |> type_system.from_schema_doc
-  |> should.be_ok
-  |> executable.from_types(option.None)
-  |> should.be_ok
-  Nil
+  let assert Ok(lexed) = lexer.lex(schema)
+  let assert Ok(parsed) = document.parse_schema_document(lexed, [])
+  let assert Ok(ts) = type_system.from_schema_doc(parsed)
+  assert executable.from_types(ts, option.None) |> result.is_ok
 }
 
 pub fn incomplete_interface_implementation_test() {
-  "
+  let schema =
+    "
 type Query {
   obj: Obj
 }
@@ -53,21 +50,17 @@ type Obj implements Interface {
   b: Int
 }
     "
-  |> lexer.lex
-  |> should.be_ok
-  |> document.parse_schema_document([])
-  |> should.be_ok
-  |> type_system.from_schema_doc
-  |> should.be_ok
-  |> executable.from_types(option.None)
-  |> should.be_error
-  |> should.equal(
-    errors.InvalidInterfaceImplementation(
+  let assert Ok(lexed) = lexer.lex(schema)
+  let assert Ok(parsed) = document.parse_schema_document(lexed, [])
+  let assert Ok(ts) = type_system.from_schema_doc(parsed)
+  let assert Error(err) = executable.from_types(ts, option.None)
+  assert err
+    == errors.InvalidInterfaceImplementation(
       errors.IncompleteInterfaceImplementation("Obj"),
-    ),
-  )
+    )
 
-  "
+  let schema =
+    "
 type Query {
   obj: Obj
 }
@@ -92,23 +85,19 @@ type Obj implements Interface & Parent {
   c: Boolean
 }
     "
-  |> lexer.lex
-  |> should.be_ok
-  |> document.parse_schema_document([])
-  |> should.be_ok
-  |> type_system.from_schema_doc
-  |> should.be_ok
-  |> executable.from_types(option.None)
-  |> should.be_error
-  |> should.equal(
-    errors.InvalidInterfaceImplementation(
+  let assert Ok(lexed) = lexer.lex(schema)
+  let assert Ok(parsed) = document.parse_schema_document(lexed, [])
+  let assert Ok(ts) = type_system.from_schema_doc(parsed)
+  let assert Error(err) = executable.from_types(ts, option.None)
+  assert err
+    == errors.InvalidInterfaceImplementation(
       errors.IncompleteInterfaceImplementation("Interface"),
-    ),
-  )
+    )
 }
 
 pub fn missing_fields_test() {
-  "
+  let schema =
+    "
 type Query {
   obj: Obj
 }
@@ -121,21 +110,17 @@ type Obj implements Interface {
   b: Int
 }
     "
-  |> lexer.lex
-  |> should.be_ok
-  |> document.parse_schema_document([])
-  |> should.be_ok
-  |> type_system.from_schema_doc
-  |> should.be_ok
-  |> executable.from_types(option.None)
-  |> should.be_error
-  |> should.equal(
-    errors.InvalidInterfaceImplementation(errors.MissingFields("Obj", ["a"])),
-  )
+  let assert Ok(lexed) = lexer.lex(schema)
+  let assert Ok(parsed) = document.parse_schema_document(lexed, [])
+  let assert Ok(ts) = type_system.from_schema_doc(parsed)
+  let assert Error(err) = executable.from_types(ts, option.None)
+  assert err
+    == errors.InvalidInterfaceImplementation(errors.MissingFields("Obj", ["a"]))
 }
 
 pub fn incorrect_fields_test() {
-  "
+  let schema =
+    "
 type Query {
   obj: Obj
 }
@@ -149,16 +134,12 @@ type Obj implements Interface {
   b: Int
 }
     "
-  |> lexer.lex
-  |> should.be_ok
-  |> document.parse_schema_document([])
-  |> should.be_ok
-  |> type_system.from_schema_doc
-  |> should.be_ok
-  |> executable.from_types(option.None)
-  |> should.be_error
-  |> should.equal(
-    errors.InvalidInterfaceImplementation(errors.IncorrectFieldType(
+  let assert Ok(lexed) = lexer.lex(schema)
+  let assert Ok(parsed) = document.parse_schema_document(lexed, [])
+  let assert Ok(ts) = type_system.from_schema_doc(parsed)
+  let assert Error(err) = executable.from_types(ts, option.None)
+  assert err
+    == errors.InvalidInterfaceImplementation(errors.IncorrectFieldType(
       name: "Obj",
       field: "a",
       expected_type: types.NamedType(types.ExecutableNamedType(
@@ -169,6 +150,5 @@ type Obj implements Interface {
         name: "Boolean",
         nullable: True,
       )),
-    )),
-  )
+    ))
 }

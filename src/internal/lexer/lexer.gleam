@@ -211,7 +211,7 @@ pub fn consume_comment(
   pos: position.Position,
 ) -> AccumulatedVal(String) {
   case input {
-    "\n" <> rest | "\r" <> rest | "\r\n" <> rest -> #(rest, comment, pos)
+    "\r\n" <> rest | "\n" <> rest | "\r" <> rest -> #(rest, comment, pos)
     _ ->
       case string.pop_grapheme(input) {
         Ok(#(head, tail)) ->
@@ -257,7 +257,7 @@ pub fn consume_string(
       }
     }
     "\"" <> tail -> Ok(#(tail, val, position.inc_col_by(pos, 1)))
-    "\n" <> _tail | "\r" <> _tail | "\r\n" <> _tail ->
+    "\r\n" <> _tail | "\n" <> _tail | "\r" <> _tail ->
       Error(errors.UnterminatedString(val, pos))
     _ ->
       case string.pop_grapheme(input) {

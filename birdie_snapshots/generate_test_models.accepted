@@ -1,0 +1,94 @@
+---
+version: 1.3.1
+title: generate test models
+file: ./test/codegen/model_test.gleam
+test_name: generate_models_test
+---
+// Scalars
+type Boolean
+type DateTime
+type Float
+type Id
+type Int
+type String
+
+// Enums
+pub type Role {
+  ADMIN
+  USER
+  GUEST
+}
+
+// Unions
+pub type SearchResult {
+  SearchResultUser(User)
+  SearchResultPost(Post)
+  SearchResultComment(Comment)
+}
+
+// Inputs
+pub type UserInput {
+  UserInput(email: String, name: String, role: option.Option(Role))
+}
+
+// Objects
+pub type Comment {
+  Comment(
+    author: User,
+    created_at: DateTime,
+    id: Id,
+    post: Post,
+    text: String,
+    updated_at: option.Option(DateTime)
+  )
+}
+
+pub type Mutation {
+  Mutation(
+    create_comment: Comment,
+    create_post: Post,
+    create_user: User,
+    update_user: User
+  )
+}
+
+pub type Post {
+  Post(
+    author: User,
+    comments: List(Comment),
+    content: option.Option(String),
+    created_at: DateTime,
+    id: Id,
+    published: Boolean,
+    tags: option.Option(List(String)),
+    title: String,
+    updated_at: option.Option(DateTime)
+  )
+}
+
+pub type Query {
+  Query(
+    node: option.Option(Node),
+    post: option.Option(Post),
+    posts: List(Post),
+    search: List(SearchResult),
+    user: option.Option(User),
+    users: List(User)
+  )
+}
+
+pub type Subscription {
+  Subscription(comment_added: Comment, post_created: Post, user_created: User)
+}
+
+pub type User {
+  User(
+    created_at: DateTime,
+    email: String,
+    id: Id,
+    name: String,
+    posts: option.Option(List(Post)),
+    role: Role,
+    updated_at: option.Option(DateTime)
+  )
+}

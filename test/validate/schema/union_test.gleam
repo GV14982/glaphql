@@ -1,13 +1,14 @@
 import errors
 import gleam/option
-import gleeunit/should
+import gleam/result
 import internal/executable/schema/executable
 import internal/executable/schema/type_system
 import internal/lexer/lexer
 import internal/parser/schema/document
 
 pub fn validate_union_members_test() {
-  "
+  let schema =
+    "
 type Query {
   obj: Obj
 }
@@ -22,18 +23,15 @@ type B {
 
 union Obj = A | B
     "
-  |> lexer.lex
-  |> should.be_ok
-  |> document.parse_schema_document([])
-  |> should.be_ok
-  |> type_system.from_schema_doc
-  |> should.be_ok
-  |> executable.from_types(option.None)
-  |> should.be_ok
+  let assert Ok(lexed) = lexer.lex(schema)
+  let assert Ok(parsed) = document.parse_schema_document(lexed, [])
+  let assert Ok(ts) = type_system.from_schema_doc(parsed)
+  assert executable.from_types(ts, option.None) |> result.is_ok
 }
 
 pub fn invalid_union_member() {
-  "
+  let schema =
+    "
 type Query {
   obj: Obj
 }
@@ -44,24 +42,20 @@ type A {
 
 union Obj = A | String
     "
-  |> lexer.lex
-  |> should.be_ok
-  |> document.parse_schema_document([])
-  |> should.be_ok
-  |> type_system.from_schema_doc
-  |> should.be_ok
-  |> executable.from_types(option.None)
-  |> should.be_error
-  |> should.equal(
-    errors.InvalidUnionMember(errors.NonObjectMember(
+  let assert Ok(lexed) = lexer.lex(schema)
+  let assert Ok(parsed) = document.parse_schema_document(lexed, [])
+  let assert Ok(ts) = type_system.from_schema_doc(parsed)
+  let assert Error(err) = executable.from_types(ts, option.None)
+  assert err
+    == errors.InvalidUnionMember(errors.NonObjectMember(
       name: "Obj",
       member: "String",
-    )),
-  )
+    ))
 }
 
 pub fn missing_union_member() {
-  "
+  let schema =
+    "
 type Query {
   obj: Obj
 }
@@ -72,18 +66,13 @@ type A {
 
 union Obj = A | Missing
     "
-  |> lexer.lex
-  |> should.be_ok
-  |> document.parse_schema_document([])
-  |> should.be_ok
-  |> type_system.from_schema_doc
-  |> should.be_ok
-  |> executable.from_types(option.None)
-  |> should.be_error
-  |> should.equal(
-    errors.InvalidUnionMember(errors.NonObjectMember(
+  let assert Ok(lexed) = lexer.lex(schema)
+  let assert Ok(parsed) = document.parse_schema_document(lexed, [])
+  let assert Ok(ts) = type_system.from_schema_doc(parsed)
+  let assert Error(err) = executable.from_types(ts, option.None)
+  assert err
+    == errors.InvalidUnionMember(errors.NonObjectMember(
       name: "Obj",
       member: "Missing",
-    )),
-  )
+    ))
 }

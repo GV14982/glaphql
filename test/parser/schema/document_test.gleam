@@ -1,17 +1,14 @@
 import birdie
-import gleeunit/should
 import internal/lexer/lexer
 import internal/parser/schema/document
 import pprint
 import simplifile
 
 pub fn parse_schema_document_test() {
-  simplifile.read("test.schema.graphql")
-  |> should.be_ok
-  |> lexer.lex
-  |> should.be_ok
-  |> document.parse_schema_document([])
-  |> should.be_ok
+  let assert Ok(value) = simplifile.read("test.schema.graphql")
+  let assert Ok(lexed) = lexer.lex(value)
+  let assert Ok(parsed) = document.parse_schema_document(lexed, [])
+  parsed
   |> pprint.format
   |> birdie.snap(title: "test schema parsed")
 }

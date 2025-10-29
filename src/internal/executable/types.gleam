@@ -6,9 +6,9 @@ import internal/parser/node
 pub type ExecutableSchema {
   ExecutableSchema(
     description: option.Option(String),
-    query: ExecutableNamedType,
-    mutation: option.Option(ExecutableNamedType),
-    subscription: option.Option(ExecutableNamedType),
+    query: ExecutableObjectTypeDef,
+    mutation: option.Option(ExecutableObjectTypeDef),
+    subscription: option.Option(ExecutableObjectTypeDef),
     type_map: dict.Dict(String, ExecutableTypeDef),
     directive_defs: dict.Dict(String, ExecutableDirectiveDef),
     directives: List(ExecutableConstDirective),

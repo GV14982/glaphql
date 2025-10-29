@@ -1,6 +1,5 @@
 import gleam/dict
 import gleam/option
-import gleeunit/should
 import internal/executable/operation/executable
 import internal/executable/schema/executable as schema_executable
 import internal/executable/schema/type_system
@@ -11,35 +10,26 @@ import internal/parser/schema/document as schema_document
 import simplifile
 
 pub fn make_executable_schema_test() {
-  let executable_schema =
-    simplifile.read("test.schema.graphql")
-    |> should.be_ok
-    |> lexer.lex
-    |> should.be_ok
-    |> schema_document.parse_schema_document([])
-    |> should.be_ok
-    |> type_system.from_schema_doc
-    |> should.be_ok
-    |> schema_executable.from_types(option.None)
-    |> should.be_ok
+  let assert Ok(schema) = simplifile.read("test.schema.graphql")
+  let assert Ok(lexed) = lexer.lex(schema)
+  let assert Ok(parsed) = schema_document.parse_schema_document(lexed, [])
+  let assert Ok(ts) = type_system.from_schema_doc(parsed)
+  let assert Ok(executable_schema) =
+    schema_executable.from_types(ts, option.None)
 
-  let file =
-    simplifile.read("test.operation.graphql")
-    |> should.be_ok
+  let assert Ok(file) = simplifile.read("test.operation.graphql")
 
-  file
-  |> lexer.lex
-  |> should.be_ok
-  |> document.parse_operations_document([])
-  |> should.be_ok
-  |> executable.make_executable(
-    executable_schema,
-    option.Some("GetUser"),
-    dict.new()
-      |> dict.insert(
-        "userId",
-        types.ExecutableConstScalar(types.ExecutableStringVal("id-123")),
-      ),
-  )
-  |> should.be_ok
+  let assert Ok(lexed) = lexer.lex(file)
+  let assert Ok(parsed) = document.parse_operations_document(lexed, [])
+  let assert Ok(_) =
+    executable.make_executable(
+      parsed,
+      executable_schema,
+      option.Some("GetUser"),
+      dict.new()
+        |> dict.insert(
+          "userId",
+          types.ExecutableConstScalar(types.ExecutableStringVal("id-123")),
+        ),
+    )
 }

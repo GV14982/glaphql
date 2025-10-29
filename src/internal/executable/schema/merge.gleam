@@ -8,6 +8,96 @@ import gleam/result
 import internal/executable/schema/type_system
 import internal/executable/types
 import internal/parser/node
+import internal/util
+
+pub fn get_root_operation(
+  ts: type_system.TypeSystem,
+  op_name: node.OperationType,
+) -> Result(types.ExecutableObjectTypeDef, errors.SchemaError) {
+  let schema_def =
+    ts.defs.schema
+    |> option.map(fn(def) {
+      def.operation_types
+      |> list.find(fn(o) { o.operation == op_name })
+      |> option.from_result
+    })
+    |> option.flatten
+  let schema_exts =
+    ts.exts.schema
+    |> list.filter_map(fn(ext) {
+      case ext {
+        node.SchemaExtension(
+          directives: _,
+          location: _,
+          operation_types: option.Some(operation_types),
+        ) -> Ok(operation_types)
+        _ -> Error(Nil)
+      }
+    })
+    |> list.flatten
+  let named_type_result = case schema_def {
+    option.Some(def) -> {
+      let type_names =
+        [
+          def.named_type.name.value,
+          ..{
+            schema_exts
+            |> list.filter(fn(ext) { ext.operation == def.operation })
+            |> list.map(fn(ext) { ext.named_type.name.value })
+          }
+        ]
+        |> list.unique
+      case type_names {
+        [type_name] -> Ok(types.ExecutableNamedType(True, type_name))
+        _ -> Error(errors.InvalidRootOperationType)
+      }
+    }
+    option.None -> {
+      let type_names =
+        schema_exts
+        |> list.map(fn(ext) { ext.named_type.name.value })
+        |> list.unique
+      case type_names {
+        [] -> {
+          let op_type_name = util.operation_type_to_string(op_name)
+          let has_ext_with_fields =
+            ts.exts.objects
+            |> dict.get(op_type_name)
+            |> result.map(fn(exts) {
+              exts
+              |> list.any(fn(ext) {
+                case ext {
+                  node.ObjectTypeExtensionWithFields(_, _, _, _, _) -> True
+                  _ -> False
+                }
+              })
+            })
+            |> result.unwrap(False)
+          let has_def =
+            ts.defs.objects
+            |> dict.has_key(op_type_name)
+          case has_def || has_ext_with_fields {
+            True -> Ok(types.ExecutableNamedType(True, op_type_name))
+            False -> Error(errors.MissingQueryType)
+          }
+        }
+        [type_name] -> Ok(types.ExecutableNamedType(True, type_name))
+        _ -> Error(errors.InvalidRootOperationType)
+      }
+    }
+  }
+  use named_type <- result.try(named_type_result)
+  use def <- result.try(
+    ts.defs.objects
+    |> dict.get(named_type.name)
+    |> result.map_error(fn(_) { errors.MissingType(named_type.name) }),
+  )
+  let exts =
+    ts.exts.objects
+    |> dict.get(named_type.name)
+    |> result.unwrap([])
+  merge_object(def, exts)
+}
 
 /// Merges schema definitions and extensions to create an executable schema
 ///
@@ -25,11 +115,10 @@ pub fn merge_schema(
   ts: type_system.TypeSystem,
   description: option.Option(String),
 ) -> Result(types.ExecutableSchema, errors.SchemaError) {
-  use query <- result.try(type_system.get_root_operation(ts, node.Query))
-  let mutation =
-    type_system.get_root_operation(ts, node.Mutation) |> option.from_result
+  use query <- result.try(get_root_operation(ts, node.Query))
+  let mutation = get_root_operation(ts, node.Mutation) |> option.from_result
   let subscription =
-    type_system.get_root_operation(ts, node.Subscription) |> option.from_result
+    get_root_operation(ts, node.Subscription) |> option.from_result
   let def_directives =
     ts.defs.schema
     |> option.map(fn(o) { o.directives })

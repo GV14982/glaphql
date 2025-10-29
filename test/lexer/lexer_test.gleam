@@ -1,29 +1,20 @@
 import birdie
-import errors
-import gleam/result
-import gleeunit/should
 import internal/lexer/lexer
 import pprint
 import simplifile
 
 pub fn schema_lex_test() {
-  simplifile.read("test.schema.graphql")
-  |> should.be_ok
-  |> lexer.lex
-  |> result.map_error(errors.LexError)
-  |> should.be_ok
+  let assert Ok(value) = simplifile.read("test.schema.graphql")
+  let assert Ok(lexed) = lexer.lex(value)
+  lexed
   |> pprint.format
   |> birdie.snap(title: "test schema lexed")
-  |> Ok
 }
 
 pub fn operations_lex_test() {
-  simplifile.read("test.operation.graphql")
-  |> should.be_ok
-  |> lexer.lex
-  |> result.map_error(errors.LexError)
-  |> should.be_ok
+  let assert Ok(value) = simplifile.read("test.operation.graphql")
+  let assert Ok(lexed) = lexer.lex(value)
+  lexed
   |> pprint.format
   |> birdie.snap(title: "test operations lexed")
-  |> Ok
 }

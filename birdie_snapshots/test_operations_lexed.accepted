@@ -1,5 +1,5 @@
 ---
-version: 1.2.6
+version: 1.3.1
 title: test operations lexed
 file: ./test/lexer/lexer_test.gleam
 test_name: operations_lex_test
@@ -2790,7 +2790,7 @@ test_name: operations_lex_test
     Position(1, 184),
     Position(1, 184),
   )),
-  Eof(#(
+  EOF(#(
     Position(1, 185),
     Position(1, 185),
   )),
