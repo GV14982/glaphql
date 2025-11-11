@@ -1,26 +1,9 @@
-/// This module provides validation functions for GraphQL input field types.
-/// It ensures that input field types are valid according to the GraphQL specification.
 import errors
 import gleam/dict
 import gleam/list
 import gleam/result
 import internal/executable/types
 
-/// Validates a collection of input field definitions
-///
-/// Ensures that all input field types are defined in the schema and are appropriate
-/// for use as input types (input objects or scalars).
-///
-/// ## Arguments
-///
-/// - `input_fields`: Dictionary of input field definitions to validate
-/// - `type_map`: Dictionary of all type definitions in the schema
-///
-/// ## Returns
-///
-/// - `Ok(Nil)`: If all input field types are valid
-/// - `Error(errors.SchemaError)`: If any validation error is found
-///
 pub fn validate_input_field_definitions(
   input_fields: dict.Dict(String, types.ExecutableInputValueDef),
   type_map: dict.Dict(String, types.ExecutableTypeDef),
@@ -40,25 +23,6 @@ pub fn validate_input_field_definitions(
   Ok(Nil)
 }
 
-/// Validates a single input field type
-///
-/// Recursively validates input field types, including list types,
-/// ensuring they are defined in the schema and are valid input types.
-/// According to the GraphQL spec, valid input types are:
-/// - Scalar types
-/// - Input object types
-/// - List types containing valid input types
-///
-/// ## Arguments
-///
-/// - `input_field_type`: The input field type to validate
-/// - `type_map`: Dictionary of all type definitions in the schema
-///
-/// ## Returns
-///
-/// - `Ok(Nil)`: If the input field type is valid
-/// - `Error(errors.SchemaError)`: If the input field type is undefined or invalid
-///
 pub fn validate_input_field_type(
   input_field_type: types.ExecutableType,
   type_map: dict.Dict(String, types.ExecutableTypeDef),

@@ -1,6 +1,3 @@
-//// This module provides functions to create executable GraphQL Operations
-//// from the parsed document.
-
 import errors
 import gleam/bool
 import gleam/dict

@@ -1,5 +1,3 @@
-/// This module provides validation functions for GraphQL directives.
-/// It ensures that directives are used correctly according to the GraphQL specification.
 import errors
 import gleam/bool
 import gleam/dict
@@ -9,26 +7,6 @@ import internal/executable/types
 import internal/parser/node
 import internal/validate/schema/arg
 
-/// Validates a list of directives at a specific location
-///
-/// Validates that:
-/// 1. All directives are defined in the schema
-/// 2. All directives are allowed at the specified location
-/// 3. Non-repeatable directives are not used multiple times
-/// 4. Directive arguments are valid
-///
-/// ## Arguments
-///
-/// - `directives`: List of directives to validate
-/// - `location`: The location where these directives are being used
-/// - `directive_def_map`: Dictionary of directive definitions
-/// - `type_map`: Dictionary of all type definitions in the schema
-///
-/// ## Returns
-///
-/// - `Ok(Nil)`: If all directives are valid
-/// - `Error(errors.SchemaError)`: If any validation error is found
-///
 pub fn validate_directives(
   directives: List(types.ExecutableConstDirective),
   location: node.DirectiveLocation,
@@ -92,23 +70,6 @@ pub fn validate_directives(
   })
 }
 
-/// Validates a single directive
-///
-/// Validates that the directive is allowed at the specified location
-/// and that its arguments are valid.
-///
-/// ## Arguments
-///
-/// - `directive`: The directive to validate
-/// - `location`: The location where the directive is being used
-/// - `def`: The directive definition
-/// - `type_map`: Dictionary of all type definitions in the schema
-///
-/// ## Returns
-///
-/// - `Ok(Nil)`: If the directive is valid
-/// - `Error(errors.SchemaError)`: If any validation error is found
-///
 pub fn validate_directive(
   directive: types.ExecutableConstDirective,
   location: node.DirectiveLocation,
@@ -119,19 +80,6 @@ pub fn validate_directive(
   arg.validate_arguments(directive.args, def.args, type_map)
 }
 
-/// Validates that a directive is allowed at the specified location
-///
-/// ## Arguments
-///
-/// - `directive`: The directive to validate
-/// - `location`: The location where the directive is being used
-/// - `def`: The directive definition
-///
-/// ## Returns
-///
-/// - `Ok(Nil)`: If the directive is allowed at the location
-/// - `Error(errors.SchemaError)`: If the directive is not allowed at the location
-///
 pub fn validate_directive_location(
   directive: types.ExecutableConstDirective,
   location: node.DirectiveLocation,

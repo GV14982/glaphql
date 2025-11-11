@@ -1,5 +1,3 @@
-/// This module provides validation functions for GraphQL interface implementations.
-/// It ensures that types implementing interfaces follow the GraphQL specification.
 import errors
 import gleam/bool
 import gleam/dict
@@ -9,21 +7,6 @@ import gleam/result
 import gleam/set
 import internal/executable/types
 
-/// Validates interface implementations for a type definition
-///
-/// Per the GraphQL spec, a type that implements an interface must include
-/// all fields defined in the interface with the exact same types.
-///
-/// ## Arguments
-///
-/// - `type_def`: The type definition to validate
-/// - `type_maps`: Dictionary of all type definitions in the schema
-///
-/// ## Returns
-///
-/// - `Ok(Nil)` if the interface implementation is valid
-/// - `Error(errors.InterfaceImplementationError)` if any validation error is found
-///
 pub fn validate_interface_implementations(
   type_def: types.ExecutableTypeDef,
   type_maps: dict.Dict(String, types.ExecutableTypeDef),
@@ -49,7 +32,6 @@ pub fn validate_interface_implementations(
   Ok(Nil)
 }
 
-/// Validates that interface list doesn't contain duplicates
 fn interface_implementation_unique(
   interfaces: List(String),
 ) -> Result(Nil, errors.InterfaceImplementationError) {
@@ -68,7 +50,6 @@ fn interface_implementation_unique(
   }
 }
 
-/// Validates that there are no cyclic interface references
 fn validate_interface_cycles(
   name: String,
   interfaces: List(types.ExecutableInterfaceTypeDef),
@@ -79,7 +60,6 @@ fn validate_interface_cycles(
   }
 }
 
-/// Collects all parent interface implementations recursively
 fn collect_parent_implementations(
   names: List(String),
   type_maps: dict.Dict(String, types.ExecutableTypeDef),
@@ -99,7 +79,6 @@ fn collect_parent_implementations(
   parent_interfaces |> list.flatten |> list.unique |> Ok
 }
 
-/// Converts interface names to their corresponding interface type definitions
 fn names_to_interface_types(
   names: List(String),
   type_maps: dict.Dict(String, types.ExecutableTypeDef),
@@ -119,7 +98,6 @@ fn names_to_interface_types(
   |> result.map(list.reverse)
 }
 
-/// Validates that a type implements all fields defined in its interfaces
 fn validate_interface_fields(
   name: String,
   fields: dict.Dict(String, types.ExecutableFieldDef),
@@ -167,7 +145,6 @@ fn validate_interface_fields(
   ))
 }
 
-/// Extracts the name, interface list, and fields from an implementable type
 fn get_implementable_type(
   type_def: types.ExecutableTypeDef,
 ) -> Result(

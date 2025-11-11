@@ -1,5 +1,3 @@
-/// This module provides functions for merging type definitions and extensions
-/// to create a complete executable schema.
 import errors
 import gleam/dict
 import gleam/list
@@ -9,18 +7,6 @@ import internal/executable/schema/type_system
 import internal/executable/types
 import internal/parser/node
 
-/// Merges schema definitions and extensions to create an executable schema
-///
-/// ## Arguments
-///
-/// - `ts`: Type system definitions and extensions
-/// - `description`: Optional schema description
-///
-/// ## Returns
-///
-/// - `Ok(ExecutableSchema)`: The merged schema
-/// - `Error(errors.SchemaError)`: If any errors occurred during merging
-///
 pub fn merge_schema(
   ts: type_system.TypeSystem,
   description: option.Option(String),

@@ -1,5 +1,3 @@
-/// This module provides functions to create an executable GraphQL schema
-/// from the parsed type system definitions.
 import errors
 import gleam/dict
 import gleam/list
@@ -17,21 +15,6 @@ import internal/validate/schema/interface
 import internal/validate/schema/names
 import internal/validate/schema/union
 
-/// Creates an executable schema from type system definitions
-///
-/// This function merges all type definitions and extensions, builds a complete
-/// type map, and validates the schema according to the GraphQL specification.
-///
-/// ## Arguments
-///
-/// - `ts`: Type system definitions including objects, scalars, enums, etc.
-/// - `description`: Optional schema description
-///
-/// ## Returns
-///
-/// - `Ok(ExecutableSchema)`: A valid executable schema
-/// - `Error(errors.SchemaError)`: Validation errors encountered
-///
 pub fn from_types(
   ts: type_system.TypeSystem,
   description: option.Option(String),
@@ -402,17 +385,6 @@ pub fn from_types(
   Ok(types.ExecutableSchema(..executable_schema, directive_defs:, type_map:))
 }
 
-/// Safely extracts a union type definition from an executable type
-///
-/// ## Arguments
-///
-/// - `type_def`: An executable type definition
-///
-/// ## Returns
-///
-/// - `Ok(ExecutableUnionTypeDef)`: If the type is a union
-/// - `Error(Nil)`: If the type is not a union
-///
 fn is_executable_union(
   type_def: types.ExecutableTypeDef,
 ) -> Result(types.ExecutableUnionTypeDef, Nil) {
